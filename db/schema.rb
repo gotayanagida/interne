@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20171021130841) do
     t.bigint "user_id"
     t.string "title"
     t.text "detail"
+    t.integer "span"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_goals_on_user_id"
