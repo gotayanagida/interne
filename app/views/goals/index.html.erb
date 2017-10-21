@@ -1,28 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Detail</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="wrap-for-dev col-md-12">
+  <h3>３ヶ月目標<h3>
+  <table>
+    <tbody>
+      <% @goals.each do |goal| %>
+        <% if goal.span == 3 %>
+          <tr>
+            <td><%= goal.title %></td>
+            <td><%= goal.user.name %></td>
+            <td><%= goal.detail %></td>
+            <% mouth = goal.created_at.month + 2 %>
+            <% day = goal.created_at.day - 1 %>
+            <td><%= "〜#{mouth}月#{day}日"%></td>
+            <td><%= link_to 'Show', goal %></td>
+            <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
+            <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-  <tbody>
-    <% @goals.each do |goal| %>
-      <tr>
-        <td><%= goal.user %></td>
-        <td><%= goal.title %></td>
-        <td><%= goal.detail %></td>
-        <td><%= link_to 'Show', goal %></td>
-        <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-        <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="wrap-for-dev col-md-12">
+  <h3>年次目標<h3>
+  <table>
+    <tbody>
+      <% @goals.each do |goal| %>
+        <% if goal.span == 12 %>
+          <tr>
+            <td><%= goal.title %></td>
+            <td><%= goal.user.name %></td>
+            <td><%= goal.detail %></td>
+            <td><%= link_to 'Show', goal %></td>
+            <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
+            <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
