@@ -1,26 +1,72 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
-
-<table>
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.user.name %></td>
-        <td><%= task.title %></td>
-        <td>
-          <% task.task_schedules.each do |task_schedule| %>
-            <%= task_schedule.schedule.work_started_at.strftime('%Y年%m月%d日(%a)') %>
-          <% end %>
-        </td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="wrap-for-dev col-md-12">
+  <h3>Todo<h3>
+  <table>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <% if task.status_code == 0 %>
+          <tr>
+            <td><%= task.title %></td>
+            <td>
+              <% task.task_schedules.each do |task_schedule| %>
+                <%= task_schedule.schedule.work_started_at.strftime('%Y年%m月%d日(%a)') %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Show', task %></td>
+            <td><%= link_to 'Edit', edit_task_path(task) %></td>
+            <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="wrap-for-dev col-md-12">
+  <h3>完了前<h3>
+  <table>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <% if task.status_code == 1 || task.status_code == 2 %>
+          <tr>
+            <td><%= task.user.name %></td>
+            <td><%= task.title %></td>
+            <td>
+              <% task.task_schedules.each do |task_schedule| %>
+                <%= task_schedule.schedule.work_started_at.strftime('%Y年%m月%d日(%a)') %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Show', task %></td>
+            <td><%= link_to 'Edit', edit_task_path(task) %></td>
+            <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="wrap-for-dev col-md-12">
+  <h3>完了済<h3>
+  <table>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <% if task.status_code == 3 %>
+          <tr>
+            <td><%= task.user.name %></td>
+            <td><%= task.title %></td>
+            <td>
+              <% task.task_schedules.each do |task_schedule| %>
+                <%= task_schedule.schedule.work_started_at.strftime('%Y年%m月%d日(%a)') %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Show', task %></td>
+            <td><%= link_to 'Edit', edit_task_path(task) %></td>
+            <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <%= link_to 'New Task', new_task_path %>
