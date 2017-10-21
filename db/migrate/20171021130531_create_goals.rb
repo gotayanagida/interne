@@ -4,6 +4,7 @@ class CreateGoals < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.string :title
       t.text :detail
+      t.integer :span
 
       t.timestamps
     end
