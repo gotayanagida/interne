@@ -10,13 +10,26 @@
 
   <body>
     <% if user_signed_in? %>
-      <p><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></p>
+      <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
     <% end %>
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% elsif alert %>
       <p class="alert"><%= alert %></p>
     <% end %>
-    <%= yield %>
+
+    <div class="col-md-12">
+      <%= render 'layouts/header' %>
+    </div>
+    <div class="col-md-2">
+      <%= render 'layouts/sidebar' %>
+    </div>
+    <div class="col-md-10">
+      <%= yield %>
+    </div>
+    <div class="col-md-12">
+      <%= render 'layouts/footer' %>
+    </div>
+
   </body>
 </html>
