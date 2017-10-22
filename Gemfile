@@ -35,10 +35,18 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
+  gem 'byebug', platform: :mri
+  gem "rename"
+  gem 'pry-rails'  # rails console(もしくは、rails c)でirbの代わりにpryを使われる
+  gem 'pry-doc'    # methodを表示
+  gem 'pry-byebug' # デバッグを実施(Ruby 2.0以降で動作する)
+  gem 'pry-stack_explorer' # スタックをたどれる
+  gem 'rspec-rails' #テスト用gem
+  gem 'factory_girl_rails' #テスト用データ作成gem
+  gem "guard-rspec" #テスト効率アップ用
+  gem 'rails-controller-testing' #テスト効率アップ
+  gem 'simplecov' #テストカバレッチ確認用
+  gem 'brakeman' #セキュリティ確認用
 end
 
 group :development do
