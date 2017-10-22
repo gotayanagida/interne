@@ -7,29 +7,33 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user = User.new(name:"田中一郎",roma_name:"ichirotanaka",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"a@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"田中一郎",roma_name:"ichirotanaka",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"a@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"田中二郎",roma_name:"jirotanaka",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"b@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"田中二郎",roma_name:"jirotanaka",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"b@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"田中花子",roma_name:"jirotanaka",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"c@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"田中花子",roma_name:"jirotanaka",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"c@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"鈴木一郎",roma_name:"ichorosuzuki",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"d@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"鈴木一郎",roma_name:"ichorosuzuki",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"d@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"鈴木二郎",roma_name:"jirosuzuki",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"e@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"鈴木二郎",roma_name:"jirosuzuki",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"e@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"鈴木花子",roma_name:"hanakosuzuki",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"f@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"鈴木花子",roma_name:"hanakosuzuki",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"f@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"田中一郎",roma_name:"ichirotanaka",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"g@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"田中一郎",roma_name:"ichirotanaka",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"g@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"田中二郎",roma_name:"jirotanaka",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"h@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"田中二郎",roma_name:"jirotanaka",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"h@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"田中花子",roma_name:"jirotanaka",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"i@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"田中花子",roma_name:"jirotanaka",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"i@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"鈴木一郎",roma_name:"ichorosuzuki",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"j@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"鈴木一郎",roma_name:"ichorosuzuki",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"j@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"鈴木二郎",roma_name:"jirosuzuki",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"k@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"鈴木二郎",roma_name:"jirosuzuki",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"k@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
 user.save!
-user = User.new(name:"鈴木花子",roma_name:"hanakosuzuki",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"l@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg")
+user = User.new(name:"鈴木花子",roma_name:"hanakosuzuki",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"l@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1)
+user.save!
+user = User.new(name:"社員太郎",roma_name:"tarosyain",password:"aaaaaa",grade:1,email:"m@a.com",gender:1,birthday:"1980/1/1",profile_photo_url:"pf.jpg",employment_status:0)
+user.save!
+user = User.new(name:"社員政子",roma_name:"masakosyain",password:"aaaaaa",grade:1,email:"n@a.com",gender:1,birthday:"1980/1/1",profile_photo_url:"pf.jpg",employment_status:0)
 user.save!
 
 Task.create(user_id:1,title:"データ解析",detail:"〇〇サービスのランディングページのデータ解析",status_code:1)

@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20171021130841) do
     t.boolean "gender"
     t.date "birthday"
     t.text "profile_photo_url"
+    t.integer "employment_status"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
