@@ -17,14 +17,14 @@
     </div>
     <div class="col-md-12">
       <% if user.goals != [] %>
-        <h4>"<%= user.goals.first.title %>"<h4>
+        <h4>"<%= user.goals.last.title %>"<h4>
       <% else %>
         目標が登録されていません:(
       <% end %>
     </div>
     <div class="col-md-12">
       <% if user.schedules != [] %>
-        <h4>次回出勤日：<%= user.schedules.first.work_started_at.strftime('%m/%d(%a) %-H:%M') %>~<h4>
+        <h4>次回出勤日：<%= user.schedules.last.work_started_at.strftime('%m/%d(%a) %-H:%M') %>~<h4>
       <% else %>
         次回出勤日が登録されていません:(
       <% end %>

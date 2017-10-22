@@ -75,7 +75,7 @@ class AttendancesController < ApplicationController
   end
 
   def stop_work
-    attendance = Attendance.where(user_id: current_user.id).order(work_started_at: "DESC").first
+    attendance = Attendance.where(user_id: current_user.id).last
     respond_to do |format|
       if @attendance = attendance.update(work_stopped_at:Time.now)
         format.html { redirect_to root_path, notice: '退勤が登録されました。'}
@@ -88,7 +88,7 @@ class AttendancesController < ApplicationController
   end
 
   def start_break
-    attendance = Attendance.where(user_id: current_user.id).order(work_started_at: "DESC").first
+    attendance = Attendance.where(user_id: current_user.id).last
     respond_to do |format|
       if @attendance = attendance.update(break_started_at:Time.now)
         format.html { redirect_to root_path, notice: '休憩開始が登録されました。'}
@@ -101,7 +101,7 @@ class AttendancesController < ApplicationController
   end
 
   def stop_break
-    attendance = Attendance.where(user_id: current_user.id).order(work_started_at: "DESC").first
+    attendance = Attendance.where(user_id: current_user.id).last
     respond_to do |format|
       if @attendance = attendance.update(break_stopped_at:Time.now)
         format.html { redirect_to root_path, notice: '休憩終了が登録されました。'}
