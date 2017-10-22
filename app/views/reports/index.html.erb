@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<div class="col-md-12 text-right">
+  <%= link_to '＋日報を追加', new_report_path, class: "btn btn-primary" %>
+</div>
 <% @reports.each do |report| %>
   <div class="wrap-for-dev col-md-4">
     <div class="col-md-3">
@@ -24,5 +27,6 @@
     </div>
   </div>
 <% end %>
-
-<%= link_to 'New Report', new_report_path %>
+<div class="col-md-12 text-center">
+  <%= paginate @reports %>
+</div>

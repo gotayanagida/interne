@@ -7,14 +7,12 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
     <% if notice %>
       <p class="notice"><%= notice %></p>
     <% elsif alert %>
       <p class="alert"><%= alert %></p>
     <% end %>
-
     <div class="header col-md-12">
       <%= render 'layouts/header' %>
     </div>
@@ -24,9 +22,5 @@
     <div class="main-window col-md-10">
       <%= yield %>
     </div>
-    <div class="footer col-md-12">
-      <%= render 'layouts/footer' %>
-    </div>
-
   </body>
 </html>
