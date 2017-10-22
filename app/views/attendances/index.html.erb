@@ -1,14 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Attendances</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>User</th>
-      <th>Work started at</th>
-      <th>Work ended at</th>
-      <th>Num of edit</th>
+      <th>名前</th>
+      <th>勤務開始時刻</th>
+      <th>勤務終了時刻</th>
+      <th>勤務時間</th>
+      <th>修正回数</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,9 +15,11 @@
   <tbody>
     <% @attendances.each do |attendance| %>
       <tr>
-        <td><%= attendance.user %></td>
-        <td><%= attendance.work_started_at %></td>
-        <td><%= attendance.work_ended_at %></td>
+        <td><%= attendance.user.name %></td>
+        <td><%= attendance.work_started_at.strftime('%m/%d(%a) %-H:%M:%S') %></td>
+        <td><%= attendance.work_ended_at.strftime('%m/%d(%a) %-H:%M:%S') %></td>
+        <% minutes = attendance.work_ended_at.to_time.to_i - attendance.work_started_at.to_time.to_i %>
+        <td><%= (Time.parse("1/1") + minutes).strftime("%-H時間%-M分%-S秒") %></td>
         <td><%= attendance.num_of_edit %></td>
         <td><%= link_to 'Show', attendance %></td>
         <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
@@ -28,6 +29,6 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Attendance', new_attendance_path %>
+<div class="col-md-12 text-center">
+  <%= paginate @attendances %>
+</div>
