@@ -61,6 +61,58 @@ class AttendancesController < ApplicationController
     end
   end
 
+  def start_work
+    @attendance = Attendance.new(user_id: current_user.id, work_started_at:Time.now)
+    respond_to do |format|
+      if @attendance.save
+        format.html { redirect_to root_path, notice: '出勤が登録されました。'}
+        format.json { render :show, status: :created, location: @attendance }
+      else
+        format.html { render :new }
+        format.json { render json: @attendance.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def stop_work
+    attendance = Attendance.where(user_id: current_user.id).order(work_started_at: "DESC").first
+    respond_to do |format|
+      if @attendance = attendance.update(work_stopped_at:Time.now)
+        format.html { redirect_to root_path, notice: '退勤が登録されました。'}
+        format.json { render :show, status: :created, location: @attendance }
+      else
+        format.html { render :new }
+        format.json { render json: @attendance.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def start_break
+    attendance = Attendance.where(user_id: current_user.id).order(work_started_at: "DESC").first
+    respond_to do |format|
+      if @attendance = attendance.update(break_started_at:Time.now)
+        format.html { redirect_to root_path, notice: '休憩開始が登録されました。'}
+        format.json { render :show, status: :created, location: @attendance }
+      else
+        format.html { render :new }
+        format.json { render json: @attendance.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def stop_break
+    attendance = Attendance.where(user_id: current_user.id).order(work_started_at: "DESC").first
+    respond_to do |format|
+      if @attendance = attendance.update(break_stopped_at:Time.now)
+        format.html { redirect_to root_path, notice: '休憩終了が登録されました。'}
+        format.json { render :show, status: :created, location: @attendance }
+      else
+        format.html { render :new }
+        format.json { render json: @attendance.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attendance
