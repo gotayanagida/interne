@@ -4,7 +4,9 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.json
   def index
-    @goals = Goal.all
+    goals = Goal.all
+    @goals_3 = goals.where(span:3)
+    @goals_12 = goals.where(span:12)
   end
 
   # GET /goals/1

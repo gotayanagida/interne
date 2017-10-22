@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<% @users.each do |user| %>
+<div class="col-md-12 text-right">
+  <%= link_to '＋ユーザを追加', new_user_path, class: "btn btn-primary" %>
+</div><% @users.each do |user| %>
   <div class="wrap-for-dev col-md-4">
-    <div class="col-md-4">
-      <%= image_tag user.profile_photo_url, class: "img-responsive"%>
+    <div class="col-md-2">
+      <%= image_tag user.profile_photo_url%>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-10">
       <div class="col-md-12">
         <h3><%= user.name %></h3>
       </div>
@@ -14,10 +16,18 @@
       </div>
     </div>
     <div class="col-md-12">
-      <h4>"<%= user.goals.first.title %>"<h4>
+      <% if user.goals != [] %>
+        <h4>"<%= user.goals.first.title %>"<h4>
+      <% else %>
+        目標が登録されていません:(
+      <% end %>
     </div>
     <div class="col-md-12">
-      <h4>次回出勤日：<%= user.schedules.first.work_started_at.strftime('%m/%d(%a) %-H:%M') %>~<h4>
+      <% if user.schedules != [] %>
+        <h4>次回出勤日：<%= user.schedules.first.work_started_at.strftime('%m/%d(%a) %-H:%M') %>~<h4>
+      <% else %>
+        次回出勤日が登録されていません:(
+      <% end %>
     </div>
     <div class="col-md-12">
       <td><%= link_to 'Show', user %></td>
@@ -26,5 +36,6 @@
     </div>
   </div>
 <% end %>
-
-<%= link_to 'New user', new_user_path %>
+<div class="col-md-12 text-center">
+  <%= paginate @users %>
+</div>
