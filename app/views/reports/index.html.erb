@@ -1,31 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-
-<div class="wrap-for-dev col-md-12">
-  <% @reports.each do |report| %>
-    <div class="wrap-for-dev col-md-4">
-      <div class="col-md-2">
-        <%= image_tag report.user.profile_photo_url, class: "img-responsive"%>
-      </div>
-      <div class="col-md-6">
-        <%= report.user.name %>
-      </div>
-      <div class="col-md-4">
-        <%= report.schedule.work_started_at.strftime('%m/%d') %>
-      </div>
-      <div class="col-md-12">
-        <%= report.title %>
-      </div>
-      <div class="col-md-12">
-        <%= report.body %>
-      </div>
-      <div class="col-md-12">
-        <td><%= link_to 'Show', report %></td>
-        <td><%= link_to 'Edit', edit_task_path(report) %></td>
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </div>
+<% @reports.each do |report| %>
+  <div class="wrap-for-dev col-md-4">
+    <div class="col-md-3">
+      <%= image_tag report.user.profile_photo_url, class: "img-responsive"%>
     </div>
-  <% end %>
-</div>
+    <div class="col-md-5">
+      <h4><%= report.user.name %></h4>
+    </div>
+    <div class="col-md-4">
+      <h4><%= report.schedule.work_started_at.strftime('%m/%d') %><h4>
+    </div>
+    <div class="col-md-12">
+      <h4>"<%= report.title %>"</h4>
+    </div>
+    <div class="col-md-12">
+      <%= report.body %>
+    </div>
+    <div class="col-md-12">
+      <td><%= link_to 'Show', report %></td>
+      <td><%= link_to 'Edit', edit_task_path(report) %></td>
+      <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </div>
+  </div>
+<% end %>
 
 <%= link_to 'New Report', new_report_path %>
