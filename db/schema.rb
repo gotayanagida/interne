@@ -15,7 +15,9 @@ ActiveRecord::Schema.define(version: 20171021130841) do
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.datetime "work_started_at"
-    t.datetime "work_ended_at"
+    t.datetime "work_stopped_at"
+    t.datetime "break_started_at"
+    t.datetime "break_stopped_at"
     t.integer "num_of_edit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,1 +1,69 @@
-ダッシュボード
+<div class="wrap-for-dev col-md-3">
+  <%= link_to start_work_path do%>
+    <div class="btn-lg btn-primary">出勤</div>
+  <% end %>
+</div>
+<div class="wrap-for-dev col-md-3">
+  <%= link_to stop_work_path do%>
+    <div class="btn-lg btn-primary">退勤</div>
+  <% end %>
+</div>
+<div class="wrap-for-dev col-md-3">
+  <%= link_to start_break_path do%>
+    <div class="btn-lg btn-primary">休憩開始</div>
+  <% end %>
+</div>
+<div class="wrap-for-dev col-md-3">
+  <%= link_to stop_break_path do%>
+    <div class="btn-lg btn-primary">休憩終了</div>
+  <% end %>
+</div>
+<div class="wrap-for-dev col-md-12">
+  <h3>ステータス</h3>
+  <div class="col-md-3">
+    <h1>出勤中</h1>
+  </div>
+  <div class="col-md-9">
+    <h3>
+      <div class="col-md-12">
+        本日の出勤時間：
+        <%= @user.schedules.first.work_started_at.strftime("%H:%M") %>
+        ~
+        <%= @user.schedules.first.work_ended_at.strftime("%H:%M") %>
+      </div>
+      <div class="col-md-12">
+        勤務時間：<%= (Time.parse("1/1") + @attendance_time).strftime("%-H時間%-M分%-S秒") %>
+      </div>
+      <div class="col-md-12">
+        今日のタスク：<%= @user.tasks.first.title %>
+      </div>
+    </h3>
+  </div>
+</div>
+<div class="wrap-for-dev col-md-12">
+  <h3>シフト登録</h3>
+  <%= link_to '＋新規シフト登録', new_schedule_path, class: "btn btn-primary" %>
+</div>
+<div class="wrap-for-dev col-md-12">
+  <h3>今後の出勤日程</h3>
+  <% @user.schedules.each do |schedule| %>
+    <div class="wrap-for-dev col-md-12">
+      <div class="col-md-6">
+        <h4><%= schedule.work_started_at.strftime('%m/%d(%a) %H:%M') %> ~ <%= schedule.work_ended_at.strftime('%H:%M') %></h4>
+      </div>
+      <div class="col-md-6">
+        <h4>
+          <% if schedule.task_schedules != [] %>
+            <% schedule.task_schedules.each do |task_schedule| %>
+              <%= task_schedule.task.title %>,
+            <% end %>
+          <% else %>
+            予定されているタスクがありません:(
+          <% end %>
+        </h4>
+      </div>
+    </div>
+  <% end %>
+
+
+</div>
