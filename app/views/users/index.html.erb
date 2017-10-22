@@ -1,33 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>University</th>
-      <th>Grade</th>
-      <th>Department</th>
-      <th>Gender</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.university %></td>
-        <td><%= user.grade %></td>
-        <td><%= user.department %></td>
-        <td><%= user.gender %></td>
+<div class="wrap-for-dev col-md-12">
+  <% @users.each do |user| %>
+    <div class="wrap-for-dev col-md-4">
+      <div class="col-md-4">
+        <%= image_tag user.profile_photo_url, class: "img-responsive"%>
+      </div>
+      <div class="col-md-8">
+        <div class="col-md-12">
+          <h3><%= user.name %></h3>
+        </div>
+        <div class="col-md-12">
+          <%= user.university %> <%= user.department %> <%= user.grade %>年
+        </div>
+      </div>
+      <div class="col-md-12">
+        <h4>"<%= user.goals.first.title %>"<h4>
+      </div>
+      <div class="col-md-12">
+        <h4>次回出勤日：<%= user.schedules.first.work_started_at.strftime('%m/%d(%a) %-H:%M') %>~<h4>
+      </div>
+      <div class="col-md-12">
         <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Edit', edit_task_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= link_to 'New user', new_user_path %>
