@@ -121,6 +121,6 @@ class AttendancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attendance_params
-      params.require(:attendance).permit(:user_id, :work_started_at, :work_ended_at, :num_of_edit)
+      params.require(:attendance).permit(:user_id, :work_started_at, :work_stopped_at, :num_of_edit)
     end
 end
