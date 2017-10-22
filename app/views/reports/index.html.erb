@@ -4,7 +4,10 @@
 <div class="wrap-for-dev col-md-12">
   <% @reports.each do |report| %>
     <div class="wrap-for-dev col-md-4">
-      <div class="col-md-8">
+      <div class="col-md-2">
+        <%= image_tag report.user.profile_photo_url, class: "img-responsive"%>
+      </div>
+      <div class="col-md-6">
         <%= report.user.name %>
       </div>
       <div class="col-md-4">
