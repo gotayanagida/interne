@@ -29,8 +29,9 @@
       <% @tasks.each do |task| %>
         <% if task.status_code == 1 || task.status_code == 2 %>
           <tr>
-            <td><%= task.user.name %></td>
             <td><%= task.title %></td>
+            <td><%= image_tag task.user.profile_photo_url, class: "img-responsive"%></td>
+            <td><%= task.user.name %></td>
             <td>
               <% task.task_schedules.each do |task_schedule| %>
                 <%= task_schedule.schedule.work_started_at.strftime('%Y年%m月%d日(%a)') %>
@@ -52,8 +53,9 @@
       <% @tasks.each do |task| %>
         <% if task.status_code == 3 %>
           <tr>
-            <td><%= task.user.name %></td>
             <td><%= task.title %></td>
+            <td><%= image_tag task.user.profile_photo_url, class: "img-responsive"%></td>
+            <td><%= task.user.name %></td>
             <td>
               <% task.task_schedules.each do |task_schedule| %>
                 <%= task_schedule.schedule.work_started_at.strftime('%Y年%m月%d日(%a)') %>

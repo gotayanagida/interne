@@ -8,11 +8,12 @@
         <% if goal.span == 3 %>
           <tr>
             <td><%= goal.title %></td>
+            <td><%= image_tag goal.user.profile_photo_url, class: "img-responsive"%></td>
             <td><%= goal.user.name %></td>
-            <td><%= goal.detail %></td>
+            <% year = goal.created_at.year %>
             <% mouth = goal.created_at.month + 2 %>
             <% day = goal.created_at.day - 1 %>
-            <td><%= "〜#{mouth}月#{day}日"%></td>
+            <td><%= "~#{year}年#{mouth}月#{day}日"%></td>
             <td><%= link_to 'Show', goal %></td>
             <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
             <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -31,8 +32,12 @@
         <% if goal.span == 12 %>
           <tr>
             <td><%= goal.title %></td>
+            <td><%= image_tag goal.user.profile_photo_url, class: "img-responsive"%></td>
             <td><%= goal.user.name %></td>
-            <td><%= goal.detail %></td>
+            <% year = goal.created_at.year + 1 %>
+            <% mouth = goal.created_at.month %>
+            <% day = goal.created_at.day - 1 %>
+            <td><%= "~#{year}年#{mouth}月#{day}日"%></td>
             <td><%= link_to 'Show', goal %></td>
             <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
             <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
