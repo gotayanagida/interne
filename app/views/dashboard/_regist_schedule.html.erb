@@ -1,4 +1,37 @@
 <div class="wrap-for-dev col-md-12">
   <h3>シフト登録</h3>
-  <%= link_to '＋新規シフト登録', new_schedule_path, class: "btn btn-primary" %>
+
+  <%= form_with(model: schedule, local: true) do |form| %>
+    <% if schedule.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+
+        <ul>
+        <% schedule.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label "ユーザID" %>
+      <%= form.text_field :user_id, id: :schedule_user_id %>
+    </div>
+
+    <div class="field">
+      <%= form.label "勤務開始時間" %>
+      <%= form.datetime_select :work_started_at, id: :schedule_work_started_at %>
+    </div>
+
+    <div class="field">
+      <%= form.label "勤務終了時間" %>
+      <%= form.datetime_select :work_ended_at, id: :schedule_work_ended_at %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+
 </div>
