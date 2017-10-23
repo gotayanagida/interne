@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notices
   root to: "dashboard#index"
   get 'attendances/start_work', to: 'attendances#start_work', as: 'start_work'
   get 'attendances/stop_work', to: 'attendances#stop_work', as: 'stop_work'
