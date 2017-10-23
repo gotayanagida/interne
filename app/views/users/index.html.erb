@@ -30,9 +30,11 @@
       <% end %>
     </div>
     <div class="col-md-12">
-      <td><%= link_to 'Show', user %></td>
-      <td><%= link_to 'Edit', edit_task_path(user) %></td>
-      <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <%= link_to '詳細', user ,class: "btn btn-default"%>
+      <% if user.id == current_user.id %>
+        <%= link_to '編集', edit_user_path(user) ,class: "btn btn-default" %>
+        <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+      <% end %>
     </div>
   </div>
 <% end %>
