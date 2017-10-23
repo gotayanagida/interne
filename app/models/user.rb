@@ -11,4 +11,6 @@ class User < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :notice_users
   has_many :notices, through: :notice_users
+  has_many :todo_users
+  has_many :todos, through: :todo_users
 end

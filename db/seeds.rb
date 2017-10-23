@@ -200,10 +200,20 @@ Attendance.create(user_id:6,work_started_at:"2017/10/21 8:56:47",work_stopped_at
 
 Notice.create(body:"田中一郎さんへのお知らせ")
 Notice.create(body:"田中二郎さんへのお知らせ")
-Notice.create(body:"田中三郎さんへのお知らせ")
 Notice.create(body:"田中花子さんへのお知らせ")
+Notice.create(body:"鈴木一郎さんへのお知らせ")
 
 NoticeUser.create(user_id:1,notice_id:1)
 NoticeUser.create(user_id:2,notice_id:2)
 NoticeUser.create(user_id:3,notice_id:3)
 NoticeUser.create(user_id:4,notice_id:4)
+
+Todo.create(body:"田中一郎さんのやること")
+Todo.create(body:"田中二郎さんのやること")
+Todo.create(body:"田中花子さんのやること")
+Todo.create(body:"鈴木一郎さんのやること")
+
+TodoUser.create(user_id:1,todo_id:1)
+TodoUser.create(user_id:2,todo_id:2)
+TodoUser.create(user_id:3,todo_id:3)
+TodoUser.create(user_id:4,todo_id:4)
