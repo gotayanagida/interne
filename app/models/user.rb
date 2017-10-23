@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :goals, dependent: :destroy
   has_many :reports, dependent: :destroy
   has_many :attendances, dependent: :destroy
+  has_many :notices, through: :notice_user
+  has_many :notice_user
 end
