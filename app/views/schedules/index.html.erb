@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-    <% @schedules.each do |schedule| %>
+    <% @schedules.reverse_each do |schedule| %>
       <tr>
         <td><%= schedule.user %></td>
         <td><%= schedule.work_started_at %></td>

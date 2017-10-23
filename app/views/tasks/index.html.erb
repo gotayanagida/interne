@@ -5,7 +5,7 @@
 </div>
 <div class="wrap-for-dev col-md-12">
   <h3>誰にも割り当てられていないタスク</h3>
-  <% @tasks_not_ready.each do |task| %>
+  <% @tasks_not_ready.reverse_each do |task| %>
     <div class="wrap-for-dev col-md-12">
       <div class="col-md-3">
         <h4><%= task.title %></h4>
@@ -29,7 +29,7 @@
 </div>
 <div class="wrap-for-dev col-md-12">
   <h3>割り当てられているタスク</h3>
-  <% @tasks_ready.each do |task| %>
+  <% @tasks_ready.reverse_each do |task| %>
     <div class="wrap-for-dev col-md-12">
       <div class="col-md-3">
         <h4><%= task.title %></h4>
@@ -55,7 +55,7 @@
 </div>
 <div class="wrap-for-dev col-md-12">
   <h3>実行中のタスク</h3>
-  <% @tasks_doing.each do |task| %>
+  <% @tasks_doing.reverse_each do |task| %>
     <div class="wrap-for-dev col-md-12">
       <div class="col-md-3">
         <h4><%= task.title %></h4>
@@ -81,7 +81,7 @@
 </div>
 <div class="wrap-for-dev col-md-12">
   <h3>完了済みのタスク</h3>
-  <% @tasks_done.each do |task| %>
+  <% @tasks_done.reverse_each do |task| %>
     <div class="wrap-for-dev col-md-12">
       <div class="col-md-3">
         <h4><%= task.title %></h4>
