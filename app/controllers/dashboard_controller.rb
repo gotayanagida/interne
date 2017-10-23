@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
     #社員用ダッシュボード
     @users = User.all
     @schedules = Schedule.all.limit(5)
-    
+
 
     #インターン生用ダッシュボード
     if @user.attendances != []
@@ -54,5 +54,8 @@ class DashboardController < ApplicationController
       #次回以降の出勤シフトがない場合
       @next_work_schedule = "\"登録なし\""
     end
+
+    @schedule = Schedule.new
+  
   end
 end
