@@ -197,3 +197,13 @@ Attendance.create(user_id:3,work_started_at:"2017/10/21 8:56:47",work_stopped_at
 Attendance.create(user_id:4,work_started_at:"2017/10/21 8:56:47",work_stopped_at:"2017/10/21 18:07:13",break_started_at:"2017/10/21 12:09:32",break_stopped_at:"2017/10/21 13:07:28",num_of_edit:0)
 Attendance.create(user_id:5,work_started_at:"2017/10/21 8:56:47",work_stopped_at:"2017/10/21 18:07:13",break_started_at:"2017/10/21 12:09:32",break_stopped_at:"2017/10/21 13:07:28",num_of_edit:0)
 Attendance.create(user_id:6,work_started_at:"2017/10/21 8:56:47",work_stopped_at:"2017/10/21 18:07:13",break_started_at:"2017/10/21 12:09:32",break_stopped_at:"2017/10/21 13:07:28",num_of_edit:0)
+
+Notice.create(body:"田中一郎さんへのお知らせ")
+Notice.create(body:"田中二郎さんへのお知らせ")
+Notice.create(body:"田中三郎さんへのお知らせ")
+Notice.create(body:"田中花子さんへのお知らせ")
+
+NoticeUser.create(user_id:1,notice_id:1)
+NoticeUser.create(user_id:2,notice_id:2)
+NoticeUser.create(user_id:3,notice_id:3)
+NoticeUser.create(user_id:4,notice_id:4)
