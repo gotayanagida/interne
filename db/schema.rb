@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021130841) do
+ActiveRecord::Schema.define(version: 20171023055426) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -32,6 +32,21 @@ ActiveRecord::Schema.define(version: 20171021130841) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_goals_on_user_id"
+  end
+
+  create_table "notice_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "notice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notice_id"], name: "index_notice_users_on_notice_id"
+    t.index ["user_id"], name: "index_notice_users_on_user_id"
+  end
+
+  create_table "notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -101,6 +116,8 @@ ActiveRecord::Schema.define(version: 20171021130841) do
 
   add_foreign_key "attendances", "users"
   add_foreign_key "goals", "users"
+  add_foreign_key "notice_users", "notices"
+  add_foreign_key "notice_users", "users"
   add_foreign_key "reports", "schedules"
   add_foreign_key "reports", "users"
   add_foreign_key "schedules", "users"
