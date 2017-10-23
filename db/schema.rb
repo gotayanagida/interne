@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20171023055426) do
   end
 
   create_table "notice_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
     t.bigint "notice_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["notice_id"], name: "index_notice_users_on_notice_id"
