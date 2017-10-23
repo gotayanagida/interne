@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @notices.each do |notice| %>
+    <% @notices.reverse_each do |notice| %>
       <tr>
         <td>
           <% notice.notice_users.each do |notice_user| %>

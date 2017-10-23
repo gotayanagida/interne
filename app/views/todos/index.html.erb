@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @todos.each do |todo| %>
+    <% @todos.reverse_each do |todo| %>
       <tr>
         <td>
           <% todo.todo_users.each do |todo_user| %>

@@ -3,7 +3,7 @@
 <div class="col-md-12 text-right">
   <%= link_to '＋日報を追加', new_report_path, class: "btn btn-primary" %>
 </div>
-<% @reports.each do |report| %>
+<% @reports.reverse_each do |report| %>
   <div class="wrap-for-dev col-md-4">
     <div class="col-md-3">
       <%= image_tag report.user.profile_photo_url, class: "img-responsive"%>
