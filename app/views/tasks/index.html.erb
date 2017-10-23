@@ -18,9 +18,11 @@
         <% end %>
       </div>
       <div class="col-md-3">
-      <%= link_to 'Show', task %>
-      <%= link_to 'Edit', edit_task_path(task) %>
-      <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to '詳細', task ,class: "btn btn-default"%>
+        <% if task.user_id == current_user.id %>
+          <%= link_to '編集', edit_task_path(task) ,class: "btn btn-default" %>
+          <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+        <% end %>
       </div>
     </div>
   <% end %>
@@ -42,9 +44,11 @@
         <% end %>
       </div>
       <div class="col-md-3">
-        <%= link_to 'Show', task %>
-        <%= link_to 'Edit', edit_task_path(task) %>
-        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to '詳細', task ,class: "btn btn-default"%>
+        <% if task.user_id == current_user.id %>
+          <%= link_to '編集', edit_task_path(task) ,class: "btn btn-default" %>
+          <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+        <% end %>
       </div>
     </div>
   <% end %>
@@ -66,9 +70,11 @@
         <% end %>
       </div>
       <div class="col-md-3">
-        <%= link_to 'Show', task %>
-        <%= link_to 'Edit', edit_task_path(task) %>
-        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to '詳細', task ,class: "btn btn-default"%>
+        <% if task.user_id == current_user.id %>
+          <%= link_to '編集', edit_task_path(task) ,class: "btn btn-default" %>
+          <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+        <% end %>
       </div>
     </div>
   <% end %>
@@ -90,9 +96,11 @@
         <% end %>
       </div>
       <div class="col-md-3">
-        <%= link_to 'Show', task %>
-        <%= link_to 'Edit', edit_task_path(task) %>
-        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to '詳細', task ,class: "btn btn-default"%>
+        <% if task.user_id == current_user.id %>
+          <%= link_to '編集', edit_task_path(task) ,class: "btn btn-default" %>
+          <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+        <% end %>
       </div>
     </div>
   <% end %>
