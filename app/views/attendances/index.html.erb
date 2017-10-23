@@ -21,9 +21,9 @@
         <% minutes = attendance.work_stopped_at.to_time.to_i - attendance.work_started_at.to_time.to_i %>
         <td><%= (Time.parse("1/1") + minutes).strftime("%-H時間%-M分%-S秒") %></td>
         <td><%= attendance.num_of_edit %></td>
-        <td><%= link_to 'Show', attendance %></td>
-        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
-        <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.employment_status == 0 %>
+          <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
