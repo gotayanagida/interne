@@ -4,6 +4,8 @@ class DashboardController < ApplicationController
     #社員用ダッシュボード
     @users = User.all
     @schedules = Schedule.all.limit(5)
+    
+
     #インターン生用ダッシュボード
     if @user.attendances != []
       if @user.attendances.last.work_started_at != nil && @user.attendances.last.work_stopped_at == nil
