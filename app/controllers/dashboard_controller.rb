@@ -1,7 +1,10 @@
 class DashboardController < ApplicationController
   def index
     @user = User.find(current_user.id)
+    #社員用ダッシュボード
+    @users = User.all
 
+    #インターン生用ダッシュボード
     if @user.attendances != []
       if @user.attendances.last.work_started_at != nil && @user.attendances.last.work_stopped_at == nil
         if @user.attendances.last.break_started_at == nil && @user.attendances.last.break_stopped_at == nil
@@ -26,7 +29,7 @@ class DashboardController < ApplicationController
     end
 
     #その日の出勤シフトについて
-    today_work_schedule = Schedule.where(work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first
+    today_work_schedule = Schedule.where(user_id: current_user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first
     if today_work_schedule != nil
       #その日の出勤シフトがある場合
       @today_work_schedule = ""
