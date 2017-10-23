@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023055426) do
+ActiveRecord::Schema.define(version: 20171023083419) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -88,6 +88,23 @@ ActiveRecord::Schema.define(version: 20171023055426) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "todo_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "todo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["todo_id"], name: "index_todo_users_on_todo_id"
+    t.index ["user_id"], name: "index_todo_users_on_user_id"
+  end
+
+  create_table "todos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text "body"
+    t.string "link"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "roma_name"
@@ -124,4 +141,6 @@ ActiveRecord::Schema.define(version: 20171023055426) do
   add_foreign_key "task_schedules", "schedules"
   add_foreign_key "task_schedules", "tasks"
   add_foreign_key "tasks", "users"
+  add_foreign_key "todo_users", "todos"
+  add_foreign_key "todo_users", "users"
 end
