@@ -11,22 +11,68 @@
   color: #45494B;
 }
 
-.header{
-  background-color: #ffffff;
+body{
+	background-color: #f1f5f9;
 }
 
 .header{
-  background-color: #ffffff;
+  background-color: #f1f5f9;
 }
 
 .sidebar{
-  background-color: #e6e6e6 ;
+  background-color: #f1f5f9;
 }
 
 .main-window{
-  background-color: #f2f2f2;
+  background-color: #f1f5f9;
 }
 
 .footer{
-  background-color: #ffffff;
+  background-color: #f1f5f9;
+}
+
+li.sidebar-list{
+	position: relative;
+    display: block;
+    font-weight: 400;
+    color: #424770;
+    font-size: 15px;
+    line-height: 33px;
+    padding-left: 26px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: 0 6px;
+    margin-left: 2px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+li.dashboard{
+	background-image:url("http://icons.iconarchive.com/icons/paomedia/small-n-flat/256/dashboard-alt-icon.png");
+}
+li.cal{
+	background-image:url("http://digital-k.co.jp/assets/img/cal.png");
+}
+li.diary{
+	background-image:url("http://digital-k.co.jp/assets/img/diary.png");
+}
+li.todo{
+	background-image:url("http://digital-k.co.jp/assets/img/todo.png");
+}
+li.mokuhyo{
+	background-image:url("mokuhyo.png");
+}
+li.kintai{
+	background-image:url("kintai.png");
+}
+li.member{
+	background-image:url("member.png");
+}
+.messagebox {
+	display: none; /* 初期状態は非表示 */
+	/* 画面上部に表示 */
+	position: absolute;
+	z-index:999;
+	top: 5%;
+    left: 50%;
+/* (width + padding-left + padding-right + border-left + border-right) の半分 */
 }
