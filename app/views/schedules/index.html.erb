@@ -239,7 +239,7 @@ html, body {
   <tbody>
     <% @schedules.reverse_each do |schedule| %>
       <tr>
-        <td><%= schedule.user %></td>
+        <td><%= schedule.user.name %></td>
         <td><%= schedule.work_started_at %></td>
         <td><%= schedule.work_ended_at %></td>
         <td><%= link_to 'Show', schedule %></td>
