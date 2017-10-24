@@ -7,6 +7,8 @@
 </div>
 
 <div class="col-md-4 col-md-offset-4">
-  <%= link_to '編集', edit_todo_path(@todo) ,class: "btn btn-default" %>
+  <% if @todo.user_id == current_user.id %>
+    <%= link_to '編集', edit_todo_path(@todo) ,class: "btn btn-default" %>
+  <% end %>
   <%= link_to '戻る', todo_path ,class: "btn btn-default" %>
 </div>

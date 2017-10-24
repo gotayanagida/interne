@@ -7,6 +7,8 @@
 </div>
 
 <div class="col-md-4 col-md-offset-4">
-  <%= link_to '編集', edit_task_path(@task) ,class: "btn btn-default" %>
+  <% if @task.user_id == current_user.id %>
+    <%= link_to '編集', edit_task_path(@task) ,class: "btn btn-default" %>
+  <% end %>
   <%= link_to '戻る', task_path ,class: "btn btn-default" %>
 </div>

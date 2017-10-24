@@ -7,6 +7,8 @@
 </div>
 
 <div class="col-md-4 col-md-offset-4">
-  <%= link_to '編集', edit_schedule_path(@schedule) ,class: "btn btn-default" %>
+  <% if @schedule.user_id == current_user.id %>
+    <%= link_to '編集', edit_schedule_path(@schedule) ,class: "btn btn-default" %>
+  <% end %>
   <%= link_to '戻る', schedule_path ,class: "btn btn-default" %>
 </div>
