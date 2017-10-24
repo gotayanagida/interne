@@ -1,19 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @task.user %>
-</p>
+<div class="col-md-4 col-md-offset-4">
+  <h3><%= @task.user.name %></h3>
+  <h3><%= @task.title %></h3>
+  <h3><%= @task.detail %></h3>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
-
-<p>
-  <strong>Detail:</strong>
-  <%= @task.detail %>
-</p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<div class="col-md-4 col-md-offset-4">
+  <%= link_to '編集', edit_task_path(@task) ,class: "btn btn-default" %>
+  <%= link_to '戻る', task_path ,class: "btn btn-default" %>
+</div>
