@@ -6,6 +6,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :university
       t.integer :grade
       t.string :department
+      t.string :position
       t.boolean :gender
       t.date :birthday
       t.text :profile_photo_url

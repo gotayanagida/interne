@@ -13,4 +13,6 @@ class User < ApplicationRecord
   has_many :notices, through: :notice_users
   has_many :todo_users
   has_many :todos, through: :todo_users
+  has_many :company_users
+  has_many :companies, through: :company_users
 end
