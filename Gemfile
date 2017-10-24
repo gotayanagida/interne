@@ -5,6 +5,9 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
 gem 'kaminari', '~> 0.17.0'
 gem 'kaminari-bootstrap'
 gem 'jquery-rails'
