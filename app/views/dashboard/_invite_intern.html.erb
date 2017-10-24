@@ -3,3 +3,16 @@
     <div class="btn-lg btn-default">新しいインターン生を招待</div>
   <% end %>
 </div>
+
+<div class="wrap-for-dev col-md-12">
+  ユーザ検索
+  <%= form_with do |form| %>
+    <%= form.text_field :search %>
+    <%= form.submit '検索', :name => nil %>
+  <% end %>
+
+  <% @searched_users.each do |searched_user| %>
+    <%= searched_user.name %><br>
+  <% end %>
+  <%= paginate @searched_users %>
+</div>

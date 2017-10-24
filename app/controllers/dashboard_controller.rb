@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
     #社員用ダッシュボード
     @users = User.all
     @schedules = Schedule.all.limit(5)
+    @searched_users = User.all.page(params[:page]).per(10).search(params[:search])
 
 
     #インターン生用ダッシュボード
@@ -56,6 +57,6 @@ class DashboardController < ApplicationController
     end
 
     @schedule = Schedule.new
-  
+
   end
 end
