@@ -1,8 +1,21 @@
-<div class="col-md-11">
-  <h1>株式会社テスト</h1>
+<div class="col-md-3 padding-left-clear">
+	<div class="row">
+		<div class="col-md-2">
+			<div class="company-image"></div>
+		</div>
+		<div class="col-md-10">
+			<div class="company-name">
+				<span class="target">トヨタ自動車株式会社</span>
+			</div>
+		</div>
+	</div>
 </div>
-<div class="col-md-1">
+<div class="col-md-7">
+</div>
+<div class="col-md-2">
   <% if user_signed_in? %>
-    <h4><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></h4>
+  	<%= link_to destroy_user_session_path, method: :delete do%>
+  	<div class="user-image"></div>
+  	<%end%>
   <% end %>
 </div>

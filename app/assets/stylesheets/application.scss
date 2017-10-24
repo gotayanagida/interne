@@ -12,16 +12,15 @@
   border: solid 2px #f2f2f2;
 }
 
-*{
-
-}
-
 body{
 	background-color: #f1f5f9;
 }
 
 .header{
   background-color: #f1f5f9;
+  margin-bottom: 20px;
+  min-height: 40px;
+  margin-top: 10px;
 }
 
 .sidebar{
@@ -77,7 +76,57 @@ li.member{
 	/* 画面上部に表示 */
 	position: absolute;
 	z-index:999;
-	top: 5%;
-    left: 50%;
-/* (width + padding-left + padding-right + border-left + border-right) の半分 */
+	top: 10%;
+    left: 54%;
+}
+.company-image{
+	float :left;
+	margin-top: 10px;
+	flex-shrink: 0;
+	box-shadow: 0 2px 5px 0 rgba(49, 49, 93, .1), 0 1px 2px 0 rgba(0, 0, 0, .08);
+	background-color: #fff;
+	width: 3.75vw;
+	height:3.75vw;
+	border-radius: 10px;
+	overflow: hidden;
+	background-image: url("company.gif");
+	background-size: 3.75vw 3.75vw;
+	padding-left: 0px;
+}
+.company-name{
+	float :left;
+	overflow: hidden;
+	margin-top:10px;
+	margin-left: 3px;
+	font-size: calc(1vw + 0.3vw);
+	font-weight: 500;
+	color: #424770;
+	float : left ;
+	overflow: hidden;
+	line-height:3.75vw;
+}
+.company-name .target{
+  display:inline-block;
+  vertical-align: middle;
+  line-height:normal;
+}
+.padding-left-clear{
+	padding-left: 0px;
+}
+.logout{
+	font-size: calc(15px + 0.1vw);
+}
+.user-image{
+	float :right;
+	margin-top: 10px;
+	flex-shrink: 0;
+	box-shadow: 0 2px 5px 0 rgba(49, 49, 93, .1), 0 1px 2px 0 rgba(0, 0, 0, .08);
+	background-color: #fff;
+	width: 3.75vw;
+	height:3.75vw;
+	border-radius: 20px;
+	overflow: hidden;
+	background-image: url("gota.png");
+	background-size: 3.75vw 3.75vw;
+	padding-left: 0px;
 }
