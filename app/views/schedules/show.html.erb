@@ -1,19 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @schedule.user %>
-</p>
+<div class="col-md-4 col-md-offset-4">
+  <h3><%= @schedule.user.name %></h3>
+  <h3><%= @schedule.work_started_at %></h3>
+  <h3><%= @schedule.work_ended_at %></h3>
+</div>
 
-<p>
-  <strong>Work started at:</strong>
-  <%= @schedule.work_started_at %>
-</p>
-
-<p>
-  <strong>Work ended at:</strong>
-  <%= @schedule.work_ended_at %>
-</p>
-
-<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
-<%= link_to 'Back', schedules_path %>
+<div class="col-md-4 col-md-offset-4">
+  <% if @schedule.user_id == current_user.id %>
+    <%= link_to '編集', edit_schedule_path(@schedule) ,class: "btn btn-default" %>
+  <% end %>
+  <%= link_to '戻る', schedule_path ,class: "btn btn-default" %>
+</div>

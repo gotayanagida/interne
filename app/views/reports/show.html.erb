@@ -1,24 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @report.user %>
-</p>
+<div class="col-md-4 col-md-offset-4">
+  <h3><%= @report.user.name %></h3>
+  <h3><%= @report.schedule.work_started_at.strftime("%m月%d日") %></h3>
+  <h3><%= @report.title %></h3>
+  <h3><%= @report.body %></h3>
+</div>
 
-<p>
-  <strong>Schedule:</strong>
-  <%= @report.schedule %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @report.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @report.body %>
-</p>
-
-<%= link_to 'Edit', edit_report_path(@report) %> |
-<%= link_to 'Back', reports_path %>
+<div class="col-md-4 col-md-offset-4">
+  <% if @report.user_id == current_user.id %>
+    <%= link_to '編集', edit_report_path(@report) ,class: "btn btn-default" %>
+  <% end %>
+  <%= link_to '戻る', reports_path ,class: "btn btn-default" %>
+</div>

@@ -1,19 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @goal.user %>
-</p>
+<div class="col-md-4 col-md-offset-4">
+  <h3><%= @goal.user.name %></h3>
+  <h3><%= @goal.title %></h3>
+  <h3><%= @goal.detail %></h3>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @goal.title %>
-</p>
-
-<p>
-  <strong>Detail:</strong>
-  <%= @goal.detail %>
-</p>
-
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+<div class="col-md-4 col-md-offset-4">
+  <% if @goal.user_id == current_user.id %>
+    <%= link_to '編集', edit_goal_path(@goal) ,class: "btn btn-default" %>
+  <% end %>
+  <%= link_to '戻る', goal_path ,class: "btn btn-default" %>
+</div>

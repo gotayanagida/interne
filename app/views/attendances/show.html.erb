@@ -1,24 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @attendance.user %>
-</p>
+<div class="col-md-4 col-md-offset-4">
+  <h3><%= @attendance.user.name %></h3>
+  <h3><%= @attendance.work_started_at %></h3>
+  <h3><%= @attendance.work_stopped_at %></h3>
+  <h3><%= @attendance.num_of_edit %></h3>
+</div>
 
-<p>
-  <strong>Work started at:</strong>
-  <%= @attendance.work_started_at %>
-</p>
-
-<p>
-  <strong>Work ended at:</strong>
-  <%= @attendance.work_stopped_at %>
-</p>
-
-<p>
-  <strong>Num of edit:</strong>
-  <%= @attendance.num_of_edit %>
-</p>
-
-<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
-<%= link_to 'Back', attendances_path %>
+<div class="col-md-4 col-md-offset-4">
+  <% if @attendance.user_id == current_user.id %>
+    <%= link_to '編集', edit_attendance_path(@attendance) ,class: "btn btn-default" %>
+  <% end %>
+  <%= link_to '戻る', attendance_path ,class: "btn btn-default" %>
+</div>
