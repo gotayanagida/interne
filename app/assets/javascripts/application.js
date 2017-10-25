@@ -13,7 +13,10 @@
 //= require rails-ujs
 //= require_tree .
 //= require jquery
-//= require bootstrap-sprockets
 //= require moment
 //= require fullcalendar
 //= require underscore
+//= require jquery_ujs
+//= require rails-ujs
+// Loads all Semantic javascripts
+//= require semantic-ui

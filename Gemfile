@@ -5,13 +5,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'kaminari', '~> 0.17.0'
-gem 'kaminari-bootstrap'
+#gem 'kaminari-bootstrap'
 gem 'jquery-rails'
-gem 'bootstrap-sass'
+#gem 'bootstrap-sass'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
