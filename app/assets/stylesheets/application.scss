@@ -3,9 +3,10 @@
 *= require fullcalendar
 */
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
+$import-google-fonts: false;
+@import 'semantic-ui';
 
 .wrap-for-dev{
   background-color: #ffffff;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023083419) do
+ActiveRecord::Schema.define(version: 20171024222254) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -22,6 +22,22 @@ ActiveRecord::Schema.define(version: 20171023083419) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_attendances_on_user_id"
+  end
+
+  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "company_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "company_id"
+    t.string "association_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_company_users_on_company_id"
+    t.index ["user_id"], name: "index_company_users_on_user_id"
   end
 
   create_table "goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -111,6 +127,7 @@ ActiveRecord::Schema.define(version: 20171023083419) do
     t.string "university"
     t.integer "grade"
     t.string "department"
+    t.string "position"
     t.boolean "gender"
     t.date "birthday"
     t.text "profile_photo_url"
@@ -132,6 +149,8 @@ ActiveRecord::Schema.define(version: 20171023083419) do
   end
 
   add_foreign_key "attendances", "users"
+  add_foreign_key "company_users", "companies"
+  add_foreign_key "company_users", "users"
   add_foreign_key "goals", "users"
   add_foreign_key "notice_users", "notices"
   add_foreign_key "notice_users", "users"
