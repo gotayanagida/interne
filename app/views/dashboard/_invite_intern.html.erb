@@ -6,13 +6,43 @@
 
 <div class="wrap-for-dev col-md-12">
   ユーザ検索
-  <%= form_with do |form| %>
-    <%= form.text_field :search %>
-    <%= form.submit '検索', :name => nil %>
+  <%= form_tag root_path, :method => 'get' do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "検索", :name => nil %>
   <% end %>
 
-  <% @searched_users.each do |searched_user| %>
-    <%= searched_user.name %><br>
+<% @searched_users.each do |searched_user| %>
+  <div class="wrap-for-dev col-md-4">
+    <div class="col-md-2">
+      <%= image_tag searched_user.profile_photo_url%>
+    </div>
+    <div class="col-md-10">
+      <div class="col-md-12">
+        <h3><%= searched_user.name %></h3>
+      </div>
+      <div class="col-md-12">
+        <%= searched_user.university %> <%= searched_user.department %> <%= searched_user.grade %>年
+      </div>
+    </div>
+    <div class="col-md-12">
+      <% if searched_user.goals != [] %>
+        <h4>"<%= searched_user.goals.last.title %>"<h4>
+      <% else %>
+        目標が登録されていません:(
+      <% end %>
+    </div>
+    <div class="col-md-12">
+      <% if searched_user.schedules != [] %>
+        <h4>次回出勤日：<%= searched_user.schedules.last.work_started_at.strftime('%m/%d(%a) %-H:%M') %>~<h4>
+      <% else %>
+        次回出勤日が登録されていません:(
+      <% end %>
+    </div>
+    <div class="col-md-12">
+      <%= link_to '詳細', searched_user ,class: "btn btn-default"%>
+      <%= link_to 'チームに招待', associate_intern_url(:user_id => searched_user.id, :user_name => searched_user.name, :company_id => current_user.company_users.first.company.id) ,class: "btn btn-default" %>
+    </div>
+  </div>
   <% end %>
   <%= paginate @searched_users %>
 </div>
