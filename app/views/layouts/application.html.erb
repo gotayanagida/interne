@@ -21,20 +21,22 @@
   <% if notice %>
       <div class="alert alert-info messagebox">
 	    <button type="button" class="close" data-dismiss="alert">×</button>
-	    <strong><%= notice %></strong> 
+	    <strong><%= notice %></strong>
 	　</div>
     <% elsif alert %>
       <p class="alert"><%= alert %></p>
     <% end %>
   <body>
-    <div class="header col-md-12">
-      <%= render 'layouts/header' %>
-    </div>
-    <div class="sidebar col-md-3">
-      <%= render 'layouts/sidebar' %>
-    </div>
-    <div class="main-window col-md-9">
-      <%= yield %>
+    <div class="ui grid">
+      <div class="header sixteen wide column">
+        <%= render 'layouts/header' %>
+      </div>
+      <div class="sidebar three wide column">
+        <%= render 'layouts/sidebar' %>
+      </div>
+      <div class="main-window thirteen wide column">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
