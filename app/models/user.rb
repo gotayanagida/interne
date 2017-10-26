@@ -4,11 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :tasks, dependent: :destroy
-  has_many :schedules, dependent: :destroy
-  has_many :goals, dependent: :destroy
-  has_many :reports, dependent: :destroy
-  has_many :attendances, dependent: :destroy
+  has_many :tasks
+  has_many :schedules
+  has_many :goals
+  has_many :reports
+  has_many :attendances
   has_many :notice_users
   has_many :notices, through: :notice_users
   has_many :todo_users

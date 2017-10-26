@@ -44,9 +44,15 @@ aaaa
 			<div class="company-image"></div>
 		</div>
 		<div class="col-md-10">
-			<div class="company-name">
-				<span class="target">トヨタ自動車株式会社</span>
-			</div>
+			<span class="target">（開発用）session[:company].name: <%= current_company.name %></span>
+			<% current_user.company_users.each do |company_user| %>
+			<% company = company_user.company %>
+				<%= link_to set_current_company_path(company_id:company.id) do%>
+					<div class="company-name">
+						<span class="target"><%= company_user.company.name %></span>
+					</div>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 </div>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "dashboard#index"
+  get 'dashboard/index', to: 'dashboard#set_current_company', as: 'set_current_company'
   get 'companies/associate_intern', to: 'companies#associate_intern', as: 'associate_intern'
   get 'attendances/start_work', to: 'attendances#start_work', as: 'start_work'
   get 'attendances/stop_work', to: 'attendances#stop_work', as: 'stop_work'

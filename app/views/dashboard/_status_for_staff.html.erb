@@ -1,25 +1,18 @@
 <div class="wrap-for-dev col-md-12">
   <h3>ステータス</h3>
-    <% @users.each do |user| %>
-      <% if user.attendances != [] %>
-        <% if user.attendances.last.work_stopped_at != nil %>
-          <div class="wrap-for-dev col-md-4">
-            <div class="col-md-2">
+  <div class="ui grid">
+    <div class="three column row">
+      <% @users.each do |user| %>
+        <% if user.attendances != [] %>
+          <% if user.attendances.last.work_stopped_at != nil %>
+            <div class="column">
               <%= image_tag user.profile_photo_url%>
-            </div>
-            <div class="col-md-10">
-              <div class="col-md-12">
                 <h3><%= user.name %></h3>
-              </div>
-            </div>
-            <div class="col-md-12">
               <% if user.tasks != [] %>
                 <h4>"<%= user.tasks.last.title %>"<h4>
               <% else %>
                 タスクが登録されていません:(
               <% end %>
-            </div>
-            <div class="col-md-12">
               <% if user.schedules != [] %>
               <% today_work_schedule = Schedule.where(user_id: user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first %>
                 <% if today_work_schedule != nil %>
@@ -28,16 +21,15 @@
               <% else %>
                 勤務予定が登録されていません:(
               <% end %>
-            </div>
-            <div class="col-md-12">
               <%= link_to '詳細', user ,class: "btn btn-default"%>
               <% if user.id == current_user.id %>
                 <%= link_to '編集', edit_user_path(user) ,class: "btn btn-default" %>
                 <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
               <% end %>
             </div>
-          </div>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
+    </div>
+  </div>
 </div>
