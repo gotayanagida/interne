@@ -17,11 +17,14 @@ body{
 	background-color: #f1f5f9;
 }
 
-.header{
-  background-color: #f1f5f9;
-  margin-bottom: 20px;
-  min-height: 40px;
-  margin-top: 10px;
+.collapsed.row.stretched{ margin:0 1rem;}
+.collapsed.row.stretched .column{padding:0 !important;}
+
+.ui.grid > .row.main-header{
+  padding-bottom: 0px;
+}
+.ui.huge.horizontal.list.top-icon{
+  margin-bottom: 0px;
 }
 
 .sidebar{
@@ -79,32 +82,6 @@ li.member{
 	z-index:999;
 	top: 10%;
     left: 54%;
-}
-.company-image{
-	float :left;
-	margin-top: 10px;
-	flex-shrink: 0;
-	box-shadow: 0 2px 5px 0 rgba(49, 49, 93, .1), 0 1px 2px 0 rgba(0, 0, 0, .08);
-	background-color: #fff;
-	width: 3.75vw;
-	height:3.75vw;
-	border-radius: 10px;
-	overflow: hidden;
-	background-image: url("company.gif");
-	background-size: 3.75vw 3.75vw;
-	padding-left: 0px;
-}
-.company-name{
-	float :left;
-	overflow: hidden;
-	margin-top:10px;
-	margin-left: 3px;
-	font-size: calc(1vw + 0.3vw);
-	font-weight: 500;
-	color: #424770;
-	float : left ;
-	overflow: hidden;
-	line-height:3.75vw;
 }
 .company-name .target{
   display:inline-block;
