@@ -27,6 +27,7 @@
       <p class="alert"><%= alert %></p>
     <% end %>
   <body>
+    <% if user_signed_in? %>
     <div class="ui grid">
       <div class="header sixteen wide column">
         <%= render 'layouts/header' %>
@@ -38,5 +39,8 @@
         <%= yield %>
       </div>
     </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

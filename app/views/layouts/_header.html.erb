@@ -4,9 +4,13 @@
 			<div class="company-image"></div>
 		</div>
 		<div class="col-md-10">
-			<div class="company-name">
-				<span class="target">トヨタ自動車株式会社</span>
-			</div>
+			<% current_user.company_users.each do |company_user| %>
+				<%= link_to set_company_path(company_user) do%>
+					<div class="company-name">
+						<span class="target"><%= company_user.company.name %></span>
+					</div>
+				<% end %>
+			<% end %>
 		</div>
 	</div>
 </div>
