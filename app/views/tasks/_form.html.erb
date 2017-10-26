@@ -12,17 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :task_user_id %>
+    <%= form.hidden_field :company_id, value: current_company.id %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label 'インターン生を選択' %>
+    <%= form.collection_select :user_id, current_company.users, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.fields_for :task_schedules do |task_schedule| %>
+      <%= task_schedule.label "日程を選択" %>
+      <%= task_schedule.collection_select :schedule_id, current_company.schedules, :id, :work_started_at %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'タスクのタイトル' %>
     <%= form.text_field :title, id: :task_title %>
   </div>
 
   <div class="field">
-    <%= form.label :detail %>
+    <%= form.label 'タスクの詳細' %>
     <%= form.text_area :detail, id: :task_detail %>
   </div>
 

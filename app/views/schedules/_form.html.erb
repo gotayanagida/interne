@@ -12,17 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :schedule_user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="field">
-    <%= form.label :work_started_at %>
+    <%= form.hidden_field :company_id, value: current_company.id %>
+  </div>
+
+  <div class="field">
+    <%= form.label "勤務開始時間" %>
     <%= form.datetime_select :work_started_at, id: :schedule_work_started_at %>
   </div>
 
   <div class="field">
-    <%= form.label :work_ended_at %>
+    <%= form.label "勤務終了時間" %>
     <%= form.datetime_select :work_ended_at, id: :schedule_work_ended_at %>
   </div>
 

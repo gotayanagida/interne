@@ -4,7 +4,7 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.json
   def index
-    goals = Goal.all
+    goals = current_company.goals.all
     @goals_3 = goals.where(span:3)
     @goals_12 = goals.where(span:12)
   end
@@ -71,6 +71,6 @@ class GoalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def goal_params
-      params.require(:goal).permit(:user_id, :title, :detail)
+      params.require(:goal).permit(:user_id, :company_id, :title, :detail)
     end
 end

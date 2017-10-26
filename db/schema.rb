@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024222254) do
+ActiveRecord::Schema.define(version: 20171025233710) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
+    t.bigint "company_id"
     t.datetime "work_started_at"
     t.datetime "work_stopped_at"
     t.datetime "break_started_at"
@@ -21,6 +22,7 @@ ActiveRecord::Schema.define(version: 20171024222254) do
     t.integer "num_of_edit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_attendances_on_company_id"
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
@@ -42,12 +44,23 @@ ActiveRecord::Schema.define(version: 20171024222254) do
 
   create_table "goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
+    t.bigint "company_id"
     t.string "title"
     t.text "detail"
     t.integer "span"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_goals_on_company_id"
     t.index ["user_id"], name: "index_goals_on_user_id"
+  end
+
+  create_table "notice_companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "notice_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_notice_companies_on_company_id"
+    t.index ["notice_id"], name: "index_notice_companies_on_notice_id"
   end
 
   create_table "notice_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -67,21 +80,25 @@ ActiveRecord::Schema.define(version: 20171024222254) do
 
   create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
+    t.bigint "company_id"
     t.bigint "schedule_id"
     t.string "title"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_reports_on_company_id"
     t.index ["schedule_id"], name: "index_reports_on_schedule_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
+    t.bigint "company_id"
     t.datetime "work_started_at"
     t.datetime "work_ended_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_schedules_on_company_id"
     t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
@@ -96,12 +113,23 @@ ActiveRecord::Schema.define(version: 20171024222254) do
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
+    t.bigint "company_id"
     t.string "title"
     t.text "detail"
     t.integer "status_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_tasks_on_company_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
+  create_table "todo_companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "todo_id"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_todo_companies_on_company_id"
+    t.index ["todo_id"], name: "index_todo_companies_on_todo_id"
   end
 
   create_table "todo_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -148,18 +176,27 @@ ActiveRecord::Schema.define(version: 20171024222254) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attendances", "companies"
   add_foreign_key "attendances", "users"
   add_foreign_key "company_users", "companies"
   add_foreign_key "company_users", "users"
+  add_foreign_key "goals", "companies"
   add_foreign_key "goals", "users"
+  add_foreign_key "notice_companies", "companies"
+  add_foreign_key "notice_companies", "notices"
   add_foreign_key "notice_users", "notices"
   add_foreign_key "notice_users", "users"
+  add_foreign_key "reports", "companies"
   add_foreign_key "reports", "schedules"
   add_foreign_key "reports", "users"
+  add_foreign_key "schedules", "companies"
   add_foreign_key "schedules", "users"
   add_foreign_key "task_schedules", "schedules"
   add_foreign_key "task_schedules", "tasks"
+  add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "users"
+  add_foreign_key "todo_companies", "companies"
+  add_foreign_key "todo_companies", "todos"
   add_foreign_key "todo_users", "todos"
   add_foreign_key "todo_users", "users"
 end

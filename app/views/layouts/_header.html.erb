@@ -4,26 +4,41 @@
 		$("#hoge").flowtype();
 	});
 </script>
-<div class="left floated four wide column">
-	<div class="item">
-		<img class="ui mini image" src="assets/company.gif">
-		<b>aaaa</b>
-	</div>
+<div class="left floated one wide column">
 </div>
-<!--<div class="left floated four wide column">
-	<div class="ui padded grid">
-		<div class="stretched collapsed row">
-			<div class="four wide column">
-				<img class="ui mini image" src="assets/company.gif">
+<div class="left floated two wide column">
+	<div class="ui huge horizontal list top-icon">
+	</div>
+	<div class="ui text dropdown">
+		<div class="left floated two wide column">
+			<div class="ui huge horizontal list top-icon">
 			</div>
-			<div class="eight wide column">
-				<div class="ui center aligned container">
-					<p class="include">digital-k株式会社ご担当者様</P>
+			<div class="item">
+				<img class="ui avatar image" src="assets/company.gif">
+				<div class="content">
+			     <div id="hoge" class="header"><h3><%=current_company.name%></h3></div>
+			  </div>
+				<i class="dropdown icon"></i>
+			</div>
+		</div>
+		<div class="menu">
+			<% current_user.company_users.each do |company_user| %>
+				<% if current_company.id != company_user.company.id %>
+					<%= link_to set_current_company_path(company_id:company_user.company.id) do%>
+			      <div class="item">
+			        <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
+							<%= company_user.company.name %>
+		  			</div>
+					<% end %>
+				<% else %>
+				<% end %>
+			<% end %>
+      <%= link_to root_path do%>
+				<div class="item">
+	        <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
+					マイページ
 				</div>
-			</div>
-			<div class="four wide column">
-					<i class="dropdown icon include"></i>
-			</div>
+			<% end %>
 		</div>
 	</div>
 </div>-->
@@ -31,25 +46,10 @@
 aaaa
 </div>-->
 
-
-<!--<div class="col-md-3 padding-left-clear">
-	<div class="row">
-		<div class="col-md-2">
-			<div class="company-image"></div>
-		</div>
-		<div class="col-md-10">
-			<div class="company-name">
-				<span class="target">トヨタ自動車株式会社</span>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="col-md-7">
-</div>
 <div class="col-md-2">
   <% if user_signed_in? %>
   	<%= link_to destroy_user_session_path, method: :delete do%>
   	<div class="user-image"></div>
   	<%end%>
   <% end %>
-</div>-->
+</div>

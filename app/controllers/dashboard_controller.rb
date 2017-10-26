@@ -1,11 +1,10 @@
 class DashboardController < ApplicationController
   def index
-    @user = User.find(current_user.id)
+    @user = current_company.users.find(current_user.id)
     #社員用ダッシュボード
-    @users = User.all
-    @schedules = Schedule.all.limit(5)
+    @users = current_company.users.all
+    @schedules_for_staff = current_company.schedules.all.limit(5)
     @searched_users = User.all.page(params[:page]).per(10).search(params[:search])
-
 
     #インターン生用ダッシュボード
     if @user.attendances != []
@@ -32,7 +31,7 @@ class DashboardController < ApplicationController
     end
 
     #その日の出勤シフトについて
-    today_work_schedule = Schedule.where(user_id: current_user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first
+    today_work_schedule = current_company.schedules.where(user_id: current_user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first
     if today_work_schedule != nil
       #その日の出勤シフトがある場合
       @today_work_schedule = ""
@@ -45,7 +44,7 @@ class DashboardController < ApplicationController
     end
 
     #その日の翌日以降の出勤シフトについて
-    next_work_schedule = Schedule.where(user_id: current_user.id, work_started_at: Time.now.to_time..Float::INFINITY).order(:work_started_at).first
+    next_work_schedule = current_company.schedules.where(user_id: current_user.id, work_started_at: Time.now.to_time..Float::INFINITY).order(:work_started_at).first
     if next_work_schedule != nil
       #次回以降の出勤シフトがある場合
       @next_work_schedule = next_work_schedule.work_started_at.strftime("%m月%d日 %-H時%M分")
@@ -56,7 +55,14 @@ class DashboardController < ApplicationController
       @next_work_schedule = "\"登録なし\""
     end
 
+    @schedules_for_intern = current_company.schedules.where(user_id:current_user.id).limit(5) 
     @schedule = Schedule.new
 
   end
+
+  def set_current_company
+    session[:company_id] = params[:company_id]
+    redirect_back(fallback_location: root_path)
+  end
+
 end

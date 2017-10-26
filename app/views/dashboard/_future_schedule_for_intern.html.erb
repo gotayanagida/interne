@@ -1,6 +1,6 @@
 <div class="ui raised segment">
   <h3><%=@user.name%>さんの今後の出勤日程</h3>
-  <% @user.schedules.reverse_each do |schedule| %>
+  <% @schedules_for_intern.reverse_each do |schedule| %>
     <div class="wrap-for-dev col-md-12">
       <div class="col-md-6">
         <h4><%= schedule.work_started_at.strftime('%m/%d(%a) %H:%M') %> ~ <%= schedule.work_ended_at.strftime('%H:%M') %></h4>

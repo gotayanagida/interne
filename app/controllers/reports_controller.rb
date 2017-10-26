@@ -3,7 +3,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.page(params[:page]).per(10)
+    @reports = current_company.reports.page(params[:page]).per(10)
   end
 
   # GET /reports/1
@@ -68,6 +68,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:user_id, :schedule_id, :title, :body)
+      params.require(:report).permit(:user_id, :company_id, :schedule_id, :title, :body, schedules_attributes: [:schedule_id])
     end
 end
