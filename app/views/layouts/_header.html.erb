@@ -1,10 +1,9 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.ui.dropdown').dropdown();
-		$("#hoge").flowtype();
 	});
 </script>
-<div class="left floated one wide column">
+<!--<div class="left floated one wide column">
 </div>
 <div class="left floated two wide column">
 	<div class="ui huge horizontal list top-icon">
@@ -16,40 +15,62 @@
 			<div class="item">
 				<img class="ui avatar image" src="assets/company.gif">
 				<div class="content">
-			     <div id="hoge" class="header"><h3><%=current_company.name%></h3></div>
+			     <div id="hoge" class="header"><h3><%#=current_company.name%></h3></div>
 			  </div>
 				<i class="dropdown icon"></i>
 			</div>
 		</div>
 		<div class="menu">
-			<% current_user.company_users.each do |company_user| %>
-				<% if current_company.id != company_user.company.id %>
-					<%= link_to set_current_company_path(company_id:company_user.company.id) do%>
+			<% #current_user.company_users.each do |company_user| %>
+				<% #if current_company.id != company_user.company.id %>
+					<%#= link_to set_current_company_path(company_id:company_user.company.id) do%>
 			      <div class="item">
 			        <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
-							<%= company_user.company.name %>
+							<%#= company_user.company.name %>
 		  			</div>
-					<% end %>
-				<% else %>
-				<% end %>
-			<% end %>
-      <%= link_to root_path do%>
+					<% #end %>
+				<% #else %>
+				<% #end %>
+			<% #end %>
+      <%#= link_to root_path do%>
 				<div class="item">
 	        <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
 					マイページ
 				</div>
-			<% end %>
+			<% #end %>
 		</div>
 	</div>
 </div>-->
-<!--<div class="right floated four wide column">
-aaaa
-</div>-->
-
-<div class="col-md-2">
-  <% if user_signed_in? %>
-  	<%= link_to destroy_user_session_path, method: :delete do%>
-  	<div class="user-image"></div>
-  	<%end%>
-  <% end %>
+<div class="ui padded grid">
+  <div class="row main-header">
+	  <div class="fourteen wide column">
+		<div class="ui mini info message">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    社長からのメッセージ
+		  </div>
+		  ワタミには「365日24時間、死ぬまで働け」という言葉がある。
+		</div>
+	  </div>
+  
+  <div class="two wide column">
+	  <% if user_signed_in? %>
+	  	<div class="ui dropdown" style="display: flow-root;">
+		  	<img class="ui circular right floated image user-image">
+			<div class="menu">
+				    <div class="item">
+					  <span class="description">管理者</span>
+				      柳田豪太
+				    </div>
+				    <div class="item">
+				      プロフィール
+				    </div>
+				    <%= link_to destroy_user_session_path, method: :delete,class:"item" do%>
+				      ログアウト
+				    <%end%>
+			</div>
+		</div>
+  	<% end %>
+  </div>
+  </div>
 </div>

@@ -28,18 +28,19 @@
       <p class="alert"><%= alert %></p>
     <% end %>
   <body>
-  <div class="left-sidebar" style="width:210px;height:100%;float:left;">
-    <%= render 'layouts/sidebar' %>
+    <div class="left-sidebar" style="width:210px;height:100%;float:left;">
+            <%= render 'layouts/sidebar' %>
 	</div>
-	<div class="left-sidebar">
-          <div class="ui grid padded stackable" >
+	<div class="main_contents">
+		  <%= render 'layouts/header' %>
+          <div class="ui grid padded stackable">
 		      <div class="row">
 		          <div class="sixteen wide column">
 		            <%= yield %>
 		          </div>
 		      </div>
-		   </div>  
+		  </div>  
 	</div>
-
+    
   </body>
 </html>
