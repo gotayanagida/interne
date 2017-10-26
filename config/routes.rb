@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
   root to: "dashboard#index"
   get 'dashboard/index', to: 'dashboard#set_current_company', as: 'set_current_company'
   get 'companies/associate_intern', to: 'companies#associate_intern', as: 'associate_intern'
