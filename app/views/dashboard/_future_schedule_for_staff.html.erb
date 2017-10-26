@@ -1,6 +1,6 @@
 <div class="wrap-for-dev col-md-12">
   <h3>今後の出社予定</h3>
-  <% @schedules.reverse_each do |schedule| %>
+  <% @schedules_for_staff.reverse_each do |schedule| %>
     <div class="wrap-for-dev col-md-12">
       <div class="col-md-4">
       <h4><%= image_tag schedule.user.profile_photo_url%>
