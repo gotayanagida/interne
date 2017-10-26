@@ -28,24 +28,18 @@
       <p class="alert"><%= alert %></p>
     <% end %>
   <body>
-    <% if user_signed_in? %>
-    <div class="ui grid">
-      <div class="row main-header">
-          <%= render 'layouts/header' %>
-      </div>
-    </div>
-    <div class="ui grid padded stackable">
-      <div class="row">
-        <div class="four wide column">
-          <%= render 'layouts/sidebar' %>
-        </div>
-        <div class="twelve wide column">
-          <%= yield %>
-        </div>
-      </div>
-    </div>
-    <% else %>
-      <%= yield %><!--for login page -->
-    <% end %>
+  <div class="left-sidebar" style="width:210px;height:100%;float:left;">
+    <%= render 'layouts/sidebar' %>
+	</div>
+	<div class="left-sidebar">
+          <div class="ui grid padded stackable" >
+		      <div class="row">
+		          <div class="sixteen wide column">
+		            <%= yield %>
+		          </div>
+		      </div>
+		   </div>  
+	</div>
+
   </body>
 </html>

@@ -17,12 +17,37 @@ body{
 	background-color: #f1f5f9;
 }
 
-.collapsed.row.stretched{ margin:0 1rem;}
-.collapsed.row.stretched .column{padding:0 !important;}
+p.include{
+  word-wrap: break-word;
+  height: 100%;
+  width: 100%;
+  display: flex;          /* 2 */
+  justify-content: center;/* 3 */
+  align-items: center;
+}
+.ui.mini.image {
+    width: 35px;
+    height: auto;
+    font-size: 0.78571429rem;
+}
+i.include{
+  word-wrap: break-word;
+  height: 100%;
+  width: 100%;
+  display: flex;          /* 2 */
+  justify-content: center;/* 3 */
+  align-items: center;
+}
+
+.main-header.row{ margin:0 1rem;}
+.main-header.row .column{
+  padding:0 !important;
+}
 
 .ui.grid > .row.main-header{
-  padding-bottom: 0px;
+
 }
+
 .ui.huge.horizontal.list.top-icon{
   margin-bottom: 0px;
 }
