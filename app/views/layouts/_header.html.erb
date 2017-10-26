@@ -1,23 +1,20 @@
 <div class="col-md-3 padding-left-clear">
 	<div class="row">
-		<div class="col-md-2">
-			<div class="company-image"></div>
-		</div>
 		<div class="col-md-10">
-			<span class="target">（開発用）session[:company].name: <%= current_company.name %></span>
-			<% current_user.company_users.each do |company_user| %>
-			<% company = company_user.company %>
-				<%= link_to set_current_company_path(company_id:company.id) do%>
-					<div class="company-name">
-						<span class="target"><%= company_user.company.name %></span>
-					</div>
+		  <div class="text"><span class="company-image"></span><h3><%=current_company.name%></h3></div>
+	  		<% current_user.company_users.each do |company_user| %>
+					<%= link_to set_current_company_path(company_id:company_user.company.id) do%>
+			  		<%= company_user.company.name %><br>
+					<% end %>
 				<% end %>
-			<% end %>
+			</div>
+			<!-- <% current_user.company_users.each do |company_user| %>
+				<%= link_to set_current_company_path(company_id:company_user.company.id) do%>
+						<span class="target"><%= company_user.company.name %></span>
+				<% end %>
+			<% end %> -->
 		</div>
 	</div>
-</div>
-<div class="col-md-7">
-</div>
 <div class="col-md-2">
   <% if user_signed_in? %>
   	<%= link_to destroy_user_session_path, method: :delete do%>

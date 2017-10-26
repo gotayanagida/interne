@@ -4,7 +4,7 @@ class NoticesController < ApplicationController
   # GET /notices
   # GET /notices.json
   def index
-    @notices = Notice.all
+    @notices = current_company.notices.all
     Notice.generate_notice(user_id:13, msg:"メソッドから生成されたメッセージ")
   end
 

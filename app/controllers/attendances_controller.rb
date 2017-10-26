@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = Attendance.page(params[:page]).per(20)
+    @attendances = current_company.attendances.page(params[:page]).per(20)
   end
 
   # GET /attendances/1

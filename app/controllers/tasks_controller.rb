@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    task = Task.all
+    task = current_company.tasks.all
     @tasks_not_ready = task.where(status_code:0)
     @tasks_ready = task.where(status_code:1)
     @tasks_doing = task.where(status_code:2)
