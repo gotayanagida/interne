@@ -8,53 +8,35 @@
 </div>
 <div class="left floated two wide column">
 	<div class="ui huge horizontal list top-icon">
-</div>
+	</div>
 	<div class="ui text dropdown">
-<div class="left floated two wide column">
-	<div class="ui huge horizontal list top-icon">
-</div>
-					<div class="item">
-								<img class="ui avatar image" src="assets/company.gif">
-								<div class="content">
-							     <div id="hoge" class="header">digital-k</div>
-							  </div>
-								<i class="dropdown icon"></i>
-					</div>
-				</div>
-				<div class="menu">
+		<div class="left floated two wide column">
+			<div class="ui huge horizontal list top-icon">
+			</div>
+			<div class="item">
+				<img class="ui avatar image" src="assets/company.gif">
+				<div class="content">
+			     <div id="hoge" class="header"><h3><%=current_company.name%></h3></div>
+			  </div>
+				<i class="dropdown icon"></i>
+			</div>
+		</div>
+		<div class="menu">
+			<% current_user.company_users.each do |company_user| %>
+				<%= link_to set_current_company_path(company_id:company_user.company.id) do%>
 		      <div class="item">
 		        <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
-		        Jenny Hess
-		      </div>
-					<div class="item">
-		        <img class="ui avatar image" src="/images/avatar/small/elliot.jpg">
-		        Elliot Fu
-		      </div>
-				</div>
+						<%= company_user.company.name %>
+	  			</div>
+				<% end %>
+			<% end %>
+		</div>
 	</div>
 </div>
 <div class="right floated four wide column">
 aaaa
 </div>
 
-
-<div class="col-md-3 padding-left-clear">
-	<div class="row">
-		<div class="col-md-10">
-		  <div class="text"><span class="company-image"></span><h3><%=current_company.name%></h3></div>
-	  		<% current_user.company_users.each do |company_user| %>
-					<%= link_to set_current_company_path(company_id:company_user.company.id) do%>
-			  		<%= company_user.company.name %><br>
-					<% end %>
-				<% end %>
-			</div>
-			<!-- <% current_user.company_users.each do |company_user| %>
-				<%= link_to set_current_company_path(company_id:company_user.company.id) do%>
-						<span class="target"><%= company_user.company.name %></span>
-				<% end %>
-			<% end %> -->
-		</div>
-	</div>
 <div class="col-md-2">
   <% if user_signed_in? %>
   	<%= link_to destroy_user_session_path, method: :delete do%>
