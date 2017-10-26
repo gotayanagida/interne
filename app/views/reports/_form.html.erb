@@ -12,22 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :report_user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="field">
-    <%= form.label :schedule_id %>
-    <%= form.text_field :schedule_id, id: :report_schedule_id %>
+    <%= form.hidden_field :company_id, value: current_company.id %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label "出勤日を選択" %>
+    <%= form.collection_select :schedule_id, current_company.schedules, :id, :work_started_at %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label "タイトルを入力" %>
     <%= form.text_field :title, id: :report_title %>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
+    <%= form.label "詳細を入力" %>
     <%= form.text_area :body, id: :report_body %>
   </div>
 

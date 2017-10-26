@@ -29,6 +29,8 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    schedule = Schedule.find(params[:task][:task_schedules][:schedule_id])
+    schedule.tasks << @task
 
     respond_to do |format|
       if @task.save
@@ -73,6 +75,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:user_id, :title, :detail)
+      params.require(:task).permit(:user_id, :company_id, :schedule_id, :title, :detail)
     end
 end
