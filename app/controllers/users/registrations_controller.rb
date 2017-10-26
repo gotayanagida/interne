@@ -5,6 +5,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     super
+    @user = User.new(name: params[:user][:name], password: params[:user][:password], email: params[:user][:email])
+    @company = Company.new(name: params[:user][:company_name])
+    @company.company_users << @user
   end
 
   # POST /resource
@@ -57,4 +60,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def user_params
+      params.require(:user).permit(:company_name, :hp, :name, :email, :password)
+    end
 end
