@@ -59,4 +59,10 @@ class DashboardController < ApplicationController
     @schedule = Schedule.new
 
   end
+
+  def set_current_company
+    session[:company_id] = params[:company_id]
+    redirect_to root_url
+  end
+
 end
