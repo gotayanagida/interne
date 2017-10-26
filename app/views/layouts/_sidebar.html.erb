@@ -1,4 +1,4 @@
-<li class="dashboard sidebar-list"><%= link_to "ダッシュボード" , root_path %></li>
+<!--<li class="dashboard sidebar-list"><%= link_to "ダッシュボード" , root_path %></li>
 <li class="cal sidebar-list"><%= link_to "カレンダー" , schedules_path %></li>
 <li class="diary sidebar-list"><%= link_to "日報" , reports_path %></li>
 <li class="todo sidebar-list"><%= link_to "タスク" , tasks_path %></li>
@@ -7,4 +7,51 @@
 <li class="member sidebar-list"><%= link_to "メンバー" , users_path %></li>
 <li class="sidebar-list"><%= link_to "お知らせ(開発用)" , notices_path %></li>
 <li class="sidebar-list"><%= link_to "TODO(開発用)" , todos_path %></li>
-<li class="sidebar-list"><%= link_to "会社(開発用)" , companies_path %></li>
+<li class="sidebar-list"><%= link_to "会社(開発用)" , companies_path %></li>-->
+ <div class="ui left fixed inverted vertical menu">
+  <div class="item">
+    <img class="ui middle aligned mini image" src="assets/company.gif">
+    <b>digital-k</b>
+  </div>
+  	<%= link_to root_path,class:"item" do%>
+      <i class="block layout icon"></i>
+      ダッシュボード
+    <%end%>
+    <%= link_to schedules_path,class:"item" do%>
+      <i class="calendar icon"></i>
+      カレンダー
+    <%end%>
+    <%= link_to reports_path,class:"item" do%>
+      <i class="sticky note icon"></i>
+      日報
+    <%end%>
+    <%= link_to tasks_path,class:"item" do%>
+      <i class="tasks icon"></i>
+      タスク
+    <%end%>
+    <%= link_to goals_path,class:"item" do%>
+      <i class="flag checkered icon"></i>
+      目標
+    <%end%>
+    <%= link_to attendances_path,class:"item" do%>
+      <i class="building icon"></i>
+      勤怠
+    <%end%>
+    <%= link_to users_path,class:"item" do%>
+      <i class="users icon"></i>
+      メンバー
+    <%end%>
+    <%= link_to notices_path,class:"item" do%>
+      <i class="desktop icon"></i>
+      お知らせ(開発用)
+    <%end%>
+    <%= link_to todos_path,class:"item" do%>
+      <i class="desktop icon"></i>
+      TODO(開発用)
+    <%end%>
+    <%= link_to companies_path,class:"item" do%>
+      <i class="desktop icon"></i>
+      会社(開発用)
+    <%end%>
+ </div>
+  </div>
