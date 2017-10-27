@@ -28,7 +28,7 @@ class ReportsController < ApplicationController
     name = current_user.name
     title = params[:report][:title]
     day = Attendance.find(params[:report][:schedule_id]).work_started_at.strftime("%m月%d日")
-    generate_notice(users_id:users_id_for_notice, companies_id:companies_id_for_notice, msg:"#{name}さんが#{day}出社分の日報「#{title}」を作成しました")
+    generate_notice(users_id:users_id_for_notice, companies_id:companies_id_for_notice, msg:"#{name}さんが#{day}出社分の日報「#{title}」を作成しました", report_id: @report.id)
 
     respond_to do |format|
       if @report.save

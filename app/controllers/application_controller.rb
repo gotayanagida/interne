@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def generate_notice(users_id:, companies_id:, msg:)
-    notice = Notice.create(body: msg)
+  def generate_notice(users_id:, companies_id:, msg:, report_id:)
+    notice = Notice.create(body: msg, report_id: report_id)
     users_id.each do |user_id|
       user = User.find(user_id)
       user.notices << notice
