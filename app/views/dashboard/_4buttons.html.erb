@@ -1,0 +1,15 @@
+<div class="four ui buttons">
+  <% if current_user.attendances.last.work_stopped_at != nil %>
+    <%= link_to start_work_path,class:"ui button" do%>出勤<% end %>
+  <% else %>
+    <% if current_user.attendances.last.break_stopped_at == nil %>
+      <% if current_user.attendances.last.break_started_at == nil %>
+        <%= link_to start_break_path,class:"ui button" do%>休憩開始<% end %>
+      <% else %>
+        <%= link_to stop_break_path,class:"ui button" do%>休憩終了<% end %>
+      <% end %>
+    <% else %>
+      <%= link_to stop_work_path,class:"ui button" do%>退勤<% end %>
+    <% end %>
+  <% end %>
+</div>
