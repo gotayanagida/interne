@@ -60,6 +60,7 @@ class DashboardController < ApplicationController
       @schedule = Schedule.new
     else
     end
+
   end
 
   def set_current_company
