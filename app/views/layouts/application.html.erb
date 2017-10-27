@@ -3,7 +3,7 @@
   <head>
     <title>Kintarou</title>
     <%= csrf_meta_tags %>
-
+    
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script src="https://fastcdn.org/FlowType.JS/1.1/flowtype.js"></script>
@@ -34,16 +34,20 @@
           <%= render 'layouts/header' %>
       </div>
     </div>
-    <div class="ui grid padded stackable">
-      <div class="row">
-        <div class="four wide column">
-          <%= render 'layouts/sidebar' %>
+      <% if current_company != nil %>
+        <div class="ui grid padded stackable">
+          <div class="row">
+            <div class="four wide column">
+              <%= render 'layouts/sidebar' %>
+            </div>
+            <div class="twelve wide column">
+              <%= yield %>
+            </div>
+          </div>
         </div>
-        <div class="twelve wide column">
-          <%= yield %>
-        </div>
-      </div>
-    </div>
+      <% else %>
+        <%= yield %><!--for no company page -->
+      <% end %>
     <% else %>
       <%= yield %><!--for login page -->
     <% end %>

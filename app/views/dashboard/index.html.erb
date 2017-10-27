@@ -6,9 +6,13 @@
   <%= render 'future_schedule_for_staff' %>
   <%= render 'invite_intern' %>
 <% else %>
-  <% #インターン生用画面 %>
-  <%= render '4button' %>
-  <%= render 'status_for_intern' %>
-  <%= render 'regist_schedule', schedule: @schedule %>
-  <%= render 'future_schedule_for_intern' %>
+  <% if current_company != nil %>
+    <% #インターン生用画面 %>
+    <%= render '4button' %>
+    <%= render 'status_for_intern' %>
+    <%= render 'regist_schedule', schedule: @schedule %>
+    <%= render 'future_schedule_for_intern' %>
+  <% else %>
+    <%= render 'no_company' %>
+  <% end %>
 <% end %>

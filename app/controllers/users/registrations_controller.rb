@@ -5,9 +5,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     super
-    @user = User.new(name: params[:user][:name], password: params[:user][:password], email: params[:user][:email])
-    @company = Company.new(name: params[:user][:company_name])
-    @company.company_users << @user
   end
 
   # POST /resource
