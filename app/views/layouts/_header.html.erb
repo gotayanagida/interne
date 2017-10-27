@@ -30,7 +30,19 @@
 		  			</div>
 					<% #end %>
 				<% #else %>
-				<% #end %>
+				<% #end %>                 ワタミには「365日24時間、死ぬまで働け」という言葉がある。
+                </div>
+          </div>
+
+  <div class="two wide column">
+          <% if user_signed_in? %>
+                <div class="ui dropdown" style="display:block;display: flow-root;">
+                        <img class="ui circular right floated image user-image">
+                        <div class="menu">
+                                    <div class="item">
+                                          <span class="description">管理者</span>
+                                      柳田豪太
+                                    </div>
 			<% #end %>
       <%#= link_to root_path do%>
 				<div class="item">
