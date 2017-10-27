@@ -1,17 +1,28 @@
-<!--<li class="dashboard sidebar-list"><%= link_to "ダッシュボード" , root_path %></li>
-<li class="cal sidebar-list"><%= link_to "カレンダー" , schedules_path %></li>
-<li class="diary sidebar-list"><%= link_to "日報" , reports_path %></li>
-<li class="todo sidebar-list"><%= link_to "タスク" , tasks_path %></li>
-<li class="mokuhyo sidebar-list"><%= link_to "目標" , goals_path %></li>
-<li class="kintai sidebar-list"><%= link_to "勤怠" , attendances_path %></li>
-<li class="member sidebar-list"><%= link_to "メンバー" , users_path %></li>
-<li class="sidebar-list"><%= link_to "お知らせ(開発用)" , notices_path %></li>
-<li class="sidebar-list"><%= link_to "TODO(開発用)" , todos_path %></li>
-<li class="sidebar-list"><%= link_to "会社(開発用)" , companies_path %></li>-->
- <div class="ui left fixed inverted vertical menu">
+<script type="text/javascript">
+$(window).on('resize', function(){
+  var w = $(window).width();
+  if(w<=768){
+    $('.left-sidebar').css('display', "none");
+  }
+  else{
+    $('.left-sidebar').css('display','');
+  }
+});
+$(document).ready(function(){
+  var w = screen.width;
+  if(w<=768){
+    $('.left-sidebar').css('display', "none");
+  }
+  else{
+    $('.left-sidebar').css('display','');
+  }
+});
+</script>
+<div class="left-sidebar" style="width:210px;height:100%;float:left;">
+ <div class="ui left fixed inverted vertical menu left-sidebar">
   <div class="item">
     <img class="ui middle aligned mini image" src="assets/company.gif">
-    <b>digital-k</b>
+    <b class="aaaaa">digital-k</b>
   </div>
   	<%= link_to root_path,class:"item" do%>
       <i class="block layout icon"></i>
@@ -55,3 +66,4 @@
     <%end%>
  </div>
   </div>
+  	</div>

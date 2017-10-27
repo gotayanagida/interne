@@ -1,76 +1,79 @@
 <script type="text/javascript">
+	$(window).on('resize', function(){
+	  var w = $(window).width()
+	  if(w<=768){
+	    $('.screen-header').css('display', "none");
+	  }
+	  else{
+	    $('.screen-header').css('display','');
+	  }
+	});
+	$(document).ready(function(){
+	  var w = screen.width;
+	  if(w<=768){
+	    $('.screen-header').css('display', "none");
+	  }
+	  else{
+	    $('.screen-header').css('display','');
+	  }
+	});
 	$(document).ready(function(){
 		$('.ui.dropdown').dropdown();
+		$('.ui.sidebar')
+	  .sidebar({
+	    context: $('.bottom.attached.pushable')
+	  })
+	  .sidebar('attach events', '.menu .sidebar-menu')
+	;
 	});
 </script>
-<!--<div class="left floated one wide column">
-</div>
-<div class="left floated two wide column">
-	<div class="ui huge horizontal list top-icon">
-	</div>
-	<div class="ui text dropdown">
-		<div class="left floated two wide column">
-			<div class="ui huge horizontal list top-icon">
-			</div>
-			<div class="item">
-				<img class="ui avatar image" src="assets/company.gif">
-				<div class="content">
-			     <div id="hoge" class="header"><h3><%#=current_company.name%></h3></div>
-			  </div>
-				<i class="dropdown icon"></i>
-			</div>
-		</div>
-		<div class="menu">
-			<% #current_user.company_users.each do |company_user| %>
-				<% #if current_company.id != company_user.company.id %>
-					<%#= link_to set_current_company_path(company_id:company_user.company.id) do%>
-			      <div class="item">
-			        <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
-							<%#= company_user.company.name %>
-		  			</div>
-					<% #end %>
-				<% #else %>
-				<% #end %>
-			<% #end %>
-      <%#= link_to root_path do%>
-				<div class="item">
-	        <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
-					マイページ
-				</div>
-			<% #end %>
-		</div>
-	</div>
-</div>-->
 <div class="ui padded grid">
-  <div class="row main-header">
+
+  <div class="row main-header screen-header">
+
+		<!-- パソコン向け　-->
 	  <div class="fourteen wide column">
-		<div class="ui mini info message">
-		  <i class="close icon"></i>
-		  <div class="header">
-		    社長からのメッセージ
-		  </div>
-		  ワタミには「365日24時間、死ぬまで働け」という言葉がある。
-		</div>
-	  </div>
-  
-  <div class="two wide column">
-	  <% if user_signed_in? %>
-	  	<div class="ui dropdown" style="display: flow-root;">
-		  	<img class="ui circular right floated image user-image">
-			<div class="menu">
-				    <div class="item">
-					  <span class="description">管理者</span>
-				      柳田豪太
-				    </div>
-				    <div class="item">
-				      プロフィール
-				    </div>
-				    <%= link_to destroy_user_session_path, method: :delete,class:"item" do%>
-				      ログアウト
-				    <%end%>
+			<div class="ui mini info message">
+			  <i class="close icon"></i>
+			  <div class="header">
+			    社長からのメッセージ
+			  </div>
+			  ワタミには「365日24時間、死ぬまで働け」という言葉がある。
 			</div>
+	  </div>
+
+	  <div class="two wide column">
+		  <% if user_signed_in? %>
+		  	<div class="ui dropdown" style="display:block;display: flow-root;">
+			  	<img class="ui circular right floated image user-image">
+					<div class="menu">
+						    <div class="item">
+							  <span class="description">管理者</span>
+						      柳田豪太
+						    </div>
+						    <div class="item">
+						      プロフィール
+						    </div>
+						    <%= link_to destroy_user_session_path, method: :delete,class:"item" do%>
+						      ログアウト
+						    <%end%>
+					</div>
+			  </div>
+	  	<% end %>
+	  </div>
+
+  </div>
+
+	<!-- mobile -->
+  <div class="row main-header mobile only" style="padding:0px;margin:0px;">
+
+	  	<div class="ui attached menu" style="background:#f1f5f9;">
+		  <a class="item sidebar-menu" style="background:white;">
+		    <i class="sidebar icon"></i>
+		    Menu
+		  </a>
 		</div>
-  	<% end %>
+
   </div>
-  </div>
+
 </div>
