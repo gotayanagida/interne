@@ -5,6 +5,7 @@ class AttendancesController < ApplicationController
   # GET /attendances.json
   def index
     @attendances = current_company.attendances.page(params[:page]).per(20)
+    @attendances_for_csv = current_company.attendances.all
   end
 
   # GET /attendances/1
