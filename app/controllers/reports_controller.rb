@@ -25,6 +25,11 @@ class ReportsController < ApplicationController
   def create
     @report = Report.new(report_params)
 
+    name = current_user.name
+    title = params[:report][:title]
+    day = Attendance.find(params[:report][:schedule_id]).work_started_at.strftime("%m月%d日")
+    generate_notice(users_id:users_id_for_notice, companies_id:companies_id_for_notice, msg:"#{name}さんが#{day}出社分の日報「#{title}」を作成しました")
+
     respond_to do |format|
       if @report.save
         format.html { redirect_to @report, notice: 'Report was successfully created.' }
@@ -68,6 +73,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:user_id, :company_id, :schedule_id, :title, :body, schedules_attributes: [:schedule_id])
+      params.require(:report).permit(:user_id, :company_id, :title, :schedule_id, :body, schedules_attributes: [:schedule_id])
     end
 end
