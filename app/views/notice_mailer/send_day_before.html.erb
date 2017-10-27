@@ -2,24 +2,21 @@
 <html lang="ja">
 <head>
   <meta content="text/html; charset=UTF-8" />
-  <style type="text/css">
-    h2 {
-      color: #e7454a;
-    }
-    p hr {
-      color: #2d2a24;
-    }
-  </style>
 </head>
 <body>
-  <h2><%= @user.name %> 様</h2>
-  <hr />
-  <p>
-    この度は「メールテスト運営局」を利用頂きましてありがとうございます。
-  </p>
-  <p>
-    ユーザー名: <%= @user.name %><br />
-  </p>
-  <hr />
+
+<%= @staff.name %>さん
+
+日頃のお仕事お疲れ様です！
+
+明日は以下のインターン生が出社します。
+<% @schedules.each do |schedule| %>
+  <%= schedule.user.name %>さん：
+  <%= schedule.work_started_at.strftime("%-H時%m分") %> ~
+  <%= schedule.work_ended_at.strftime("%-H時%m分") %><br>
+<% end %>
+
+キンタロウ運営事務局
+
 </body>
 </html>

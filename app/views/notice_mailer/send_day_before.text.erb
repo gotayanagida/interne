@@ -1,6 +1,12 @@
-===============================
-<%= @user.name %>様
-===============================
+<%= @staff.name %>さん
 
-この度は「メールテスト運営局」を利用頂きましてありがとうございます。
-ユーザー名: <%= @user.name %>
+日頃のお仕事お疲れ様です！
+
+明日は以下のインターン生が出社します。
+<% @schedules.each do |schedule| %>
+  <%= schedule.user.name %>さん：
+  <%= schedule.work_started_at.strftime("%-H時%m分") %> ~
+  <%= schedule.work_ended_at.strftime("%-H時%m分") %><br>
+<% end %>
+
+キンタロウ運営事務局

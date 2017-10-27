@@ -5,9 +5,10 @@ class NoticeMailer < ApplicationMailer
   #
   #   en.notice_mailer.send_day_before.subject
   #
-  def send_day_before(user)
-    @user = user
-    mail to:      user.email,
-         subject: '会員情報が更新されました。'
+  def send_day_before(schedules, staff)
+    @staff = staff
+    @schedules = schedules
+    mail to:      staff.email,
+    subject: 'インターン生出社通知'
   end
 end
