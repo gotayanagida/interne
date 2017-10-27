@@ -1,21 +1,23 @@
-<div class="wrap-for-dev col-md-12">
+<div class="ui raised segment">
   <h3><%=@user.name%>さんの今後の出勤日程</h3>
+  <div class="ui relaxed divided list">
   <% @schedules_for_intern.reverse_each do |schedule| %>
-    <div class="wrap-for-dev col-md-12">
-      <div class="col-md-6">
-        <h4><%= schedule.work_started_at.strftime('%m/%d(%a) %H:%M') %> ~ <%= schedule.work_ended_at.strftime('%H:%M') %></h4>
-      </div>
-      <div class="col-md-6">
-        <h4>
-          <% if schedule.task_schedules != [] %>
-            <% schedule.task_schedules.each do |task_schedule| %>
-              <%= task_schedule.task.title %>,
-            <% end %>
-          <% else %>
-            予定されているタスクがありません:(
-          <% end %>
-        </h4>
-      </div>
-    </div>
+	  <div class="item">
+	    <i class="large info circle middle aligned icon"></i>
+	    <div class="content">
+	      <div class="header"><%= schedule.work_started_at.strftime('%m/%d(%a) %H:%M') %> ~ <%= schedule.work_ended_at.strftime('%H:%M') %></div>
+	      <div class="description">
+		      <% if schedule.task_schedules != [] %>
+	            <% schedule.task_schedules.each do |task_schedule| %>
+	              <%= task_schedule.task.title %>,
+	            <% end %>
+	          <% else %>
+	            予定されているタスクがありません:(
+	          <% end %>
+	      </div>
+	    </div>
+	  </div>
+	
   <% end %>
+  </div>
 </div>
