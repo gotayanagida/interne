@@ -15,13 +15,13 @@
 			    <i class="large history middle aligned icon"></i>
 			    <div class="content">
 			      <div class="header">本日の出勤時間　：　<%= @today_work_schedule %></div>
-			    </div>   
+			    </div>
 			  </div>
 			  <div class="item">
 			    <i class="large hourglass half middle aligned icon"></i>
 			    <div class="content">
 			      <div class="header">本日の勤務時間　：　<%= (Time.parse("1/1") + @attendance_time).strftime("%-H時間%-M分%-S秒") %></div>
-			    </div>   
+			    </div>
 			  </div>
 			  <div class="item">
 			    <i class="large moon middle aligned icon"></i>
@@ -39,11 +39,11 @@
 		  </div>
 		</div>
         <% else %>
-        <div class="col-md-3">
+        <div>
           <% #休憩中の場合 %>
           <h1>休憩中</h1>
         </div>
-        <div class="col-md-9">
+        <div>
           <h3>
             本日の出勤時間：<%= @today_work_schedule %><br>
             勤務時間：<%= (Time.parse("1/1") + @attendance_time).strftime("%-H時間%-M分%-S秒") %><br>
@@ -65,13 +65,13 @@
 			    <i class="large announcement middle aligned icon"></i>
 			    <div class="content">
 			      <div class="header">お疲れ様でした</div>
-			    </div>   
+			    </div>
 			  </div>
 			  <div class="item">
 			    <i class="large checked calendar middle aligned icon"></i>
 			    <div class="content">
 			      <div class="header">次回出勤予定日　：　<%= @next_work_schedule %></div>
-			    </div>   
+			    </div>
 			  </div>
 			  <div class="item">
 			    <i class="large checkmark box middle aligned icon"></i>
@@ -87,14 +87,14 @@
 			  </div>
 			</div>
 		  </div>
-		</div> 
+		</div>
     <% end %>
   <% else %>
   <% #初回出社前の場合 %>
-    <div class="col-md-3">
+    <div>
       <h1>退勤中</h1>
     </div>
-    <div class="col-md-9">
+    <div>
       <h3>
         次回の出勤予定は、<%= @next_work_schedule %>で、<br>
         タスクは"<%= @user.tasks.last.title %>"です。<br>

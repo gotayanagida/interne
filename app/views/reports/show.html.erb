@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<div class="col-md-4 col-md-offset-4">
+<div>
   <h3><%= @report.user.name %></h3>
   <h3><%= @report.schedule.work_started_at.strftime("%m月%d日") %></h3>
   <h3><%= @report.title %></h3>
   <h3><%= @report.body %></h3>
 </div>
 
-<div class="col-md-4 col-md-offset-4">
+<div>
   <% if @report.user_id == current_user.id %>
-    <%= link_to '編集', edit_report_path(@report) ,class: "btn btn-default" %>
+    <%= link_to '編集', edit_report_path(@report)%>
   <% end %>
-  <%= link_to '戻る', reports_path ,class: "btn btn-default" %>
+  <%= link_to '戻る', reports_path%>
 </div>

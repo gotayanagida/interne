@@ -1,4 +1,4 @@
-<div class="wrap-for-dev col-md-12">
+<div class="wrap-for-dev">
   <h3>ステータス</h3>
   <div class="ui grid">
     <div class="three column row">
@@ -24,8 +24,8 @@
                 <% end %>
                 <%= link_to '詳細', user ,class: "btn btn-default"%>
                 <% if user.id == current_user.id %>
-                  <%= link_to '編集', edit_user_path(user) ,class: "btn btn-default" %>
-                  <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+                  <%= link_to '編集', edit_user_path(user)%>
+                  <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' }%>
                 <% end %>
               </div>
             <% end %>
