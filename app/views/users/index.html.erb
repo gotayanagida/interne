@@ -1,43 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<div class="col-md-12 text-right">
+<div>
   <%= link_to '＋ユーザを追加', new_user_path, class: "btn btn-primary" %>
 </div><% @users.each do |user| %>
-  <div class="wrap-for-dev col-md-4">
-    <div class="col-md-2">
+  <div class="wrap-for-dev">
+    <div>
       <%= image_tag user.profile_photo_url%>
     </div>
-    <div class="col-md-10">
-      <div class="col-md-12">
+    <div>
+      <div>
         <h3><%= user.name %></h3>
       </div>
-      <div class="col-md-12">
+      <div>
         <%= user.university %> <%= user.department %> <%= user.grade %>年
       </div>
     </div>
-    <div class="col-md-12">
+    <div>
       <% if user.goals != [] %>
         <h4>"<%= user.goals.last.title %>"<h4>
       <% else %>
         目標が登録されていません:(
       <% end %>
     </div>
-    <div class="col-md-12">
+    <div>
       <% if user.schedules != [] %>
         <h4>次回出勤日：<%= user.schedules.last.work_started_at.strftime('%m/%d(%a) %-H:%M') %>~<h4>
       <% else %>
         次回出勤日が登録されていません:(
       <% end %>
     </div>
-    <div class="col-md-12">
+    <div>
       <%= link_to '詳細', user ,class: "btn btn-default"%>
       <% if user.id == current_user.id %>
-        <%= link_to '編集', edit_user_path(user) ,class: "btn btn-default" %>
-        <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+        <%= link_to '編集', edit_user_path(user)%>
+        <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' }%>
       <% end %>
     </div>
   </div>
 <% end %>
-<div class="col-md-12 text-center">
+<div>
   <%= paginate @users %>
 </div>

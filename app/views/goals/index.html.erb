@@ -1,69 +1,69 @@
 <p id="notice"><%= notice %></p>
 
-<div class="col-md-12 text-right">
+<div>
   <%= link_to '＋目標を追加', new_goal_path, class: "btn btn-primary" %>
 </div>
-<div class="wrap-for-dev col-md-12">
+<div class="wrap-for-dev">
   <h3>３ヶ月目標</h3>
   <% @goals_3.reverse_each do |goal| %>
-  <div class="wrap-for-dev col-md-12">
-    <div class="col-md-3">
+  <div class="wrap-for-dev">
+    <div>
       <h4><%= goal.title %></h4>
     </div>
-    <div class="col-md-3">
+    <div>
       <%= image_tag goal.user.profile_photo_url%>
       <%= goal.user.name %>
     </div>
-    <div class="col-md-3">
+    <div>
       <% year = goal.created_at.year %>
       <% mouth = goal.created_at.month + 2 %>
       <% day = goal.created_at.day - 1 %>
       <%= "~#{year}年#{mouth}月#{day}日"%>
     </div>
-    <div class="col-md-12">
+    <div>
       <% goal.goal_stamps.each do |goal_stamp| %>
         <%= goal_stamp.user.name %>さん
         <%= image_tag goal_stamp.stamp.url %>
       <% end %>
     </div>
-    <div class="col-md-3">
+    <div>
       <% if stamp_pressed(type:"goal", id:goal.id) %>
-        <%= link_to 'スタンプを取り消す', remove_stamp_path(associate_type:"goal",associate_id:goal.id), class: "btn btn-default"%>
+        <%= link_to 'スタンプを取り消す', remove_stamp_path(associate_type:"goal",associate_id:goal.id) %>
       <% else %>
-        <%= link_to 'スタンプを押す', press_stamp_path(stamp_id:1,associate_type:"goal",associate_id:goal.id), class: "btn btn-default"%>
+        <%= link_to 'スタンプを押す', press_stamp_path(stamp_id:1,associate_type:"goal",associate_id:goal.id) %>
       <% end %>
-      <%= link_to '詳細', goal ,class: "btn btn-default"%>
+      <%= link_to '詳細', goal %>
       <% if goal.user_id == current_user.id %>
-        <%= link_to '編集', edit_goal_path(goal) ,class: "btn btn-default" %>
-        <%= link_to '削除', goal, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+        <%= link_to '編集', edit_goal_path(goal)%>
+        <%= link_to '削除', goal, method: :delete, data: { confirm: 'Are you sure?' }%>
       <% end %>
     </div>
   </div>
   <% end %>
 </div>
 
-<div class="wrap-for-dev col-md-12">
+<div class="wrap-for-dev">
   <h3>年次目標</h3>
   <% @goals_12.each do |goal| %>
-  <div class="wrap-for-dev col-md-12">
-    <div class="col-md-3">
+  <div class="wrap-for-dev">
+    <div>
       <%= goal.title %>
     </div>
-    <div class="col-md-3">
+    <div>
       <%= image_tag goal.user.profile_photo_url%>
       <%= goal.user.name %>
     </div>
-    <div class="col-md-3">
+    <div>
       <% year = goal.created_at.year %>
       <% mouth = goal.created_at.month + 2 %>
       <% day = goal.created_at.day - 1 %>
       <%= "~#{year}年#{mouth}月#{day}日"%>
     </div>
-    <div class="col-md-3">
+    <div>
       <%= link_to '詳細', goal ,class: "btn btn-default"%>
       <% if goal.user_id == current_user.id %>
-        <%= link_to '編集', edit_goal_path(goal) ,class: "btn btn-default" %>
-        <%= link_to '削除', goal, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+        <%= link_to '編集', edit_goal_path(goal)%>
+        <%= link_to '削除', goal, method: :delete, data: { confirm: 'Are you sure?' }%>
       <% end %>
     </div>
   </div>

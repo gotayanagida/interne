@@ -1,12 +1,12 @@
-<div class="wrap-for-dev col-md-12">
+<div class="wrap-for-dev">
   <h3>やることリスト</h3>
   <% @user.todo_users.reverse_each do |todo_user| %>
     <%= link_to todo_path(todo_user.todo) do %>
-      <div class="wrap-for-dev col-md-12">
-        <div class="col-md-6">
+      <div class="wrap-for-dev">
+        <div>
           <h4><%= todo_user.todo.body %></h4>
         </div>
-        <div class="col-md-6">
+        <div>
           <% todo_time = Time.now.to_time.to_i - todo_user.todo.created_at.to_time.to_i %>
           <h4><%= (Time.parse("1/1") + todo_time).strftime("%-H時間%-M分%-S秒前") %></h4>
         </div>
