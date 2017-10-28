@@ -29,6 +29,42 @@
     </div>
   </div>
 <% end %>
+
+<div class="ui three column grid stackable">
+  <% @reports.reverse_each do |report| %>
+      <div class="column">
+		  <div class="ui fluid card">
+		    <div class="content">
+		      <%= image_tag report.user.profile_photo_url, class: "right floated mini ui image"%>
+		      <div class="header">
+		        <%= report.user.name %>
+		      </div>
+		      <div class="meta">
+		        <%= report.schedule.work_started_at.strftime('%m/%d') %>
+		      </div>
+		      <div class="description">
+		        <h4>"<%= report.title %>"</h4>
+		        <%= report.body %>
+		      </div>
+		    </div>
+		    <div class="extra content">
+		    　<% if report.user_id == current_user.id %>
+		      <div class="three ui buttons">
+		        <%= link_to report ,class: "ui basic green button" do%>詳細<% end%>
+		        <%= link_to edit_task_path(report) ,class: "ui basic blue button" do%>編集<% end%>
+		        <%= link_to report, method: :delete, data: { confirm: 'Are you sure?' } ,class: "ui basic red button" do%>削除<%end%>
+		      </div>
+		      <% else %>
+		      <div class="ui buttons">
+		        <%= link_to report ,class: "ui basic green button" do%>詳細<% end%>
+		      </div>
+		      <% end %>
+		    </div>
+		  </div>
+	  </div>
+  <% end %>  
+</div>
+
 <div class="col-md-12 text-center">
   <%= paginate @reports %>
 </div>

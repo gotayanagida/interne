@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html style="-webkit-overflow-scrolling: touch; background:#f1f5f9;">
   <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" >
     <title>Kintarou</title>
     <%= csrf_meta_tags %>
 
@@ -20,33 +21,77 @@
     <% end %>
   </head>
   <% if notice %>
-      <div class="alert alert-info messagebox">
+    <div class="alert alert-info messagebox">
 	    <button type="button" class="close" data-dismiss="alert">×</button>
 	    <strong><%= notice %></strong>
 	　</div>
-    <% elsif alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-  <body>
+  <% elsif alert %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+  <body style="background:#f1f5f9;">
     <% if user_signed_in? %>
       <% if current_company != nil %>
-        <div class="left-sidebar" style="width:210px;height:100%;float:left;">
-          <%= render 'layouts/sidebar' %>
-        </div>
-        <div class="main_contents">
-          <%= render 'layouts/header' %>
-          <div class="ui grid padded stackable">
-            <div class="row">
-              <div class="sixteen wide column">
-                <%= yield %>
-              </div>
-            </div>
+        <%= render 'layouts/sidebar' %>
+      	  <div class="main_contents">
+        		<%= render 'layouts/header' %>
+          	<div class="ui bottom attached pushable">
+	            <div class="ui inverted left inline vertical sidebar menu" style="">
+          	    <%= link_to root_path,class:"item" do%>
+                  <i class="block layout icon"></i>
+                  ダッシュボード
+                <%end%>
+                <%= link_to schedules_path,class:"item" do%>
+                  <i class="calendar icon"></i>
+                  カレンダー
+                <%end%>
+                <%= link_to reports_path,class:"item" do%>
+                  <i class="sticky note icon"></i>
+                  日報
+                <%end%>
+                <%= link_to tasks_path,class:"item" do%>
+                  <i class="tasks icon"></i>
+                  タスク
+                <%end%>
+                <%= link_to goals_path,class:"item" do%>
+                  <i class="flag checkered icon"></i>
+                  目標
+                <%end%>
+                <%= link_to attendances_path,class:"item" do%>
+                  <i class="building icon"></i>
+                  勤怠
+                <%end%>
+                <%= link_to users_path,class:"item" do%>
+                  <i class="users icon"></i>
+                  メンバー
+                <%end%>
+                <%= link_to notices_path,class:"item" do%>
+                  <i class="desktop icon"></i>
+                  お知らせ(開発用)
+                <%end%>
+                <%= link_to todos_path,class:"item" do%>
+                  <i class="desktop icon"></i>
+                  TODO(開発用)
+                <%end%>
+                <%= link_to companies_path,class:"item" do%>
+                  <i class="desktop icon"></i>
+                  会社(開発用)
+                <%end%>
+          	  </div>
+	            <div class="pusher">
+	              <div class="ui grid padded stackable">
+			            <div class="row">
+			              <div class="sixteen wide column">
+			                <%= yield %>
+			              </div>
+			            </div>
+		            </div>
+	            </div>
+	          </div>
           </div>
-        </div>
+        <% else %>
+          <%= yield %><!--for no company page -->
+        <% end %>
       <% else %>
-        <%= yield %><!--for no company page -->
-      <% end %>
-    <% else %>
       <%= yield %><!--for login page -->
     <% end %>
   </body>

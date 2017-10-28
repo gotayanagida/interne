@@ -12,7 +12,6 @@ $import-google-fonts: false;
   background-color: #ffffff;
   border: solid 2px #f2f2f2;
 }
-
 .row.main-header .column{
 	padding-bottom: 0px;
 }
@@ -22,14 +21,10 @@ $import-google-fonts: false;
 .ui.main-header{
 	padding-bottom: 0px !important;
 }
-
 .main-header.row{ margin:0 1rem;}
 .main-header.row .column{
   padding:0 !important;
 }
-
-
-
 .messagebox {
 	display: none; /* 初期状態は非表示 */
 	/* 画面上部に表示 */
