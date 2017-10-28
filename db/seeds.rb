@@ -296,3 +296,11 @@ GoalNotice.create(goal_id:4,notice_id:1)
 GoalNotice.create(goal_id:5,notice_id:1)
 
 Stamp.create(url:"nico.png", name:"nico")
+
+ReportStamp.create(report_id:1,stamp_id:1,user_id:1)
+ReportStamp.create(report_id:2,stamp_id:1,user_id:1)
+ReportStamp.create(report_id:1,stamp_id:1,user_id:13)
+
+GoalStamp.create(goal_id:1,stamp_id:1,user_id:1)
+GoalStamp.create(goal_id:2,stamp_id:1,user_id:1)
+GoalStamp.create(report_id:2,stamp_id:1,user_id:13)

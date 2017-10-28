@@ -30,9 +30,9 @@ module ApplicationHelper
 
   def stamp_pressed(type: ,id:)
     if type == "report"
-      stamp_pressed = ReportStamp.find_by(report_id: id)
+      stamp_pressed = ReportStamp.find_by(report_id: id, user_id: current_user.id)
     elsif type == "goal"
-      stamp_pressed = GoalStamp.find_by(goal_id: id)
+      stamp_pressed = GoalStamp.find_by(goal_id: id, user_id: current_user.id)
     end
     stamp_pressed
   end
