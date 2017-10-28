@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <div class="col-md-12 text-right">
-  <%= link_to '＋日報を追加', new_report_path, class: "btn btn-primary" %>
+  <%= link_to new_report_path, class: "ui labeled icon button" do%>
+    <i class="plus icon"></i>日報を追加
+  <% end %>
 </div>
 
 <div class="ui two cards stackable">
@@ -57,13 +59,7 @@
       <% end %>
     </div>
   </div>
-  <% end %>  
+  <% end %>
 </div>
 
-	
-
-<div class="col-md-12 text-center">
-  <%= paginate @reports %>
-</div>
-
-
+<%= paginate @reports %>
