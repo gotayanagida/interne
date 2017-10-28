@@ -9,7 +9,4 @@ class Notice < ApplicationRecord
   has_many :tasks, through: :task_notices
   has_many :goal_notices
   has_many :goals, through: :goal_notices
-  # belongs_to :report
-  # belongs_to :task
-  # belongs_to :goal
 end

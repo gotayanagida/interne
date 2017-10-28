@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027231451) do
+ActiveRecord::Schema.define(version: 20171028021620) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 20171027231451) do
     t.datetime "updated_at", null: false
     t.index ["goal_id"], name: "index_goal_notices_on_goal_id"
     t.index ["notice_id"], name: "index_goal_notices_on_notice_id"
+  end
+
+  create_table "goal_todos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "goal_id"
+    t.bigint "todo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_goal_todos_on_goal_id"
+    t.index ["todo_id"], name: "index_goal_todos_on_todo_id"
   end
 
   create_table "goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -95,6 +104,15 @@ ActiveRecord::Schema.define(version: 20171027231451) do
     t.datetime "updated_at", null: false
     t.index ["notice_id"], name: "index_report_notices_on_notice_id"
     t.index ["report_id"], name: "index_report_notices_on_report_id"
+  end
+
+  create_table "report_todos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "report_id"
+    t.bigint "todo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id"], name: "index_report_todos_on_report_id"
+    t.index ["todo_id"], name: "index_report_todos_on_todo_id"
   end
 
   create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -171,8 +189,7 @@ ActiveRecord::Schema.define(version: 20171027231451) do
 
   create_table "todos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "body"
-    t.string "link"
-    t.integer "status"
+    t.string "associate_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -210,6 +227,8 @@ ActiveRecord::Schema.define(version: 20171027231451) do
   add_foreign_key "company_users", "users"
   add_foreign_key "goal_notices", "goals"
   add_foreign_key "goal_notices", "notices"
+  add_foreign_key "goal_todos", "goals"
+  add_foreign_key "goal_todos", "todos"
   add_foreign_key "goals", "companies"
   add_foreign_key "goals", "users"
   add_foreign_key "notice_companies", "companies"
@@ -218,6 +237,8 @@ ActiveRecord::Schema.define(version: 20171027231451) do
   add_foreign_key "notice_users", "users"
   add_foreign_key "report_notices", "notices"
   add_foreign_key "report_notices", "reports"
+  add_foreign_key "report_todos", "reports"
+  add_foreign_key "report_todos", "todos"
   add_foreign_key "reports", "companies"
   add_foreign_key "reports", "schedules"
   add_foreign_key "reports", "users"

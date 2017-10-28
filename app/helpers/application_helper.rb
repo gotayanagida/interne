@@ -18,4 +18,13 @@ module ApplicationHelper
     end
     path
   end
+
+  def todo_path(todo)
+    if todo.associate_type == "report"
+      path = todo.report_todos.first.report
+    elsif todo.associate_type == "goal"
+      path = todo.goal_todos.first.goal
+    end
+    path
+  end
 end

@@ -33,18 +33,38 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def users_id_for_notice
+  def generate_todo(users_id:, companies_id:, body:, associate_type:, associate_id:)
+    todo = Todo.create(body: body, associate_type: associate_type)
+    if associate_type == "report"
+      report = Report.find(associate_id)
+      report.todos << todo
+    elsif associate_type == "goal"
+      goal = Goal.find(associate_id)
+      goal.todos << todo
+    end
+    users_id.each do |user_id|
+      user = User.find(user_id)
+      user.todos << todo
+    end
+    companies_id.each do |company_id|
+      company = Company.find(company_id)
+      company.todos << todo
+    end
+  end
+
+  def intern_and_staffs_id_arr
     users_id = []
     users_id.append(current_user.id)
     current_company.company_users.each do |company_user|
       if company_user.user.employment_status == 0
+        next if company_user.user.id == current_user.id
         users_id.append(company_user.user_id)
       end
     end
     users_id
   end
 
-  def companies_id_for_notice
+  def companies_id_arr
     companies_id = []
     companies_id.append(current_company.id)
   end
