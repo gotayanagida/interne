@@ -3,30 +3,32 @@
   <div class="ui grid">
     <div class="three column row">
       <% @users.each do |user| %>
-        <% if user.attendances != [] %>
-          <% if user.attendances.last.work_stopped_at != nil %>
-            <div class="column">
-              <%= image_tag user.profile_photo_url%>
-                <h3><%= user.name %></h3>
-              <% if user.tasks != [] %>
-                <h4>"<%= user.tasks.last.title %>"<h4>
-              <% else %>
-                タスクが登録されていません:(
-              <% end %>
-              <% if user.schedules != [] %>
-              <% today_work_schedule = Schedule.where(user_id: user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first %>
-                <% if today_work_schedule != nil %>
-                  <h4>  勤務予定：<%= today_work_schedule.work_started_at.strftime("%-H時%M分") %> ~ <%= today_work_schedule.work_ended_at.strftime("%-H時%M分") %></h4>
+        <%= link_to user do %>
+          <% if user.attendances != [] %>
+            <% if user.attendances.last.work_stopped_at != nil %>
+              <div class="column">
+                <%= image_tag user.profile_photo_url%>
+                  <h3><%= user.name %></h3>
+                <% if user.tasks != [] %>
+                  <h4>"<%= user.tasks.last.title %>"<h4>
+                <% else %>
+                  タスクが登録されていません:(
                 <% end %>
-              <% else %>
-                勤務予定が登録されていません:(
-              <% end %>
-              <%= link_to '詳細', user ,class: "btn btn-default"%>
-              <% if user.id == current_user.id %>
-                <%= link_to '編集', edit_user_path(user) ,class: "btn btn-default" %>
-                <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
-              <% end %>
-            </div>
+                <% if user.schedules != [] %>
+                <% today_work_schedule = Schedule.where(user_id: user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first %>
+                  <% if today_work_schedule != nil %>
+                    <h4>  勤務予定：<%= today_work_schedule.work_started_at.strftime("%-H時%M分") %> ~ <%= today_work_schedule.work_ended_at.strftime("%-H時%M分") %></h4>
+                  <% end %>
+                <% else %>
+                  勤務予定が登録されていません:(
+                <% end %>
+                <%= link_to '詳細', user ,class: "btn btn-default"%>
+                <% if user.id == current_user.id %>
+                  <%= link_to '編集', edit_user_path(user) ,class: "btn btn-default" %>
+                  <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn btn-default" %>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>

@@ -2,6 +2,7 @@
   <h3><%=@user.name%>さんの今後の出勤日程</h3>
   <div class="ui relaxed divided list">
   <% @schedules_for_intern.reverse_each do |schedule| %>
+    <%= link_to schedule do %>
 	  <div class="item">
 	    <i class="large info circle middle aligned icon"></i>
 	    <div class="content">
@@ -17,7 +18,7 @@
 	      </div>
 	    </div>
 	  </div>
-	
+    <% end %>
   <% end %>
   </div>
 </div>
