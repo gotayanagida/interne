@@ -11,8 +11,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def generate_notice(users_id:, companies_id:, msg:, report_id:)
-    notice = Notice.create(body: msg, report_id: report_id)
+  def generate_notice(users_id:, companies_id:, body:, associate_type:, associate_id:)
+    notice = Notice.create(body: body, associate_type: associate_type)
+    if associate_type == "report"
+      report = Report.find(associate_id)
+      report.notices << notice
+    elsif associate_type == "task"
+      task = Task.find(associate_id)
+      task.notices << notice
+    elsif associate_type == "goal"
+      goal = Goal.find(associate_id)
+      goal.notices << notice
+    end
     users_id.each do |user_id|
       user = User.find(user_id)
       user.notices << notice

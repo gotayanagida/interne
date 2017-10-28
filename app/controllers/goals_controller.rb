@@ -28,11 +28,6 @@ class GoalsController < ApplicationController
   def create
     @goal = Goal.new(goal_params)
 
-    name = current_user.name
-    title = params[:goal][:title]
-    span = params[:goal][:span] = 3 ? "３ヶ月間" : "一年間"
-    generate_notice(users_id:users_id_for_notice, companies_id:companies_id_for_notice, msg:"#{name}さんが#{span}の目標「#{title}」を作成しました")
-
     respond_to do |format|
       if @goal.save
         format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
@@ -42,6 +37,13 @@ class GoalsController < ApplicationController
         format.json { render json: @goal.errors, status: :unprocessable_entity }
       end
     end
+
+    #お知らせ生成
+    name = current_user.name
+    title = params[:goal][:title]
+    span = params[:goal][:span] = 3 ? "３ヶ月間" : "一年間"
+    generate_notice(users_id:users_id_for_notice, companies_id:companies_id_for_notice, body:"#{name}さんが#{span}の目標「#{title}」を作成しました", associate_type:"goal", associate_id: @goal.id)
+
   end
 
   # PATCH/PUT /goals/1
