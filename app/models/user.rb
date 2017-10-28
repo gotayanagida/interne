@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :goals
   has_many :reports
   has_many :attendances
+  has_many :report_stamps
+  has_many :goal_stamps
   has_many :notice_users
   has_many :notices, through: :notice_users
   has_many :todo_users

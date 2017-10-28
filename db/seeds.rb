@@ -294,3 +294,5 @@ GoalNotice.create(goal_id:2,notice_id:1)
 GoalNotice.create(goal_id:3,notice_id:1)
 GoalNotice.create(goal_id:4,notice_id:1)
 GoalNotice.create(goal_id:5,notice_id:1)
+
+Stamp.create(url:"nico.png", name:"nico")

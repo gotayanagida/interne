@@ -27,4 +27,13 @@ module ApplicationHelper
     end
     path
   end
+
+  def stamp_pressed(type: ,id:)
+    if type == "report"
+      stamp_pressed = ReportStamp.find_by(report_id: id)
+    elsif type == "goal"
+      stamp_pressed = GoalStamp.find_by(goal_id: id)
+    end
+    stamp_pressed
+  end
 end
