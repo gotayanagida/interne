@@ -6,4 +6,6 @@ class Report < ApplicationRecord
   has_many :notices, through: :report_notices
   has_many :report_todos
   has_many :todos, through: :report_todos
+  has_many :report_stamps
+  has_many :stamps, through: :report_stamps
 end

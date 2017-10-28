@@ -21,7 +21,18 @@
       <%= "~#{year}年#{mouth}月#{day}日"%>
     </div>
     <div>
-      <%= link_to '詳細', goal ,class: "btn btn-default"%>
+      <% goal.goal_stamps.each do |goal_stamp| %>
+        <%= goal_stamp.user.name %>さん
+        <%= image_tag goal_stamp.stamp.url %>
+      <% end %>
+    </div>
+    <div>
+      <% if stamp_pressed(type:"goal", id:goal.id) %>
+        <%= link_to 'スタンプを取り消す', remove_stamp_path(associate_type:"goal",associate_id:goal.id) %>
+      <% else %>
+        <%= link_to 'スタンプを押す', press_stamp_path(stamp_id:1,associate_type:"goal",associate_id:goal.id) %>
+      <% end %>
+      <%= link_to '詳細', goal %>
       <% if goal.user_id == current_user.id %>
         <%= link_to '編集', edit_goal_path(goal)%>
         <%= link_to '削除', goal, method: :delete, data: { confirm: 'Are you sure?' }%>

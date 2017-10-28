@@ -21,6 +21,13 @@
       <%= report.body %>
     </div>
     <div>
+      <% report.report_stamps.each do |report_stamp| %>
+        <%= report_stamp.user.name %>さん
+        <%= image_tag report_stamp.stamp.url %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to 'スタンプを押す', press_stamp_path(stamp_id:1,associate_type:"report",associate_id:report.id) %>
       <td><%= link_to '詳細', report ,class: "btn btn-default"%></td>
       <% if report.user_id == current_user.id %>
         <td><%= link_to '編集', edit_task_path(report)%></td>
