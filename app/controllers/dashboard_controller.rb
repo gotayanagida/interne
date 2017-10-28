@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
       @users = current_company.users.all
       @schedules_for_staff = current_company.schedules.all.limit(5)
       @searched_users = User.all.page(params[:page]).per(10).search(params[:search])
-
+      
       #インターン生用ダッシュボード
       if @user.attendances != []
         if @user.attendances.last.work_started_at != nil && @user.attendances.last.work_stopped_at == nil
