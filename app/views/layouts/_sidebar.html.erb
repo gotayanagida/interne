@@ -20,15 +20,23 @@ $(document).ready(function(){
 </script>
 <div class="left-sidebar" style="width:210px;height:100%;float:left;">
  <div class="ui left fixed inverted vertical menu left-sidebar">
-  <div class="item">
-    <img class="ui middle aligned mini image" src="assets/company.gif">
-    <b class="aaaaa"><%=current_company.name%></b>
-  </div>
-		<% current_user.company_users.each do |company_user| %>
-			<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item" do%>
-	  		<%= company_user.company.name %>（とりあえずここに吐き出してます。）<br>
+	<div class="ui dropdown item">
+	    <img class="ui middle aligned mini image" src="assets/company.gif">
+	    <b class="aaaaa">
+	    	<%if current_company.name.length > 7%>
+	    		<%=current_company.name.slice(0, 7)%>...
+	    	<%else%>
+	    	    <%=current_company.name%>
+	    	<%end%>
+	    </b>
+	    <div class="ui inverted vertical menu" style="background:#1B1C1D;">
+	      	<% current_user.company_users.each do |company_user| %>
+				<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item",style:"color:rgba(255, 255, 255, 0.9) !important;" do%>
+			  	<%= company_user.company.name %><br>
+			  	<% end %>
 			<% end %>
-		<% end %>
+	    </div>
+	</div>
   	<%= link_to root_path,class:"item" do%>
       <i class="block layout icon"></i>
       ダッシュボード
