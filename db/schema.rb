@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171028021620) do
+ActiveRecord::Schema.define(version: 20171028030508) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 20171028021620) do
     t.datetime "updated_at", null: false
     t.index ["goal_id"], name: "index_goal_notices_on_goal_id"
     t.index ["notice_id"], name: "index_goal_notices_on_notice_id"
+  end
+
+  create_table "goal_stamps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "goal_id"
+    t.bigint "stamp_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_goal_stamps_on_goal_id"
+    t.index ["stamp_id"], name: "index_goal_stamps_on_stamp_id"
+    t.index ["user_id"], name: "index_goal_stamps_on_user_id"
   end
 
   create_table "goal_todos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -106,6 +117,17 @@ ActiveRecord::Schema.define(version: 20171028021620) do
     t.index ["report_id"], name: "index_report_notices_on_report_id"
   end
 
+  create_table "report_stamps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "report_id"
+    t.bigint "stamp_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id"], name: "index_report_stamps_on_report_id"
+    t.index ["stamp_id"], name: "index_report_stamps_on_stamp_id"
+    t.index ["user_id"], name: "index_report_stamps_on_user_id"
+  end
+
   create_table "report_todos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "report_id"
     t.bigint "todo_id"
@@ -137,6 +159,13 @@ ActiveRecord::Schema.define(version: 20171028021620) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_schedules_on_company_id"
     t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
+  create_table "stamps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "task_notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -227,6 +256,9 @@ ActiveRecord::Schema.define(version: 20171028021620) do
   add_foreign_key "company_users", "users"
   add_foreign_key "goal_notices", "goals"
   add_foreign_key "goal_notices", "notices"
+  add_foreign_key "goal_stamps", "goals"
+  add_foreign_key "goal_stamps", "stamps"
+  add_foreign_key "goal_stamps", "users"
   add_foreign_key "goal_todos", "goals"
   add_foreign_key "goal_todos", "todos"
   add_foreign_key "goals", "companies"
@@ -237,6 +269,9 @@ ActiveRecord::Schema.define(version: 20171028021620) do
   add_foreign_key "notice_users", "users"
   add_foreign_key "report_notices", "notices"
   add_foreign_key "report_notices", "reports"
+  add_foreign_key "report_stamps", "reports"
+  add_foreign_key "report_stamps", "stamps"
+  add_foreign_key "report_stamps", "users"
   add_foreign_key "report_todos", "reports"
   add_foreign_key "report_todos", "todos"
   add_foreign_key "reports", "companies"
