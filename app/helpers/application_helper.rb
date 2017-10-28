@@ -36,4 +36,13 @@ module ApplicationHelper
     end
     stamp_pressed
   end
+
+  def same_stamp_pressed(type: ,id: ,stamp_id:)
+    if type == "report"
+      stamp_pressed = ReportStamp.find_by(report_id: id, user_id: current_user.id, id: stamp_id)
+    elsif type == "goal"
+      stamp_pressed = GoalStamp.find_by(goal_id: id, user_id: current_user.id, id: stamp_id)
+    end
+    stamp_pressed
+  end
 end

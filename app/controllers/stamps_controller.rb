@@ -63,9 +63,25 @@ class StampsController < ApplicationController
 
   def press_stamp
     if params[:associate_type] == "report"
-      ReportStamp.create(report_id:params[:associate_id] ,stamp_id:params[:stamp_id] ,user_id:current_user.id)
+      if report_stamp = ReportStamp.find_by(report_id:params[:associate_id], user_id:current_user.id)
+        if same_report_stamp = ReportStamp.find_by(stamp_id:params[:stamp_id], report_id:params[:associate_id], user_id:current_user.id)
+          same_report_stamp.destroy
+        else
+          report_stamp.update(stamp_id:params[:stamp_id])
+        end
+      else
+        ReportStamp.create(report_id:params[:associate_id] ,stamp_id:params[:stamp_id] ,user_id:current_user.id)
+      end
     elsif params[:associate_type] == "goal"
-      GoalStamp.create(goal_id:params[:associate_id] ,stamp_id:params[:stamp_id] ,user_id:current_user.id)
+      if goal_stamp = GoalStamp.find_by(goal_id:params[:associate_id], user_id:current_user.id)
+        if same_goal_stamp = GoalStamp.find_by(stamp_id:params[:stamp_id], goal_id:params[:associate_id], user_id:current_user.id)
+          same_goal_stamp.destroy
+        else
+          goal_stamp.update(stamp_id:params[:stamp_id])
+        end
+      else
+        GoalStamp.create(goal_id:params[:associate_id] ,stamp_id:params[:stamp_id] ,user_id:current_user.id)
+      end
     end
     redirect_back(fallback_location: root_path)
   end

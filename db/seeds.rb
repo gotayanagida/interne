@@ -296,6 +296,10 @@ GoalNotice.create(goal_id:4,notice_id:1)
 GoalNotice.create(goal_id:5,notice_id:1)
 
 Stamp.create(url:"nico.png", name:"nico")
+Stamp.create(url:"mima.png", name:"mima")
+Stamp.create(url:"suba.gif", name:"suba")
+Stamp.create(url:"gan.png", name:"gan")
+Stamp.create(url:"yoku.png", name:"yoku")
 
 ReportStamp.create(report_id:1,stamp_id:1,user_id:1)
 ReportStamp.create(report_id:2,stamp_id:1,user_id:1)

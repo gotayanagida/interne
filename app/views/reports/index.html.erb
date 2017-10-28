@@ -3,47 +3,9 @@
 <div>
   <%= link_to '＋日報を追加', new_report_path, class: "btn btn-primary" %>
 </div>
-<% @reports.reverse_each do |report| %>
-  <div class="wrap-for-dev">
-    <div>
-      <%= image_tag report.user.profile_photo_url, class: "img-responsive"%>
-    </div>
-    <div>
-      <h4><%= report.user.name %></h4>
-    </div>
-    <div>
-      <h4><%= report.schedule.work_started_at.strftime('%m/%d') %><h4>
-    </div>
-    <div>
-      <h4>"<%= report.title %>"</h4>
-    </div>
-    <div>
-      <%= report.body %>
-    </div>
-    <div>
-      <% report.report_stamps.each do |report_stamp| %>
-        <%= report_stamp.user.name %>さん
-        <%= image_tag report_stamp.stamp.url %>
-      <% end %>
-    </div>
-    <div>
-      <% if stamp_pressed(type:"report", id:report.id) %>
-        <%= link_to 'スタンプを取り消す', remove_stamp_path(associate_type:"report",associate_id:report.id) %>
-      <% else %>
-        <%= link_to 'スタンプを押す', press_stamp_path(stamp_id:1,associate_type:"report",associate_id:report.id) %>
-      <% end %>
-      <td><%= link_to '詳細', report ,class: "btn btn-default"%></td>
-      <% if report.user_id == current_user.id %>
-        <td><%= link_to '編集', edit_task_path(report)%></td>
-        <td><%= link_to '削除', report, method: :delete, data: { confirm: 'Are you sure?' }%></td>
-      <% end %>
-    </div>
-  </div>
-<% end %>
-
 <div class="ui three column grid stackable">
   <% @reports.reverse_each do |report| %>
-      <div class="column">
+    <div class="column">
 		  <div class="ui fluid card">
 		    <div class="content">
 		      <%= image_tag report.user.profile_photo_url, class: "right floated mini ui image"%>
@@ -57,6 +19,26 @@
 		        <h4>"<%= report.title %>"</h4>
 		        <%= report.body %>
 		      </div>
+          <div>
+            <% report.report_stamps.each do |report_stamp| %>
+              <%= report_stamp.user.name %>さん
+              <%= image_tag report_stamp.stamp.url %>
+            <% end %>
+          </div>
+          <div>
+            <div class="ui dropdown" style="display:block;display: flow-root;">
+              スタンプを押す
+              <div class="menu">
+                <% @stamps.each do |stamp| %>
+                  <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"report",associate_id:report.id) do%>
+                    <div class="item">
+                      <%= image_tag stamp.url %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
 		    </div>
 		    <div class="extra content">
 		    　<% if report.user_id == current_user.id %>

@@ -4,6 +4,7 @@ class ReportsController < ApplicationController
   # GET /reports.json
   def index
     @reports = current_company.reports.page(params[:page]).per(10)
+    @stamps = Stamp.all
   end
 
   # GET /reports/1
