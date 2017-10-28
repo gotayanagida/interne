@@ -34,6 +34,13 @@ class ReportsController < ApplicationController
         format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
+
+    #お知らせ生成
+    name = current_user.name
+    title = params[:report][:title]
+    day = Attendance.find(params[:report][:schedule_id]).work_started_at.strftime("%m月%d日")
+    generate_notice(users_id:users_id_for_notice, companies_id:companies_id_for_notice, body:"#{name}さんが#{day}出社分の日報「#{title}」を作成しました", associate_type:"report", associate_id: @report.id)
+
   end
 
   # PATCH/PUT /reports/1
@@ -68,6 +75,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:user_id, :company_id, :schedule_id, :title, :body, schedules_attributes: [:schedule_id])
+      params.require(:report).permit(:user_id, :company_id, :title, :schedule_id, :body, schedules_attributes: [:schedule_id])
     end
 end

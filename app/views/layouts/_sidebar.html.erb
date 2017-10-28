@@ -22,8 +22,13 @@ $(document).ready(function(){
  <div class="ui left fixed inverted vertical menu left-sidebar">
   <div class="item">
     <img class="ui middle aligned mini image" src="assets/company.gif">
-    <b class="aaaaa">digital-k</b>
+    <b class="aaaaa"><%=current_company.name%></b>
   </div>
+		<% current_user.company_users.each do |company_user| %>
+			<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item" do%>
+	  		<%= company_user.company.name %>（とりあえずここに吐き出してます。）<br>
+			<% end %>
+		<% end %>
   	<%= link_to root_path,class:"item" do%>
       <i class="block layout icon"></i>
       ダッシュボード

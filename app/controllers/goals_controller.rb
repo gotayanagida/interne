@@ -37,6 +37,13 @@ class GoalsController < ApplicationController
         format.json { render json: @goal.errors, status: :unprocessable_entity }
       end
     end
+
+    #お知らせ生成
+    name = current_user.name
+    title = params[:goal][:title]
+    span = params[:goal][:span] = 3 ? "３ヶ月間" : "一年間"
+    generate_notice(users_id:users_id_for_notice, companies_id:companies_id_for_notice, body:"#{name}さんが#{span}の目標「#{title}」を作成しました", associate_type:"goal", associate_id: @goal.id)
+
   end
 
   # PATCH/PUT /goals/1
@@ -71,6 +78,6 @@ class GoalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def goal_params
-      params.require(:goal).permit(:user_id, :company_id, :title, :detail)
+      params.require(:goal).permit(:user_id, :company_id, :span, :title, :detail)
     end
 end

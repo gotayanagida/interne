@@ -5,6 +5,7 @@ class AttendancesController < ApplicationController
   # GET /attendances.json
   def index
     @attendances = current_company.attendances.page(params[:page]).per(20)
+    @attendances_for_csv = current_company.attendances.all
   end
 
   # GET /attendances/1
@@ -62,7 +63,7 @@ class AttendancesController < ApplicationController
   end
 
   def start_work
-    @attendance = Attendance.new(user_id: current_user.id, work_started_at:Time.now)
+    @attendance = Attendance.new(user_id: current_user.id, company_id: current_company.id, work_started_at:Time.now)
     respond_to do |format|
       if @attendance.save
         format.html { redirect_to root_path, notice: '出勤が登録されました。'}

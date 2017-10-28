@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171025233710) do
+ActiveRecord::Schema.define(version: 20171027231451) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -40,6 +40,15 @@ ActiveRecord::Schema.define(version: 20171025233710) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_company_users_on_company_id"
     t.index ["user_id"], name: "index_company_users_on_user_id"
+  end
+
+  create_table "goal_notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "goal_id"
+    t.bigint "notice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goal_id"], name: "index_goal_notices_on_goal_id"
+    t.index ["notice_id"], name: "index_goal_notices_on_notice_id"
   end
 
   create_table "goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -74,8 +83,18 @@ ActiveRecord::Schema.define(version: 20171025233710) do
 
   create_table "notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "body"
+    t.string "associate_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "report_notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "report_id"
+    t.bigint "notice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notice_id"], name: "index_report_notices_on_notice_id"
+    t.index ["report_id"], name: "index_report_notices_on_report_id"
   end
 
   create_table "reports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -100,6 +119,15 @@ ActiveRecord::Schema.define(version: 20171025233710) do
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_schedules_on_company_id"
     t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
+  create_table "task_notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "task_id"
+    t.bigint "notice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notice_id"], name: "index_task_notices_on_notice_id"
+    t.index ["task_id"], name: "index_task_notices_on_task_id"
   end
 
   create_table "task_schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -133,8 +161,8 @@ ActiveRecord::Schema.define(version: 20171025233710) do
   end
 
   create_table "todo_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
     t.bigint "todo_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["todo_id"], name: "index_todo_users_on_todo_id"
@@ -180,17 +208,23 @@ ActiveRecord::Schema.define(version: 20171025233710) do
   add_foreign_key "attendances", "users"
   add_foreign_key "company_users", "companies"
   add_foreign_key "company_users", "users"
+  add_foreign_key "goal_notices", "goals"
+  add_foreign_key "goal_notices", "notices"
   add_foreign_key "goals", "companies"
   add_foreign_key "goals", "users"
   add_foreign_key "notice_companies", "companies"
   add_foreign_key "notice_companies", "notices"
   add_foreign_key "notice_users", "notices"
   add_foreign_key "notice_users", "users"
+  add_foreign_key "report_notices", "notices"
+  add_foreign_key "report_notices", "reports"
   add_foreign_key "reports", "companies"
   add_foreign_key "reports", "schedules"
   add_foreign_key "reports", "users"
   add_foreign_key "schedules", "companies"
   add_foreign_key "schedules", "users"
+  add_foreign_key "task_notices", "notices"
+  add_foreign_key "task_notices", "tasks"
   add_foreign_key "task_schedules", "schedules"
   add_foreign_key "task_schedules", "tasks"
   add_foreign_key "tasks", "companies"
