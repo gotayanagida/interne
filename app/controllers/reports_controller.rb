@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
     #お知らせ生成
     name = current_user.name
     title = params[:report][:title]
-    day = Attendance.find(params[:report][:schedule_id]).work_started_at.strftime("%m月%d日")
+    day = Schedule.find(params[:report][:schedule_id]).work_started_at.strftime("%m月%d日")
     generate_notice(users_id:intern_and_staffs_id_arr, companies_id:companies_id_arr, body:"#{name}さんが#{day}出社分の日報「#{title}」を作成しました", associate_type:"report", associate_id: @report.id)
     generate_todo(users_id:intern_and_staffs_id_arr, companies_id:companies_id_arr, body:"#{name}さんが#{day}出社分の日報「#{title}」を作成しました。確認してスタンプを押しましょう。", associate_type:"report", associate_id: @report.id)
 

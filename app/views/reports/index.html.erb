@@ -27,7 +27,11 @@
       <% end %>
     </div>
     <div>
-      <%= link_to 'スタンプを押す', press_stamp_path(stamp_id:1,associate_type:"report",associate_id:report.id) %>
+      <% if stamp_pressed(type:"report", id:report.id) %>
+        <%= link_to 'スタンプを取り消す', remove_stamp_path(associate_type:"report",associate_id:report.id) %>
+      <% else %>
+        <%= link_to 'スタンプを押す', press_stamp_path(stamp_id:1,associate_type:"report",associate_id:report.id) %>
+      <% end %>
       <td><%= link_to '詳細', report ,class: "btn btn-default"%></td>
       <% if report.user_id == current_user.id %>
         <td><%= link_to '編集', edit_task_path(report)%></td>
