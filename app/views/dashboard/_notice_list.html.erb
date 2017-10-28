@@ -1,7 +1,7 @@
 <div class="wrap-for-dev col-md-12">
-  <h3>お知らせリスト</h3>
+  <h3>お知らせ</h3>
   <% @user.notice_users.reverse_each do |notice_user| %>
-    <%= link_to root_path do %>
+    <%= link_to notice_path(notice_user.notice) do %>
     <div class="wrap-for-dev col-md-12">
       <h4><%= notice_user.notice.body %></h4>
       <% notice_time = Time.now.to_time.to_i - notice_user.notice.created_at.to_time.to_i %>
