@@ -7,7 +7,6 @@ class GoalsController < ApplicationController
     goals = current_company.goals.all.reverse_order
     @goals_3 = goals.where(span:3)
     @goals_12 = goals.where(span:12)
-    @stamps = Stamp.all
   end
 
   # GET /goals/1

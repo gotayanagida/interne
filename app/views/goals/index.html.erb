@@ -32,7 +32,7 @@
         <div class="ui dropdown left floated" style="display:block;display: flow-root;">
            <i class="large smile icon"></i>
            <div class="menu">
-             <% @stamps.each do |stamp| %>
+             <% stamps.each do |stamp| %>
                <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"goal",associate_id:goal.id) do%>
                  <div class="item">
                    <%= image_tag stamp.url %>
@@ -88,7 +88,7 @@
         <div class="ui dropdown left floated" style="display:block;display: flow-root;">
            <i class="large smile icon"></i>
            <div class="menu">
-             <% @stamps.each do |stamp| %>
+             <% stamps.each do |stamp| %>
                <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"goal",associate_id:goal.id) do%>
                  <div class="item">
                    <%= image_tag stamp.url %>
@@ -105,7 +105,7 @@
             <% if goal.user_id == current_user.id %>
               <%= link_to goal ,class: "item" do%>詳細<% end%>
               <%= link_to edit_goal_path(goal) ,class: "item" do%>編集<% end%>
-              <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%
+              <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%>
             <% else %>
               <%= link_to goal ,class: "item" do%>詳細<% end%>
             <% end %>

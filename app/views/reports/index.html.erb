@@ -46,7 +46,7 @@
 	    <div class="ui dropdown right floated" style="display:block;display: flow-root;">
         <div style="font-size:9px">スタンプ送信</div>
           <div class="menu">
-            <% @stamps.each do |stamp| %>
+            <% stamps.each do |stamp| %>
               <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"report",associate_id:report.id) do%>
                 <div class="item">
                   <%= image_tag stamp.url %>
@@ -56,7 +56,7 @@
           </div>
         </div>
 	    </div>
-	   </div>  
+	   </div>
   </div>
   <% end %>
 </div>
