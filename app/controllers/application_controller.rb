@@ -93,4 +93,8 @@ class ApplicationController < ActionController::Base
     end
     attendance_status
   end
+
+  def stamps
+    stamps = Stamp.all
+  end
 end
