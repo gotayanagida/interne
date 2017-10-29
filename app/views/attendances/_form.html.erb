@@ -11,24 +11,30 @@
     </div>
   <% end %>
 
+
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :attendance_user_id %>
+    <%= form.label "インターン生" %>
+    <%= form.collection_select :user_id, current_company.users, :id, :name %>
   </div>
 
   <div class="field">
-    <%= form.label :work_started_at %>
+    <%= form.label "勤務開始時間" %>
     <%= form.datetime_select :work_started_at, id: :attendance_work_started_at %>
   </div>
 
   <div class="field">
-    <%= form.label :work_stopped_at %>
+    <%= form.label "勤務終了時間" %>
     <%= form.datetime_select :work_stopped_at, id: :attendance_work_stopped_at %>
   </div>
 
   <div class="field">
-    <%= form.label :num_of_edit %>
-    <%= form.number_field :num_of_edit, id: :attendance_num_of_edit %>
+    <%= form.label "休憩開始時間" %>
+    <%= form.datetime_select :break_started_at, id: :attendance_break_started_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label "休憩終了時間" %>
+    <%= form.datetime_select :break_stopped_at, id: :attendance_break_stopped_at %>
   </div>
 
   <div class="actions">

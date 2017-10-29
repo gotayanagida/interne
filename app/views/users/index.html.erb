@@ -33,7 +33,7 @@
       <%= link_to '詳細', user ,class: "btn btn-default"%>
       <% if user.id == current_user.id %>
         <%= link_to '編集', edit_user_path(user)%>
-        <%= link_to '削除', user, method: :delete, data: { confirm: 'Are you sure?' }%>
+        <%= link_to '削除', user, method: :delete, data: { confirm: '本当に削除しますか？' }%>
       <% end %>
     </div>
   </div>

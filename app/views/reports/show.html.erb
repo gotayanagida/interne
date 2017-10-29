@@ -1,10 +1,39 @@
 <p id="notice"><%= notice %></p>
 
 <div>
+  <h3><%= image_tag @report.user.profile_photo_url %></h3>
   <h3><%= @report.user.name %></h3>
-  <h3><%= @report.schedule.work_started_at.strftime("%m月%d日") %></h3>
-  <h3><%= @report.title %></h3>
-  <h3><%= simple_format(@report.body) %></h3>
+  <h3>出勤日：<%= @report.schedule.work_started_at.strftime("%m月%d日") %></h3>
+  <h3>タイトル：「<%= @report.title %>」</h3>
+  <h3>本文：<%= simple_format(@report.body) %></h3>
+  <h3>作成日時：<%= @report.created_at.strftime("%m月%d日 %-H時%M分") %></h3>
+  <h3>最終更新日時：<%= @report.updated_at.strftime("%m月%d日 %-H時%M分") %></h3>
+</div>
+
+<div class="extra content">
+  <span class="left floated">
+    <% @report.report_stamps.each_with_index do |report_stamp,i| %>
+      <%if i==0 && @report.report_stamps.length==1 %>
+        <%= image_tag report_stamp.stamp.url ,class:"ui mini image",style:"width:17px;height:17px;"%>
+        <%= report_stamp.user.name %>
+      <%elsif i==0%>
+        <%= image_tag report_stamp.stamp.url ,class:"ui mini image",style:"width:17px;height:17px;"%>
+        <%= report_stamp.user.name %>など...<%= @report.report_stamps.length %>人
+      <%end%>
+　   <% end %>
+  </span>
+  <div class="ui dropdown right floated" style="display:block;display: flow-root;">
+    スタンプを押す
+    <div class="menu">
+      <% stamps.each do |stamp| %>
+        <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"report",associate_id:@report.id) do%>
+          <div class="item">
+            <%= image_tag stamp.url %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 <div>

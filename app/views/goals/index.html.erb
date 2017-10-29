@@ -32,7 +32,7 @@
             <div class="ui dropdown" style="display:block;display: flow-root;">
               スタンプを押す
               <div class="menu">
-                <% @stamps.each do |stamp| %>
+                <% stamps.each do |stamp| %>
                   <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"goal",associate_id:goal.id) do%>
                     <div class="item">
                       <%= image_tag stamp.url %>
@@ -47,8 +47,8 @@
         　<% if goal.user_id == current_user.id %>
           <div class="three ui buttons">
             <%= link_to goal ,class: "ui basic green button" do%>詳細<% end%>
-            <%= link_to edit_task_path(goal) ,class: "ui basic blue button" do%>編集<% end%>
-            <%= link_to goal, method: :delete, data: { confirm: 'Are you sure?' } ,class: "ui basic red button" do%>削除<%end%>
+            <%= link_to edit_goal_path(goal) ,class: "ui basic blue button" do%>編集<% end%>
+            <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "ui basic red button" do%>削除<%end%>
           </div>
           <% else %>
           <div class="ui buttons">
@@ -105,8 +105,8 @@
         　<% if goal.user_id == current_user.id %>
           <div class="three ui buttons">
             <%= link_to goal ,class: "ui basic green button" do%>詳細<% end%>
-            <%= link_to edit_task_path(goal) ,class: "ui basic blue button" do%>編集<% end%>
-            <%= link_to goal, method: :delete, data: { confirm: 'Are you sure?' } ,class: "ui basic red button" do%>削除<%end%>
+            <%= link_to edit_goal_path(goal) ,class: "ui basic blue button" do%>編集<% end%>
+            <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "ui basic red button" do%>削除<%end%>
           </div>
           <% else %>
           <div class="ui buttons">

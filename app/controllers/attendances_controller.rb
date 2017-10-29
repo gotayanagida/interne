@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = current_company.attendances.page(params[:page]).per(20)
+    @attendances = current_company.attendances.where.not(work_stopped_at: nil).page(params[:page]).per(20).reverse_order
     @attendances_for_csv = current_company.attendances.all
   end
 

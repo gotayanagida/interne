@@ -58,4 +58,39 @@ module ApplicationHelper
     end
     attendance_status
   end
+
+  def breaked?(attendance:)
+    breaked = true if attendance.break_started_at != nil
+    breaked = false if attendance.break_started_at == nil
+    breaked
+  end
+
+  def work_time(attendance:)
+    minutes = attendance.work_stopped_at.to_time.to_i - attendance.work_started_at.to_time.to_i
+    work_time = (Time.parse("1/1") + minutes - break_time(attendance: attendance).to_i)
+  end
+
+  def break_time(attendance:)
+    minutes = attendance.break_stopped_at.to_time.to_i - attendance.break_started_at.to_time.to_i if breaked?(attendance: attendance)
+    minutes = 0.to_i unless breaked?(attendance: attendance)
+    break_time = (Time.parse("1/1") + minutes)
+  end
+  #
+  # def work_time(attendance:)
+  #   minutes = attendance.work_stopped_at.to_time.to_i - attendance.work_started_at.to_time.to_i
+  #   work_time = (Time.parse("1/1") + minutes)- break_time(attendance: atten) ).strftime("%-H時間%-M分%-S秒")
+  # end
+  #
+  # def break_time(attendance:)
+  #   unless breaked?(attendance: attendance)
+  #     minutes = attendance.work_stopped_at.to_time.to_i - attendance.work_started_at.to_time.to_i
+  #     break_time = (Time.parse("1/1") + minutes).strftime("%-H時間%-M分%-S秒")
+  #   else
+  #     break_time = 0.to_i
+  #   end
+  # end
+
+  def stamps
+    stamps = Stamp.all
+  end
 end
