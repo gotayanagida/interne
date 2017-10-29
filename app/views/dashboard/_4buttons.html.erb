@@ -1,6 +1,6 @@
 <div class="four ui buttons">
-  <%= link_to '出勤', start_work_path,class:"ui button" if attendance_status == "not_work"%>
-  <%= link_to '休憩開始', start_break_path,class:"ui button" if attendance_status == "am_work"%>
-  <%= link_to '休憩終了', stop_break_path,class:"ui button" if attendance_status == "break"%>
-  <%= link_to '退勤', stop_work_path,class:"ui button" if attendance_status == "am_work" || attendance_status == "pm_work"%>
+  <%= link_to '出勤', start_work_path,class:"ui button" if attendance_status(user:@user) == "not_work"%>
+  <%= link_to '休憩開始', start_break_path,class:"ui button" if attendance_status(user:@user) == "am_work"%>
+  <%= link_to '休憩終了', stop_break_path,class:"ui button" if attendance_status(user:@user) == "break"%>
+  <%= link_to '退勤', stop_work_path,class:"ui button" if attendance_status(user:@user) == "am_work" || attendance_status(user:@user) == "pm_work"%>
 </div>

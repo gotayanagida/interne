@@ -81,8 +81,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def attendance_status
-    if last_attendance = @user.attendances.last
+  def attendance_status(user:)
+    if last_attendance = user.attendances.last
       last_attendance_status = [last_attendance.work_started_at, last_attendance.work_stopped_at, last_attendance.break_started_at, last_attendance.break_stopped_at]
       attendance_status = "am_work" if last_attendance_status[1] == nil && last_attendance_status[2] == nil && last_attendance_status[3] == nil
       attendance_status = "break" if last_attendance_status[1] == nil && last_attendance_status[2] != nil && last_attendance_status[3] == nil
