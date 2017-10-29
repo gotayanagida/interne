@@ -3,118 +3,116 @@
 <div>
   <%= link_to '＋目標を追加', new_goal_path, class: "btn btn-primary" %>
 </div>
-<div class="ui one column grid stackable">
-  <h3>３ヶ月目標</h3>
-  <% @goals_3.each do |goal| %>
-    <div class="column">
-      <div class="ui fluid card">
-        <div class="content">
-          <div>
-            <h4><%= goal.title %></h4>
-          </div>
-          <div>
-            <%= image_tag goal.user.profile_photo_url%>
-            <%= goal.user.name %>
-          </div>
-          <div>
-            <% year = goal.created_at.year %>
-            <% mouth = goal.created_at.month + 2 %>
-            <% day = goal.created_at.day - 1 %>
-            <%= "~#{year}年#{mouth}月#{day}日"%>
-          </div>
-          <div>
-            <% goal.goal_stamps.each do |goal_stamp| %>
-              <%= goal_stamp.user.name %>さん
-              <%= image_tag goal_stamp.stamp.url %>
-            <% end %>
-          </div>
-          <div>
-            <div class="ui dropdown" style="display:block;display: flow-root;">
-              スタンプを押す
-              <div class="menu">
-                <% stamps.each do |stamp| %>
-                  <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"goal",associate_id:goal.id) do%>
-                    <div class="item">
-                      <%= image_tag stamp.url %>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="extra content">
-        　<% if goal.user_id == current_user.id %>
-          <div class="three ui buttons">
-            <%= link_to goal ,class: "ui basic green button" do%>詳細<% end%>
-            <%= link_to edit_goal_path(goal) ,class: "ui basic blue button" do%>編集<% end%>
-            <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "ui basic red button" do%>削除<%end%>
-          </div>
-          <% else %>
-          <div class="ui buttons">
-            <%= link_to goal ,class: "ui basic green button" do%>詳細<% end%>
-          </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
 
-<div class="ui one column grid stackable">
-  <h3>年次目標</h3>
-  <% @goals_12.each do |goal| %>
-    <div class="column">
-      <div class="ui fluid card">
-        <div class="content">
-          <div>
-            <%= goal.title %>
-          </div>
-          <div>
-            <%= image_tag goal.user.profile_photo_url%>
-            <%= goal.user.name %>
-          </div>
-          <div>
-            <% year = goal.created_at.year %>
-            <% mouth = goal.created_at.month + 2 %>
-            <% day = goal.created_at.day - 1 %>
-            <%= "~#{year}年#{mouth}月#{day}日"%>
-          </div>
-          <div>
-            <% goal.goal_stamps.each do |goal_stamp| %>
-              <%= goal_stamp.user.name %>さん
-              <%= image_tag goal_stamp.stamp.url %>
+<table class="ui celled striped table">
+  <thead>
+    <tr><th colspan="4">
+      ３ヶ月目標
+    </th>
+  </tr></thead>
+  <tbody>
+  　<% @goals_3.reverse_each do |goal| %>
+    <tr>
+      <td class="collapsing">
+        <h4 class="ui image header">
+             <%= image_tag goal.user.profile_photo_url,class:"ui mini rounded image"%>
+	         <div class="content">
+	           <%= goal.user.name %>
+	           <div class="sub header">
+	           		<% year = goal.created_at.year %>
+		            <% mouth = goal.created_at.month + 2 %>
+		            <% day = goal.created_at.day - 1 %>
+		            <%= "~#{year}年#{mouth}月#{day}日"%>
+	           </div>
+	       </div>
+	     </h4>
+      </td>
+      <td><%= goal.title %></td>
+      <td class="right aligned collapsing">
+        <div class="ui dropdown left floated" style="display:block;display: flow-root;">
+           <i class="large smile icon"></i>
+           <div class="menu">
+             <% @stamps.each do |stamp| %>
+               <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"goal",associate_id:goal.id) do%>
+                 <div class="item">
+                   <%= image_tag stamp.url %>
+                 </div>
+               <% end %>
+             <% end %>
+           </div>
+        </div>
+      </td>
+      <td class="right aligned collapsing">
+        <div class="ui dropdown" style="display:block;display: flow-root;">
+          <i class="large setting icon"></i>
+          <div class="menu">
+            <% if goal.user_id == current_user.id %>
+              <%= link_to goal ,class: "item" do%>詳細<% end%>
+              <%= link_to edit_goal_path(goal) ,class: "item" do%>編集<% end%>
+              <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%>
+            <% else %>
+              <%= link_to goal ,class: "item" do%>詳細<% end%>
             <% end %>
           </div>
-          <div>
-            <div class="ui dropdown" style="display:block;display: flow-root;">
-              スタンプを押す
-              <div class="menu">
-                <% @stamps.each do |stamp| %>
-                  <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"goal",associate_id:goal.id) do%>
-                    <div class="item">
-                      <%= image_tag stamp.url %>
-                    </div>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="extra content">
-        　<% if goal.user_id == current_user.id %>
-          <div class="three ui buttons">
-            <%= link_to goal ,class: "ui basic green button" do%>詳細<% end%>
-            <%= link_to edit_goal_path(goal) ,class: "ui basic blue button" do%>編集<% end%>
-            <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "ui basic red button" do%>削除<%end%>
-          </div>
-          <% else %>
-          <div class="ui buttons">
-            <%= link_to goal ,class: "ui basic green button" do%>詳細<% end%>
-          </div>
-          <% end %>
+      </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+<table class="ui celled striped table">
+  <thead>
+    <tr><th colspan="4">
+      年次目標
+    </th>
+  </tr></thead>
+  <tbody>
+  　<% @goals_12.reverse_each do |goal| %>
+    <tr>
+      <td class="collapsing">
+        <h4 class="ui image header">
+             <%= image_tag goal.user.profile_photo_url,class:"ui mini rounded image"%>
+	         <div class="content">
+	           <%= goal.user.name %>
+	           <div class="sub header">
+	           		<% year = goal.created_at.year %>
+		            <% mouth = goal.created_at.month + 2 %>
+		            <% day = goal.created_at.day - 1 %>
+		            <%= "~#{year}年#{mouth}月#{day}日"%>
+	           </div>
+	       </div>
+	     </h4>
+      </td>
+      <td><%= goal.title %></td>
+      <td class="right aligned collapsing">
+        <div class="ui dropdown left floated" style="display:block;display: flow-root;">
+           <i class="large smile icon"></i>
+           <div class="menu">
+             <% @stamps.each do |stamp| %>
+               <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"goal",associate_id:goal.id) do%>
+                 <div class="item">
+                   <%= image_tag stamp.url %>
+                 </div>
+               <% end %>
+             <% end %>
+           </div>
         </div>
-      </div>
-    </div>
-  <% end %>
-</div>
+      </td>
+      <td class="right aligned collapsing">
+        <div class="ui dropdown" style="display:block;display: flow-root;">
+          <i class="large setting icon"></i>
+          <div class="menu">
+            <% if goal.user_id == current_user.id %>
+              <%= link_to goal ,class: "item" do%>詳細<% end%>
+              <%= link_to edit_goal_path(goal) ,class: "item" do%>編集<% end%>
+              <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%
+            <% else %>
+              <%= link_to goal ,class: "item" do%>詳細<% end%>
+            <% end %>
+		      </div>
+        </div>
+      </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

@@ -1,22 +1,47 @@
 <div class="ui raised segment" style="z-index:-5;">
-  <h3>ステータス<div id="nowtime"></div></h3>
-  <% if @user.attendances != [] %>
-  <% if @user.attendances.last.work_stopped_at.nil? %>
-  <% if @user.attendances.last.break_started_at.nil? == @user.attendances.last.break_stopped_at.nil? %>
-  <% #出勤中の場合 %>
-  <div class="ui grid padded middle aligned">
-    <div class="eight wide column center aligned">
-      <div class="ui piled red segment">
-        <h1>出勤中</h1>
-      </div>
-    </div>
-    <div class="eight wide column right floated">
-      <div class="ui middle aligned divided list">
-        <div class="item">
-          <i class="large history middle aligned icon"></i>
-          <div class="content">
-            <div class="header">本日の出勤時間　：　<%= @today_work_schedule %></div>
-          </div>
+  <h3>ステータス</h3><p id="nowtime"></p>
+<% if @user.attendances != [] %>
+    <% if @user.attendances.last.work_stopped_at.nil? %>
+      <% if @user.attendances.last.break_started_at.nil? == @user.attendances.last.break_stopped_at.nil? %>
+        <% #出勤中の場合 %>
+        <div class="ui grid padded middle aligned">
+		  <div class="eight wide column center aligned">
+			  <div class="ui piled red segment">
+			  <h1>出勤中</h1></div>
+		  </div>
+		  <div class="eight wide column right floated">
+		  	<div class="ui middle aligned divided list">
+			  <div class="item">
+			    <i class="large history middle aligned icon"></i>
+			    <div class="content">
+			      <div class="header">本日の出勤時間　：　<%= @today_work_schedule %></div>
+			    </div>
+			  </div>
+			  <div class="item">
+			    <i class="large hourglass half middle aligned icon"></i>
+			    <div class="content">
+			      <div class="header">本日の勤務時間　：　<%= (Time.parse("1/1") + @attendance_time).strftime("%-H時間%-M分%-S秒") %></div>
+			    </div>
+			  </div>
+			  <div class="item">
+			    <i class="large moon middle aligned icon"></i>
+			    <div class="content">
+			      <div class="header">休憩時間　　　　：　<%= (Time.parse("1/1") + @break_time).strftime("%-H時間%-M分%-S秒") %></div>
+			    </div>
+			  </div>
+			  <div class="item">
+			    <i class="large checkmark box middle aligned icon"></i>
+			    <div class="content">
+			      <div class="header">今日のタスク　　：　<%= @user.tasks.last.title %></div>
+			    </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+        <% else %>
+        <div>
+          <% #休憩中の場合 %>
+          <h1>休憩中</h1>
         </div>
         <div class="item">
           <i class="large hourglass half middle aligned icon"></i>

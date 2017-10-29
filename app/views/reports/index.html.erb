@@ -1,16 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<div class="col-md-12 text-right">
   <%= link_to new_report_path, class: "ui labeled icon button" do%>
     <i class="plus icon"></i>日報を追加
   <% end %>
-</div>
 
-<div class="ui two cards stackable">
+<div class="ui three cards stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
   <% @reports.each do |report| %>
   <div class="card">
     <div class="content">
-      <%= image_tag report.user.profile_photo_url, class: "right floated mini ui image"%>
+      <div class="ui dropdown right floated">
+      	<i class="options icon"></i>
+      	<div class="menu">
+      	    <% if report.user_id == current_user.id %>
+		    <%= link_to report ,class: "item" do%>詳細<% end%>
+		    <%= link_to edit_report_path(report) ,class: "item" do%>編集<% end%>
+		    <%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%>
+		    <% else %>
+		    <%= link_to report ,class: "item" do%>詳細<% end%>
+		    <% end %>
+      	</div>
+      </div>
+      <%= image_tag report.user.profile_photo_url, class: "left floated mini ui image"%>
       <div class="header">
         <%= report.user.name %>
       </div>
@@ -23,41 +33,30 @@
       </div>
     </div>
     <div class="extra content">
-	    <span class="left floated">
+	    <div class="item">
 	      <% report.report_stamps.each_with_index do |report_stamp,i| %>
 	      	<%if i==0 && report.report_stamps.length==1 %>
-	      	  <%= image_tag report_stamp.stamp.url ,class:"ui mini image",style:"width:17px;height:17px;"%>
-	      	  <%= report_stamp.user.name %>
+	      	  <%= image_tag report_stamp.stamp.url ,class:"ui mini image left floated",style:"width:17px;height:17px;margin-bottom:0px;margin-right:0.5em;"%>
+	      	  <div class="left floated" style="font-size:9px;"><%= report_stamp.user.name %></div>
 	      	<%elsif i==0%>
-	      	  <%= image_tag report_stamp.stamp.url ,class:"ui mini image",style:"width:17px;height:17px;"%>
-	      	  <%= report_stamp.user.name %>など...<%= report.report_stamps.length %>人
+	      	  <%= image_tag report_stamp.stamp.url ,class:"ui mini image left floated",style:"width:17px;height:17px;margin-bottom:0px;margin-right:0.5em;"%>
+	      	  <div class="left floated" style="font-size:9px;"><%= report_stamp.user.name %>など<%= report.report_stamps.length %>人</div>
 	      	<%end%>
 		　   <% end %>
-	    </span>
 	    <div class="ui dropdown right floated" style="display:block;display: flow-root;">
-        スタンプを押す
-        <div class="menu">
-          <% stamps.each do |stamp| %>
-            <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"report",associate_id:report.id) do%>
-              <div class="item">
-                <%= image_tag stamp.url %>
-              </div>
+        <div style="font-size:9px">スタンプ送信</div>
+          <div class="menu">
+            <% @stamps.each do |stamp| %>
+              <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"report",associate_id:report.id) do%>
+                <div class="item">
+                  <%= image_tag stamp.url %>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
-      </div>
-	  </div>
-	  <div class="extra content">
-      <% if report.user_id == current_user.id %>
-        <div class="ui three buttons center aligned">
-	        <%= link_to report ,class: "ui basic green button" do%>詳細<% end%>
-	        <%= link_to edit_report_path(report) ,class: "ui basic blue button" do%>編集<% end%>
-	        <%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "ui basic red button" do%>削除<%end%>
-	      </div>
-      <% else %>
-        <%= link_to report ,class: "fluid ui basic green button" do%>詳細<% end%>
-      <% end %>
-    </div>
+	    </div>
+	   </div>  
   </div>
   <% end %>
 </div>

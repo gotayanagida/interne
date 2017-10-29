@@ -2,8 +2,7 @@
   <h3><%=@user.name%>さんの今後の出勤日程</h3>
   <div class="ui relaxed divided list">
   <% @schedules_for_intern.each do |schedule| %>
-    <%= link_to schedule do %>
-	  <div class="item">
+    <%= link_to schedule, class:"item future" do %>
 	    <i class="large info circle middle aligned icon"></i>
 	    <div class="content">
 	      <div class="header"><%= schedule.work_started_at.strftime('%m/%d(%a) %H:%M') %> ~ <%= schedule.work_ended_at.strftime('%H:%M') %></div>
@@ -17,7 +16,6 @@
 	          <% end %>
 	      </div>
 	    </div>
-	  </div>
     <% end %>
   <% end %>
   </div>
