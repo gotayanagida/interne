@@ -4,10 +4,11 @@ class DashboardController < ApplicationController
       if current_user.employment_status == 0
         #社員用ダッシュボード
         @user = current_company.users.find(current_user.id)
-        @users = current_company.users.all
+        @active_attendances = Attendance.where(company_id: current_company, work_stopped_at: nil)
         @schedules_for_staff = current_company.schedules.all.limit(5).reverse_order
         @searched_users = User.all.page(params[:page]).per(10).search(params[:search])
         @notice_users = @user.notice_users.limit(5).reverse_order
+        @todo_users = @user.todo_users.limit(5).reverse_order
       else
         @user = current_company.users.find(current_user.id)
         #4 buttons
@@ -16,11 +17,14 @@ class DashboardController < ApplicationController
         work_stopped_time = @user.attendances.last.work_stopped_at.to_i
         break_started_time = @user.attendances.last.break_started_at.to_i
         break_stopped_time = @user.attendances.last.break_stopped_at.to_i
-        @break_time = 0.to_i if attendance_status == "am_work"
-        @break_time = now_time - break_started_time if attendance_status == "break"
-        @break_time = break_stopped_time - break_started_time if attendance_status == "pm_work" || attendance_status == "not_work"
+        @break_time = 0.to_i if attendance_status(user:@user) == "am_work"
+        @break_time = now_time - break_started_time if attendance_status(user:@user) == "break"
+        @break_time = break_stopped_time - break_started_time if attendance_status(user:@user) == "pm_work" || attendance_status(user:@user) == "not_work"
         @attendance_time = now_time - work_started_time - @break_time
-        @last_attendance_time = work_stopped_time - work_started_time - @break_time.to_i if attendance_status == "not_work"
+        @last_attendance_time = work_stopped_time - work_started_time - @break_time.to_i if attendance_status(user:@user) == "not_work"
+
+        #お知らせ
+        @notice_users = @user.notice_users.limit(5).reverse_order
 
         #その日の出勤シフトについて
         today_work_schedule = current_company.schedules.where(user_id: current_user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first

@@ -1,6 +1,6 @@
 <div class="wrap-for-dev">
   <h3>やることリスト</h3>
-  <% @user.todo_users.reverse_each do |todo_user| %>
+  <% @todo_users.each do |todo_user| %>
     <%= link_to todo_path(todo_user.todo) do %>
       <div class="wrap-for-dev">
         <div>
@@ -13,4 +13,5 @@
       </div>
     <% end %>
   <% end %>
+  <%= link_to '全てのやることを見る', todos_path %>
 </div>
