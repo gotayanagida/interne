@@ -4,9 +4,10 @@ class DashboardController < ApplicationController
       @user = current_company.users.find(current_user.id)
       #社員用ダッシュボード
       @users = current_company.users.all
-      @schedules_for_staff = current_company.schedules.all.limit(5)
+      @schedules_for_staff = current_company.schedules.all.limit(5).reverse_order
       @searched_users = User.all.page(params[:page]).per(10).search(params[:search])
-      
+      @notice_users = @user.notice_users.limit(5).reverse_order
+
       #インターン生用ダッシュボード
       if @user.attendances != []
         if @user.attendances.last.work_started_at != nil && @user.attendances.last.work_stopped_at == nil
@@ -56,7 +57,7 @@ class DashboardController < ApplicationController
         @next_work_schedule = "\"登録なし\""
       end
 
-      @schedules_for_intern = current_company.schedules.where(user_id:current_user.id).limit(5)
+      @schedules_for_intern = current_company.schedules.where(user_id:current_user.id).limit(5).reverse_order
       @schedule = Schedule.new
     else
     end

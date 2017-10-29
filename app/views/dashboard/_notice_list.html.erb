@@ -1,6 +1,6 @@
 <div class="wrap-for-dev">
   <h3>お知らせ</h3>
-  <% @user.notice_users.reverse_each do |notice_user| %>
+  <% @notice_users.each do |notice_user| %>
     <%= link_to notice_path(notice_user.notice) do %>
     <div class="wrap-for-dev">
       <h4><%= notice_user.notice.body %></h4>
@@ -9,4 +9,5 @@
     </div>
     <% end %>
   <% end %>
+  <%= link_to '全てのお知らせを見る', notices_path %>
 </div>

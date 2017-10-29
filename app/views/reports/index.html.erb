@@ -7,7 +7,7 @@
 </div>
 
 <div class="ui two cards stackable">
-  <% @reports.reverse_each do |report| %>
+  <% @reports.each do |report| %>
   <div class="card">
     <div class="content">
       <%= image_tag report.user.profile_photo_url, class: "right floated mini ui image"%>

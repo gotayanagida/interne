@@ -1,6 +1,6 @@
 <div class="wrap-for-dev">
   <h3>今後の出社予定</h3>
-  <% @schedules_for_staff.reverse_each do |schedule| %>
+  <% @schedules_for_staff.each do |schedule| %>
     <%= link_to schedule do %>
       <div class="wrap-for-dev">
         <div>

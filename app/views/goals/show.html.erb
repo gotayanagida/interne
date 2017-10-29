@@ -3,7 +3,7 @@
 <div>
   <h3><%= @goal.user.name %></h3>
   <h3><%= @goal.title %></h3>
-  <h3><%= @goal.detail %></h3>
+  <h3><%= simple_format(@goal.detail) %></h3>
 </div>
 
 <div>

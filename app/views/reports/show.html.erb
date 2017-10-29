@@ -4,7 +4,7 @@
   <h3><%= @report.user.name %></h3>
   <h3><%= @report.schedule.work_started_at.strftime("%m月%d日") %></h3>
   <h3><%= @report.title %></h3>
-  <h3><%= @report.body %></h3>
+  <h3><%= simple_format(@report.body) %></h3>
 </div>
 
 <div>
