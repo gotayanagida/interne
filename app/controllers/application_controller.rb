@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def generate_todo(users_id:, companies_id:, body:, associate_type:, associate_id:)
-    todo = Todo.create(body: body, associate_type: associate_type)
+    todo = Todo.create(body: body, associate_type: associate_type, status: 0)
     if associate_type == "report"
       report = Report.find(associate_id)
       report.todos << todo
@@ -92,6 +92,18 @@ class ApplicationController < ActionController::Base
       attendance_status = "never_work"
     end
     attendance_status
+  end
+
+  def update_todo(type:, associate_id:)
+    if type == "report"
+      todo_id = ReportTodo.find_by(report_id:associate_id).todo_id
+      todo = Todo.find(todo_id)
+      todo.update(status:1)
+    elsif type == "goal"
+      todo_id = GoalTodo.find_by(goal_id:associate_id).todo_id
+      todo = Todo.find(todo_id)
+      todo.update(status:1)
+    end
   end
 
   def stamps

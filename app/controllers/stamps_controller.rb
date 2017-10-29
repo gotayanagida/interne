@@ -71,6 +71,7 @@ class StampsController < ApplicationController
         end
       else
         ReportStamp.create(report_id:params[:associate_id] ,stamp_id:params[:stamp_id] ,user_id:current_user.id)
+        update_todo(type:"report", associate_id:params[:associate_id])
       end
     elsif params[:associate_type] == "goal"
       if goal_stamp = GoalStamp.find_by(goal_id:params[:associate_id], user_id:current_user.id)
@@ -81,16 +82,8 @@ class StampsController < ApplicationController
         end
       else
         GoalStamp.create(goal_id:params[:associate_id] ,stamp_id:params[:stamp_id] ,user_id:current_user.id)
+        update_todo(type:"goal", associate_id:params[:associate_id])
       end
-    end
-    redirect_back(fallback_location: root_path)
-  end
-
-  def remove_stamp
-    if params[:associate_type] == "report"
-      ReportStamp.find_by(report_id:params[:associate_id], user_id:current_user.id).destroy
-    elsif params[:associate_type] == "goal"
-      GoalStamp.find_by(goal_id:params[:associate_id], user_id:current_user.id).destroy
     end
     redirect_back(fallback_location: root_path)
   end
