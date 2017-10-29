@@ -45,13 +45,9 @@
 		  	<div class="ui dropdown" style="display:block;display: flow-root;">
 			  	<img class="ui circular right floated image user-image">
 					<div class="menu">
-            <div class="item">
-            	<span class="description">管理者</span>
-              <%= current_user.name %>
-            </div>
-            <div class="item">
-              プロフィール
-            </div>
+            <%= link_to user_path(current_user), class:"item" do%>
+							プロフィール
+						<% end %>
             <%= link_to destroy_user_session_path, method: :delete,class:"item" do%>
               ログアウト
             <%end%>

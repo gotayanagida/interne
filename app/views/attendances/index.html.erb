@@ -6,9 +6,13 @@
   <thead>
     <tr>
       <th>名前</th>
+      <th>勤務日時</th>
       <th>勤務開始時刻</th>
       <th>勤務終了時刻</th>
+      <th>休憩開始時刻</th>
+      <th>休憩終了時刻</th>
       <th>勤務時間</th>
+      <th>休憩時間</th>
       <th>修正回数</th>
       <% if current_user.employment_status == 0 %>
         <th colspan="1"></th>
@@ -19,14 +23,21 @@
   <tbody>
     <% @attendances.each do |attendance| %>
       <tr>
-        <td><%= attendance.user.name %></td>
-        <td><%= attendance.work_started_at.strftime('%m/%d(%a) %-H:%M:%S') %></td>
-        <td><%= attendance.work_stopped_at.strftime('%m/%d(%a) %-H:%M:%S') %></td>
-        <% minutes = attendance.work_stopped_at.to_time.to_i - attendance.work_started_at.to_time.to_i %>
-        <td><%= (Time.parse("1/1") + minutes).strftime("%-H時間%-M分%-S秒") %></td>
+        <td><%= image_tag attendance.user.profile_photo_url %><%= attendance.user.name %></td>
+        <td><%= attendance.work_started_at.strftime('%m月%d日') %></td>
+        <td><%= attendance.work_started_at.strftime('%-H:%M:%S') %></td>
+        <td><%= attendance.work_stopped_at.strftime('%-H:%M:%S') %></td>
+        <% if breaked?(attendance: attendance) %>
+          <td><%= attendance.break_started_at.strftime('%-H:%M:%S') %></td>
+          <td><%= attendance.break_stopped_at.strftime('%-H:%M:%S') %></td>
+        <% else %>
+          <td colspan="2"><%= "休憩なし" %></td>
+        <% end %>
+        <td><%= work_time(attendance: attendance).strftime('%-H時間%-M分%-S秒') %></td>
+        <td><%= break_time(attendance: attendance).strftime('%-H時間%-M分%-S秒') %></td>
         <td><%= attendance.num_of_edit %></td>
         <% if current_user.employment_status == 0 %>
-          <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
+          <td><%= link_to '編集', edit_attendance_path(attendance) %></td>
         <% end %>
       </tr>
     <% end %>

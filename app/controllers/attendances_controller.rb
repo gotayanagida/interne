@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = current_company.attendances.page(params[:page]).per(20)
+    @attendances = current_company.attendances.where.not(work_stopped_at: nil).page(params[:page]).per(20).reverse_order
     @attendances_for_csv = current_company.attendances.all
   end
 
@@ -41,6 +41,8 @@ class AttendancesController < ApplicationController
   # PATCH/PUT /attendances/1
   # PATCH/PUT /attendances/1.json
   def update
+    cnt = @attendance.num_of_edit + 1
+    @attendance.update(num_of_edit: cnt)
     respond_to do |format|
       if @attendance.update(attendance_params)
         format.html { redirect_to @attendance, notice: 'Attendance was successfully updated.' }

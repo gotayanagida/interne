@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def generate_todo(users_id:, companies_id:, body:, associate_type:, associate_id:)
-    todo = Todo.create(body: body, associate_type: associate_type)
+    todo = Todo.create(body: body, associate_type: associate_type, status: 0)
     if associate_type == "report"
       report = Report.find(associate_id)
       report.todos << todo
@@ -79,5 +79,34 @@ class ApplicationController < ActionController::Base
         NoticeMailer.send_day_before(schedules, staff).deliver
       end
     end
+  end
+
+  def attendance_status(user:)
+    if last_attendance = user.attendances.last
+      last_attendance_status = [last_attendance.work_started_at, last_attendance.work_stopped_at, last_attendance.break_started_at, last_attendance.break_stopped_at]
+      attendance_status = "am_work" if last_attendance_status[1] == nil && last_attendance_status[2] == nil && last_attendance_status[3] == nil
+      attendance_status = "break" if last_attendance_status[1] == nil && last_attendance_status[2] != nil && last_attendance_status[3] == nil
+      attendance_status = "pm_work" if last_attendance_status[1] == nil && last_attendance_status[2] != nil && last_attendance_status[3] != nil
+      attendance_status = "not_work" if last_attendance_status[1] != nil
+    else
+      attendance_status = "never_work"
+    end
+    attendance_status
+  end
+
+  def update_todo(type:, associate_id:)
+    if type == "report"
+      todo_id = ReportTodo.find_by(report_id:associate_id).todo_id
+      todo = Todo.find(todo_id)
+      todo.update(status:1)
+    elsif type == "goal"
+      todo_id = GoalTodo.find_by(goal_id:associate_id).todo_id
+      todo = Todo.find(todo_id)
+      todo.update(status:1)
+    end
+  end
+
+  def stamps
+    stamps = Stamp.all
   end
 end

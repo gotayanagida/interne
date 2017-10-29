@@ -12,28 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label "名前" %>
     <%= form.text_field :name, id: :user_name %>
   </div>
 
   <div class="field">
-    <%= form.label :university %>
+    <%= form.label "大学" %>
     <%= form.text_field :university, id: :user_university %>
   </div>
 
   <div class="field">
-    <%= form.label :grade %>
-    <%= form.text_area :grade, id: :user_grade %>
-  </div>
-
-  <div class="field">
-    <%= form.label :department %>
+    <%= form.label "学部" %>
     <%= form.text_area :department, id: :user_department %>
   </div>
 
   <div class="field">
-    <%= form.label :gender %>
-    <%= form.text_area :gender, id: :user_gender %>
+    <%= form.label "学年" %>
+    <%= form.text_area :grade, id: :user_grade %>
+  </div>
+
+  <div class="field">
+    <%= form.label "性別" %>
+    <%= form.select :gender, [["男性", 0], ["女性", 1]] , id: :user_gender %>
   </div>
 
   <div class="actions">

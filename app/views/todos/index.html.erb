@@ -24,9 +24,9 @@
         <td><%= todo.body %></td>
         <td><%= todo.link %></td>
         <td><%= todo.status %></td>
-        <td><%= link_to 'Show', todo %></td>
+        <td><%= link_to '詳細', todo %></td>
         <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
       </tr>
     <% end %>
   </tbody>

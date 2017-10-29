@@ -5,7 +5,7 @@
 </div>
 <div class="wrap-for-dev">
   <h3>誰にも割り当てられていないタスク</h3>
-  <% @tasks_not_ready.reverse_each do |task| %>
+  <% @tasks_not_ready.each do |task| %>
     <div class="wrap-for-dev">
       <div>
         <h4><%= task.title %></h4>
@@ -21,7 +21,7 @@
         <%= link_to '詳細', task ,class: "btn btn-default"%>
         <% if task.user_id == current_user.id %>
           <%= link_to '編集', edit_task_path(task)%>
-          <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' }%>
         <% end %>
       </div>
     </div>
@@ -29,7 +29,7 @@
 </div>
 <div class="wrap-for-dev">
   <h3>割り当てられているタスク</h3>
-  <% @tasks_ready.reverse_each do |task| %>
+  <% @tasks_ready.each do |task| %>
     <div class="wrap-for-dev">
       <div>
         <h4><%= task.title %></h4>
@@ -47,7 +47,7 @@
         <%= link_to '詳細', task ,class: "btn btn-default"%>
         <% if task.user_id == current_user.id %>
           <%= link_to '編集', edit_task_path(task)%>
-          <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' }%>
         <% end %>
       </div>
     </div>
@@ -55,7 +55,7 @@
 </div>
 <div class="wrap-for-dev">
   <h3>実行中のタスク</h3>
-  <% @tasks_doing.reverse_each do |task| %>
+  <% @tasks_doing.each do |task| %>
     <div class="wrap-for-dev">
       <div>
         <h4><%= task.title %></h4>
@@ -73,7 +73,7 @@
         <%= link_to '詳細', task ,class: "btn btn-default"%>
         <% if task.user_id == current_user.id %>
           <%= link_to '編集', edit_task_path(task)%>
-          <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' }%>
         <% end %>
       </div>
     </div>
@@ -81,7 +81,7 @@
 </div>
 <div class="wrap-for-dev">
   <h3>完了済みのタスク</h3>
-  <% @tasks_done.reverse_each do |task| %>
+  <% @tasks_done.each do |task| %>
     <div class="wrap-for-dev">
       <div>
         <h4><%= task.title %></h4>
@@ -99,7 +99,7 @@
         <%= link_to '詳細', task ,class: "btn btn-default"%>
         <% if task.user_id == current_user.id %>
           <%= link_to '編集', edit_task_path(task)%>
-          <%= link_to '削除', task, method: :delete, data: { confirm: 'Are you sure?' }%>
+          <%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' }%>
         <% end %>
       </div>
     </div>

@@ -45,4 +45,48 @@ module ApplicationHelper
     end
     stamp_pressed
   end
+
+  def attendance_status(user:)
+    if last_attendance = user.attendances.last
+      last_attendance_status = [last_attendance.work_started_at, last_attendance.work_stopped_at, last_attendance.break_started_at, last_attendance.break_stopped_at]
+      attendance_status = "am_work" if last_attendance_status[1] == nil && last_attendance_status[2] == nil && last_attendance_status[3] == nil
+      attendance_status = "break" if last_attendance_status[1] == nil && last_attendance_status[2] != nil && last_attendance_status[3] == nil
+      attendance_status = "pm_work" if last_attendance_status[1] == nil && last_attendance_status[2] != nil && last_attendance_status[3] != nil
+      attendance_status = "not_work" if last_attendance_status[1] != nil
+    else
+      attendance_status = "never_work"
+    end
+    attendance_status
+  end
+
+  def breaked?(attendance:)
+    breaked = true if attendance.break_started_at != nil
+    breaked = false if attendance.break_started_at == nil
+    breaked
+  end
+
+  def work_time(attendance:)
+    minutes = attendance.work_stopped_at.to_time.to_i - attendance.work_started_at.to_time.to_i
+    work_time = (Time.parse("1/1") + minutes - break_time(attendance: attendance).to_i)
+  end
+
+  def break_time(attendance:)
+    minutes = attendance.break_stopped_at.to_time.to_i - attendance.break_started_at.to_time.to_i if breaked?(attendance: attendance)
+    minutes = 0.to_i unless breaked?(attendance: attendance)
+    break_time = (Time.parse("1/1") + minutes)
+  end
+
+  def today_schedule(user:)
+    range = Time.now.beginning_of_day...Time.now.end_of_day
+    today_schedule = Schedule.where(user_id:user.id, company_id:current_company.id, work_started_at:range).last
+  end
+
+  def after_schedules(user:)
+    range = Time.now.next_day.beginning_of_day..Float::INFINITY
+    after_schedules = Schedule.where(user_id:user.id, company_id:current_company.id, work_started_at:range).limit(3)
+  end
+
+  def stamps
+    stamps = Stamp.all
+  end
 end

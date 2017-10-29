@@ -1,14 +1,44 @@
 <p id="notice"><%= notice %></p>
 
 <div>
+  <h3><%= image_tag @goal.user.profile_photo_url %></h3>
   <h3><%= @goal.user.name %></h3>
-  <h3><%= @goal.title %></h3>
-  <h3><%= @goal.detail %></h3>
+  <h3>タイトル：<%= @goal.title %></h3>
+  <h3>本文：<%= simple_format(@goal.detail) %></h3>
+  <h3>作成日時：<%= @goal.created_at.strftime("%m月%d日 %-H時%M分") %></h3>
+  <h3>最終更新日時：<%= @goal.updated_at.strftime("%m月%d日 %-H時%M分") %></h3>
 </div>
+
+<div class="extra content">
+  <span class="left floated">
+    <% @goal.goal_stamps.each_with_index do |goal_stamp,i| %>
+      <%if i==0 && @goal.goal_stamps.length==1 %>
+        <%= image_tag goal_stamp.stamp.url ,class:"ui mini image",style:"width:17px;height:17px;"%>
+        <%= goal_stamp.user.name %>
+      <%elsif i==0%>
+        <%= image_tag goal_stamp.stamp.url ,class:"ui mini image",style:"width:17px;height:17px;"%>
+        <%= goal_stamp.user.name %>など...<%= @goal.goal_stamps.length %>人
+      <%end%>
+　   <% end %>
+  </span>
+  <div class="ui dropdown right floated" style="display:block;display: flow-root;">
+    スタンプを押す
+    <div class="menu">
+      <% stamps.each do |stamp| %>
+        <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"goal",associate_id:@goal.id) do%>
+          <div class="item">
+            <%= image_tag stamp.url %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 
 <div>
   <% if @goal.user_id == current_user.id %>
     <%= link_to '編集', edit_goal_path(@goal)%>
   <% end %>
-  <%= link_to '戻る', goal_path%>
+  <%= link_to '戻る', goals_path%>
 </div>

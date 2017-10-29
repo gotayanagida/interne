@@ -44,23 +44,22 @@
       </td>
       <td class="right aligned collapsing">
         <div class="ui dropdown" style="display:block;display: flow-root;">
-           <i class="large setting icon"></i>
-           <div class="menu">
-      	    <% if goal.user_id == current_user.id %>
-			    <%= link_to goal ,class: "item" do%>詳細<% end%>
-			    <%= link_to edit_task_path(goal) ,class: "item" do%>編集<% end%>
-			    <%= link_to goal, method: :delete, data: { confirm: 'Are you sure?' } ,class: "item" do%>削除<%end%>
-			    <% else %>
-			    <%= link_to goal ,class: "item" do%>詳細<% end%>
-		    <% end %>
-		   </div>
+          <i class="large setting icon"></i>
+          <div class="menu">
+            <% if goal.user_id == current_user.id %>
+              <%= link_to goal ,class: "item" do%>詳細<% end%>
+              <%= link_to edit_goal_path(goal) ,class: "item" do%>編集<% end%>
+              <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%>
+            <% else %>
+              <%= link_to goal ,class: "item" do%>詳細<% end%>
+            <% end %>
+          </div>
         </div>
       </td>
     </tr>
     <%end%>
   </tbody>
 </table>
-
 <table class="ui celled striped table">
   <thead>
     <tr><th colspan="4">
@@ -101,16 +100,16 @@
       </td>
       <td class="right aligned collapsing">
         <div class="ui dropdown" style="display:block;display: flow-root;">
-           <i class="large setting icon"></i>
-           <div class="menu">
-      	    <% if goal.user_id == current_user.id %>
-			    <%= link_to goal ,class: "item" do%>詳細<% end%>
-			    <%= link_to edit_task_path(goal) ,class: "item" do%>編集<% end%>
-			    <%= link_to goal, method: :delete, data: { confirm: 'Are you sure?' } ,class: "item" do%>削除<%end%>
-			    <% else %>
-			    <%= link_to goal ,class: "item" do%>詳細<% end%>
-		    <% end %>
-		   </div>
+          <i class="large setting icon"></i>
+          <div class="menu">
+            <% if goal.user_id == current_user.id %>
+              <%= link_to goal ,class: "item" do%>詳細<% end%>
+              <%= link_to edit_goal_path(goal) ,class: "item" do%>編集<% end%>
+              <%= link_to goal, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%
+            <% else %>
+              <%= link_to goal ,class: "item" do%>詳細<% end%>
+            <% end %>
+		      </div>
         </div>
       </td>
     </tr>

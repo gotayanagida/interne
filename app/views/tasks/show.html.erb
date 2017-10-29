@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <div>
+  <h3><%= image_tag @task.user.profile_photo_url %></h3>
   <h3><%= @task.user.name %></h3>
-  <h3><%= @task.title %></h3>
-  <h3><%= @task.detail %></h3>
+  <h3>タイトル：<%= @task.title %></h3>
+  <h3>内容：<%= simple_format(@task.detail) %></h3>
+  <h3>作成日時：<%= @task.created_at.strftime("%m月%d日 %-H時%M分") %></h3>
+  <h3>最終更新日時：<%= @task.updated_at.strftime("%m月%d日 %-H時%M分") %></h3>
 </div>
 
 <div>
   <% if @task.user_id == current_user.id %>
     <%= link_to '編集', edit_task_path(@task)%>
   <% end %>
-  <%= link_to '戻る', task_path%>
+  <%= link_to '戻る', tasks_path%>
 </div>

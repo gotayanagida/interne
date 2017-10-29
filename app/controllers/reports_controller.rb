@@ -3,8 +3,7 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = current_company.reports.page(params[:page]).per(10)
-    @stamps = Stamp.all
+    @reports = current_company.reports.reverse_order.page(params[:page]).per(10)
   end
 
   # GET /reports/1
