@@ -23,7 +23,7 @@
   <tbody>
     <% @attendances.each do |attendance| %>
       <tr>
-        <td><%= attendance.user.name %></td>
+        <td><%= image_tag attendance.user.profile_photo_url %><%= attendance.user.name %></td>
         <td><%= attendance.work_started_at.strftime('%m月%d日') %></td>
         <td><%= attendance.work_started_at.strftime('%-H:%M:%S') %></td>
         <td><%= attendance.work_stopped_at.strftime('%-H:%M:%S') %></td>
