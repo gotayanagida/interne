@@ -1,15 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-  <h3><%= @attendance.user.name %></h3>
-  <h3><%= @attendance.work_started_at %></h3>
-  <h3><%= @attendance.work_stopped_at %></h3>
-  <h3><%= @attendance.num_of_edit %></h3>
+  <h3><%= image_tag @attendance.user.profile_photo_url %></h3>
+  <h3>インターン生：<%= @attendance.user.name %></h3>
+  <h3>業務開始時刻：<%= @attendance.work_started_at %></h3>
+  <h3>業務終了時刻：<%= @attendance.work_stopped_at %></h3>
+  <h3>休憩開始時刻：<%= @attendance.break_started_at %></h3>
+  <h3>休憩終了時刻：<%= @attendance.break_stopped_at %></h3>
+  <h3>修正回数：<%= @attendance.num_of_edit %></h3>
 </div>
 
 <div>
-  <% if @attendance.user_id == current_user.id %>
+  <% if current_user.employment_status == 0 %>
     <%= link_to '編集', edit_attendance_path(@attendance)%>
   <% end %>
-  <%= link_to '戻る', attendance_path%>
+  <%= link_to '戻る', attendances_path%>
 </div>

@@ -41,6 +41,8 @@ class AttendancesController < ApplicationController
   # PATCH/PUT /attendances/1
   # PATCH/PUT /attendances/1.json
   def update
+    cnt = @attendance.num_of_edit + 1
+    @attendance.update(num_of_edit: cnt)
     respond_to do |format|
       if @attendance.update(attendance_params)
         format.html { redirect_to @attendance, notice: 'Attendance was successfully updated.' }
