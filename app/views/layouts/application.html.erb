@@ -10,12 +10,12 @@
     <script src="https://fastcdn.org/FlowType.JS/1.1/flowtype.js"></script>
     <% if notice %>
     <script type="text/javascript">
-      $(document).ready(function(){
+    $(document).ready(function(){
 		  $('.messagebox').fadeIn(1000).delay(2000).fadeOut(2000);
 		    // メッセージ内の×ボタンクリックでメッセージを非表示にする
 		    $('.messagebox .close').on('click', function() {
 		        $(this).parents('.messagebox').hide();
-		    });
+		  });
 		});
     </script>
     <% end %>
@@ -68,7 +68,7 @@
 	            <div class="pusher">
 	              <div class="ui grid padded stackable">
 			            <div class="row">
-			              <div class="sixteen wide column">
+			              <div class="sixteen wide column renzoku">
 			                <%= yield %>
 			              </div>
 			            </div>
