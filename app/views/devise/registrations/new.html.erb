@@ -24,7 +24,11 @@
     </div>
     <div class="field">
       <%= f.label "生年月日" %><br />
-      <%= f.date_select :birthday, autofocus: true %>
+      <%= f.date_select :birthday, start_year: 1985,
+          end_year: (Time.now.year - 15),
+          default: Date.new(Time.now.year - 20, Time.now.month, Time.now.day),
+          use_month_numbers: true,
+          date_separator: '/' %>
     </div>
     <div class="field">
       <%= f.label "パスワード" %>
