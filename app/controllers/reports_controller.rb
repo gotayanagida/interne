@@ -3,7 +3,9 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = current_company.reports.reverse_order.page(params[:page]).per(10)
+    @reports = current_company.reports.reverse_order.page(params[:page]).per(10) if params[:sort] == nil && params[:uesr_id] == nil
+    @reports = current_company.reports.order(params[:sort]).page(params[:page]).per(10) if params[:sort] != nil
+    @reports = current_company.reports.where(user_id: params[:user_id]).reverse_order.page(params[:page]).per(10) if params[:user_id] != nil
   end
 
   # GET /reports/1
@@ -24,6 +26,7 @@ class ReportsController < ApplicationController
   # POST /reports.json
   def create
     @report = Report.new(report_params)
+    @report.update(work_started_at: @report.schedule.work_started_at)
 
     respond_to do |format|
       if @report.save

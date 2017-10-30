@@ -96,13 +96,15 @@ class ApplicationController < ActionController::Base
 
   def update_todo(type:, associate_id:)
     if type == "report"
-      todo_id = ReportTodo.find_by(report_id:associate_id).todo_id
-      todo = Todo.find(todo_id)
-      todo.update(status:1)
+      if report_todo = ReportTodo.find_by(report_id:associate_id)
+        todo = Todo.find(report_todo.todo_id)
+        todo.update(status:1)
+      end
     elsif type == "goal"
-      todo_id = GoalTodo.find_by(goal_id:associate_id).todo_id
-      todo = Todo.find(todo_id)
-      todo.update(status:1)
+      if goal_todo = GoalTodo.find_by(goal_id:associate_id)
+        todo = Todo.find(goal_todo.todo_id)
+        todo.update(status:1)
+      end
     end
   end
 

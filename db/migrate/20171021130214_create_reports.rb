@@ -4,6 +4,7 @@ class CreateReports < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.references :company, foreign_key: true
       t.references :schedule, foreign_key: true
+      t.datetime :work_started_at
       t.string :title
       t.text :body
 

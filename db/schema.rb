@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20171028030508) do
     t.bigint "user_id"
     t.bigint "company_id"
     t.bigint "schedule_id"
+    t.datetime "work_started_at"
     t.string "title"
     t.text "body"
     t.datetime "created_at", null: false
