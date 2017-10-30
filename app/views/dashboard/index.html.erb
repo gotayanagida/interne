@@ -1,3 +1,11 @@
+<!--script type="text/javascript">
+$(document).ready(function(){
+  $('.pusher').transition({
+    animation  : 'fade up',
+    duration   : '0.8s',
+  });
+});
+</script>-->
 <% if current_user.employment_status == 0 %>
   <% #社員用画面 %>
   <%= render 'status_for_staff' %>
