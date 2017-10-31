@@ -1,25 +1,29 @@
+<script>
+    $('.item.shoya').on('click',function(){
+     alert("aaa");
+    });
+</script>
+
 <p id="notice"><%= notice %></p>
 
   <%= link_to new_report_path, class: "ui labeled icon button" do%>
     <i class="plus icon"></i>日報を追加
   <% end %>
 
-<div class="ui three cards stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
+<div class="ui three cards link stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
   <% @reports.each do |report| %>
   <div class="card">
-    <div class="content">
+    <div class="content" style="background-image: url('../assets/mima-opa.png');background-position: right bottom; background-repeat: no-repeat;">
+      <% if report.user_id == current_user.id %>
       <div class="ui dropdown right floated">
       	<i class="options icon"></i>
       	<div class="menu">
-      	    <% if report.user_id == current_user.id %>
-		    <%= link_to report ,class: "item" do%>詳細<% end%>
-		    <%= link_to edit_report_path(report) ,class: "item" do%>編集<% end%>
-		    <%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%>
-		    <% else %>
-		    <%= link_to report ,class: "item" do%>詳細<% end%>
-		    <% end %>
+      		    <%= link_to report ,class: "item" do%>詳細<% end%>
+      		    <%= link_to edit_report_path(report) ,class: "item" do%>編集<% end%>
+      		    <%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%>
       	</div>
       </div>
+      <% end %>
       <%= image_tag report.user.profile_photo_url, class: "left floated mini ui image"%>
       <div class="header">
         <%= report.user.name %>
@@ -47,16 +51,16 @@
         <div style="font-size:9px">スタンプ送信</div>
           <div class="menu">
             <% stamps.each do |stamp| %>
+              <div class="item">
               <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"report",associate_id:report.id) do%>
-                <div class="item">
                   <%= image_tag stamp.url %>
-                </div>
               <% end %>
+              </div>
             <% end %>
           </div>
         </div>
 	    </div>
-	   </div>
+    </div>
   </div>
   <% end %>
 </div>
