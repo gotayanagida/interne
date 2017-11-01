@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_user!
+  # before_action :configure_permitted_parameters, if: :devise_controller?
 
   def current_company
     if current_user.company_users != []
@@ -111,4 +112,15 @@ class ApplicationController < ActionController::Base
   def stamps
     stamps = Stamp.all
   end
+
+  def after_sign_out_path_for(resource_or_scope)
+    user_session_path
+  end
+
+  # private
+  #   def configure_permitted_parameters
+  #     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+  #       user_params.permit(:name, :email, :password, :university, :grade, :department, :position, :gender, :birthday, :profile_photo_url, :employment_status)
+  #     end
+  #   end
 end
