@@ -1,5 +1,6 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
+追加登録画面
+<%= form_with(model: @user, local: true) do |form| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
@@ -12,28 +13,28 @@
   <% end %>
 
   <div class="field">
-    <%= form.label "名前" %>
-    <%= form.text_field :name, id: :user_name %>
-  </div>
-
-  <div class="field">
     <%= form.label "大学" %>
     <%= form.text_field :university, id: :user_university %>
   </div>
 
   <div class="field">
     <%= form.label "学部" %>
-    <%= form.text_area :department, id: :user_department %>
+    <%= form.text_field :department, id: :user_department %>
   </div>
 
   <div class="field">
     <%= form.label "学年" %>
-    <%= form.text_area :grade, id: :user_grade %>
+    <%= form.text_field :grade, id: :user_grade %>
   </div>
 
   <div class="field">
     <%= form.label "性別" %>
-    <%= form.select :gender, [["男性", 0], ["女性", 1]], id: :user_gender%>
+    <%= form.select :gender, [["男性", 0], ["女性", 1]], id: :user_gender %>
+  </div>
+
+  <div class="field">
+    <%= form.label "profile_photo_url" %>
+    <%= form.text_field :profile_photo_url, id: :user_profile_photo_url, value: "pf.jpg" %>
   </div>
 
   <div class="actions">

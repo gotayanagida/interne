@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: "dashboard#index"
+  get 'users/update_user_after_login', to: 'users#update_user_after_login', as: 'update_user_after_login'
   get 'stamps/remove_stamp', to: 'stamps#remove_stamp', as: 'remove_stamp'
   get 'stamps/press_stamp', to: 'stamps#press_stamp', as: 'press_stamp'
   get 'dashboard/index', to: 'dashboard#set_current_company', as: 'set_current_company'
