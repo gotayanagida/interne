@@ -19,6 +19,37 @@ class User < ApplicationRecord
   has_many :company_users
   has_many :companies, through: :company_users
 
+  # def self.from_omniauth(auth)
+  #   find_or_create_by(provider: auth["provider"], uid: auth["uid"]) do |user|
+  #     user.provider = auth["provider"]
+  #     user.uid = auth["uid"]
+  #     user.username = auth["info"]["nickname"]
+  #   end
+  # end
+  #
+  # def self.new_with_session(params, session)
+  #   if session["devise.user_attributes"]
+  #     new(session["devise.user_attributes"]) do |user|
+  #       user.attributes = params
+  #     end
+  #   else
+  #     super
+  #   end
+  # end
+  # 
+  # def self.find_for_google_oauth2(auth)
+  #   user = User.where(email: auth.info.email).first
+  #   unless user
+  #     user = User.create(name: auth.info.name,
+  #       provider: auth.provider,
+  #       uid:      auth.uid,
+  #       email:    auth.info.email,
+  #       #token:    auth.credentials.token,
+  #       password: Devise.friendly_token[0, 20])
+  #   end
+  #   user
+  # end
+
   def self.search(search)
     if search
       where(['name LIKE ?', "%#{search}%"])

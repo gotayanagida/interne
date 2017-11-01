@@ -43,6 +43,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
+    redirect_to update_user_after_login_path(current_user.id) if current_user.provider != nil
+
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit(:name, :email, :password, :university, :grade, :department, :position, :gender, :birthday, :profile_photo_url, :employment_status, schedules_attributes: [:company_name, :hp_addr, :number_of_interns])
     end
