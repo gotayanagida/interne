@@ -1,28 +1,28 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # You should configure your model like this:
-  # devise :omniauthable, omniauth_providers: [:twitter]
+  def facebook; basic_action; end
+  def google; basic_action; end
 
-  # You should also create an action method in this controller like this:
-  # def twitter
-  # end
-
-  # More info at:
-  # https://github.com/plataformatec/devise#omniauth
-
-  # GET|POST /resource/auth/twitter
-  # def passthru
-  #   super
-  # end
-
-  # GET|POST /users/auth/twitter/callback
-  # def failure
-  #   super
-  # end
-
-  # protected
-
-  # The path used when OmniAuth fails
-  # def after_omniauth_failure_path_for(scope)
-  #   super(scope)
-  # end
+  private
+  def basic_action
+    @omniauth = request.env['omniauth.auth']
+    if @omniauth.present?
+      @profile = SocialProfile.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
+      unless @profile
+        @profile = SocialProfile.where(provider: @omniauth['provider'], uid: @omniauth['uid']).new
+        @profile.user = current_user || User.create!(name: @omniauth['name'])
+        @profile.save!
+      end
+      if current_user
+        raise "user is not identical" if current_user != @profile.user
+      else
+        sign_in(:user, @profile.user)
+      end
+      @profile.set_values(@omniauth)
+    end
+    render :close, layout: false
+  end
+  
+  def failure
+    redirect_to root_path
+  end
 end
