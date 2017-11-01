@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    session[:after_sign_up] = nil
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'user was successfully updated.' }
@@ -63,16 +64,7 @@ class UsersController < ApplicationController
   end
 
   def update_user_after_login
-    user = User.update()
-    respond_to do |format|
-      if user.update(user_params)
-        format.html { redirect_to user, notice: 'user was successfully updated.' }
-        format.json { render :show, status: :ok, location: user }
-      else
-        format.html { render :edit }
-        format.json { render json: user.errors, status: :unprocessable_entity }
-      end
-    end
+    @user = User.find(current_user.id)
   end
 
   private
@@ -83,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:user_id, :title, :detail)
+      params.require(:user).permit(:user_id, :university, :department, :grade, :gender, :profile_photo_url)
     end
 end

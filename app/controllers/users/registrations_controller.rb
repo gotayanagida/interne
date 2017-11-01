@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  after_action :after_sign_up
 
   # GET /resource/sign_up
   def new
@@ -39,12 +40,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def after_sign_up
+    session[:after_sign_up] = true
+  end
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    redirect_to update_user_after_login_path(current_user.id) if current_user.provider != nil
-
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit(:name, :email, :password, :university, :grade, :department, :position, :gender, :birthday, :profile_photo_url, :employment_status, schedules_attributes: [:company_name, :hp_addr, :number_of_interns])
     end
@@ -64,9 +67,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    # def user_params
-    #   params.require(:user).permit(:name, :email, :password, :university, :grade, :department, :position, :gender, :birthday, :profile_photo_url, :employment_status)
-    # end
 end
