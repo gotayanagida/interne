@@ -10,6 +10,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.date :birthday
       t.text :profile_photo_url
       t.integer :employment_status
+      t.string :provider
+      t.string :uid
+      t.string :token
+      t.string :meta
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

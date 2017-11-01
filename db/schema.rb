@@ -237,6 +237,10 @@ ActiveRecord::Schema.define(version: 20171028030508) do
     t.date "birthday"
     t.text "profile_photo_url"
     t.integer "employment_status"
+    t.string "provider"
+    t.string "uid"
+    t.string "token"
+    t.string "meta"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
