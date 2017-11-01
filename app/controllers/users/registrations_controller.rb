@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -8,9 +8,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    user = User.find_by(email:params[:user][:email])
+    company = Company.create(name:params[:user][:companies][:company_name], hp_addr:params[:user][:companies][:hp_addr], number_of_interns:params[:user][:companies][:number_of_interns])
+    CompanyUser.create(user_id:user.id, company_id:company.id)
+  end
 
   # GET /resource/edit
   # def edit
@@ -36,12 +39,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+      user_params.permit(:name, :email, :password, :university, :grade, :department, :position, :gender, :birthday, :profile_photo_url, :employment_status, schedules_attributes: [:company_name, :hp_addr, :number_of_interns])
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
@@ -59,7 +64,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   private
     # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:company_name, :hp, :name, :email, :password)
-    end
+    # def user_params
+    #   params.require(:user).permit(:name, :email, :password, :university, :grade, :department, :position, :gender, :birthday, :profile_photo_url, :employment_status)
+    # end
 end

@@ -8,7 +8,7 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
     <div class="field">
-      <%= f.hidden_field :employment_status, value: 0 %>
+      <%= f.hidden_field :employment_status, value: 1 %>
     </div>
     <div class="field">
       <%= f.label "名前" %><br />
@@ -59,19 +59,33 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
     <div class="field">
-      <%= f.hidden_field :employment_status, value: 1 %>
+      <%= f.hidden_field :employment_status, value: 0 %>
     </div>
     <div class="field">
-      <%= f.fields_for :company_users do |company_user| %>
-        <%= company_user.label "会社名" %><br />
-        <%= company_user.text_field :company_name %>
+      <%= f.fields_for :companies do |company| %>
+        <%= company.label "会社名" %><br />
+        <%= company.text_field :company_name %>
       <% end %>
     </div>
     <div class="field">
-      <%= f.fields_for :company_users do |company_user| %>
-        <%= company_user.label "会社HPアドレス" %><br />
-        <%= company_user.text_field :hp %>
+      <%= f.fields_for :companies do |company| %>
+        <%= company.label "インターン生の数" %><br />
+        <%= company.select :number_of_interns, [["〜3名", "-3"], ["4名~10名", "4-10"], ["11名~20名", "11-20"], ["20名~", "20-"]]%>
       <% end %>
+    </div>
+    <div class="field">
+      <%= f.fields_for :companies do |company| %>
+        <%= company.label "会社HPアドレス" %><br />
+        <%= company.text_field :hp_addr %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label "部署" %><br />
+      <%= f.text_field :department %>
+    </div>
+    <div class="field">
+      <%= f.label "役職" %><br />
+      <%= f.text_field :position %>
     </div>
     <div class="field">
       <%= f.label "担当者名" %><br />
