@@ -7,7 +7,26 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <script src="https://fastcdn.org/FlowType.JS/1.1/flowtype.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.js"></script>
+    
+    <script type="text/javascript">
+	//pjax
+		$(function(){
+		    $(document).pjax("a",{
+			    container:'#row2',
+			    fragment:'#row2'
+		    });
+		});
+		$(document).on('pjax:start', function() {
+		    //alert('pjaxが開始されたときに発生');
+		    $('#row2').css("opacity","0");
+		});
+		$(document).on('pjax:end', function() {
+			$('#row2').animate({
+				opacity : 1
+			}, 200);
+		});
+   </script>
     <% if notice %>
     <script type="text/javascript">
     $(document).ready(function(){
@@ -69,7 +88,9 @@
 	              <div class="ui grid padded stackable">
 			            <div class="row">
 			              <div class="sixteen wide column renzoku">
+			               <div id="row2">
 			                <%= yield %>
+			               </div>
 			              </div>
 			            </div>
 		            </div>
