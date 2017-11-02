@@ -22,7 +22,7 @@ $(document).ready(function(){
   <div class="ui left fixed inverted vertical menu left-sidebar">
 	  <% if current_user.employment_status == 1 %>
       <div class="ui dropdown item">
-        <%= image_tag current_company.profile_photo_url, class:"ui middle aligned mini image" %>
+        <%= image_tag current_company.icon_photo_url, class:"ui middle aligned mini image" %>
   	    <b class="aaaaa">
   	    	<%if current_company.name.length > 7%>
   	    		<%=current_company.name.slice(0, 7)%>...
