@@ -63,9 +63,60 @@
   <% end %>
   <body style="background:#f1f5f9;">
     <% if user_signed_in? %>
-      <% if current_company != nil %>
-        <%= render 'layouts/sidebar' %>
-      	  <div class="main_contents">
+      <% unless mypage? %>
+        <% if current_company != nil %>
+          <%= render 'layouts/sidebar' %>
+        	  <div class="main_contents">
+          		<%= render 'layouts/header' %>
+            	<div class="ui bottom attached pushable">
+  	            <div class="ui inverted left inline vertical sidebar menu" style="">
+            	    <%= link_to root_path,class:"item" do%>
+                    <i class="block layout icon"></i>
+                    ダッシュボード
+                  <%end%>
+                  <%= link_to schedules_path,class:"item" do%>
+                    <i class="calendar icon"></i>
+                    カレンダー
+                  <%end%>
+                  <%= link_to reports_path,class:"item" do%>
+                    <i class="sticky note icon"></i>
+                    日報
+                  <%end%>
+                  <%= link_to tasks_path,class:"item" do%>
+                    <i class="tasks icon"></i>
+                    タスク
+                  <%end%>
+                  <%= link_to goals_path,class:"item" do%>
+                    <i class="flag checkered icon"></i>
+                    目標
+                  <%end%>
+                  <%= link_to attendances_path,class:"item" do%>
+                    <i class="building icon"></i>
+                    勤怠
+                  <%end%>
+                  <%= link_to users_path,class:"item" do%>
+                    <i class="users icon"></i>
+                    メンバー
+                  <%end%>
+                  <%= link_to company_path(current_company),class:"item" do%>
+                    <i class="users icon"></i>
+                    会社設定
+                  <%end%>
+            	  </div>
+  	            <div class="pusher">
+  	              <div class="ui grid padded stackable">
+  			            <div class="row">
+  			              <div class="sixteen wide column renzoku">
+  			                <%= yield %>
+  			              </div>
+  			            </div>
+  		            </div>
+  	            </div>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="main_contents">
         		<%= render 'layouts/header' %>
           	<div class="ui bottom attached pushable">
 	            <div class="ui inverted left inline vertical sidebar menu" style="">
@@ -111,10 +162,10 @@
 	            </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% else %>
         <div class="main_contents">
-      		<%= render 'layouts/header' %>
+          <%= render 'layouts/header' %>
         </div>
         <div class="pusher">
           <div class="ui grid padded stackable">

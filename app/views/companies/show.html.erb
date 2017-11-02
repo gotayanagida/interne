@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @company.name %>
-</p>
+  <h3>会社名：<%= @company.name %></h3>
+  <h3>HPアドレス：<%= @company.hp_addr %></h3>
+  <h3>インターン数：<%= @company.number_of_interns %></h3>
+  <h3>ホーム写真：<%= image_tag @company.home_photo_url %></h3>
+  <h3>会社アイコン：<%= image_tag  @company.icon_photo_url %></h3>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to '戻る', companies_path %>
+<%= link_to '編集', edit_company_path(@company) %>

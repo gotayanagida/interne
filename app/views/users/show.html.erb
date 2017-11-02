@@ -1,33 +1,6 @@
 <p id="notice"><%= notice %></p>
-
-<div>
-  <h3><%= image_tag @user.profile_photo_url %></h3>
-  <h3><%= @user.name %></h3>
-  <h3><%= @user.university %></h3>
-  <h3><%= @user.department %></h3>
-  <h3><%= @user.grade %>年</h3>
-  <h3><%= @user.gender ? "女性" : "男性" %></h3>
-  <% if current_company != nil %>
-    <div>
-      <% if @user.goals != [] %>
-        <h3>目標：<%= @user.goals.last.title %></h3>
-      <% else %>
-        目標が登録されていません:(
-      <% end %>
-    </div>
-    <div>
-      <% if @user.schedules != [] %>
-        <h3>次回出勤日：<%= @user.schedules.last.work_started_at.strftime('%m月%d日(%a) %-H時%M分') %>〜</h3>
-      <% else %>
-        次回出勤日が登録されていません:(
-      <% end %>
-    </div>
-  <% end %>
-</div>
-
-<div>
-  <% if @user.id == current_user.id %>
-    <%= link_to '編集', edit_user_path(@user)%>
-  <% end %>
-  <%= link_to '戻る', user_path%>
-</div>
+<% if @user.employment_status == 0 %>
+  <%= render "show_for_staff" %>
+<% else %>
+  <%= render "show_for_intern" %>
+<% end %>

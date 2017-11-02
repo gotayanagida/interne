@@ -67,6 +67,11 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
   end
 
+  def mypage
+    @user = User.find(current_user.id)
+    session[:mypage] = true
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
