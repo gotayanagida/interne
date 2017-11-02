@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.js"></script>
-    
+
     <script type="text/javascript">
 	　　//pjax init
 		$(function(){
@@ -38,7 +38,7 @@
 			          .siblings('.item')
 			            .removeClass('active');
 			      }
-			 });		    
+			 });
 		});
    </script>
     <% if notice %>
@@ -107,7 +107,9 @@
   	              <div class="ui grid padded stackable">
   			            <div class="row">
   			              <div class="sixteen wide column renzoku">
-  			                <%= yield %>
+  			                <div id="row2">
+    			                <%= yield %>
+    			              </div>
   			              </div>
   			            </div>
   		            </div>
@@ -118,49 +120,6 @@
         <% else %>
           <div class="main_contents">
         		<%= render 'layouts/header' %>
-          	<div class="ui bottom attached pushable">
-	            <div class="ui inverted left inline vertical sidebar menu" style="">
-          	    <%= link_to root_path,class:"item" do%>
-                  <i class="block layout icon"></i>
-                  ダッシュボード
-                <%end%>
-                <%= link_to schedules_path,class:"item" do%>
-                  <i class="calendar icon"></i>
-                  カレンダー
-                <%end%>
-                <%= link_to reports_path,class:"item" do%>
-                  <i class="sticky note icon"></i>
-                  日報
-                <%end%>
-                <%= link_to tasks_path,class:"item" do%>
-                  <i class="tasks icon"></i>
-                  タスク
-                <%end%>
-                <%= link_to goals_path,class:"item" do%>
-                  <i class="flag checkered icon"></i>
-                  目標
-                <%end%>
-                <%= link_to attendances_path,class:"item" do%>
-                  <i class="building icon"></i>
-                  勤怠
-                <%end%>
-                <%= link_to users_path,class:"item" do%>
-                  <i class="users icon"></i>
-                  メンバー
-                <%end%>
-          	  </div>
-	            <div class="pusher">
-	              <div class="ui grid padded stackable">
-			            <div class="row">
-			              <div class="sixteen wide column renzoku">
-			               <div id="row2">
-			                <%= yield %>
-			               </div>
-			              </div>
-			            </div>
-		            </div>
-	            </div>
-            </div>
           </div>
         <% end %>
       <% else %>
