@@ -3,9 +3,24 @@
 <div>
   <%= link_to '＋タスクを追加', new_task_path, class: "btn btn-primary" %>
 </div>
+
+<%= form_tag tasks_path, :method => 'get' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "検索", :name => nil %>
+<% end %>
+<%= link_to "投稿日（昇順）", sort: "created_at desc" %>
+<%= link_to "投稿日（降順）", sort: "created_at" %>
+<%= link_to "出勤日（昇順）", sort: "schedule_id desc" %>
+<%= link_to "出勤日（降順）", sort: "schedule_id" %>
+<% current_company.users.each do |user| %>
+  <%= link_to user.name, user_id: user.id %>
+<% end %>
+
+
+
 <div class="wrap-for-dev">
-  <h3>誰にも割り当てられていないタスク</h3>
-  <% @tasks_not_ready.each do |task| %>
+  <h3>タスク</h3>
+  <% @tasks.each do |task| %>
     <div class="wrap-for-dev">
       <div>
         <h4><%= task.title %></h4>
@@ -26,82 +41,5 @@
       </div>
     </div>
   <% end %>
-</div>
-<div class="wrap-for-dev">
-  <h3>割り当てられているタスク</h3>
-  <% @tasks_ready.each do |task| %>
-    <div class="wrap-for-dev">
-      <div>
-        <h4><%= task.title %></h4>
-      </div>
-      <div>
-        <%= image_tag task.user.profile_photo_url%>
-        <%= task.user.name %>
-      </div>
-      <div>
-        <% task.task_schedules.each do |task_schedule| %>
-          <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %>,
-        <% end %>
-      </div>
-      <div>
-        <%= link_to '詳細', task ,class: "btn btn-default"%>
-        <% if task.user_id == current_user.id %>
-          <%= link_to '編集', edit_task_path(task)%>
-          <%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' }%>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-</div>
-<div class="wrap-for-dev">
-  <h3>実行中のタスク</h3>
-  <% @tasks_doing.each do |task| %>
-    <div class="wrap-for-dev">
-      <div>
-        <h4><%= task.title %></h4>
-      </div>
-      <div>
-        <%= image_tag task.user.profile_photo_url%>
-        <%= task.user.name %>
-      </div>
-      <div>
-        <% task.task_schedules.each do |task_schedule| %>
-          <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %>,
-        <% end %>
-      </div>
-      <div>
-        <%= link_to '詳細', task ,class: "btn btn-default"%>
-        <% if task.user_id == current_user.id %>
-          <%= link_to '編集', edit_task_path(task)%>
-          <%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' }%>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-</div>
-<div class="wrap-for-dev">
-  <h3>完了済みのタスク</h3>
-  <% @tasks_done.each do |task| %>
-    <div class="wrap-for-dev">
-      <div>
-        <h4><%= task.title %></h4>
-      </div>
-      <div>
-        <%= image_tag task.user.profile_photo_url%>
-        <%= task.user.name %>
-      </div>
-      <div>
-        <% task.task_schedules.each do |task_schedule| %>
-          <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %>,
-        <% end %>
-      </div>
-      <div>
-        <%= link_to '詳細', task ,class: "btn btn-default"%>
-        <% if task.user_id == current_user.id %>
-          <%= link_to '編集', edit_task_path(task)%>
-          <%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' }%>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+  <%= paginate @tasks %>
 </div>
