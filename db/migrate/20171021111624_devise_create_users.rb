@@ -8,7 +8,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :position
       t.boolean :gender
       t.date :birthday
-      t.text :profile_photo_url
+      t.string :profile_photo_url
+      t.string :home_photo_url
       t.integer :employment_status
       t.string :provider
       t.string :uid
