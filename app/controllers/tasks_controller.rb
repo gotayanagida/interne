@@ -4,11 +4,11 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    task = current_company.tasks.all.reverse_order
-    @tasks_not_ready = task.where(status_code:0)
-    @tasks_ready = task.where(status_code:1)
-    @tasks_doing = task.where(status_code:2)
-    @tasks_done = task.where(status_code:3)
+    @tasks = current_company.tasks.all.page(params[:page]).per(20).search(params[:search]).reverse_order
+    @tasks_not_ready = @tasks.where(status_code:0)
+    @tasks_ready = @tasks.where(status_code:1)
+    @tasks_doing = @tasks.where(status_code:2)
+    @tasks_done = @tasks.where(status_code:3)
   end
 
   # GET /tasks/1

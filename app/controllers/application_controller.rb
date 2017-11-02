@@ -113,6 +113,14 @@ class ApplicationController < ActionController::Base
     stamps = Stamp.all
   end
 
+  def search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+
   # def after_sign_out_path_for(resource_or_scope)
   #   user_session_path
   # end
