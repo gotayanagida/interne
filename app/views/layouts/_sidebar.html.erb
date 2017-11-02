@@ -19,62 +19,62 @@ $(document).ready(function(){
 });
 </script>
 <div class="left-sidebar" style="width:210px;height:100%;float:left;">
-  <div class="ui left fixed inverted vertical menu left-sidebar">
-	  <% if current_user.employment_status == 1 %>
-      <div class="ui dropdown item">
-        <%= image_tag current_company.icon_photo_url, class:"ui middle aligned mini image" %>
-  	    <b class="aaaaa">
-  	    	<%if current_company.name.length > 7%>
-  	    		<%=current_company.name.slice(0, 7)%>...
-  	    	<%else%>
-  	    	    <%=current_company.name%>
-  	    	<%end%>
-  	    </b>
-        <div class="ui inverted vertical menu" style="background:#1B1C1D;">
-  	      	<% current_user.company_users.each do |company_user| %>
-  				<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item",style:"color:rgba(255, 255, 255, 0.9) !important;" do%>
-  			  	<%= company_user.company.name %><br>
-  			  	<% end %>
-  			<% end %>
-        </div>
+ <div class="ui left fixed inverted vertical menu">
+  <% if current_user.employment_status == 1 %>
+    <div class="ui dropdown item">
+      <%= image_tag current_company.icon_photo_url, class:"ui middle aligned mini image" %>
+      <b class="aaaaa">
+        <%if current_company.name.length > 7%>
+          <%=current_company.name.slice(0, 7)%>...
+        <%else%>
+            <%=current_company.name%>
+        <%end%>
+      </b>
+      <div class="ui inverted vertical menu" style="background:#1B1C1D;">
+        <% current_user.company_users.each do |company_user| %>
+          <%= link_to set_current_company_path(company_id:company_user.company.id), class:"item",style:"color:rgba(255, 255, 255, 0.9) !important;" do%>
+            <%= company_user.company.name %><br>
+            <% end %>
+        <% end %>
       </div>
-  	<%else%>
-  	  <%= link_to root_path,class:"item" do%>
-  	    <img class="ui middle aligned mini image" src="assets/company.gif">
-  	    <b class="aaaaa">
-  	    	<%if current_company.name.length > 7%>
-  	    		<%=current_company.name.slice(0, 7)%>...
-  	    	<%else%>
-  	    	    <%=current_company.name%>
-  	    	<%end%>
-  	    </b>
-      <%end%>
-    <% end %>
+    </div>
+  <%else%>
+    <%= link_to root_path,class:"item" do%>
+      <img class="ui middle aligned mini image" src="assets/company.gif">
+      <b class="aaaaa">
+        <%if current_company.name.length > 7%>
+          <%=current_company.name.slice(0, 7)%>...
+        <%else%>
+            <%=current_company.name%>
+        <%end%>
+      </b>
+    <%end%>
+  <% end %>
   	<%= link_to root_path,class:"item" do%>
       <i class="block layout icon"></i>
       ダッシュボード
     <%end%>
-    <%= link_to schedules_path,class:"item" do%>
+    <%= link_to schedules_path,class:"teal item" do%>
       <i class="calendar icon"></i>
       カレンダー
     <%end%>
-    <%= link_to reports_path,class:"item" do%>
+    <%= link_to reports_path,class:"teal item" do%>
       <i class="sticky note icon"></i>
       日報
     <%end%>
-    <%= link_to tasks_path,class:"item" do%>
+    <%= link_to tasks_path,class:"teal item" do%>
       <i class="tasks icon"></i>
       タスク
     <%end%>
-    <%= link_to goals_path,class:"item" do%>
+    <%= link_to goals_path,class:"teal item" do%>
       <i class="flag checkered icon"></i>
       目標
     <%end%>
-    <%= link_to attendances_path,class:"item" do%>
+    <%= link_to attendances_path,class:"teal item" do%>
       <i class="building icon"></i>
       勤怠
     <%end%>
-    <%= link_to users_path,class:"item" do%>
+    <%= link_to users_path,class:"teal item" do%>
       <i class="users icon"></i>
       メンバー
     <%end%>

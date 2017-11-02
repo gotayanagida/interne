@@ -10,21 +10,35 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.js"></script>
     
     <script type="text/javascript">
-	//pjax
+	　　//pjax init
 		$(function(){
 		    $(document).pjax("a",{
 			    container:'#row2',
 			    fragment:'#row2'
 		    });
 		});
+		//pjax fadein
 		$(document).on('pjax:start', function() {
 		    //alert('pjaxが開始されたときに発生');
 		    $('#row2').css("opacity","0");
 		});
+		//pjax out
 		$(document).on('pjax:end', function() {
 			$('#row2').animate({
 				opacity : 1
 			}, 200);
+		});
+		//menuのactive処理
+		$(function(){
+			$('.ui.menu')
+			    .on('click', '.item', function() {
+			      if(!$(this).hasClass('dropdown')) {
+			        $(this)
+			          .addClass('active')
+			          .siblings('.item')
+			            .removeClass('active');
+			      }
+			 });		    
 		});
    </script>
     <% if notice %>
