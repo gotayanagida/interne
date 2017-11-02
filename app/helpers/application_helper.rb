@@ -89,4 +89,8 @@ module ApplicationHelper
   def stamps
     stamps = Stamp.all
   end
+
+  def mypage?
+    session[:mypage]
+  end
 end
