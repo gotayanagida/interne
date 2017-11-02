@@ -1,7 +1,14 @@
 <script>
-    $('.item.shoya').on('click',function(){
-     alert("aaa");
-    });
+    $(document).ready(function(){
+		$('.ui.dropdown').dropdown();
+		$('.ui.sidebar')
+	  .sidebar({
+	    context: $('.bottom.attached.pushable')
+	  })
+	  .sidebar('setting', 'transition', 'overlay')
+	  .sidebar('attach events', '.menu .sidebar-menu')
+	;
+	});
 </script>
 
 <p id="notice"><%= notice %></p>
@@ -17,7 +24,7 @@
   <%= link_to user.name, user_id: user.id %>
 <% end %>
 
-<div class="ui three cards link stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
+<div class="ui three cards stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
   <% @reports.each do |report| %>
   <div class="card">
     <div class="content" style="background-image: url('../assets/mima-opa.png');background-position: right bottom; background-repeat: no-repeat;">
