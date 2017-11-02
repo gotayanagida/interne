@@ -46,12 +46,12 @@
 		  	<div class="ui dropdown" style="display:block;display: flow-root;">
 			  	<img class="ui circular right floated image user-image">
 					<div class="menu">
-            <%= link_to user_path(current_user), class:"item" do%>
-							プロフィール
-						<% end %>
-            <%= link_to destroy_user_session_path, method: :delete,class:"item" do%>
-              ログアウト
-            <%end%>
+						<% if mypage? %>
+	            <%= link_to 'キンタロウトップへ', root_path, class:"item"%>
+						<% else %>
+							<%= link_to 'マイページへ', mypage_path, class:"item"%>
+            <% end %>
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete,class:"item"%>
 					</div>
 			  </div>
 	  	<% end %>

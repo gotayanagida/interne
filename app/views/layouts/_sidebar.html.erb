@@ -19,24 +19,37 @@ $(document).ready(function(){
 });
 </script>
 <div class="left-sidebar" style="width:210px;height:100%;float:left;">
- <div class="ui left fixed inverted vertical menu left-sidebar">
-	<div class="ui dropdown item">
-	    <img class="ui middle aligned mini image" src="assets/company.gif">
-	    <b class="aaaaa">
-	    	<%if current_company.name.length > 7%>
-	    		<%=current_company.name.slice(0, 7)%>...
-	    	<%else%>
-	    	    <%=current_company.name%>
-	    	<%end%>
-	    </b>
-	    <div class="ui inverted vertical menu" style="background:#1B1C1D;">
-	      	<% current_user.company_users.each do |company_user| %>
-				<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item",style:"color:rgba(255, 255, 255, 0.9) !important;" do%>
-			  	<%= company_user.company.name %><br>
-			  	<% end %>
-			<% end %>
-	    </div>
-	</div>
+  <div class="ui left fixed inverted vertical menu left-sidebar">
+	  <% if current_user.employment_status == 1 %>
+      <div class="ui dropdown item">
+        <%= image_tag current_company.profile_photo_url, class:"ui middle aligned mini image" %>
+  	    <b class="aaaaa">
+  	    	<%if current_company.name.length > 7%>
+  	    		<%=current_company.name.slice(0, 7)%>...
+  	    	<%else%>
+  	    	    <%=current_company.name%>
+  	    	<%end%>
+  	    </b>
+        <div class="ui inverted vertical menu" style="background:#1B1C1D;">
+  	      	<% current_user.company_users.each do |company_user| %>
+  				<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item",style:"color:rgba(255, 255, 255, 0.9) !important;" do%>
+  			  	<%= company_user.company.name %><br>
+  			  	<% end %>
+  			<% end %>
+        </div>
+      </div>
+  	<%else%>
+  	  <%= link_to root_path,class:"item" do%>
+  	    <img class="ui middle aligned mini image" src="assets/company.gif">
+  	    <b class="aaaaa">
+  	    	<%if current_company.name.length > 7%>
+  	    		<%=current_company.name.slice(0, 7)%>...
+  	    	<%else%>
+  	    	    <%=current_company.name%>
+  	    	<%end%>
+  	    </b>
+      <%end%>
+    <% end %>
   	<%= link_to root_path,class:"item" do%>
       <i class="block layout icon"></i>
       ダッシュボード
@@ -64,6 +77,10 @@ $(document).ready(function(){
     <%= link_to users_path,class:"item" do%>
       <i class="users icon"></i>
       メンバー
+    <%end%>
+    <%= link_to company_path(current_company),class:"item" do%>
+      <i class="users icon"></i>
+      会社設定
     <%end%>
  </div>
   </div>

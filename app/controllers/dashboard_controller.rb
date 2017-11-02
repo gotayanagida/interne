@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   def index
     redirect_to update_user_after_login_path if session[:after_sign_up] == true
+    session[:mypage] = false
 
     if current_company != nil
       if current_user.employment_status == 0

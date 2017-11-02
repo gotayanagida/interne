@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+<% if current_user.employment_status == 0 %>
+  <%= render "mypage_for_staff" %>
+<% else %>
+  <%= render "mypage_for_intern" %>
+<% end %>
