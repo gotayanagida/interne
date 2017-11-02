@@ -11,8 +11,6 @@
   <% end %>
 <%= link_to "投稿日（昇順）", sort: "created_at desc" %>
 <%= link_to "投稿日（降順）", sort: "created_at" %>
-<%= link_to "出勤日（昇順）", sort: "schedule_id desc" %>
-<%= link_to "出勤日（降順）", sort: "schedule_id" %>
 <% current_company.users.each do |user| %>
   <%= link_to user.name, user_id: user.id %>
 <% end %>
