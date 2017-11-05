@@ -19,8 +19,97 @@ $(document).ready(function(){
 });
 </script>
 <div class="left-sidebar" style="width:210px;height:100%;float:left;">
-  <div class="ui left fixed inverted vertical menu">
-    <% if current_user.employment_status == 1 %>
+  <div class="ui left fixed inverted vertical menu" style="background:#252c39;">
+    <div class="item" style="background:#252c39;"><img class="ui centered small image" src="../assets/logo-in-col.png"></div>
+      <% if current_page?(root_path)%>
+        <%= link_to root_path,class:"active teal item pjax" do%>
+        <i class="block layout icon"></i>
+        ダッシュボード
+        <%end%>
+      <%else%>
+        <%= link_to root_path,class:"teal item pjax" do%>
+        <i class="block layout icon"></i>
+        ダッシュボード
+        <%end%>
+      <%end%>
+      
+      <% if current_page?(controller: 'schedules')%>
+        <%= link_to schedules_path,class:"active teal item pjax" do%>
+        <i class="calendar icon"></i>
+        カレンダー
+        <%end%>
+      <%else%>
+        <%= link_to schedules_path,class:"teal item pjax" do%>
+        <i class="calendar icon"></i>
+        カレンダー
+        <%end%>
+      <%end%>
+      
+      <% if current_page?(controller: 'reports')%>
+        <%= link_to reports_path,class:"active teal item pjax" do%>
+        <i class="sticky note icon"></i>
+        日報
+        <%end%>
+      <%else%>
+        <%= link_to reports_path,class:"teal item pjax" do%>
+        <i class="sticky note icon"></i>
+        日報
+        <%end%>
+      <%end%>
+      
+      <% if current_page?(controller: 'tasks')%>
+        <%= link_to tasks_path,class:"active teal item pjax" do%>
+        <i class="tasks icon"></i>
+        タスク
+        <%end%>
+      <%else%>
+        <%= link_to tasks_path,class:"teal item pjax" do%>
+        <i class="tasks icon"></i>
+        タスク
+        <%end%>
+      <%end%>
+        
+      <% if current_page?(controller: 'goals')%>
+        <%= link_to goals_path,class:"active teal item pjax" do%>
+        <i class="flag checkered icon"></i>
+        目標
+        <%end%>
+      <%else%>
+        <%= link_to goals_path,class:"teal item pjax" do%>
+        <i class="flag checkered icon"></i>
+        目標
+        <%end%>
+      <%end%>
+      
+      <% if current_page?(controller: 'attendances')%>
+        <%= link_to attendances_path,class:"active teal item pjax" do%>
+        <i class="building icon"></i>
+        勤怠
+        <%end%>
+      <%else%>
+        <%= link_to attendances_path,class:"teal item pjax" do%>
+        <i class="building icon"></i>
+        勤怠
+        <%end%>
+      <%end%>
+      
+      <% if current_page?(controller: 'users')%>
+        <%= link_to users_path,class:"active teal item pjax" do%>
+        <i class="users icon"></i>
+        メンバー
+       <%end%>
+      <%else%>
+        <%= link_to users_path,class:"teal item pjax" do%>
+        <i class="users icon"></i>
+        メンバー
+       <%end%>
+      <%end%>
+      <!--会社設定のところは設定方法わからん-->
+      <%= link_to company_path(current_company),class:"teal item pjax" do%>
+        <i class="users icon"></i>
+        会社設定
+      <%end%>
+      <% if current_user.employment_status == 1 %>
       <div class="ui dropdown item">
         <%= image_tag current_company.icon_photo_url, class:"ui middle aligned mini image" %>
         <b class="aaaaa">
@@ -49,39 +138,7 @@ $(document).ready(function(){
           <%end%>
         </b>
         <%end%>
-      <% end %>
-      <%= link_to root_path,class:"active teal item pjax" do%>
-        <i class="block layout icon"></i>
-        ダッシュボード
-      <%end%>
-      <%= link_to schedules_path,class:"teal item pjax" do%>
-        <i class="calendar icon"></i>
-        カレンダー
-      <%end%>
-      <%= link_to reports_path,class:"teal item pjax" do%>
-        <i class="sticky note icon"></i>
-        日報
-      <%end%>
-      <%= link_to tasks_path,class:"teal item pjax" do%>
-        <i class="tasks icon"></i>
-        タスク
-      <%end%>
-      <%= link_to goals_path,class:"teal item pjax" do%>
-        <i class="flag checkered icon"></i>
-        目標
-      <%end%>
-      <%= link_to attendances_path,class:"teal item pjax" do%>
-        <i class="building icon"></i>
-        勤怠
-      <%end%>
-      <%= link_to users_path,class:"teal item pjax" do%>
-        <i class="users icon"></i>
-        メンバー
-      <%end%>
-      <%= link_to company_path(current_company),class:"teal item pjax" do%>
-        <i class="users icon"></i>
-        会社設定
-      <%end%>
+    <% end %>
     </div>
   </div>
 </div>
