@@ -39,3 +39,13 @@ $import-google-fonts: false;
 	height:50px !important;
 	margin-bottom: 0px !important;
 }
+.ui.inverted.menu .teal.active.item, .ui.inverted.teal.menu {
+    background-color: #00BC89;
+}
+.no-overflow-x {
+  overflow-x: visible !important;
+}
+.no-overflow {
+  overflow: visible !important;
+}
+

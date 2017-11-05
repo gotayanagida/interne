@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="-webkit-overflow-scrolling: touch; background:#f1f5f9;">
+<html style="-webkit-overflow-scrolling: touch;">
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0" >
     <title>Kintarou</title>
@@ -8,9 +8,10 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.js"></script>
     
     <script type="text/javascript">
-	　　//pjax init
+	    //pjax init
 		$(function(){
 		    $(document).pjax("a.pjax",{
 			    container:'#row2',
@@ -40,7 +41,6 @@
 			      }
 			 });		    
 		});
-		//
 		$(document).ready(function(){
 			$('.ui.dropdown').dropdown();
 			$('.ui.sidebar')
@@ -68,18 +68,18 @@
     <div class="alert alert-info messagebox">
 	    <button type="button" class="close" data-dismiss="alert">×</button>
 	    <strong><%= notice %></strong>
-	　</div>
+	</div>
   <% elsif alert %>
     <p class="alert"><%= alert %></p>
   <% end %>
-  <body style="background:#f1f5f9;">
+  <body style="background:#ffffff;">
     <% if user_signed_in? %>
       <% unless mypage? %>
         <% if current_company != nil %>
           <%= render 'layouts/sidebar' %>
         	  <div class="main_contents">
           		<%= render 'layouts/header' %>
-            	<div class="ui bottom attached pushable">
+            	<div class="ui bottom attached pushable no-overflow-x">
   	            <div class="ui inverted left inline vertical sidebar menu" style="">
             	    <%= link_to root_path,class:"item" do%>
                     <i class="block layout icon"></i>
@@ -114,7 +114,7 @@
                     会社設定
                   <%end%>
             	  </div>
-  	            <div class="pusher">
+  	            <div class="pusher no-overflow">
   	              <div class="ui grid padded stackable">
   			            <div class="row">
   			              <div class="sixteen wide column renzoku">
@@ -162,7 +162,7 @@
                   メンバー
                 <%end%>
           	  </div>
-	            <div class="pusher">
+	            <div class="pusher no-overflow">
 	              <div class="ui grid padded stackable">
 			            <div class="row">
 			              <div class="sixteen wide column renzoku">

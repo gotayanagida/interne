@@ -1,28 +1,43 @@
-<script>
-    $(document).ready(function(){
-		$('.ui.dropdown').dropdown();
-		$('.ui.sidebar')
-	  .sidebar({
-	    context: $('.bottom.attached.pushable')
-	  })
-	  .sidebar('setting', 'transition', 'overlay')
-	  .sidebar('attach events', '.menu .sidebar-menu')
-	;
-	});
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('.ui.dropdown').dropdown();
+		});
 </script>
+
 
 <p id="notice"><%= notice %></p>
 
-  <%= link_to new_report_path, class: "ui labeled icon button" do%>
-    <i class="plus icon"></i>日報を追加
-  <% end %>
-<%= link_to "投稿日（昇順）", sort: "created_at desc" %>
-<%= link_to "投稿日（降順）", sort: "created_at" %>
-<%= link_to "出勤日（昇順）", sort: "schedule_id desc" %>
-<%= link_to "出勤日（降順）", sort: "schedule_id" %>
-<% current_company.users.each do |user| %>
-  <%= link_to user.name, user_id: user.id %>
-<% end %>
+<div class="ui grid">
+  <div class="four column row">
+    <div class="left floated column">
+    	<%= link_to new_report_path, class: "ui labeled icon button" do%>
+    	<i class="plus icon"></i>日報を追加
+    	<% end %>
+    </div>
+    <div class="right floated column right aligned">
+		<div class="ui dropdown right aligned">
+		  <div class="text" style="color:#2185D0;text-decoration: underline;">日付別</div>
+		  <i class="dropdown icon blue" style="margin:0px;"></i>
+		  <div class="menu">
+		    <%= link_to("投稿日(昇順)", { sort:"created_at desc" }, class: "item") %>
+		    <%= link_to("投稿日(降順)", { sort:"created_at" }, class: "item") %>
+		    <%= link_to("出勤日(昇順)", { sort:"schedule_id desc" }, class: "item") %>
+		    <%= link_to("出勤日(降順)", { sort:"schedule_id" }, class: "item") %>
+		  </div>
+		</div>
+		/
+		<div class="ui dropdown right floated">
+		  <div class="text" style="color:#2185D0;text-decoration: underline;">人物別</div>
+		  <i class="dropdown icon blue" style="margin:0px;"></i>
+		  <div class="menu">
+		    <% current_company.users.each do |user| %>
+		     <%= link_to(user.name, { user_id: user.id }, class: "item") %>
+		    <% end %>
+		  </div>
+		</div>
+    </div>
+</div>
+</div>
 
 <div class="ui three cards stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
   <% @reports.each do |report| %>
