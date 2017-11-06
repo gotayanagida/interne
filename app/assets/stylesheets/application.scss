@@ -49,3 +49,31 @@ $import-google-fonts: false;
   overflow: visible !important;
 }
 
+/*sidebar*/
+#sidebar {
+  background: linear-gradient(45deg, #00a9bc, #00bc89);
+}
+
+#side-logo {
+  width: 75%;
+  margin: 15px auto;
+}
+.ui.menu .teal.active.item {
+  border-left: 4px solid #ffffff !important;
+}
+
+.ui.inverted.menu .teal.active.item {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0));
+}
+
+.ui.inverted.menu a.item:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0));
+}
+
+.ui.inverted.menu .item:before, .ui.vertical.inverted.menu .item:before {
+    background: rgba(255, 255, 255, 0);
+  }
+
+.ui.menu .item {
+    padding: 18px 13px;
+}
