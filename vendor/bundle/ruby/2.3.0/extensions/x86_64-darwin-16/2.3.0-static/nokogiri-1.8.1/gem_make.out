@@ -1,4 +1,4 @@
-current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ext/nokogiri
+current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ext/nokogiri
 /Users/yanagidagota/.rbenv/versions/2.3.2/bin/ruby -r ./siteconf20171021-76115-11d0sh4.rb extconf.rb --use-system-libraries --with-xml2-include=/usr/local/opt/libxml2/include/libxml2
 checking if the C compiler accepts ... yes
 checking if the C compiler accepts -Wno-error=unused-command-line-argument-hard-error-in-future... no
@@ -30,12 +30,12 @@ creating Makefile
 
 To see why this extension failed to compile, please check the mkmf.log which can be found here:
 
-  /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0-static/nokogiri-1.8.1/mkmf.log
+  /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/extensions/x86_64-darwin-16/2.3.0-static/nokogiri-1.8.1/mkmf.log
 
-current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ext/nokogiri
+current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ext/nokogiri
 make "DESTDIR=" clean
 
-current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ext/nokogiri
+current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ext/nokogiri
 make "DESTDIR="
 compiling html_document.c
 compiling html_element_description.c
@@ -131,8 +131,8 @@ rb_data_object_get(VALUE obj)
 2 warnings generated.
 linking shared-object nokogiri/nokogiri.bundle
 Cleaning files only used during build.
-rm -rf /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/archives
+rm -rf /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ports/archives
 
-current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ext/nokogiri
+current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/gems/nokogiri-1.8.1/ext/nokogiri
 make "DESTDIR=" install
 /usr/bin/install -c -m 0755 nokogiri.bundle ./.gem.20171021-76115-105a70y/nokogiri

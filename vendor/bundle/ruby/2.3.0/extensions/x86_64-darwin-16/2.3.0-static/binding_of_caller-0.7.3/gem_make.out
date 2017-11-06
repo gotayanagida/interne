@@ -1,16 +1,16 @@
-current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
+current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
 /Users/yanagidagota/.rbenv/versions/2.3.2/bin/ruby -r ./siteconf20171022-172-ccwygu.rb extconf.rb
 
-current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
+current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
 make "DESTDIR=" clean
 make: *** No rule to make target `clean'.  Stop.
 
-current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
+current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
 make "DESTDIR="
 echo "Nada."
 Nada.
 
-current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/kintarou/vendor/bundle/ruby/2.3.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
+current directory: /Users/yanagidagota/Google-Drive/Hello!!/Projects/interne/vendor/bundle/ruby/2.3.0/gems/binding_of_caller-0.7.3/ext/binding_of_caller
 make "DESTDIR=" install
 echo "Nada."
 Nada.
