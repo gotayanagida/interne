@@ -22,16 +22,20 @@ $(document).ready(function(){
   <div id="sidebar" class="ui left fixed inverted vertical menu">
     <div class="item"><img id="side-logo" class="ui centered small image" src="../assets/logo-in-col.png"></div>
       <% if current_user.employment_status == 1 %>
-        <div class="ui dropdown item">
-          <%= image_tag current_company.icon_photo_url, class:"ui middle aligned mini image" %>
-          <b class="aaaaa">
-            <%if current_company.name.length > 7%>
-              <%=current_company.name.slice(0, 7)%>...
-            <%else%>
-              <%=current_company.name%>
-            <%end%>
-          </b>
-          <div class="ui inverted vertical menu" style="background:#1B1C1D;">
+
+        <div class="ui vertical accordion item" style="margin: 7px 0px 17px 0px;">
+          <div class="title">
+            <%= image_tag current_company.icon_photo_url, class:"ui circular middle aligned mini image", style:"box-shadow: 0 0 30px rgba(0,0,0,0.2); margin: 0rem 0.5rem 0rem 0.5rem;"%>
+            <b class="aaaaa">
+              <%if current_company.name.length > 7%>
+                <%=current_company.name.slice(0, 7)%>...
+              <%else%>
+                <%=current_company.name%>
+              <%end%>
+            </b>
+            <!--<i class="dropdown icon"></i>-->
+          </div>
+          <div class="content">
             <% current_user.company_users.each do |company_user| %>
               <%= link_to set_current_company_path(company_id:company_user.company.id), class:"item",style:"color:rgba(255, 255, 255, 0.9) !important;" do%>
                 <%= company_user.company.name %><br>
@@ -41,7 +45,7 @@ $(document).ready(function(){
         </div>
       <%else%>
         <%= link_to root_path,class:"item" do%>
-          <%= image_tag current_company.icon_photo_url, class:"ui middle aligned mini image" %>
+          <%= image_tag current_company.icon_photo_url, class:"ui circular middle aligned mini image", style:"box-shadow: 0 0 30px rgba(0,0,0,0.2); margin: 0rem 0.5rem 0rem 0.5rem;"%>
           <b class="aaaaa">
             <%if current_company.name.length > 7%>
               <%=current_company.name.slice(0, 7)%>...
@@ -138,3 +142,9 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+
+<script>
+$('.ui.accordion')
+  .accordion()
+;
+</script>
