@@ -1,43 +1,76 @@
-<p id="notice"><%= notice %></p>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('.ui.dropdown').dropdown();
+		});
+</script>
 
-<div>
-  <%= link_to '＋タスクを追加', new_task_path, class: "btn btn-primary" %>
-</div>
+<p id="notice"><%= notice %></p>
 
 <%= form_tag tasks_path, :method => 'get' do %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "検索", :name => nil %>
 <% end %>
-<%= link_to "投稿日（昇順）", sort: "created_at desc" %>
-<%= link_to "投稿日（降順）", sort: "created_at" %>
-<% current_company.users.each do |user| %>
-  <%= link_to user.name, user_id: user.id %>
-<% end %>
+
+<div class="ui grid">
+  <div class="four column row">
+    <div class="left floated column">
+    	<%= link_to new_task_path, class: "ui labeled icon button" do%>
+    	<i class="plus icon"></i>タスクを追加
+    	<% end %>
+    </div>
+    <div class="right floated column right aligned">
+		<div class="ui dropdown right aligned">
+		  <div class="text" style="color:#2185D0;text-decoration: underline;">日付別</div>
+		  <i class="dropdown icon blue" style="margin:0px;"></i>
+		  <div class="menu">
+		    <%= link_to("投稿日(昇順)", { sort:"created_at desc" }, class: "item") %>
+		    <%= link_to("投稿日(降順)", { sort:"created_at" }, class: "item") %>
+		  </div>
+		</div>
+		/
+		<div class="ui dropdown right floated">
+		  <div class="text" style="color:#2185D0;text-decoration: underline;">人物別</div>
+		  <i class="dropdown icon blue" style="margin:0px;"></i>
+		  <div class="menu">
+		    <% current_company.users.each do |user| %>
+		     <%= link_to(user.name, { user_id: user.id }, class: "item") %>
+		    <% end %>
+		  </div>
+		</div>
+    </div>
+</div>
+</div>
 
 
 
-<div class="wrap-for-dev">
-  <h3>タスク</h3>
-  <% @tasks.each do |task| %>
-    <div class="wrap-for-dev">
-      <div>
-        <h4><%= task.title %></h4>
-      </div>
-      <div>
-      </div>
-      <div>
-        <% task.task_schedules.each do |task_schedule| %>
-          <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %>,
-        <% end %>
-      </div>
-      <div>
-        <%= link_to '詳細', task ,class: "btn btn-default"%>
-        <% if task.user_id == current_user.id %>
-          <%= link_to '編集', edit_task_path(task)%>
-          <%= link_to '削除', task, method: :delete, data: { confirm: '本当に削除しますか？' }%>
-        <% end %>
+<div class="ui relaxed divided list">
+<% @tasks.each do |task| %>
+  <div class="item">
+    <% if task.user_id == current_user.id %>
+    <div class="right floated content">
+      <%= link_to edit_task_path(task), class:"ui button" do%>
+      編集
+      <%end%>
+      <%= link_to task, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"ui button" do%>
+      削除
+      <%end%>
+    </div>
+    <% end %>
+    <img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
+    <div class="content">
+      <%= link_to task ,class: "header" do%>
+      	<%= task.title %>
+      <%end%>
+      <div class="description">
+      <% task.task_schedules.each do |task_schedule| %>
+          <%= task.detail %>
+          <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %><br>
+      <% end %>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
+</div>
+
   <%= paginate @tasks %>
 </div>
