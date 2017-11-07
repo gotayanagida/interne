@@ -19,8 +19,42 @@ $(document).ready(function(){
 });
 </script>
 <div class="left-sidebar" style="width:210px;height:100%;float:left;">
-  <div class="ui left fixed inverted vertical menu" style="background:#252c39;">
-    <div class="item" style="background:#252c39;"><img class="ui centered small image" src="../assets/logo-in-col.png"></div>
+  <div id="sidebar" class="ui left fixed inverted vertical menu">
+    <div class="item"><img id="side-logo" class="ui centered small image" src="../assets/logo-in-col.png"></div>
+      <% if current_user.employment_status == 1 %>
+
+        <div class="ui vertical accordion item" style="margin: 7px 0px 17px 0px;">
+          <div class="title">
+            <%= image_tag current_company.icon_photo_url, class:"ui circular middle aligned mini image", style:"box-shadow: 0 0 30px rgba(0,0,0,0.2); margin: 0rem 0.5rem 0rem 0.5rem;"%>
+            <b class="aaaaa">
+              <%if current_company.name.length > 7%>
+                <%=current_company.name.slice(0, 7)%>...
+              <%else%>
+                <%=current_company.name%>
+              <%end%>
+            </b>
+            <!--<i class="dropdown icon"></i>-->
+          </div>
+          <div class="content">
+            <% current_user.company_users.each do |company_user| %>
+              <%= link_to set_current_company_path(company_id:company_user.company.id), class:"item",style:"color:rgba(255, 255, 255, 0.9) !important;" do%>
+                <%= company_user.company.name %><br>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <%else%>
+        <%= link_to root_path,class:"item" do%>
+          <%= image_tag current_company.icon_photo_url, class:"ui circular middle aligned mini image", style:"box-shadow: 0 0 30px rgba(0,0,0,0.2); margin: 0rem 0.5rem 0rem 0.5rem;"%>
+          <b class="aaaaa">
+            <%if current_company.name.length > 7%>
+              <%=current_company.name.slice(0, 7)%>...
+            <%else%>
+              <%=current_company.name%>
+            <%end%>
+          </b>
+          <%end%>
+      <% end %>
       <% if current_page?(root_path)%>
         <%= link_to root_path,class:"active teal item pjax" do%>
         <i class="block layout icon"></i>
@@ -32,7 +66,7 @@ $(document).ready(function(){
         ダッシュボード
         <%end%>
       <%end%>
-      
+
       <% if current_page?(controller: 'schedules')%>
         <%= link_to schedules_path,class:"active teal item pjax" do%>
         <i class="calendar icon"></i>
@@ -44,7 +78,7 @@ $(document).ready(function(){
         カレンダー
         <%end%>
       <%end%>
-      
+
       <% if current_page?(controller: 'reports')%>
         <%= link_to reports_path,class:"active teal item pjax" do%>
         <i class="sticky note icon"></i>
@@ -56,7 +90,6 @@ $(document).ready(function(){
         日報
         <%end%>
       <%end%>
-      
       <% if current_page?(controller: 'tasks')%>
         <%= link_to tasks_path,class:"active teal item pjax" do%>
         <i class="tasks icon"></i>
@@ -68,7 +101,6 @@ $(document).ready(function(){
         タスク
         <%end%>
       <%end%>
-        
       <% if current_page?(controller: 'goals')%>
         <%= link_to goals_path,class:"active teal item pjax" do%>
         <i class="flag checkered icon"></i>
@@ -80,7 +112,6 @@ $(document).ready(function(){
         目標
         <%end%>
       <%end%>
-      
       <% if current_page?(controller: 'attendances')%>
         <%= link_to attendances_path,class:"active teal item pjax" do%>
         <i class="building icon"></i>
@@ -92,7 +123,6 @@ $(document).ready(function(){
         勤怠
         <%end%>
       <%end%>
-      
       <% if current_page?(controller: 'users')%>
         <%= link_to users_path,class:"active teal item pjax" do%>
         <i class="users icon"></i>
@@ -109,36 +139,12 @@ $(document).ready(function(){
         <i class="users icon"></i>
         会社設定
       <%end%>
-      <% if current_user.employment_status == 1 %>
-      <div class="ui dropdown item">
-        <%= image_tag current_company.icon_photo_url, class:"ui middle aligned mini image" %>
-        <b class="aaaaa">
-          <%if current_company.name.length > 7%>
-            <%=current_company.name.slice(0, 7)%>...
-          <%else%>
-            <%=current_company.name%>
-          <%end%>
-        </b>
-        <div class="ui inverted vertical menu" style="background:#1B1C1D;">
-          <% current_user.company_users.each do |company_user| %>
-            <%= link_to set_current_company_path(company_id:company_user.company.id), class:"item",style:"color:rgba(255, 255, 255, 0.9) !important;" do%>
-              <%= company_user.company.name %><br>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    <%else%>
-      <%= link_to root_path,class:"item" do%>
-        <%= image_tag current_company.icon_photo_url, class:"ui middle aligned mini image" %>
-        <b class="aaaaa">
-          <%if current_company.name.length > 7%>
-            <%=current_company.name.slice(0, 7)%>...
-          <%else%>
-            <%=current_company.name%>
-          <%end%>
-        </b>
-        <%end%>
-    <% end %>
     </div>
   </div>
 </div>
+
+<script>
+$('.ui.accordion')
+  .accordion()
+;
+</script>
