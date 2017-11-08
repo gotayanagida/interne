@@ -20,8 +20,8 @@ $(document).ready(function(){
 </script>
 <div class="left-sidebar" style="width:210px;height:100%;float:left;">
   <div id="sidebar" class="ui left fixed inverted vertical menu">
-    <div class="item"><img id="side-logo" class="ui centered small image" src="../assets/logo-in-col.png"></div>
-      <% if current_user.employment_status == 1 %>
+    <%= link_to root_path do %><div class="item"><img id="side-logo" class="ui centered small image" src="../assets/logo-in-col.png"></div><% end %>
+      <% if current_user.employment_status == true %>
 
         <div class="ui vertical accordion item" style="margin: 7px 0px 17px 0px;">
           <div class="title">
@@ -44,7 +44,7 @@ $(document).ready(function(){
           </div>
         </div>
       <%else%>
-        <%= link_to root_path,class:"item" do%>
+        <%= link_to root_path, class:"item", style:"margin: 7px 0px 17px 0px;" do%>
           <%= image_tag current_company.icon_photo_url, class:"ui circular middle aligned mini image", style:"box-shadow: 0 0 30px rgba(0,0,0,0.2); margin: 0rem 0.5rem 0rem 0.5rem;"%>
           <b class="aaaaa">
             <%if current_company.name.length > 7%>

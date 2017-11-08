@@ -14,7 +14,7 @@
       <th>勤務時間</th>
       <th>休憩時間</th>
       <th>修正回数</th>
-      <% if current_user.employment_status == 0 %>
+      <% if current_user.employment_status == false %>
         <th colspan="1"></th>
       <% end %>
     </tr>
@@ -36,7 +36,7 @@
         <td><%= work_time(attendance: attendance).strftime('%-H時間%-M分%-S秒') %></td>
         <td><%= break_time(attendance: attendance).strftime('%-H時間%-M分%-S秒') %></td>
         <td><%= attendance.num_of_edit %></td>
-        <% if current_user.employment_status == 0 %>
+        <% if current_user.employment_status == false %>
           <td><%= link_to '編集', edit_attendance_path(attendance) %></td>
         <% end %>
       </tr>

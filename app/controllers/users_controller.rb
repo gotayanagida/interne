@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    users = User.where(employment_status:1)
+    users = current_company.users.where(employment_status:1)
     @users = users.page(params[:page]).per(10)
   end
 

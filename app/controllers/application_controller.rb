@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
     users_id = []
     users_id.append(current_user.id)
     current_company.company_users.each do |company_user|
-      if company_user.user.employment_status == 0
+      if company_user.user.employment_status == false
         next if company_user.user.id == current_user.id
         users_id.append(company_user.user_id)
       end

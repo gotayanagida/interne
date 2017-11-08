@@ -93,4 +93,9 @@ module ApplicationHelper
   def mypage?
     session[:mypage]
   end
+
+  def recent_notice_users
+    recent_notice_users = current_user.notice_users.limit(5).reverse_order
+  end
+
 end
