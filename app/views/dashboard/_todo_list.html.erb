@@ -1,18 +1,19 @@
-<div class="wrap-for-dev">
+<div class="ui raised segment">
   <h3>やることリスト</h3>
-  <% @todo_users.each do |todo_user| %>
-    <% next if todo_user.todo.status == 1 %>
-    <%= link_to todo_path(todo_user.todo) do %>
-      <div class="wrap-for-dev">
-        <div>
-          <h4><%= todo_user.todo.body %></h4>
+  <div class="ui relaxed divided list">
+    <% @todo_users.each do |todo_user| %>
+      <% next if todo_user.todo.status == 1 %>
+      <%= link_to todo_path(todo_user.todo), class:"item future" do %>
+        <i class="large info circle middle aligned icon"></i>
+        <div class="content">
+          <div class="header"><%= todo_user.todo.body %></div>
+          <div class="description">
+            <% todo_time = Time.now.to_time.to_i - todo_user.todo.created_at.to_time.to_i %>
+            <%= (Time.parse("1/1") + todo_time).strftime("%-H時間%-M分%-S秒前") %>
+          </div>
         </div>
-        <div>
-          <% todo_time = Time.now.to_time.to_i - todo_user.todo.created_at.to_time.to_i %>
-          <h4><%= (Time.parse("1/1") + todo_time).strftime("%-H時間%-M分%-S秒前") %></h4>
-        </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
   <%= link_to '全てのやることを見る', todos_path %>
 </div>

@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% if @user.employment_status == 0 %>
+<% if @user.employment_status == false %>
   <%= render "show_for_staff" %>
 <% else %>
   <%= render "show_for_intern" %>

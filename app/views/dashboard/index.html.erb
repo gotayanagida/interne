@@ -1,9 +1,9 @@
 
-<% if current_user.employment_status == 0 %>
+<% if current_user.employment_status == false %>
   <% #社員用画面 %>
   <%= render 'status_for_staff' %>
   <%= render 'todo_list' %>
-  <%= render 'notice_list' %>
+  <!-- <%= render 'notice_list' %> -->
   <%= render 'future_schedule_for_staff' %>
   <%= render 'invite_intern' %>
 <% else %>
@@ -11,7 +11,7 @@
     <% #インターン生用画面 %>
     <%= render '4buttons' %>
     <%= render 'status_for_intern' %>
-    <%= render 'notice_list' %>
+    <!-- <%= render 'notice_list' %> -->
     <%= render 'regist_schedule', schedule: @schedule %>
     <%= render 'future_schedule_for_intern' %>
   <% else %>

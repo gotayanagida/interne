@@ -4,13 +4,13 @@ class DashboardController < ApplicationController
     session[:mypage] = false
 
     if current_company != nil
-      if current_user.employment_status == 0
+      if current_user.employment_status == false
         #社員用ダッシュボード
         @user = current_company.users.find(current_user.id)
         @active_attendances = Attendance.where(company_id: current_company, work_stopped_at: nil)
-        @schedules_for_staff = current_company.schedules.all.limit(5).reverse_order
+        range = Time.now.next_day.beginning_of_day...Float::INFINITY
+        @schedules_for_staff = current_company.schedules.where(work_started_at: range).order(:work_started_at).limit(5)
         @searched_users = User.all.page(params[:page]).per(10).search(params[:search])
-        @notice_users = @user.notice_users.limit(5).reverse_order
         @todo_users = @user.todo_users.limit(5).reverse_order
       else
         @user = current_company.users.find(current_user.id)
@@ -25,9 +25,6 @@ class DashboardController < ApplicationController
         @break_time = break_stopped_time - break_started_time if attendance_status(user:@user) == "pm_work" || attendance_status(user:@user) == "not_work"
         @attendance_time = now_time - work_started_time - @break_time
         @last_attendance_time = work_stopped_time - work_started_time - @break_time.to_i if attendance_status(user:@user) == "not_work"
-
-        #お知らせ
-        @notice_users = @user.notice_users.limit(5).reverse_order
 
         #その日の出勤シフトについて
         today_work_schedule = current_company.schedules.where(user_id: current_user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first
@@ -53,8 +50,9 @@ class DashboardController < ApplicationController
           #次回以降の出勤シフトがない場合
           @next_work_schedule = "\"登録なし\""
         end
+        range = Time.now.next_day.beginning_of_day...Float::INFINITY
+        @schedules_for_intern = current_company.schedules.where(work_started_at: range, user_id:current_user.id).order(:work_started_at).limit(5)
 
-        @schedules_for_intern = current_company.schedules.where(user_id:current_user.id).limit(5).reverse_order
         @schedule = Schedule.new
       end
     end

@@ -239,7 +239,7 @@ ActiveRecord::Schema.define(version: 20171028030508) do
     t.date "birthday"
     t.string "profile_photo_url"
     t.string "home_photo_url"
-    t.integer "employment_status"
+    t.boolean "employment_status"
     t.string "provider"
     t.string "uid"
     t.string "token"

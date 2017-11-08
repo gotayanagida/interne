@@ -17,28 +17,42 @@
 	    $('.screen-header').css('display','');
 	  }
 	});
-	
+
 </script>
 <div id="main_contents">
-<div class="ui padded grid">
+<div class="header ui padded grid">
   <div class="row main-header screen-header">
 		<!-- for pc　-->
 	  <div class="fourteen wide column">
-			<div class="ui mini info message">
-			  <i class="close icon"></i>
-			  <div class="header">
-			    社長からのメッセージ
-			  </div>
-			  ワタミには「365日24時間、死ぬまで働け」という言葉がある。
-			</div>
+			<h3><%= "ダッシュボード"%><span>　　　　　　　　　　　　　　　（開発用メモ：<%= current_user.name %>、<%= current_user.employment_status ? "インターン生" : "社員" %>）</span></h3>
 	  </div>
-	  <div class="two wide column">
+	  <div class="one wide column">
+			<div class="ui dropdown" style="display:block;display: flow-root;">
+				<img class="ui circular right floated image notice-btn-image">
+				<img class="ui circular right floated image notice-num-image">
+				<div class="menu">
+					<% recent_notice_users.each do |notice_user| %>
+				    <%= link_to notice_path(notice_user.notice), class:"item future" do %>
+					    <i class="large info circle middle aligned icon"></i>
+					    <div class="content">
+					      <div class="header"><%= notice_user.notice.body %></div>
+					      <div class="description">
+						      <% notice_time = Time.now.to_time.to_i - notice_user.notice.created_at.to_time.to_i %>
+						      <%= (Time.parse("1/1") + notice_time).strftime("%-H時間%-M分%-S秒前") %>
+					      </div>
+					    </div>
+				    <% end %>
+				  <% end %>
+				</div>
+		  </div>
+		</div>
+	  <div class="one wide column">
 		  <% if user_signed_in? %>
 		  	<div class="ui dropdown" style="display:block;display: flow-root;">
-			  	<img class="ui circular right floated image user-image">
+					<img class="ui circular right floated image user-image">
 					<div class="menu">
 						<% if mypage? %>
-	            <%= link_to 'キンタロウトップへ', root_path, class:"item"%>
+	            <%= link_to 'インテルネトップへ', root_path, class:"item"%>
 						<% else %>
 							<%= link_to 'マイページへ', mypage_path, class:"item"%>
             <% end %>

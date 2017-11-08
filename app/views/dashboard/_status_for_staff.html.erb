@@ -1,4 +1,4 @@
-<div class="wrap-for-dev">
+<div class="ui raised segment">
   <h3>ステータス</h3>
   <div>
     <div>
@@ -6,13 +6,26 @@
         <h3><%= image_tag active_attendance.user.profile_photo_url %></h3>
         <h3><%= active_attendance.user.name %></h3>
         <h3>ステータス：<%= breaked?(attendance:active_attendance) ? "休憩中" : "業務中"%></h3>
-        <h3>シフト予定：<%= today_schedule(user: active_attendance.user).work_started_at.strftime("%-H時%M分") %> ~ <%= today_schedule(user: active_attendance.user).work_ended_at.strftime("%-H時%M分") %></h3>
-        <h3>タスク：<%= today_schedule(user: active_attendance.user).tasks.last.title %></h3>
-        <h3>今後のシフト予定：
-          <% after_schedules(user: active_attendance.user).each do |schedule| %>
-            <%= schedule.work_started_at.strftime("%m月%d日 %-H時%M分") %> ~ <%= schedule.work_ended_at.strftime("%-H時%M分") %>,
-          <% end %>
-        </h3>
+        <% if today_schedule(user: active_attendance.user) != nil %>
+          <h3>シフト予定：<%= today_schedule(user: active_attendance.user).work_started_at.strftime("%-H時%M分") %> ~ <%= today_schedule(user: active_attendance.user).work_ended_at.strftime("%-H時%M分") %></h3>
+        <% else %>
+          <h3>シフト予定：本日のシフトは登録されておりません。</h3>
+        <% end %>
+        <% if today_schedule(user: active_attendance.user) != nil %>
+          <h3>タスク：<%= today_schedule(user: active_attendance.user).tasks.last.title %></h3>
+        <% else %>
+          <h3>タスク：タスクが登録されておりません。</h3>
+        <% end %>
+        <% if after_schedules(user: active_attendance.user) != [] %>
+          <h3>今後のシフト予定：
+            <% after_schedules(user: active_attendance.user).each do |schedule| %>
+              <%= schedule.work_started_at.strftime("%m月%d日 %-H時%M分") %> ~ <%= schedule.work_ended_at.strftime("%-H時%M分") %>,
+            <% end %>
+          </h3>
+        <% else %>
+          <h3>今後のシフト予定：シフトが登録されておりません</h3>
+        <% end %>
+
       <% end %>
       <%= "出勤中のインターン生はいません。" if @active_attendances == [] %>
     </div>

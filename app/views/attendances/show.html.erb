@@ -11,7 +11,7 @@
 </div>
 
 <div>
-  <% if current_user.employment_status == 0 %>
+  <% if current_user.employment_status == false %>
     <%= link_to '編集', edit_attendance_path(@attendance)%>
   <% end %>
   <%= link_to '戻る', attendances_path%>
