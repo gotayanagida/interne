@@ -53,3 +53,4 @@ production:
   database: interne_production
   username: interne
   password: <%= ENV['interne_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
