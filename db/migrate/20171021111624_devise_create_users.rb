@@ -8,8 +8,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :position
       t.boolean :gender
       t.date :birthday
-      t.string :profile_photo_url
-      t.string :home_photo_url
+      t.string :profile_photo_url, default: "company.gif"
+      t.string :home_photo_url, default: "home.png"
       t.boolean :employment_status
       t.string :provider
       t.string :uid

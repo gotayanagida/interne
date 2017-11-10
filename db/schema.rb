@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20171028030508) do
     t.string "name"
     t.string "hp_addr"
     t.string "number_of_interns"
-    t.string "home_photo_url"
-    t.string "icon_photo_url"
+    t.string "home_photo_url", default: "home.png"
+    t.string "icon_photo_url", default: "pf.jpg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -237,8 +237,8 @@ ActiveRecord::Schema.define(version: 20171028030508) do
     t.string "position"
     t.boolean "gender"
     t.date "birthday"
-    t.string "profile_photo_url"
-    t.string "home_photo_url"
+    t.string "profile_photo_url", default: "company.gif"
+    t.string "home_photo_url", default: "home.png"
     t.boolean "employment_status"
     t.string "provider"
     t.string "uid"
