@@ -1,9 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-  <h3>会社名：<%= @company.name %></h3>
-  <h3>HPアドレス：<%= @company.hp_addr %></h3>
-  <h3>インターン数：<%= @company.number_of_interns %></h3>
-  <h3>ホーム写真：<%= image_tag @company.home_photo_url %></h3>
-  <h3>会社アイコン：<%= image_tag  @company.icon_photo_url %></h3>
-
+<div class="ui center aligned raised segment" style="z-index:-5;">
+  <%= image_tag @company.home_photo_url %>
+  <%= image_tag  @company.icon_photo_url %>
+  <h1><%= @company.name %></h1>
+  <p><%= @company.hp_addr %><p>
+</div>
+<div class="ui raised segment" style="z-index:-5;">
+  <%= render "users", users: @users%>
+</div>
 <%= link_to '編集', edit_company_path(@company) %>

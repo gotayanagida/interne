@@ -123,21 +123,9 @@ $(document).ready(function(){
         勤怠
         <%end%>
       <%end%>
-      <% if current_page?(controller: 'users')%>
-        <%= link_to users_path,class:"active teal item pjax" do%>
-        <i class="users icon"></i>
-        メンバー
-       <%end%>
-      <%else%>
-        <%= link_to users_path,class:"teal item pjax" do%>
-        <i class="users icon"></i>
-        メンバー
-       <%end%>
-      <%end%>
-      <!--会社設定のところは設定方法わからん-->
       <%= link_to company_path(current_company),class:"teal item pjax" do%>
         <i class="users icon"></i>
-        会社設定
+        会社情報
       <%end%>
     </div>
   </div>
