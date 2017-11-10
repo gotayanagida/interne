@@ -22,4 +22,4 @@ Stamp.create(url:"nico.png", name:"nico")
 Stamp.create(url:"mima.png", name:"mima")
 Stamp.create(url:"suba.gif", name:"suba")
 Stamp.create(url:"gan.png", name:"gan")
-Stamp.create(url:"yoku.png", name:"yoku")　
+Stamp.create(url:"yoku.png", name:"yoku")
