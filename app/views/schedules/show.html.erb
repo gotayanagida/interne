@@ -10,5 +10,5 @@
   <% if @schedule.user_id == current_user.id %>
     <%= link_to '編集', edit_schedule_path(@schedule)%>
   <% end %>
-  <%= link_to '戻る', schedule_path%>
+  <%= link_to '戻る', schedules_path%>
 </div>
