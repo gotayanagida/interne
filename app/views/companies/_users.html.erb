@@ -1,0 +1,50 @@
+<div class="ui cards stackable">
+  <% users.each do |user| %>
+  <div class="card">
+    <div class="content">
+      <div class="ui dropdown right floated">
+      	<i class="options icon"></i>
+      	<div class="menu">
+      	    <% if user.id == current_user.id %>
+		    <%= link_to user ,class: "item" do%>詳細<% end%>
+		    <%= link_to edit_task_path(user) ,class: "item" do%>編集<% end%>
+		    <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } ,class: "item" do%>削除<%end%>
+		    <% else %>
+		    <%= link_to user ,class: "item" do%>詳細<% end%>
+		    <% end %>
+      	</div>
+      </div>
+      <%= image_tag user.profile_photo_url, class: "ui left floated mini image"%>
+      <div class="header">
+        <%= user.name %>
+      </div>
+      <div class="meta">
+        <%= user.university %> <%= user.department %> <%= user.grade %>年
+      </div>
+      <div class="description">
+        「<% if user.goals != [] %>
+	        <%= user.goals.last.title %>
+	      <% else %>
+	        目標が登録されていません:(
+	      <% end %>」
+      </div>
+    </div>
+    <div class="extra content">
+      <span class="right floated">
+        　<% if user.schedules != [] %>
+	        <%= user.schedules.last.work_started_at.strftime('%m/%d(%a) %-H:%M') %>
+	      <% else %>
+	        登録されていません
+	      <% end %>
+      </span>
+      <span>
+        <i class="calendar icon"></i>
+        次回出勤
+      </span>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div>
+  <%= paginate @users %>
+</div>

@@ -10,6 +10,8 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    users = current_company.users.where(employment_status:1)
+    @users = users.page(params[:page]).per(10)
   end
 
   # GET /companies/new
