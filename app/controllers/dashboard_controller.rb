@@ -15,17 +15,18 @@ class DashboardController < ApplicationController
       else
         @user = current_company.users.find(current_user.id)
         #4 buttons
-        now_time = Time.now.to_time.to_i
-        work_started_time = @user.attendances.last.work_started_at.to_i
-        work_stopped_time = @user.attendances.last.work_stopped_at.to_i
-        break_started_time = @user.attendances.last.break_started_at.to_i
-        break_stopped_time = @user.attendances.last.break_stopped_at.to_i
-        @break_time = 0.to_i if attendance_status(user:@user) == "am_work"
-        @break_time = now_time - break_started_time if attendance_status(user:@user) == "break"
-        @break_time = break_stopped_time - break_started_time if attendance_status(user:@user) == "pm_work" || attendance_status(user:@user) == "not_work"
-        @attendance_time = now_time - work_started_time - @break_time
-        @last_attendance_time = work_stopped_time - work_started_time - @break_time.to_i if attendance_status(user:@user) == "not_work"
-
+        if @user.attendances != []
+          now_time = Time.now.to_time.to_i
+          work_started_time = @user.attendances.last.work_started_at.to_i
+          work_stopped_time = @user.attendances.last.work_stopped_at.to_i
+          break_started_time = @user.attendances.last.break_started_at.to_i
+          break_stopped_time = @user.attendances.last.break_stopped_at.to_i
+          @break_time = 0.to_i if attendance_status(user:@user) == "am_work"
+          @break_time = now_time - break_started_time if attendance_status(user:@user) == "break"
+          @break_time = break_stopped_time - break_started_time if attendance_status(user:@user) == "pm_work" || attendance_status(user:@user) == "not_work"
+          @attendance_time = now_time - work_started_time - @break_time
+          @last_attendance_time = work_stopped_time - work_started_time - @break_time.to_i if attendance_status(user:@user) == "not_work"
+        end
         #その日の出勤シフトについて
         today_work_schedule = current_company.schedules.where(user_id: current_user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first
         if today_work_schedule != nil
