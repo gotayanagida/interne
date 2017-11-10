@@ -2,14 +2,14 @@
 <html style="-webkit-overflow-scrolling: touch;">
   <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0" >
-    <title>インテルネ - インターンをまるごと管理する</title>
+    <title>インテルネ - インターンシップをまるごと管理</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.js"></script>
-
+    <%= analytics_init if Rails.env.production? %>
     <script type="text/javascript">
 	    //pjax init
 		$(function(){
