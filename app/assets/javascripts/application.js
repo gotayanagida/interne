@@ -10,13 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require_tree .
 //= require jquery
+//= require rails-ujs
+//= require turbolinks
 //= require moment
 //= require fullcalendar
 //= require underscore
-//= require jquery_ujs
 //= require rails-ujs
 // Loads all Semantic javascripts
 //= require semantic-ui
+//= require calendar
+//= require_tree .

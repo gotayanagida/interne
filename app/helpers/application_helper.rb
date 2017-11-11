@@ -98,4 +98,8 @@ module ApplicationHelper
     recent_notice_users = current_user.notice_users.limit(5).reverse_order
   end
 
+  def todo_users
+    todo_users = current_user.todo_users.reverse_order
+  end
+
 end

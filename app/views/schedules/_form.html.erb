@@ -1,4 +1,4 @@
-<%= form_with(model: schedule, local: true) do |form| %>
+<%= form_with(model: schedule, local: true, class: "ui form") do |form| %>
   <% if schedule.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -19,17 +19,37 @@
     <%= form.hidden_field :company_id, value: current_company.id %>
   </div>
 
-  <div class="field">
-    <%= form.label "勤務開始時間" %>
-    <%= form.datetime_select :work_started_at, id: :schedule_work_started_at %>
-  </div>
-
-  <div class="field">
-    <%= form.label "勤務終了時間" %>
-    <%= form.datetime_select :work_ended_at, id: :schedule_work_ended_at %>
-  </div>
+    <div class="ui form">
+      <div class="two fields">
+        <div class="field">
+          <div class="ui calendar" id="rangestart">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+                <%= form.text_field :work_started_at, id: :schedule_work_started_at, placeholder: "シフト開始" %>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui calendar" id="rangeend">
+            <div class="ui input left icon">
+              <i class="calendar icon"></i>
+                <%= form.text_field :work_ended_at, id: :schedule_work_ended_at, placeholder: "シフト終了" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+  <script>
+  $('#rangestart').calendar({
+    endCalendar: $('#rangeend')
+  });
+  $('#rangeend').calendar({
+    startCalendar: $('#rangestart')
+  });
+  </script>
