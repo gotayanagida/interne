@@ -17,15 +17,20 @@
 
   <div class="field">
     <%= form.label 'インターン生を選択' %>
-    <%= form.collection_select :user_id, current_company.users, :id, :name %>
+    <% user_options = current_company.users.order(:id).map { |user| [user.name, user.id, data: { schedule_path: user_selected_user_schedules_path(user.id) }] } %>
+    <%= form.select :user_id, user_options, { include_blank: true }, class: 'select-user' %>
   </div>
 
   <div class="field">
     <%= form.fields_for :task_schedules do |task_schedule| %>
-      <%= task_schedule.label "日程を選択" %>
-      <%= task_schedule.collection_select :schedule_id, current_company.schedules, :id, :work_started_at %>
+      <%= task_schedule.label '日程を選択' %>
+      <% if schedules = @task.user.try(:schedules) || [] %>
+        <% schedule_options = schedules.map { |schedule| [schedule.work_started_at, schedule.id] } %>
+        <%= task_schedule.select :schedule_id, schedule_options, { include_blank: true }, class: 'select-schedule' %>
+      <% end %>
     <% end %>
   </div>
+
 
   <div class="field">
     <%= form.label 'タスクのタイトル' %>

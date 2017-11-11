@@ -90,6 +90,7 @@ GEM
       momentjs-rails (>= 2.9.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    google-analytics-rails (1.1.1)
     guard (2.14.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -313,6 +314,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   fullcalendar-rails
+  google-analytics-rails
   guard-rspec
   jbuilder (~> 2.5)
   jquery-rails
@@ -344,4 +346,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.16.0.pre.3
+   1.16.0
