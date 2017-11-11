@@ -1,9 +1,37 @@
-
 <% if current_user.employment_status == false %>
+  <%= render 'schedules' %>
+
+  <div class="ui grid">
+    <div class="eight wide column">
+      <div class="ui raised segment">
+        <%= render 'tasks' %>
+      </div>
+    </div>
+    <div class="eight wide column">
+      <div class="ui raised segment">
+        <%= render 'reports' %>
+      </div>
+    </div>
+    <div class="sixteen wide column">
+      <div class="ui raised segment">
+        <%= render 'users' %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <% if current_company != nil %>
+    <%= render '4buttons' %>
+    <%= render 'status_for_intern' %>
+    <%= render 'schedules' %>
+  <% else %>
+    <%= render 'no_company' %>
+  <% end %>
+<% end %>
+
+<!-- <% if current_user.employment_status == false %>
   <% #社員用画面 %>
   <%= render 'status_for_staff' %>
   <%= render 'todo_list' %>
-  <!-- <%= render 'notice_list' %> -->
   <%= render 'future_schedule_for_staff' %>
   <%= render 'invite_intern' %>
 <% else %>
@@ -11,10 +39,9 @@
     <% #インターン生用画面 %>
     <%= render '4buttons' %>
     <%= render 'status_for_intern' %>
-    <!-- <%= render 'notice_list' %> -->
     <%= render 'regist_schedule', schedule: @schedule %>
     <%= render 'future_schedule_for_intern' %>
   <% else %>
     <%= render 'no_company' %>
   <% end %>
-<% end %>
+<% end %> -->

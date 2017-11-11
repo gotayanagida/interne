@@ -51,11 +51,10 @@
 		  	<div class="ui dropdown" style="display:block;display: flow-root;">
 					<img class="ui circular right floated image user-image">
 					<div class="menu">
-						<% if mypage? %>
-	            <%= link_to 'インテルネトップへ', root_path, class:"item"%>
-						<% else %>
-							<%= link_to 'マイページへ', mypage_path, class:"item"%>
-            <% end %>
+            <%= link_to 'インテルネトップへ', root_path, class:"item"%>
+						<%= link_to 'マイページへ', mypage_path, class:"item"%>
+          	<%= link_to '会社情報', company_path(current_company), class:"item"%>
+          	<%= link_to '勤怠管理', attendances_path, class:"item"%>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete,class:"item"%>
 					</div>
 			  </div>

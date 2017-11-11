@@ -1,0 +1,39 @@
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('.ui.dropdown').dropdown();
+		});
+</script>
+<h3>タスク</h3>
+<div class="left floated column">
+	<%= link_to new_task_path, class: "ui labeled icon button" do%>
+	<i class="plus icon"></i>タスクを追加
+	<% end %>
+</div>
+<div class="ui relaxed divided list">
+<% @tasks.each do |task| %>
+  <div class="item">
+    <% if task.user_id == current_user.id %>
+    <div class="right floated content">
+      <%= link_to edit_task_path(task), class:"ui button" do%>
+      編集
+      <%end%>
+      <%= link_to task, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"ui button" do%>
+      削除
+      <%end%>
+    </div>
+    <% end %>
+    <img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
+    <div class="content">
+      <%= link_to task ,class: "header" do%>
+      	<%= task.title %>
+      <%end%>
+      <div class="description">
+      <% task.task_schedules.each do |task_schedule| %>
+          <%= task.detail %>
+          <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %><br>
+      <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>

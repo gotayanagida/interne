@@ -66,19 +66,6 @@ $(document).ready(function(){
         ダッシュボード
         <%end%>
       <%end%>
-
-      <% if current_page?(controller: 'schedules')%>
-        <%= link_to schedules_path,class:"active teal item pjax" do%>
-        <i class="calendar icon"></i>
-        カレンダー
-        <%end%>
-      <%else%>
-        <%= link_to schedules_path,class:"teal item pjax" do%>
-        <i class="calendar icon"></i>
-        カレンダー
-        <%end%>
-      <%end%>
-
       <% if current_page?(controller: 'reports')%>
         <%= link_to reports_path,class:"active teal item pjax" do%>
         <i class="sticky note icon"></i>
@@ -100,32 +87,6 @@ $(document).ready(function(){
         <i class="tasks icon"></i>
         タスク
         <%end%>
-      <%end%>
-      <% if current_page?(controller: 'goals')%>
-        <%= link_to goals_path,class:"active teal item pjax" do%>
-        <i class="flag checkered icon"></i>
-        目標
-        <%end%>
-      <%else%>
-        <%= link_to goals_path,class:"teal item pjax" do%>
-        <i class="flag checkered icon"></i>
-        目標
-        <%end%>
-      <%end%>
-      <% if current_page?(controller: 'attendances')%>
-        <%= link_to attendances_path,class:"active teal item pjax" do%>
-        <i class="building icon"></i>
-        勤怠
-        <%end%>
-      <%else%>
-        <%= link_to attendances_path,class:"teal item pjax" do%>
-        <i class="building icon"></i>
-        勤怠
-        <%end%>
-      <%end%>
-      <%= link_to company_path(current_company),class:"teal item pjax" do%>
-        <i class="users icon"></i>
-        会社情報
       <%end%>
     </div>
   </div>
