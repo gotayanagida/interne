@@ -1,4 +1,4 @@
-<%= form_with(model: report, local: true) do |form| %>
+<%= form_with(model: report, local: true, class: "ui form") do |form| %>
   <% if report.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
@@ -21,7 +21,8 @@
 
   <div class="field">
     <%= form.label "出勤日を選択" %>
-    <%= form.collection_select :schedule_id, current_company.schedules, :id, :work_started_at %>
+    <% @current_user_schedules = current_company.schedules.where(user_id:current_user.id) %>
+    <%= form.collection_select :schedule_id, @current_user_schedules, :id, :simple_work_started_at %>
   </div>
 
   <div class="field">
