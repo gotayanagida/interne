@@ -31,6 +31,13 @@
     <% end %>
   </div>
 
+  <div class="field">
+    <%= form.fields_for :task_tags do |task_tag| %>
+      <%= task_tag.label 'タグを選択' %>
+      <%= task_tag.collection_select :tag_id, current_company.tags, :id, :name %>
+    <% end %>
+  </div>
+
 
   <div class="field">
     <%= form.label 'タスクのタイトル' %>

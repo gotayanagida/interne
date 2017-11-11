@@ -5,6 +5,15 @@
   <h3><%= @task.user.name %></h3>
   <h3>タイトル：<%= @task.title %></h3>
   <h3>内容：<%= simple_format(@task.detail) %></h3>
+  <h3>予定：
+  <% @task.task_schedules.each do |task_schedule| %>
+    <%= task_schedule.schedule.work_started_at %></h3>
+  <% end %>
+  <h3>タグ：
+  <% @task.task_tags.each do |task_tag| %>
+    <%= task_tag.tag.name %></h3>
+  <% end %>
+
   <h3>作成日時：<%= @task.created_at.strftime("%m月%d日 %-H時%M分") %></h3>
   <h3>最終更新日時：<%= @task.updated_at.strftime("%m月%d日 %-H時%M分") %></h3>
 </div>

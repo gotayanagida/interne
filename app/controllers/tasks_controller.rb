@@ -34,6 +34,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     schedule = Schedule.find(params[:task][:task_schedules][:schedule_id])
     schedule.tasks << @task
+    tag = Tag.find(params[:task][:task_tags][:tag_id])
+    tag.tasks << @task
 
     respond_to do |format|
       if @task.save
