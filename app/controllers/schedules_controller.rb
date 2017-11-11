@@ -61,6 +61,11 @@ class SchedulesController < ApplicationController
     end
   end
 
+  def selected_user_schedules
+    user = User.find(params[:user_id])
+    render json: user.schedules.select(:id, :work_started_at)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule

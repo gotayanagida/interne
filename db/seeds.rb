@@ -36,11 +36,11 @@ user.save!
 user = User.new(name:"社員政子",password:"aaaaaa",department:"マーケティング本部",position:"部長",email:"n@a.com",gender:1,birthday:"1980/1/1",profile_photo_url:"pf.jpg",employment_status:0,home_photo_url:"home.png")
 user.save!
 
-Company.create(name:"トヨタ自動車株式会社",hp_addr:"http://toyoya.co.jp",number_of_interns:"-10",home_photo_url:"home.png",icon_photo_url:"company.gif")
-Company.create(name:"マツダ自動車株式会社",hp_addr:"http://toyoya.co.jp",number_of_interns:"-10",home_photo_url:"home.png",icon_photo_url:"company.gif")
-Company.create(name:"日産自動車株式会社",hp_addr:"http://toyoya.co.jp",number_of_interns:"-10",home_photo_url:"home.png",icon_photo_url:"company.gif")
-Company.create(name:"ホンダ自動車株式会社",hp_addr:"http://toyoya.co.jp",number_of_interns:"-10",home_photo_url:"home.png",icon_photo_url:"company.gif")
-Company.create(name:"三菱自動車株式会社",hp_addr:"http://toyoya.co.jp",number_of_interns:"-10",home_photo_url:"home.png",icon_photo_url:"company.gif")
+Company.create(name:"トヨタ自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
+Company.create(name:"マツダ自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
+Company.create(name:"日産自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
+Company.create(name:"ホンダ自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
+Company.create(name:"三菱自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
 
 Task.create(user_id:1,company_id:1,title:"データ解析",detail:"〇〇サービスのランディングページのデータ解析",status_code:1)
 Task.create(user_id:2,company_id:1,title:"アプリ開発",detail:"〇〇サービスのアプリケーション開発",status_code:0)
@@ -303,3 +303,7 @@ ReportStamp.create(report_id:1,stamp_id:1,user_id:13)
 GoalStamp.create(goal_id:1,stamp_id:1,user_id:1)
 GoalStamp.create(goal_id:2,stamp_id:1,user_id:1)
 GoalStamp.create(goal_id:2,stamp_id:1,user_id:13)
+
+Tag.create(name:"開発",company_id:1)
+Tag.create(name:"営業",company_id:1)
+Tag.create(name:"企画",company_id:1)
