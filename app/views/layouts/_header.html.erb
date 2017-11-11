@@ -27,9 +27,25 @@
 			<h3><%= "ダッシュボード"%><span>　　　　　　　　　　　　　　　（開発用メモ：<%= current_user.name %>、<%= current_user.employment_status ? "インターン生" : "社員" %>）</span></h3>
 	  </div>
 	  <div class="one wide column">
+			<div class="ui dropdown">
+				やることリスト
+				<div class="menu">
+					<% todo_users.each do |todo_user| %>
+				    <%= link_to todo_path(todo_user.todo), class:"item future" do %>
+					    <i class="large info circle middle aligned icon"></i>
+					    <div class="content">
+					      <div class="header"><%= todo_user.todo.body %></div>
+					      <div class="description">
+						      <% todo_time = Time.now.to_time.to_i - todo_user.todo.created_at.to_time.to_i %>
+						      <%= (Time.parse("1/1") + todo_time).strftime("%-H時間%-M分%-S秒前") %>
+					      </div>
+					    </div>
+				    <% end %>
+				  <% end %>
+				</div>
+		  </div>
 			<div class="ui dropdown" style="display:block;display: flow-root;">
-				<img class="ui circular right floated image notice-btn-image">
-				<img class="ui circular right floated image notice-num-image">
+				お知らせ
 				<div class="menu">
 					<% recent_notice_users.each do |notice_user| %>
 				    <%= link_to notice_path(notice_user.notice), class:"item future" do %>
