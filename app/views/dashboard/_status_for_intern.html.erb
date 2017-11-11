@@ -7,7 +7,6 @@
   $('#countdown').timeTo();
   </script>-->
 
-<div class="ui raised segment" style="z-index:-5;">
   <h3>ステータス</h3>
   <% if @user.attendances != [] %>
   <% if @user.attendances.last.work_stopped_at.nil? %>
@@ -98,4 +97,3 @@
       </h3>
     </div>
     <% end %>
-  </div>

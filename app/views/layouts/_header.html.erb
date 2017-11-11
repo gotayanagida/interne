@@ -53,9 +53,11 @@
 					<div class="menu">
             <%= link_to 'インテルネトップへ', root_path, class:"item"%>
 						<%= link_to 'マイページへ', mypage_path, class:"item"%>
-          	<%= link_to '会社情報', company_path(current_company), class:"item"%>
-          	<%= link_to '勤怠管理', attendances_path, class:"item"%>
-            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete,class:"item"%>
+						<% if current_user.employment_status == false %>
+							<%= link_to '会社情報', company_path(current_company), class:"item"%>
+	          	<%= link_to '勤怠管理', attendances_path, class:"item"%>
+						<% end %>
+						<%= link_to 'ログアウト', destroy_user_session_path, method: :delete,class:"item"%>
 					</div>
 			  </div>
 	  	<% end %>
