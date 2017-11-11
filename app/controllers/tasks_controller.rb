@@ -7,11 +7,6 @@ class TasksController < ApplicationController
     @tasks = current_company.tasks.all.page(params[:page]).per(20).search(params[:search]).reverse_order if params[:sort] == nil && params[:uesr_id] == nil
     @tasks = current_company.tasks.order(params[:sort]).page(params[:page]).per(20) if params[:sort] != nil
     @tasks = current_company.tasks.where(user_id: params[:user_id]).reverse_order.page(params[:page]).per(20) if params[:user_id] != nil
-
-    @tasks_not_ready = @tasks.where(status_code:0)
-    @tasks_ready = @tasks.where(status_code:1)
-    @tasks_doing = @tasks.where(status_code:2)
-    @tasks_done = @tasks.where(status_code:3)
   end
 
   # GET /tasks/1
