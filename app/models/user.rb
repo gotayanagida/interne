@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :notices, through: :notice_users
   has_many :todo_users
   has_many :todos, through: :todo_users
+  has_many :task_users
+  has_many :tasks, through: :task_users
   has_many :company_users
   has_many :companies, through: :company_users
 
@@ -36,7 +38,7 @@ class User < ApplicationRecord
   #     super
   #   end
   # end
-  # 
+  #
   # def self.find_for_google_oauth2(auth)
   #   user = User.where(email: auth.info.email).first
   #   unless user

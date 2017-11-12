@@ -42,8 +42,8 @@ $(document).ready(function() {
 		sex = (uniq_title[i].charCodeAt(0)+uniq_title[i].charCodeAt(uniq_title[i].length-1))/8;
 		var my_chance=new Chance(sex);
 		var mycolor = my_chance.color({format: 'hex'});
-		var $input = $('<label><input type="checkbox" />').attr({id: uniq_title[i],name:"check"}).attr("checked", true ).css("float", "left" );
-		var $label = $('<span color='+mycolor+'>■</span>'+uniq_title[i]+'</label>');
+		var $input = $('<input type="checkbox" />').attr({id: uniq_title[i],name:"check"}).attr("checked", true ).css("float", "left" );
+		var $label = $('<label><font color='+mycolor+'>■</font>'+uniq_title[i]+'</label></br>');
 		$("#inputtest").append($input).append($label);
 	}
 
@@ -64,6 +64,7 @@ $(document).ready(function() {
 			center: 'title',
 			right: 'agendaWeek,agendaDay,month'
 		},
+    height: 500,
 		defaultView: 'agendaWeek',
 		lang: "ja",
 		slotEventOverlap: false,
@@ -122,5 +123,26 @@ $(function() {
   });
 });
 
-
 </script>
+  <h3>スケジュール</h3>
+	<% if current_user.employment_status == true %>
+		<div class="left floated column">
+			<%= link_to new_schedule_path, class: "ui labeled icon button" do%>
+			<i class="plus icon"></i>スケジュールを追加
+			<% end %>
+		</div>
+	<% end %>
+  <div class="ui grid">
+    <div class="row">
+      <div class="three wide column">
+        <div class="ui segment">
+          <div id="inputtest"></div>
+        </div>
+      </div>
+      <div class="thirteen wide column">
+        <div class="ui segment">
+          <div id='calendar'></div>
+        </div>
+      </div>
+    </div>
+  </div>

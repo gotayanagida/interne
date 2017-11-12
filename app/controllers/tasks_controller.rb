@@ -7,11 +7,6 @@ class TasksController < ApplicationController
     @tasks = current_company.tasks.all.page(params[:page]).per(20).search(params[:search]).reverse_order if params[:sort] == nil && params[:uesr_id] == nil
     @tasks = current_company.tasks.order(params[:sort]).page(params[:page]).per(20) if params[:sort] != nil
     @tasks = current_company.tasks.where(user_id: params[:user_id]).reverse_order.page(params[:page]).per(20) if params[:user_id] != nil
-
-    @tasks_not_ready = @tasks.where(status_code:0)
-    @tasks_ready = @tasks.where(status_code:1)
-    @tasks_doing = @tasks.where(status_code:2)
-    @tasks_done = @tasks.where(status_code:3)
   end
 
   # GET /tasks/1
@@ -32,10 +27,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-    schedule = Schedule.find(params[:task][:task_schedules][:schedule_id])
-    schedule.tasks << @task
-    tag = Tag.find(params[:task][:task_tags][:tag_id])
-    tag.tasks << @task
+    Task.associate_task(params:params, task: @task)
 
     respond_to do |format|
       if @task.save
@@ -51,6 +43,7 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    Task.associate_task(params:params, task: @task)
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to @task, notice: 'Task was successfully updated.' }

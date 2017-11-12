@@ -3,6 +3,14 @@ class DashboardController < ApplicationController
     redirect_to update_user_after_login_path if session[:after_sign_up] == true
     session[:mypage] = false
 
+    @schedules = current_company.schedules.all
+    @tasks = current_company.tasks.all.limit(5).reverse_order
+    @reports = current_company.reports.limit(5).reverse_order
+    users = current_company.users.where(employment_status:1)
+    @users = users.page(params[:page]).per(10)
+
+
+
     if current_company != nil
       if current_user.employment_status == false
         #社員用ダッシュボード

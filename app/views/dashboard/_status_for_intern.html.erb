@@ -7,7 +7,6 @@
   $('#countdown').timeTo();
   </script>-->
 
-<div class="ui raised segment" style="z-index:-5;">
   <h3>ステータス</h3>
   <% if @user.attendances != [] %>
   <% if @user.attendances.last.work_stopped_at.nil? %>
@@ -35,8 +34,12 @@
 		    </tr>
 		    <tr>
 		      <td><i class="large checkmark box middle aligned icon"></i>今日のタスク</td>
-		      <td><%= @user.tasks.last.title %></td>
-		    </tr>
+          <% unless @user.task_users == [] %>
+            <td><%= @user.task_users.last.task.title %></td>
+          <% else %>
+            <td>"登録なし"</td>
+          <% end %>
+        </tr>
 		  </tbody>
 		</table>
       </div>
@@ -76,7 +79,11 @@
 		    </tr>
 		    <tr>
 		      <td><i class="large moon middle aligned icon"></i>次回タスク</td>
-		      <td><%= @user.tasks.last.title %></td>
+        <% unless @user.task_users == [] %>
+          <td><%= @user.task_users.last.task.title %></td>
+        <% else %>
+          <td>"登録なし"</td>
+        <% end %>
 		    </tr>
 		    <tr>
 		      <td><i class="large checkmark box middle aligned icon"></i>前回勤務時間</td>
@@ -98,4 +105,3 @@
       </h3>
     </div>
     <% end %>
-  </div>

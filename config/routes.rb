@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tags
+  resources :labels
   root to: "dashboard#index"
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/update_user_after_login', to: 'users#update_user_after_login', as: 'update_user_after_login'
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   omniauth_callbacks: "users/omniauth_callbacks"
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users
   resources :users, only: [] do
     get "/schedules", to: "schedules#selected_user_schedules", as:"selected_user_schedules"
   end

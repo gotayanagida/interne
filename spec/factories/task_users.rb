@@ -1,6 +1,6 @@
 FactoryGirl.define do
-  factory :task_tag do
+  factory :task_user do
     task nil
-    tag nil
+    user nil
   end
 end
