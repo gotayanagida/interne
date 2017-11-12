@@ -16,15 +16,17 @@
   </div>
 
   <div class="field">
-    <%= form.label 'インターン生を選択' %>
-    <% user_options = current_company.users.order(:id).map { |user| [user.name, user.id, data: { schedule_path: user_selected_user_schedules_path(user.id) }] } %>
-    <%= form.select :user_id, user_options, { include_blank: true }, class: 'select-user' %>
+    <%= form.fields_for :task_users do |task_user| %>
+      <%= task_user.label 'インターン生を選択' %>
+      <% user_options = current_company.users.order(:id).map { |user| [user.name, user.id, data: { schedule_path: user_selected_user_schedules_path(user.id) }] } %>
+      <%= task_user.select :user_id, user_options, { include_blank: true }, class: 'select-user'%>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.fields_for :task_schedules do |task_schedule| %>
       <%= task_schedule.label '日程を選択' %>
-      <% if schedules = @task.user.try(:schedules) || [] %>
+        <% if schedules = @task.users.try(:schedules) || [] %>
         <% schedule_options = schedules.map { |schedule| [schedule.work_started_at, schedule.id] } %>
         <%= task_schedule.select :schedule_id, schedule_options, { include_blank: true }, class: 'select-schedule' %>
       <% end %>
@@ -32,9 +34,9 @@
   </div>
 
   <div class="field">
-    <%= form.fields_for :task_tags do |task_tag| %>
-      <%= task_tag.label 'タグを選択' %>
-      <%= task_tag.collection_select :tag_id, current_company.tags, :id, :name %>
+    <%= form.fields_for :task_labels do |task_label| %>
+      <%= task_label.label 'ラベルを選択' %>
+      <%= task_label.collection_select :label_id, current_company.labels, :id, :name ,{ include_blank: true }%>
     <% end %>
   </div>
 

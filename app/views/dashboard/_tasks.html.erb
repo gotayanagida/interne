@@ -8,11 +8,13 @@
 	<%= link_to new_task_path, class: "ui labeled icon button" do%>
 	<i class="plus icon"></i>タスクを追加
 	<% end %>
+	<%= link_to labels_path, class: "ui button" do%>
+	ラベル管理
+	<% end %>
 </div>
 <div class="ui relaxed divided list">
 <% @tasks.each do |task| %>
   <div class="item">
-    <% if task.user_id == current_user.id %>
     <div class="right floated content">
       <%= link_to edit_task_path(task), class:"ui button" do%>
       編集
@@ -21,16 +23,18 @@
       削除
       <%end%>
     </div>
-    <% end %>
     <img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
     <div class="content">
       <%= link_to task ,class: "header" do%>
       	<%= task.title %>
       <%end%>
       <div class="description">
+      <%= task.detail %>
       <% task.task_schedules.each do |task_schedule| %>
-          <%= task.detail %>
-          <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %><br>
+        <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %><br>
+      <% end %>
+			<% task.task_labels.each do |task_label| %>
+        <div style="background-color:<%= task_label.label.color %>;"><%= task_label.label.name%></div>
       <% end %>
       </div>
     </div>
