@@ -11,57 +11,26 @@
 		<% end %>
 	</div>
 <% end %>
-<div class="ui three cards stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
-  <% @reports.each do |report| %>
-  <div class="card">
-    <div class="content" style="background-image: url('../assets/mima-opa.png');background-position: right bottom; background-repeat: no-repeat;">
-      <% if report.user_id == current_user.id %>
-      <div class="ui dropdown right floated">
-      	<i class="options icon"></i>
-      	<div class="menu">
-      		    <%= link_to report ,class: "item" do%>詳細<% end%>
-      		    <%= link_to edit_report_path(report) ,class: "item" do%>編集<% end%>
-      		    <%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%>
-      	</div>
-      </div>
-      <% end %>
-      <%= image_tag report.user.profile_photo_url, class: "left floated mini ui image"%>
-      <div class="header">
-        <%= report.user.name %>
-      </div>
-      <div class="meta">
-        <%= report.schedule.work_started_at.strftime('%m/%d') %>
-      </div>
-      <div class="description">
-        「<%= report.title %>」
-        <div style="font-size:10px;"><%= report.body %></div>
-      </div>
+<div class="ui relaxed divided list">
+<% @reports.each do |report| %>
+  <div class="item">
+    <div class="right floated content">
+      <%= link_to report, class:"ui button" do%>
+      編集
+      <%end%>
+      <%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"ui button" do%>
+      削除
+      <%end%>
     </div>
-    <div class="extra content">
-	    <div class="item">
-	      <% report.report_stamps.each_with_index do |report_stamp,i| %>
-	      	<%if i==0 && report.report_stamps.length==1 %>
-	      	  <%= image_tag report_stamp.stamp.url ,class:"ui mini image left floated",style:"width:17px;height:17px;margin-bottom:0px;margin-right:0.5em;"%>
-	      	  <div class="left floated" style="font-size:9px;"><%= report_stamp.user.name %></div>
-	      	<%elsif i==0%>
-	      	  <%= image_tag report_stamp.stamp.url ,class:"ui mini image left floated",style:"width:17px;height:17px;margin-bottom:0px;margin-right:0.5em;"%>
-	      	  <div class="left floated" style="font-size:9px;"><%= report_stamp.user.name %>など<%= report.report_stamps.length %>人</div>
-	      	<%end%>
-		　   <% end %>
-	    <div class="ui dropdown right floated" style="display:block;display: flow-root;">
-        <div style="font-size:9px">スタンプ送信</div>
-          <div class="menu">
-            <% stamps.each do |stamp| %>
-              <div class="item">
-              <%= link_to press_stamp_path(stamp_id:stamp.id,associate_type:"report",associate_id:report.id) do%>
-                  <%= image_tag stamp.url %>
-              <% end %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-	    </div>
+    <img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
+    <div class="content">
+			<div class="header">
+				<%= report.user.name %> <%= report.schedule.work_started_at.strftime('%m/%d') %>
+			</div>
+      <%= link_to report ,class: "description" do%>
+      	「<%= report.title %>」
+      <%end%>
     </div>
   </div>
-  <% end %>
+<% end %>
 </div>
