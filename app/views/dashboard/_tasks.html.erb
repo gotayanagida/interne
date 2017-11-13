@@ -8,29 +8,14 @@
 	<%= link_to new_task_path, class: "ui labeled icon button" do%>
 	<i class="plus icon"></i>タスクを追加
 	<% end %>
-<<<<<<< HEAD
-<<<<<<< HEAD
 	<%= link_to labels_path, class: "ui button" do%>
 	ラベル管理
 	<% end %>
-=======
->>>>>>> 6178f2d... ダッシュボード集約型
-=======
-	<%= link_to labels_path, class: "ui button" do%>
-	ラベル管理
-	<% end %>
->>>>>>> 70dac93... タスクにタグを付与part2
 </div>
 <div class="ui relaxed divided list">
 <% @tasks.each do |task| %>
   <div class="item">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     <% if task.user_id == current_user.id %>
->>>>>>> 6178f2d... ダッシュボード集約型
-=======
->>>>>>> 70dac93... タスクにタグを付与part2
     <div class="right floated content">
       <%= link_to edit_task_path(task), class:"ui button" do%>
       編集
@@ -39,40 +24,25 @@
       削除
       <%end%>
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     <% end %>
->>>>>>> 6178f2d... ダッシュボード集約型
-=======
->>>>>>> 70dac93... タスクにタグを付与part2
     <img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
     <div class="content">
       <%= link_to task ,class: "header" do%>
       	<%= task.title %>
       <%end%>
       <div class="description">
-<<<<<<< HEAD
-<<<<<<< HEAD
       <%= task.detail %>
       <% task.task_schedules.each do |task_schedule| %>
         <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %><br>
       <% end %>
 			<% task.task_labels.each do |task_label| %>
         <div style="background-color:<%= task_label.label.color %>;"><%= task_label.label.name%></div>
-=======
       <% task.task_schedules.each do |task_schedule| %>
           <%= task.detail %>
           <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %><br>
->>>>>>> 6178f2d... ダッシュボード集約型
-=======
-      <%= task.detail %>
-      <% task.task_schedules.each do |task_schedule| %>
-        <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %><br>
       <% end %>
 			<% task.task_labels.each do |task_label| %>
         <div style="background-color:<%= task_label.label.color %>;"><%= task_label.label.name%></div>
->>>>>>> 70dac93... タスクにタグを付与part2
       <% end %>
       </div>
     </div>

@@ -19,17 +19,12 @@
     <%= form.hidden_field :company_id, value: current_company.id %>
   </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> b851605... 日付をわかりやすく
   <div class="two fields">
     <div class="field">
       <div class="ui calendar" id="rangestart">
         <div class="ui input left icon">
           <i class="calendar icon"></i>
             <%= form.text_field :work_started_at, id: :schedule_work_started_at, placeholder: "シフト開始" %>
-<<<<<<< HEAD
         </div>
       </div>
     </div>
@@ -42,34 +37,6 @@
       </div>
     </div>
   </div>
-=======
-    <div class="ui form">
-      <div class="two fields">
-        <div class="field">
-          <div class="ui calendar" id="rangestart">
-            <div class="ui input left icon">
-              <i class="calendar icon"></i>
-                <%= form.text_field :work_started_at, id: :schedule_work_started_at, placeholder: "シフト開始" %>
-            </div>
-          </div>
-=======
->>>>>>> b851605... 日付をわかりやすく
-        </div>
-      </div>
-    </div>
-    <div class="field">
-      <div class="ui calendar" id="rangeend">
-        <div class="ui input left icon">
-          <i class="calendar icon"></i>
-            <%= form.text_field :work_ended_at, id: :schedule_work_ended_at, placeholder: "シフト終了" %>
-        </div>
-      </div>
-    </div>
-<<<<<<< HEAD
->>>>>>> 632ff4e... シフト入力をやりやすくした
-=======
-  </div>
->>>>>>> b851605... 日付をわかりやすく
 
   <div class="actions">
     <%= form.submit %>

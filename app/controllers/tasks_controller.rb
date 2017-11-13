@@ -27,19 +27,8 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-<<<<<<< HEAD
-<<<<<<< HEAD
     Task.associate_task(params:params, task: @task)
-=======
-    schedule = Schedule.find(params[:task][:task_schedules][:schedule_id])
-    schedule.tasks << @task
-    tag = Tag.find(params[:task][:task_tags][:tag_id])
-    tag.tasks << @task
->>>>>>> 0b1d4ca... タスクにタグを追加
-=======
-    Task.associate_task(params:params, task: @task)
->>>>>>> 70dac93... タスクにタグを付与part2
-
+  
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
