@@ -1,4 +1,4 @@
-<h3>インターンシップ生</h3> 
+<h3>インターンシップ生</h3>
 <div class="ui cards stackable">
   <% @users.each do |user| %>
   <div class="card">
@@ -15,7 +15,7 @@
 		      <% end %>
       	</div>
       </div>
-      <%= image_tag user.profile_photo_url, class: "ui left floated mini image"%>
+      <%= image_tag user.profile_photo_url, class: "ui left floated avatar image"%>
       <div class="header">
         <%= user.name %>
       </div>
