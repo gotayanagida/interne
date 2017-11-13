@@ -42,8 +42,8 @@ $(document).ready(function() {
 		sex = (uniq_title[i].charCodeAt(0)+uniq_title[i].charCodeAt(uniq_title[i].length-1))/8;
 		var my_chance=new Chance(sex);
 		var mycolor = my_chance.color({format: 'hex'});
-		var $input = $('<input type="checkbox" />').attr({id: uniq_title[i],name:"check"}).attr("checked", true ).css("float", "left" );
-		var $label = $('<label><font color='+mycolor+'>■</font>'+uniq_title[i]+'</label></br>');
+		var $input = $('<label><input type="checkbox" />').attr({id: uniq_title[i],name:"check"}).attr("checked", true ).css("float", "left" );
+		var $label = $('<span color='+mycolor+'>■</span>'+uniq_title[i]+'</label>');
 		$("#inputtest").append($input).append($label);
 	}
 

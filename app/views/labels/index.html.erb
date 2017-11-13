@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>ラベル</h1>
+
+<div class="ui relaxed divided list">
+<% @labels.each do |label| %>
+  <div class="item">
+    <div class="right floated content">
+      <%= link_to edit_label_path(label), class:"ui button" do%>
+      編集
+      <%end%>
+      <%= link_to label, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"ui button" do%>
+      削除
+      <%end%>
+    </div>
+    <div class="content">
+      <%= link_to label ,class: "header" do%>
+      	<%= label.name %>
+      <%end%>
+    </div>
+    <div class="description">
+      <div style="background-color:<%= label.color %>;"><%= label.color %></div>
+      <%= label.counter %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<%= link_to 'ラベル追加', new_label_path %>

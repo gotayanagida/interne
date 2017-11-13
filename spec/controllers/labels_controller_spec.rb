@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe TagsController, type: :controller do
+RSpec.describe LabelsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # Tag. As you add validations to Tag, be sure to
+  # Label. As you add validations to Label, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe TagsController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # TagsController. Be sure to keep this updated too.
+  # LabelsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      tag = Tag.create! valid_attributes
+      label = Label.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -51,8 +51,8 @@ RSpec.describe TagsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      tag = Tag.create! valid_attributes
-      get :show, params: {id: tag.to_param}, session: valid_session
+      label = Label.create! valid_attributes
+      get :show, params: {id: label.to_param}, session: valid_session
       expect(response).to be_success
     end
   end
@@ -66,29 +66,29 @@ RSpec.describe TagsController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      tag = Tag.create! valid_attributes
-      get :edit, params: {id: tag.to_param}, session: valid_session
+      label = Label.create! valid_attributes
+      get :edit, params: {id: label.to_param}, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Tag" do
+      it "creates a new Label" do
         expect {
-          post :create, params: {tag: valid_attributes}, session: valid_session
-        }.to change(Tag, :count).by(1)
+          post :create, params: {label: valid_attributes}, session: valid_session
+        }.to change(Label, :count).by(1)
       end
 
-      it "redirects to the created tag" do
-        post :create, params: {tag: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Tag.last)
+      it "redirects to the created label" do
+        post :create, params: {label: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(Label.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {tag: invalid_attributes}, session: valid_session
+        post :create, params: {label: invalid_attributes}, session: valid_session
         expect(response).to be_success
       end
     end
@@ -100,41 +100,41 @@ RSpec.describe TagsController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested tag" do
-        tag = Tag.create! valid_attributes
-        put :update, params: {id: tag.to_param, tag: new_attributes}, session: valid_session
-        tag.reload
+      it "updates the requested label" do
+        label = Label.create! valid_attributes
+        put :update, params: {id: label.to_param, label: new_attributes}, session: valid_session
+        label.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the tag" do
-        tag = Tag.create! valid_attributes
-        put :update, params: {id: tag.to_param, tag: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(tag)
+      it "redirects to the label" do
+        label = Label.create! valid_attributes
+        put :update, params: {id: label.to_param, label: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(label)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        tag = Tag.create! valid_attributes
-        put :update, params: {id: tag.to_param, tag: invalid_attributes}, session: valid_session
+        label = Label.create! valid_attributes
+        put :update, params: {id: label.to_param, label: invalid_attributes}, session: valid_session
         expect(response).to be_success
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested tag" do
-      tag = Tag.create! valid_attributes
+    it "destroys the requested label" do
+      label = Label.create! valid_attributes
       expect {
-        delete :destroy, params: {id: tag.to_param}, session: valid_session
-      }.to change(Tag, :count).by(-1)
+        delete :destroy, params: {id: label.to_param}, session: valid_session
+      }.to change(Label, :count).by(-1)
     end
 
-    it "redirects to the tags list" do
-      tag = Tag.create! valid_attributes
-      delete :destroy, params: {id: tag.to_param}, session: valid_session
-      expect(response).to redirect_to(tags_url)
+    it "redirects to the labels list" do
+      label = Label.create! valid_attributes
+      delete :destroy, params: {id: label.to_param}, session: valid_session
+      expect(response).to redirect_to(labels_url)
     end
   end
 

@@ -1,26 +1,30 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-  <h3><%= image_tag @task.user.profile_photo_url %></h3>
-  <h3><%= @task.user.name %></h3>
+  <h3>担当：
+    <% @task.task_users.each do |task_user| %>
+      <%= image_tag task_user.user.profile_photo_url %>
+      <%= task_user.user.name %>
+    <% end %>
+  </h3>
   <h3>タイトル：<%= @task.title %></h3>
   <h3>内容：<%= simple_format(@task.detail) %></h3>
   <h3>予定：
-  <% @task.task_schedules.each do |task_schedule| %>
-    <%= task_schedule.schedule.work_started_at %></h3>
-  <% end %>
-  <h3>タグ：
-  <% @task.task_tags.each do |task_tag| %>
-    <%= task_tag.tag.name %></h3>
-  <% end %>
+    <% @task.task_schedules.each do |task_schedule| %>
+      <%= task_schedule.schedule.work_started_at %>
+    <% end %>
+  </h3>
+  <h3>ラベル：
+    <% @task.task_labels.each do |task_label| %>
+      <%= task_label.label.name %>
+    <% end %>
+  </h3>
 
   <h3>作成日時：<%= @task.created_at.strftime("%m月%d日 %-H時%M分") %></h3>
   <h3>最終更新日時：<%= @task.updated_at.strftime("%m月%d日 %-H時%M分") %></h3>
 </div>
 
 <div>
-  <% if @task.user_id == current_user.id %>
-    <%= link_to '編集', edit_task_path(@task)%>
-  <% end %>
+  <%= link_to '編集', edit_task_path(@task)%>
   <%= link_to '戻る', tasks_path%>
 </div>
