@@ -176,3 +176,18 @@ body {
 .ui.raised.segment,.ui.cards > .card, {
   box-shadow: 0px 0px 13px 0px rgba(0, 127, 88, 0.2);
 }
+
+/*devise*/
+body > .grid {
+  height: 100%;
+}
+.image {
+  margin-top: -100px;
+}
+.column {
+  max-width: 450px;
+}
+
+.ui.teal.button {
+  background: linear-gradient(-45deg,#00a9bc 20%,#00bc89 100%);
+}
