@@ -1,10 +1,16 @@
 <% if current_user.employment_status == false %>
+<<<<<<< HEAD
   <div class="ui grid">
     <div class="sixteen wide column">
       <div class="ui raised segment">
         <%= render 'schedules' %>
       </div>
     </div>
+=======
+  <%= render 'schedules' %>
+
+  <div class="ui grid">
+>>>>>>> 6178f2d... ダッシュボード集約型
     <div class="eight wide column">
       <div class="ui raised segment">
         <%= render 'tasks' %>
@@ -21,9 +27,29 @@
       </div>
     </div>
   </div>
+<<<<<<< HEAD
+=======
 <% else %>
   <% if current_company != nil %>
     <%= render '4buttons' %>
+    <%= render 'status_for_intern' %>
+    <%= render 'schedules' %>
+  <% else %>
+    <%= render 'no_company' %>
+  <% end %>
+<% end %>
+
+<!-- <% if current_user.employment_status == false %>
+  <% #社員用画面 %>
+  <%= render 'status_for_staff' %>
+  <%= render 'todo_list' %>
+  <%= render 'future_schedule_for_staff' %>
+  <%= render 'invite_intern' %>
+>>>>>>> 6178f2d... ダッシュボード集約型
+<% else %>
+  <% if current_company != nil %>
+    <%= render '4buttons' %>
+<<<<<<< HEAD
     <div class="ui grid">
       <div class="sixteen wide column">
         <div class="ui raised segment">
@@ -51,7 +77,12 @@
         </div>
       </div>
     </div>
+=======
+    <%= render 'status_for_intern' %>
+    <%= render 'regist_schedule', schedule: @schedule %>
+    <%= render 'future_schedule_for_intern' %>
+>>>>>>> 6178f2d... ダッシュボード集約型
   <% else %>
     <%= render 'no_company' %>
   <% end %>
-<% end %>
+<% end %> -->

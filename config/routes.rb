@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-  resources :labels
-=======
-  resources :tags
->>>>>>> 0b1d4ca... タスクにタグを追加
   root to: "dashboard#index"
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/update_user_after_login', to: 'users#update_user_after_login', as: 'update_user_after_login'
@@ -15,6 +10,7 @@ Rails.application.routes.draw do
   get 'attendances/stop_work', to: 'attendances#stop_work', as: 'stop_work'
   get 'attendances/start_break', to: 'attendances#start_break', as: 'start_break'
   get 'attendances/stop_break', to: 'attendances#stop_break', as: 'stop_break'
+  resources :labels
   resources :stamps
   resources :companies
   resources :todos
