@@ -11,6 +11,9 @@
   <h3>内容：<%= simple_format(@task.detail) %></h3>
   <h3>予定：
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 70dac93... タスクにタグを付与part2
     <% @task.task_schedules.each do |task_schedule| %>
       <%= task_schedule.schedule.work_started_at %>
     <% end %>
@@ -20,6 +23,7 @@
       <%= task_label.label.name %>
     <% end %>
   </h3>
+<<<<<<< HEAD
 =======
   <% @task.task_schedules.each do |task_schedule| %>
     <%= task_schedule.schedule.work_started_at %></h3>
@@ -29,6 +33,8 @@
     <%= task_tag.tag.name %></h3>
   <% end %>
 >>>>>>> 0b1d4ca... タスクにタグを追加
+=======
+>>>>>>> 70dac93... タスクにタグを付与part2
 
   <h3>作成日時：<%= @task.created_at.strftime("%m月%d日 %-H時%M分") %></h3>
   <h3>最終更新日時：<%= @task.updated_at.strftime("%m月%d日 %-H時%M分") %></h3>
