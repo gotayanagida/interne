@@ -209,7 +209,6 @@ ActiveRecord::Schema.define(version: 20171112031605) do
     t.index ["task_id"], name: "index_task_schedules_on_task_id"
   end
 
-
   create_table "task_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "task_id"
     t.bigint "user_id"
@@ -220,11 +219,13 @@ ActiveRecord::Schema.define(version: 20171112031605) do
   end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
+    t.bigint "company_id"
+    t.string "title"
+    t.text "detail"
+    t.integer "status_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["task_id"], name: "index_task_users_on_task_id"
-    t.index ["user_id"], name: "index_task_users_on_user_id"
+    t.index ["company_id"], name: "index_tasks_on_company_id"
   end
 
   create_table "todo_companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
