@@ -1,6 +1,10 @@
 class Company < ApplicationRecord
   has_many :tasks
+<<<<<<< HEAD
   has_many :labels
+=======
+  has_many :tags
+>>>>>>> 0b1d4ca... タスクにタグを追加
   has_many :schedules
   has_many :goals
   has_many :reports

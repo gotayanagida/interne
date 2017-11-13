@@ -27,7 +27,14 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+<<<<<<< HEAD
     Task.associate_task(params:params, task: @task)
+=======
+    schedule = Schedule.find(params[:task][:task_schedules][:schedule_id])
+    schedule.tasks << @task
+    tag = Tag.find(params[:task][:task_tags][:tag_id])
+    tag.tasks << @task
+>>>>>>> 0b1d4ca... タスクにタグを追加
 
     respond_to do |format|
       if @task.save

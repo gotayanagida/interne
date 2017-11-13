@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   has_many :schedules, through: :task_schedules
   has_many :task_notices
   has_many :notices, through: :task_notices
+<<<<<<< HEAD
   has_many :task_labels
   has_many :labels, through: :task_labels
   has_many :task_users
@@ -27,6 +28,10 @@ class Task < ApplicationRecord
       label.tasks << task
     end
   end
+=======
+  has_many :task_tags
+  has_many :tasks, through: :task_tags
+>>>>>>> 0b1d4ca... タスクにタグを追加
 
   def self.search(search)
     if search

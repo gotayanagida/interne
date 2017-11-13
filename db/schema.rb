@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171112031605) do
+=======
+ActiveRecord::Schema.define(version: 20171111013819) do
+>>>>>>> 0b1d4ca... タスクにタグを追加
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -182,6 +186,7 @@ ActiveRecord::Schema.define(version: 20171112031605) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "task_labels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "task_id"
     t.bigint "label_id"
@@ -189,6 +194,14 @@ ActiveRecord::Schema.define(version: 20171112031605) do
     t.datetime "updated_at", null: false
     t.index ["label_id"], name: "index_task_labels_on_label_id"
     t.index ["task_id"], name: "index_task_labels_on_task_id"
+=======
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_tags_on_company_id"
+>>>>>>> 0b1d4ca... タスクにタグを追加
   end
 
   create_table "task_notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -209,8 +222,21 @@ ActiveRecord::Schema.define(version: 20171112031605) do
     t.index ["task_id"], name: "index_task_schedules_on_task_id"
   end
 
+<<<<<<< HEAD
   create_table "task_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "task_id"
+=======
+  create_table "task_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "task_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_task_tags_on_tag_id"
+    t.index ["task_id"], name: "index_task_tags_on_task_id"
+  end
+
+  create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+>>>>>>> 0b1d4ca... タスクにタグを追加
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -315,14 +341,23 @@ ActiveRecord::Schema.define(version: 20171112031605) do
   add_foreign_key "reports", "users"
   add_foreign_key "schedules", "companies"
   add_foreign_key "schedules", "users"
+<<<<<<< HEAD
   add_foreign_key "task_labels", "labels"
   add_foreign_key "task_labels", "tasks"
+=======
+  add_foreign_key "tags", "companies"
+>>>>>>> 0b1d4ca... タスクにタグを追加
   add_foreign_key "task_notices", "notices"
   add_foreign_key "task_notices", "tasks"
   add_foreign_key "task_schedules", "schedules"
   add_foreign_key "task_schedules", "tasks"
+<<<<<<< HEAD
   add_foreign_key "task_users", "tasks"
   add_foreign_key "task_users", "users"
+=======
+  add_foreign_key "task_tags", "tags"
+  add_foreign_key "task_tags", "tasks"
+>>>>>>> 0b1d4ca... タスクにタグを追加
   add_foreign_key "tasks", "companies"
   add_foreign_key "todo_companies", "companies"
   add_foreign_key "todo_companies", "todos"

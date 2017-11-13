@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   resources :labels
+=======
+  resources :tags
+>>>>>>> 0b1d4ca... タスクにタグを追加
   root to: "dashboard#index"
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/update_user_after_login', to: 'users#update_user_after_login', as: 'update_user_after_login'
