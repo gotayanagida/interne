@@ -17,13 +17,10 @@
   <div class="item">
     <div class="right floated content">
       <%= link_to edit_task_path(task), class:"ui button" do%>
-      編集
-      <%end%>
-      <%= link_to task, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"ui button" do%>
-      削除
+      割り当て
       <%end%>
     </div>
-    <img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
+    <i class="travel big icon"></i>
     <div class="content">
       <%= link_to task ,class: "header" do%>
       	<%= task.title %>
