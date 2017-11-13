@@ -9,4 +9,39 @@
 <div class="ui raised segment" style="z-index:-5;">
   <%= render "users", users: @users%>
 </div>
+
+<div class="ui raised segment">
+  <h3>新しいインターン生を招待</h3>
+  ユーザ検索
+  <%= form_tag request.url, :method => 'get' do %>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "検索", :name => nil %>
+  <% end %>
+  <% if params[:search] != nil %>
+    <% @searched_users.each do |searched_user| %>
+      <%= link_to searched_user do%>
+        <div class="wrap-for-dev">
+          <div>
+            <%= image_tag searched_user.profile_photo_url%>
+          </div>
+          <div>
+            <div>
+              <h3><%= searched_user.name %></h3>
+            </div>
+            <div>
+              <%= searched_user.university %> <%= searched_user.department %> <%= searched_user.grade %>年
+            </div>
+          </div>
+          <div>
+            <%= link_to '詳細', searched_user ,class: "btn btn-default"%>
+            <%= link_to 'チームに招待', associate_intern_url(:user_id => searched_user.id, :user_name => searched_user.name, :company_id => current_user.company_users.first.company.id)%>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <%= paginate @searched_users %>
+  <% end %>
+</div>
+
+
 <%= link_to '編集', edit_company_path(@company) %>

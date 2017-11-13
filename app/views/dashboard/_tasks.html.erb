@@ -37,6 +37,7 @@
       <% end %>
 			<% task.task_labels.each do |task_label| %>
         <div style="background-color:<%= task_label.label.color %>;"><%= task_label.label.name%></div>
+			<% end %>
       <% task.task_schedules.each do |task_schedule| %>
           <%= task.detail %>
           <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %><br>

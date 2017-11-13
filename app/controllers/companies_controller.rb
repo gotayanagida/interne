@@ -12,6 +12,7 @@ class CompaniesController < ApplicationController
   def show
     users = current_company.users.where(employment_status:1)
     @users = users.page(params[:page]).per(10)
+    @searched_users = User.all.page(params[:page]).per(10).search(params[:search])
   end
 
   # GET /companies/new

@@ -1,73 +1,74 @@
 <script type="text/javascript">
-		$(document).ready(function(){
-			$('.ui.dropdown').dropdown();
-		});
+$(document).ready(function(){
+	$('.ui.dropdown').dropdown();
+});
 </script>
 <h3>日報</h3>
 <% if current_user.employment_status == true %>
-	<div class="left floated column">
-		<%= link_to new_report_path, class: "ui labeled icon button" do%>
-		<i class="plus icon"></i>日報を追加
-		<% end %>
-	</div>
+<div class="left floated column">
+	<%= link_to new_report_path, class: "ui labeled icon button" do%>
+	<i class="plus icon"></i>日報を追加
+	<% end %>
+</div>
 <% end %>
 <div class="ui relaxed divided list">
-<% @reports.each do |report| %>
-  <div class="item">
-    <div class="right floated content">
-      <%= link_to report, class:"ui button" do%>
-      編集
-      <%end%>
-      <%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"ui button" do%>
-      削除
-      <%end%>
-    </div>
-    <img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
-    <div class="content">
+	<% @reports.each do |report| %>
+	<div class="item">
+		<div class="right floated content">
+			<%= link_to report, class:"ui button" do%>
+			編集
+			<%end%>
+			<%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"ui button" do%>
+			削除
+			<%end%>
+		</div>
+		<img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
+		<div class="content">
 			<div class="header">
 				<%= report.user.name %> <%= report.schedule.work_started_at.strftime('%m/%d') %>
 			</div>
-      <%= link_to report ,class: "description" do%>
-      	「<%= report.title %>」
-      <%end%>
-    </div>
-  </div>
-<% end %>
-<div class="ui three cards stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
-  <% @reports.each do |report| %>
-  <div class="card">
-    <div class="content" style="background-image: url('../assets/mima-opa.png');background-position: right bottom; background-repeat: no-repeat;">
-      <% if report.user_id == current_user.id %>
-      <div class="ui dropdown right floated">
-      	<i class="options icon"></i>
-      	<div class="menu">
-      		    <%= link_to report ,class: "item" do%>詳細<% end%>
-      		    <%= link_to edit_report_path(report) ,class: "item" do%>編集<% end%>
-      		    <%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%>
-      	</div>
-      </div>
-      <% end %>
-      <%= image_tag report.user.profile_photo_url, class: "left floated mini ui image"%>
-      <div class="header">
-        <%= report.user.name %>
-      </div>
-      <div class="meta">
-        <%= report.schedule.work_started_at.strftime('%m/%d') %>
-      </div>
-      <div class="description">
-        「<%= report.title %>」
-        <div style="font-size:10px;"><%= report.body %></div>
-      </div>
-    </div>
-    <img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
-    <div class="content">
-			<div class="header">
-				<%= report.user.name %> <%= report.schedule.work_started_at.strftime('%m/%d') %>
+			<%= link_to report ,class: "description" do%>
+			「<%= report.title %>」
+			<%end%>
+		</div>
+	</div>
+	<% end %>
+	<div class="ui three cards stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
+		<% @reports.each do |report| %>
+		<div class="card">
+			<div class="content" style="background-image: url('../assets/mima-opa.png');background-position: right bottom; background-repeat: no-repeat;">
+				<% if report.user_id == current_user.id %>
+				<div class="ui dropdown right floated">
+					<i class="options icon"></i>
+					<div class="menu">
+						<%= link_to report ,class: "item" do%>詳細<% end%>
+						<%= link_to edit_report_path(report) ,class: "item" do%>編集<% end%>
+						<%= link_to report, method: :delete, data: { confirm: '本当に削除しますか？' } ,class: "item" do%>削除<%end%>
+					</div>
+				</div>
+				<% end %>
+				<%= image_tag report.user.profile_photo_url, class: "left floated mini ui image"%>
+				<div class="header">
+					<%= report.user.name %>
+				</div>
+				<div class="meta">
+					<%= report.schedule.work_started_at.strftime('%m/%d') %>
+				</div>
+				<div class="description">
+					「<%= report.title %>」
+					<div style="font-size:10px;"><%= report.body %></div>
+				</div>
 			</div>
-      <%= link_to report ,class: "description" do%>
-      	「<%= report.title %>」
-      <%end%>
-    </div>
-  </div>
-<% end %>
+			<img class="ui avatar image middle aligned icon" src="https://semantic-ui.com/images/avatar2/small/rachel.png">
+			<div class="content">
+				<div class="header">
+					<%= report.user.name %> <%= report.schedule.work_started_at.strftime('%m/%d') %>
+				</div>
+				<%= link_to report ,class: "description" do%>
+				「<%= report.title %>」
+				<%end%>
+			</div>
+		</div>
+		<% end %>
+	</div>
 </div>
