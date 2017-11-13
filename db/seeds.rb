@@ -14,7 +14,7 @@ user.save!
 user = User.new(name:"柳田豪太（社員）",password:"interne",department:"マーケティング本部",position:"部長",email:"a@a.com",gender:1,birthday:"1980/1/1",profile_photo_url:"pf.jpg",employment_status:0,home_photo_url:"home.png")
 user.save!
 
-Company.create(name:"株式会社インテルネ",hp_addr:"http://interne.co.jp",number_of_interns:"-10",home_photo_url:"home.png",icon_photo_url:"company.gif")
+Company.create(name:"株式会社インテルネ",hp_addr:"http://interne.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
 
 CompanyUser.create(user_id:3,company_id:1)
 

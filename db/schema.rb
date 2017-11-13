@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171028030508) do
+ActiveRecord::Schema.define(version: 20171111013819) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20171028030508) do
   create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "hp_addr"
-    t.string "number_of_interns"
     t.string "home_photo_url", default: "home.png"
     t.string "icon_photo_url", default: "pf.jpg"
     t.datetime "created_at", null: false
@@ -173,6 +172,14 @@ ActiveRecord::Schema.define(version: 20171028030508) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.bigint "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_tags_on_company_id"
+  end
+
   create_table "task_notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "task_id"
     t.bigint "notice_id"
@@ -189,6 +196,15 @@ ActiveRecord::Schema.define(version: 20171028030508) do
     t.datetime "updated_at", null: false
     t.index ["schedule_id"], name: "index_task_schedules_on_schedule_id"
     t.index ["task_id"], name: "index_task_schedules_on_task_id"
+  end
+
+  create_table "task_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "task_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_task_tags_on_tag_id"
+    t.index ["task_id"], name: "index_task_tags_on_task_id"
   end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -289,10 +305,13 @@ ActiveRecord::Schema.define(version: 20171028030508) do
   add_foreign_key "reports", "users"
   add_foreign_key "schedules", "companies"
   add_foreign_key "schedules", "users"
+  add_foreign_key "tags", "companies"
   add_foreign_key "task_notices", "notices"
   add_foreign_key "task_notices", "tasks"
   add_foreign_key "task_schedules", "schedules"
   add_foreign_key "task_schedules", "tasks"
+  add_foreign_key "task_tags", "tags"
+  add_foreign_key "task_tags", "tasks"
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "users"
   add_foreign_key "todo_companies", "companies"

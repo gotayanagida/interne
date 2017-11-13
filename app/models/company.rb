@@ -1,5 +1,6 @@
 class Company < ApplicationRecord
   has_many :tasks
+  has_many :tags
   has_many :schedules
   has_many :goals
   has_many :reports
