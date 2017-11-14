@@ -1,9 +1,13 @@
-<div id="signin">
-  <div class="ui middle aligned center aligned grid">
-    <div class="column">
-      <h2 class="ui image header">
-        <div class="content">
-          <%= image_tag 'interne.png' %>
+<div class="ui middle aligned center aligned grid" style="background:#fafcfc;">
+  <div class="column center aligned">
+    <%= image_tag 'interne.png',class:"ui image small centered",style:"width:230px;"%>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class:"ui large form"}) do |f| %>
+      <div class="ui stacked secondary  segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス"%>
+          </div>
         </div>
       </h2>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class:"ui large form"}) do |f| %>
