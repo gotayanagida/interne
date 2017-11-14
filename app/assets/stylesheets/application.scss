@@ -177,8 +177,16 @@ body {
 }
 
 /*devise*/
-body > .grid {
+body .grid {
   height: 100%;
+}
+
+#signin .image {
+  margin-top: -100px;
+}
+
+#signin .column {
+  max-width: 450px;
 }
 
 .ui.teal.button {
