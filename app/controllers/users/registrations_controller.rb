@@ -12,8 +12,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     user = User.find_by(email:params[:user][:email])
-    company = Company.create(name:params[:user][:companies][:company_name], hp_addr:params[:user][:companies][:hp_addr], number_of_interns:params[:user][:companies][:number_of_interns])
-    CompanyUser.create(user_id:user.id, company_id:company.id)
+    if user.employment_status == false
+      company = Company.create(name:params[:user][:companies][:company_name], hp_addr:params[:user][:companies][:hp_addr])
+      CompanyUser.create(user_id:user.id, company_id:company.id)
+    end
   end
 
   # GET /resource/edit

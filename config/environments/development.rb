@@ -60,10 +60,11 @@ Rails.application.configure do
     port:                 587,
     address:              'smtp.gmail.com',
     domain:               'smtp.gmail.com',
-    user_name:            'akitennisstaff@gmail.com',
-    password:             'akrpsnpwdturfdrj',
+    user_name:            'gotayanagida5@gmail.com',
+    password:             'cekxqhhsynihmyks',
     authentication:       'login',
     enable_starttls_auto: true
   }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 end
