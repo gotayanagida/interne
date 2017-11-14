@@ -9,21 +9,31 @@
             <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス"%>
           </div>
         </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <%= f.password_field :password, autocomplete: "off", placeholder: "パスワード" %>
+      </h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class:"ui large form"}) do |f| %>
+        <div class="ui stacked secondary  segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <%= f.email_field :email, autofocus: true, placeholder: "メールアドレス"%>
+            </div>
           </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <%= f.password_field :password, autocomplete: "off", placeholder: "パスワード" %>
+            </div>
+          </div>
+          <%= f.submit "ログイン", class:"ui fluid large teal submit button"%>
         </div>
-        <%= f.submit "ログイン", class:"ui fluid large teal submit button"%>
+
+        <div class="ui error message"></div>
+
+      <% end %>
+
+      <div class="ui message">
+        <%= render "devise/shared/links" %>
       </div>
-
-      <div class="ui error message"></div>
-
-    <% end %>
-
-    <div class="ui message">
-      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>

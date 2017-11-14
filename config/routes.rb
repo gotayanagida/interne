@@ -22,11 +22,15 @@ Rails.application.routes.draw do
   resources :tasks
   devise_for :users, controllers: {
   registrations: "users/registrations",
-  omniauth_callbacks: "users/omniauth_callbacks"
+  omniauth_callbacks: "users/omniauth_callbacks",
+  confirmations: "users/confirmations"
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users
   resources :users, only: [] do
     get "/schedules", to: "schedules#selected_user_schedules", as:"selected_user_schedules"
+  end
+  devise_scope :user do
+    patch "device/confirmation", to: "device/confirmations#confirm"
   end
 end
