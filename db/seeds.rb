@@ -7,40 +7,40 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user = User.new(name:"田中一郎",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"a@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"田中一郎",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"a@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"田中二郎",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"b@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"田中二郎",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"b@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"田中花子",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"c@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"田中花子",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"c@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"鈴木一郎",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"d@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"鈴木一郎",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"d@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"鈴木二郎",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"e@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"鈴木二郎",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"e@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"鈴木花子",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"f@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"鈴木花子",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"f@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"田中一郎",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"g@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"田中一郎",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"g@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"田中二郎",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"h@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"田中二郎",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"h@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"田中花子",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"i@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"田中花子",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"i@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"鈴木一郎",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"j@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"鈴木一郎",password:"aaaaaa",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"j@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"鈴木二郎",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"k@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"鈴木二郎",password:"aaaaaa",university:"早稲田大学",department:"政治経済学部",grade:1,email:"k@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"鈴木花子",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"l@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.png")
+user = User.new(name:"鈴木花子",password:"aaaaaa",university:"東京大学",department:"法学部",grade:1,email:"l@a.com",gender:1,birthday:"1990/1/1",profile_photo_url:"pf.jpg",employment_status:1,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"社員太郎",password:"aaaaaa",department:"",position:"代表取締役社長",email:"m@a.com",gender:1,birthday:"1980/1/1",profile_photo_url:"pf.jpg",employment_status:0,home_photo_url:"home.png")
+user = User.new(name:"社員太郎",password:"aaaaaa",department:"",position:"代表取締役社長",email:"m@a.com",gender:1,birthday:"1980/1/1",profile_photo_url:"pf.jpg",employment_status:0,home_photo_url:"home.jpg")
 user.save!
-user = User.new(name:"社員政子",password:"aaaaaa",department:"マーケティング本部",position:"部長",email:"n@a.com",gender:1,birthday:"1980/1/1",profile_photo_url:"pf.jpg",employment_status:0,home_photo_url:"home.png")
+user = User.new(name:"社員政子",password:"aaaaaa",department:"マーケティング本部",position:"部長",email:"n@a.com",gender:1,birthday:"1980/1/1",profile_photo_url:"pf.jpg",employment_status:0,home_photo_url:"home.jpg")
 user.save!
 
-Company.create(name:"トヨタ自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
-Company.create(name:"マツダ自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
-Company.create(name:"日産自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
-Company.create(name:"ホンダ自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
-Company.create(name:"三菱自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.png",icon_photo_url:"company.gif")
+Company.create(name:"トヨタ自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.jpg",icon_photo_url:"company.gif")
+Company.create(name:"マツダ自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.jpg",icon_photo_url:"company.gif")
+Company.create(name:"日産自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.jpg",icon_photo_url:"company.gif")
+Company.create(name:"ホンダ自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.jpg",icon_photo_url:"company.gif")
+Company.create(name:"三菱自動車株式会社",hp_addr:"http://toyoya.co.jp",home_photo_url:"home.jpg",icon_photo_url:"company.gif")
 
 Task.create(company_id:1,title:"データ解析",detail:"〇〇サービスのランディングページのデータ解析",status_code:1)
 Task.create(company_id:1,title:"アプリ開発",detail:"〇〇サービスのアプリケーション開発",status_code:0)
