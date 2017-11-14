@@ -8,8 +8,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :position
       t.boolean :gender
       t.date :birthday
-      t.string :profile_photo_url, default: "company.gif"
-      t.string :home_photo_url, default: "home.png"
+      t.string :profile_photo_url, default: "pf.jpg"
+      t.string :home_photo_url, default: "home.jpg"
       t.boolean :employment_status
       t.string :provider
       t.string :uid
@@ -35,10 +35,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string   :last_sign_in_ip
 
       ## Confirmable
-      # t.string   :confirmation_token
-      # t.datetime :confirmed_at
-      # t.datetime :confirmation_sent_at
-      # t.string   :unconfirmed_email # Only if using reconfirmable
+      t.string   :confirmation_token
+      t.datetime :confirmed_at
+      t.datetime :confirmation_sent_at
+      t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts

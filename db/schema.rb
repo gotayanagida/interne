@@ -262,8 +262,8 @@ ActiveRecord::Schema.define(version: 20171112031605) do
     t.string "position"
     t.boolean "gender"
     t.date "birthday"
-    t.string "profile_photo_url", default: "company.gif"
-    t.string "home_photo_url", default: "home.png"
+    t.string "profile_photo_url", default: "pf.jpg"
+    t.string "home_photo_url", default: "home.jpg"
     t.boolean "employment_status"
     t.string "provider"
     t.string "uid"
@@ -279,6 +279,10 @@ ActiveRecord::Schema.define(version: 20171112031605) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
