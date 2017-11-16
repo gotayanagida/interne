@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   resources :reports
   resources :schedules
   resources :tasks
+  devise_scope :user do
+    patch "users/confirmation", to: "users/confirmations#confirm"
+  end
   devise_for :users, controllers: {
   registrations: "users/registrations",
   omniauth_callbacks: "users/omniauth_callbacks",
@@ -29,8 +32,5 @@ Rails.application.routes.draw do
   resources :users
   resources :users, only: [] do
     get "/schedules", to: "schedules#selected_user_schedules", as:"selected_user_schedules"
-  end
-  devise_scope :user do
-    patch "device/confirmation", to: "device/confirmations#confirm"
   end
 end
