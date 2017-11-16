@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :labels
-  root to: "dashboard#index"
+  # authenticated :user do
+    root to: "dashboard#index"
+  # end
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/update_user_after_login', to: 'users#update_user_after_login', as: 'update_user_after_login'
   get 'stamps/remove_stamp', to: 'stamps#remove_stamp', as: 'remove_stamp'
@@ -24,9 +26,9 @@ Rails.application.routes.draw do
     patch "users/confirmation", to: "users/confirmations#confirm"
   end
   devise_for :users, controllers: {
-  registrations: "users/registrations",
-  omniauth_callbacks: "users/omniauth_callbacks",
-  confirmations: "users/confirmations"
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks",
+    confirmations: "users/confirmations"
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users
