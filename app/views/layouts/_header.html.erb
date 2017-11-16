@@ -23,10 +23,10 @@
 <div class="header ui padded grid">
   <div class="row main-header screen-header">
 		<!-- for pc　-->
-	  <div class="fourteen wide column">
+	  <div class="ten wide column">
 			<h3><%= "ダッシュボード"%><span>　　　　　　　　　　　　　　　（開発用メモ：<%= current_user.name %>、<%= current_user.employment_status ? "インターン生" : "社員" %>）</span></h3>
 	  </div>
-	  <div class="one wide column">
+	  <div class="six wide column">
 			<div class="ui dropdown">
 				やることリスト
 				<div class="menu">
@@ -44,7 +44,7 @@
 				  <% end %>
 				</div>
 		  </div>
-			<div class="ui dropdown" style="display:block;display: flow-root;">
+			<div class="ui dropdown">
 				お知らせ
 				<div class="menu">
 					<% recent_notice_users.each do |notice_user| %>
@@ -61,10 +61,8 @@
 				  <% end %>
 				</div>
 		  </div>
-		</div>
-	  <div class="one wide column">
 		  <% if user_signed_in? %>
-		  	<div class="ui dropdown" style="display:block;display: flow-root;">
+		  	<div class="ui dropdown">
 					<%= image_tag current_user.profile_photo_url, class:"ui circular right floated image user-image"%>
 					<div class="menu">
             <%= link_to 'インテルネトップへ', root_path, class:"item"%>
