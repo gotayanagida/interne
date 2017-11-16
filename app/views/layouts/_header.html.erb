@@ -28,7 +28,8 @@
 	  </div>
 	  <div class="six wide column">
 			<div class="ui dropdown">
-				やることリスト
+				<h4><i class="checkmark icon"></i>やることリスト</h4>
+				<div class="notice-num"><%= todo_users.length%></div>
 				<div class="menu">
 					<% todo_users.each do |todo_user| %>
 				    <%= link_to todo_path(todo_user.todo), class:"item future" do %>
@@ -45,7 +46,8 @@
 				</div>
 		  </div>
 			<div class="ui dropdown">
-				お知らせ
+				<h4><i class="alarm icon"></i>お知らせ</h4>
+				<div class="notice-num"><%= recent_notice_users.length%></div>
 				<div class="menu">
 					<% recent_notice_users.each do |notice_user| %>
 				    <%= link_to notice_path(notice_user.notice), class:"item future" do %>
