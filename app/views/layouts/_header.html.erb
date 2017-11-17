@@ -45,14 +45,14 @@
 				  <% end %>
 				</div>
 		  </div>
-			<div class="ui dropdown">
+			<div class="ui dropdown" id="notice-update-ajax">
 				<h4><i class="alarm icon"></i>お知らせ</h4>
 				<% if notice_count != 0 %>
 				 	<div class="notice-num"><%= notice_count %></div>
 				<% end %>
 				<div class="menu">
 					<% recent_notice_users.each do |notice_user| %>
-						<% if notice_user.notice.read == 0 %>
+						<% if notice_user.notice.read == false %>
 				    	<%= link_to notice_path(notice_user.notice), class:"item future", style: "background-color: #f0f0f0;" do %>
 							<i class="large info circle middle aligned icon"></i>
 					    <div class="content">
