@@ -1,0 +1,40 @@
+<script src="https://webkaru.net/jquery-plugin/sources/timeto/jquery.timeTo.js"></script>
+<link href="https://webkaru.net/jquery-plugin/sources/timeto/timeTo.css" type="text/css" rel="stylesheet"/>
+
+<!--
+<div id="countdown" class="timeTo timeTo-white" style="font-size: 28px;"></div>
+<script>
+$('#countdown').timeTo();
+</script>-->
+
+<h3>次回タスク予定</h3>
+<div class="ui grid padded stackable middle aligned">
+  <div class="sixteen wide column center aligned">
+    <% if @user.attendances != [] %>
+    <% if @user.attendances.last.work_stopped_at.nil? %>
+    <% if @user.attendances.last.break_started_at.nil? == @user.attendances.last.break_stopped_at.nil? %>
+      <% unless @user.task_users == [] %>
+        <%= @user.task_users.last.task.title %>
+      <% else %>
+        "登録なし"
+      <% end %>
+    <% else %>
+      <% unless @user.task_users == [] %>
+        <%= @user.task_users.last.task.title %>
+      <% else %>
+        "登録なし"
+      <% end %>
+    <% end %>
+    <% else %>
+    <% #退勤中の場合 %>
+    <% unless @user.task_users == [] %>
+    <%= @user.task_users.last.task.title %>
+    <% else %>
+      "登録なし"
+    <% end %>
+    <% end %>
+    <% else %>
+    <% #初回出社前の場合 %>
+    <% end %>
+  </div>
+</div>

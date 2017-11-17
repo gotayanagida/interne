@@ -1,0 +1,65 @@
+<script src="https://webkaru.net/jquery-plugin/sources/timeto/jquery.timeTo.js"></script>
+<link href="https://webkaru.net/jquery-plugin/sources/timeto/timeTo.css" type="text/css" rel="stylesheet"/>
+
+<!--
+<div id="countdown" class="timeTo timeTo-white" style="font-size: 28px;"></div>
+<script>
+  $('#countdown').timeTo();
+  </script>-->
+
+  <h3>勤務状況</h3>
+  <% if @user.attendances != [] %>
+  <% if @user.attendances.last.work_stopped_at.nil? %>
+  <% if @user.attendances.last.break_started_at.nil? == @user.attendances.last.break_stopped_at.nil? %>
+    <div class="ui grid padded stackable middle aligned">
+      <div class="sixteen wide column center aligned">
+        <div class="ui piled red segment">
+          <h1>出勤中</h1>
+        </div>
+        本日の勤務時間：<%= (Time.parse("1/1") + @attendance_time).strftime("%-H時間%-M分%-S秒") %><br>
+        休憩時間：<%= (Time.parse("1/1") + @break_time).strftime("%-H時間%-M分%-S秒") %>
+      </div>
+    </div>
+  <% else %>
+    <div class="ui grid padded stackable middle aligned">
+      <div class="sixteen wide column center aligned">
+        <div class="ui piled red segment">
+          <h1>休憩中</h1>
+        </div>
+        勤務時間：<%= (Time.parse("1/1") + @attendance_time).strftime("%-H時間%-M分%-S秒") %><br>
+        休憩時間：<%= (Time.parse("1/1") + @break_time).strftime("%-H時間%-M分%-S秒") %><br>
+      </div>
+    </div>
+  <% end %>
+  <% else %>
+  <% #退勤中の場合 %>
+    <div class="ui grid padded stackable middle aligned">
+      <div class="sixteen wide column center aligned">
+        <div class="ui piled yellow segment">
+          <h1>退勤中</h1>
+        </div>
+        前回勤務時間：<%= (Time.parse("1/1") + @last_attendance_time).strftime("%-H時間%-M分%-S秒") %>
+      </div>
+    </div>
+    <% end %>
+    <% else %>
+    <% #初回出社前の場合 %>
+    <div class="ui grid padded stackable middle aligned">
+      <div class="sixteen wide column center aligned">
+        <div class="ui piled yellow segment">
+          <h1>退勤中</h1>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>
+        次回の出勤予定：<%= @next_work_schedule %>
+      </h3>
+    </div>
+    <% end %>
+    <div class="four ui buttons">
+      <%= link_to '出勤', start_work_path,class:"ui button" if attendance_status(user:@user) == "not_work"  || attendance_status(user:@user) == "never_work"%>
+      <%= link_to '休憩開始', start_break_path,class:"ui button" if attendance_status(user:@user) == "am_work"%>
+      <%= link_to '休憩終了', stop_break_path,class:"ui button" if attendance_status(user:@user) == "break"%>
+      <%= link_to '退勤', stop_work_path,class:"ui button" if attendance_status(user:@user) == "am_work" || attendance_status(user:@user) == "pm_work"%>
+    </div>
