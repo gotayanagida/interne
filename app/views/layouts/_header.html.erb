@@ -47,11 +47,14 @@
 		  </div>
 			<div class="ui dropdown">
 				<h4><i class="alarm icon"></i>お知らせ</h4>
-				<div class="notice-num"><%= recent_notice_users.length%></div>
+				<% if notice_count != 0 %>
+				 	<div class="notice-num"><%= notice_count %></div>
+				<% end %>
 				<div class="menu">
 					<% recent_notice_users.each do |notice_user| %>
-				    <%= link_to notice_path(notice_user.notice), class:"item future" do %>
-					    <i class="large info circle middle aligned icon"></i>
+						<% if notice_user.notice.read == 0 %>
+				    	<%= link_to notice_path(notice_user.notice), class:"item future", style: "background-color: #f0f0f0;" do %>
+							<i class="large info circle middle aligned icon"></i>
 					    <div class="content">
 					      <div class="header"><%= notice_user.notice.body %></div>
 					      <div class="description">
@@ -59,7 +62,19 @@
 						      <%= (Time.parse("1/1") + notice_time).strftime("%-H時間%-M分%-S秒前") %>
 					      </div>
 					    </div>
-				    <% end %>
+				    	<% end %>
+						<% else %>
+							<%= link_to notice_path(notice_user.notice), class:"item future" do %>
+							<i class="large info circle middle aligned icon"></i>
+					    <div class="content">
+					      <div class="header"><%= notice_user.notice.body %></div>
+					      <div class="description">
+						      <% notice_time = Time.now.to_time.to_i - notice_user.notice.created_at.to_time.to_i %>
+						      <%= (Time.parse("1/1") + notice_time).strftime("%-H時間%-M分%-S秒前") %>
+					      </div>
+					    </div>
+				    	<% end %>
+						<% end %>
 				  <% end %>
 				</div>
 		  </div>

@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20171112031605) do
   create_table "notices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "body"
     t.string "associate_type"
+    t.boolean "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -249,7 +250,7 @@ ActiveRecord::Schema.define(version: 20171112031605) do
   create_table "todos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "body"
     t.string "associate_type"
-    t.integer "status"
+    t.boolean "done"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

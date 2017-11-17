@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def generate_notice(users_id:, companies_id:, body:, associate_type:, associate_id:)
-    notice = Notice.create(body: body, associate_type: associate_type)
+    notice = Notice.create(body: body, associate_type: associate_type, read: 0)
     if associate_type == "report"
       report = Report.find(associate_id)
       report.notices << notice
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def generate_todo(users_id:, companies_id:, body:, associate_type:, associate_id:)
-    todo = Todo.create(body: body, associate_type: associate_type, status: 0)
+    todo = Todo.create(body: body, associate_type: associate_type, done: 0)
     if associate_type == "report"
       report = Report.find(associate_id)
       report.todos << todo
@@ -99,12 +99,12 @@ class ApplicationController < ActionController::Base
     if type == "report"
       if report_todo = ReportTodo.find_by(report_id:associate_id)
         todo = Todo.find(report_todo.todo_id)
-        todo.update(status:1)
+        todo.update(done:1)
       end
     elsif type == "goal"
       if goal_todo = GoalTodo.find_by(goal_id:associate_id)
         todo = Todo.find(goal_todo.todo_id)
-        todo.update(status:1)
+        todo.update(done:1)
       end
     end
   end
