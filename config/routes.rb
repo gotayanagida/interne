@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # authenticated :user do
     root to: "dashboard#index"
   # end
+  get 'notices/update_notice', to: 'notices#update_notice'
   get 'mypage', to: 'users#mypage', as: 'mypage'
   get 'users/update_user_after_login', to: 'users#update_user_after_login', as: 'update_user_after_login'
   get 'stamps/remove_stamp', to: 'stamps#remove_stamp', as: 'remove_stamp'

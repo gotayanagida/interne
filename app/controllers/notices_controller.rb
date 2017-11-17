@@ -61,6 +61,13 @@ class NoticesController < ApplicationController
     end
   end
 
+  def update_notice
+    current_user.notice_users.each do |notice_user|
+      notice_user.notice.update(read:1)
+    end
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notice
