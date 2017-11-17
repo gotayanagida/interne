@@ -7,7 +7,7 @@
 set :output, "log/crontab.log"
 set :environment, :development
 
-every 1.days, at: '16:00' do
+every 1.days, at: '19:00' do
   rake "mail:mail_delivery"
 end
 
