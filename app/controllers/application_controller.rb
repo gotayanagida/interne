@@ -70,18 +70,6 @@ class ApplicationController < ActionController::Base
     companies_id.append(current_company.id)
   end
 
-  def check_day_before
-    staffs = User.where(employment_status:0)
-    staffs.each do |staff|
-      next_day_interns = []
-      range = Time.now.next_day.beginning_of_day..Time.now.next_day.end_of_day
-      schedules = staff.company_users.first.company.schedules.where(work_started_at: range)
-      if schedules != []
-        NoticeMailer.send_day_before(schedules, staff).deliver
-      end
-    end
-  end
-
   def attendance_status(user:)
     if last_attendance = user.attendances.last
       last_attendance_status = [last_attendance.work_started_at, last_attendance.work_stopped_at, last_attendance.break_started_at, last_attendance.break_stopped_at]

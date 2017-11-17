@@ -4,6 +4,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+gem 'whenever'
+gem 'unicorn'
 gem 'turbolinks'
 gem 'google-analytics-rails'
 gem 'devise'
@@ -14,6 +16,7 @@ gem 'whenever', :require => false
 gem 'semantic-ui-sass', git: 'https://github.com/doabit/semantic-ui-sass.git'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'uglifier', '>= 1.3.0'
 gem 'kaminari', '~> 0.17.0'
 #gem 'kaminari-bootstrap'
 gem 'jquery-rails'
