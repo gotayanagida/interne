@@ -1,0 +1,23 @@
+<script src="https://webkaru.net/jquery-plugin/sources/timeto/jquery.timeTo.js"></script>
+<link href="https://webkaru.net/jquery-plugin/sources/timeto/timeTo.css" type="text/css" rel="stylesheet"/>
+
+<h3>次回出勤予定</h3>
+<div class="ui grid padded stackable middle aligned">
+  <div class="sixteen wide column center aligned">
+    <% if @user.attendances != [] %>
+    <% if @user.attendances.last.work_stopped_at.nil? %>
+    <% if @user.attendances.last.break_started_at.nil? == @user.attendances.last.break_stopped_at.nil? %>
+    <%= @today_work_schedule %>
+    <% else %>
+      <%= @today_work_schedule %><br>
+    <% end %>
+    <% else %>
+    <% #退勤中の場合 %>
+      <%= @next_work_schedule %>
+    <% end %>
+    <% else %>
+    <% #初回出社前の場合 %>
+      <%= @next_work_schedule %>
+    <% end %>
+  </div>
+</div>

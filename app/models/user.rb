@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,
          omniauth_providers: [:facebook, :google_oauth2]
 
-  has_many :tasks
   has_many :schedules
   has_many :goals
   has_many :reports

@@ -1,5 +1,6 @@
 /*
 *= require_tree .
+*= require_self
 *= require fullcalendar
 *= require calendar
 */
@@ -8,7 +9,7 @@
 // @import "bootstrap";
 $import-google-fonts: false;
 @import 'semantic-ui';
-
+@import "./*";
 
 /* for all */
 body {
@@ -177,6 +178,9 @@ body {
   border: 0px;
 }
 
+.ui.segment h3 {
+  margin-top: 0px;
+}
 /*font color*/
 .ui.table, .ui.cards > .card > .content > .header, .ui.cards > .card > .content > .description,.ui.accordion .title:not(.ui),.ui.header  {
     color: inherit;
