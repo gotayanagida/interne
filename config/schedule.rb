@@ -2,14 +2,14 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-require File.expand_path(File.dirname(__FILE__) + "/environment")
-set :output, 'log/cron.log'
+# require File.expand_path(File.dirname(__FILE__) + "/environment")
+# set :output, 'log/cron.log'
+set :output, "log/crontab.log"
+set :environment, :development
 
-every 1.minute do
-  current_user = User.find(1)
-  NoticeMailer.send_day_before(current_user).deliver
+every 1.days, at: '16:00' do
+  rake "mail:mail_delivery"
 end
-
 
 # Example:
 #
