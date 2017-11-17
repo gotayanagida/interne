@@ -3,8 +3,8 @@ class CreateTodos < ActiveRecord::Migration[5.1]
     create_table :todos do |t|
       t.text :body
       t.string :associate_type
-      t.integer :status
-      
+      t.boolean :done
+
       t.timestamps
     end
   end

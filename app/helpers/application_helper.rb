@@ -95,7 +95,17 @@ module ApplicationHelper
   end
 
   def recent_notice_users
-    recent_notice_users = current_user.notice_users.limit(5).reverse_order
+    recent_notice_users = current_user.notice_users.limit(10).reverse_order
+  end
+
+  def notice_count
+    notice_count = 0
+		recent_notice_users.each do |notice_user|
+  		if notice_user.notice.read == 0
+  			notice_count += 1
+  		end
+    end
+    return notice_count
   end
 
   def todo_users
