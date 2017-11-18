@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
       @users = users.page(params[:page]).per(10)
 
       if current_user.employment_status == false
-        #社員用ダッシュボード
+        #社員用トップ
         @user = current_company.users.find(current_user.id)
         @active_attendances = Attendance.where(company_id: current_company, work_stopped_at: nil)
         range = Time.now.next_day.beginning_of_day...Float::INFINITY

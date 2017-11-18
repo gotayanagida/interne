@@ -24,12 +24,14 @@
   <div class="row main-header screen-header">
 		<!-- for pc　-->
 	  <div class="ten wide column">
-			<h3><%= "ダッシュボード"%><span>　　　　　　　　　　　　　　　（開発用メモ：<%= current_user.name %>、<%= current_user.employment_status ? "インターン生" : "社員" %>）</span></h3>
+			<%= image_tag "interne.png", style: "height: 42px;"%>
 	  </div>
 	  <div class="six wide column">
 			<div class="ui dropdown">
 				<h4><i class="checkmark icon"></i>やることリスト</h4>
-				<div class="notice-num"><%= todo_users.length%></div>
+				<% if todo_users.length != 0 %>
+					<div class="notice-num"><%= todo_users.length%></div>
+				<% end %>
 				<div class="menu">
 					<% todo_users.each do |todo_user| %>
 				    <%= link_to todo_path(todo_user.todo), class:"item future" do %>
