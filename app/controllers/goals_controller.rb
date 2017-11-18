@@ -42,8 +42,7 @@ class GoalsController < ApplicationController
     name = current_user.name
     title = params[:goal][:title]
     span = params[:goal][:span] = 3 ? "３ヶ月間" : "一年間"
-    generate_notice(users_id:intern_and_staffs_id_arr, companies_id:companies_id_arr, body:"#{name}さんが#{span}の目標「#{title}」を作成しました", associate_type:"goal", associate_id: @goal.id)
-    generate_todo(users_id:intern_and_staffs_id_arr, companies_id:companies_id_arr, body:"#{name}さんが#{span}の目標「#{title}」を作成しました。確認してスタンプを押しましょう。", associate_type:"report", associate_id: @goal.id)
+    generate_todo(users_id:staffs_id_arr, companies_id:companies_id_arr, body:"#{name}さんが#{span}の目標「#{title}」を作成しました。確認してスタンプを押しましょう。", associate_type:"report", associate_id: @goal.id)
   end
 
   # PATCH/PUT /goals/1

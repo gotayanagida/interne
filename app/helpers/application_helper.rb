@@ -101,7 +101,7 @@ module ApplicationHelper
   def notice_count
     notice_count = 0
 		recent_notice_users.each do |notice_user|
-  		if notice_user.notice.read == 0
+  		if notice_user.notice.read == false
   			notice_count += 1
   		end
     end
