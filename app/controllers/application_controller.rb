@@ -65,6 +65,22 @@ class ApplicationController < ActionController::Base
     users_id
   end
 
+  def current_users_id_arr
+    users_id = []
+    users_id.append(current_user.id)
+  end
+
+  def staffs_id_arr
+    users_id = []
+    current_company.company_users.each do |company_user|
+      if company_user.user.employment_status == false
+        next if company_user.user.id == current_user.id
+        users_id.append(company_user.user_id)
+      end
+    end
+    users_id
+  end
+
   def companies_id_arr
     companies_id = []
     companies_id.append(current_company.id)

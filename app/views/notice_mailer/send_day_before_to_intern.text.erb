@@ -1,0 +1,12 @@
+<%= @intern.name %>さん
+
+日頃のインターンシップお疲れ様です！
+
+明日は<%= @intern.name %>さんの出社日です。
+
+<% @schedules.each do |schedule| %>
+  <%= schedule.work_started_at.strftime("%-H時%M分") %> ~
+  <%= schedule.work_ended_at.strftime("%-H時%M分") %><br>
+<% end %>
+
+インテルネ運営事務局
