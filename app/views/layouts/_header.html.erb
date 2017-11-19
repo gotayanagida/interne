@@ -23,7 +23,7 @@
 <div class="header ui padded grid" id="header">
   <div class="row main-header screen-header">
 		<!-- for pc　-->
-	  <div class="ten wide column">
+	  <div class="eight wide column">
 			<!-- <%= image_tag "interne.png", class:"interne-img"%> -->
 			<div class="ui dropdown">
 				<div class="title">
@@ -46,8 +46,8 @@
 			</div>
 	  </div>
 
-	  <div class="right aligned six wide column">
-			<div class="ui dropdown" style="top: -17px;">
+	  <div class="right aligned eight wide column">
+			<div class="ui dropdown">
 				<h4><i class="checkmark icon"></i>やることリスト</h4>
 				<% if todo_users.length != 0 %>
 					<div class="notice-num"><%= todo_users.length%></div>
@@ -67,7 +67,7 @@
 				  <% end %>
 				</div>
 		  </div>
-			<div class="ui dropdown" id="notice-update-ajax" style="top: -17px;">
+			<div class="ui dropdown" id="notice-update-ajax">
 				<h4><i class="alarm icon"></i>お知らせ</h4>
 				<% if notice_count != 0 %>
 				 	<div class="notice-num" id="notice-num-for-ajax"><%= notice_count %></div>
@@ -102,7 +102,10 @@
 		  </div>
 		  <% if user_signed_in? %>
 		  	<div class="ui dropdown">
-					<%= image_tag current_user.profile_photo_url, class:"ui circular right floated image user-image", style:"margin-right: 1em;"%>
+					<h4>
+						<%= image_tag current_user.profile_photo_url, class:"ui circular image user-image"%>
+						<%= current_user.name %>
+					</h4>
 					<div class="menu">
             <%= link_to 'インテルネトップへ', root_path, class:"item"%>
 						<%= link_to 'マイページへ', mypage_path, class:"item"%>
