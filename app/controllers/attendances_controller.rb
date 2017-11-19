@@ -79,6 +79,13 @@ class AttendancesController < ApplicationController
 
   def stop_work
     attendance = Attendance.where(user_id: current_user.id).last
+
+    range = attendance.work_started_at.beginning_of_day...attendance.work_started_at.end_of_day
+    schedule = Schedule.where(work_started_at:range).last
+    if schedule.report == nil
+      day = schedule.work_started_at.strftime("%m月%d日")
+      generate_todo(users_id:current_users_id_arr, companies_id:companies_id_arr, body:"#{day}の日報を入力しましょう。", associate_type:"schedule", associate_id:schedule.id)
+    end
     respond_to do |format|
       if @attendance = attendance.update(work_stopped_at:Time.now)
         format.html { redirect_to root_path, notice: '退勤が登録されました。'}

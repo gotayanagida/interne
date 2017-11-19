@@ -17,7 +17,7 @@ class DashboardController < ApplicationController
         range = Time.now.next_day.beginning_of_day...Float::INFINITY
         @schedules_for_staff = current_company.schedules.where(work_started_at: range).order(:work_started_at).limit(5)
         @searched_users = User.all.page(params[:page]).per(10).search(params[:search])
-        @todo_users = @user.todo_users.limit(5).reverse_order
+        @todo_users = @user.todo_users.reverse_order
       else
         @user = current_company.users.find(current_user.id)
         #4 buttons

@@ -53,13 +53,13 @@
 					<div class="notice-num"><%= todo_users.length%></div>
 				<% end %>
 				<div class="menu">
-					<% todo_users.each do |todo_user| %>
-				    <%= link_to todo_path(todo_user.todo), class:"item future" do %>
+					<% todo_users.each do |todo| %>
+				    <%= link_to todo_path(todo), class:"item future" do %>
 					    <i class="large info circle middle aligned icon"></i>
 					    <div class="content">
-					      <div class="header"><%= todo_user.todo.body %></div>
+					      <div class="header"><%= todo.body %></div>
 					      <div class="description">
-						      <% todo_time = Time.now.to_time.to_i - todo_user.todo.created_at.to_time.to_i %>
+						      <% todo_time = Time.now.to_time.to_i - todo.created_at.to_time.to_i %>
 						      <%= (Time.parse("1/1") + todo_time).strftime("%-H時間%-M分%-S秒前") %>
 					      </div>
 					    </div>
@@ -70,7 +70,7 @@
 			<div class="ui dropdown" id="notice-update-ajax" style="top: -17px;">
 				<h4><i class="alarm icon"></i>お知らせ</h4>
 				<% if notice_count != 0 %>
-				 	<div class="notice-num"><%= notice_count %></div>
+				 	<div class="notice-num" id="notice-num-for-ajax"><%= notice_count %></div>
 				<% end %>
 				<div class="menu">
 					<% recent_notice_users.each do |notice_user| %>
@@ -102,7 +102,7 @@
 		  </div>
 		  <% if user_signed_in? %>
 		  	<div class="ui dropdown">
-					<%= image_tag current_user.profile_photo_url, class:"ui circular right floated image user-image"%>
+					<%= image_tag current_user.profile_photo_url, class:"ui circular right floated image user-image", style:"margin-right: 1em;"%>
 					<div class="menu">
             <%= link_to 'インテルネトップへ', root_path, class:"item"%>
 						<%= link_to 'マイページへ', mypage_path, class:"item"%>

@@ -7,4 +7,6 @@ class Todo < ApplicationRecord
   has_many :reports, through: :report_todos
   has_many :goal_todos
   has_many :goals, through: :goal_todos
+  has_many :schedule_todos
+  has_many :schedules, through: :schedule_todos
 end

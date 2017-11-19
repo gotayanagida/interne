@@ -24,6 +24,8 @@ module ApplicationHelper
       path = todo.report_todos.first.report
     elsif todo.associate_type == "goal"
       path = todo.goal_todos.first.goal
+    elsif todo.associate_type == "schedule"
+      path = "reports/new"
     end
     path
   end
@@ -109,7 +111,7 @@ module ApplicationHelper
   end
 
   def todo_users
-    todo_users = current_user.todo_users.reverse_order
+    todos = current_user.todos.where(done:false).reverse_order
   end
 
 end

@@ -42,6 +42,9 @@ class ApplicationController < ActionController::Base
     elsif associate_type == "goal"
       goal = Goal.find(associate_id)
       goal.todos << todo
+    elsif associate_type == "schedule"
+      schedule = Schedule.find(associate_id)
+      schedule.todos << todo
     end
     users_id.each do |user_id|
       user = User.find(user_id)
@@ -99,15 +102,20 @@ class ApplicationController < ActionController::Base
     attendance_status
   end
 
-  def update_todo(type:, associate_id:)
-    if type == "report"
+  def update_todo(associate_type:, associate_id:)
+    if associate_type == "report"
       if report_todo = ReportTodo.find_by(report_id:associate_id)
         todo = Todo.find(report_todo.todo_id)
         todo.update(done:1)
       end
-    elsif type == "goal"
+    elsif associate_type == "goal"
       if goal_todo = GoalTodo.find_by(goal_id:associate_id)
         todo = Todo.find(goal_todo.todo_id)
+        todo.update(done:1)
+      end
+    elsif associate_type == "schedule"
+      if schedule_todo = ScheduleTodo.find_by(schedule_id:associate_id)
+        todo = Todo.find(schedule_todo.todo_id)
         todo.update(done:1)
       end
     end

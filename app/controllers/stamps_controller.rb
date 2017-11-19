@@ -71,7 +71,7 @@ class StampsController < ApplicationController
         end
       else
         ReportStamp.create(report_id:params[:associate_id] ,stamp_id:params[:stamp_id] ,user_id:current_user.id)
-        update_todo(type:"report", associate_id:params[:associate_id])
+        update_todo(associate_type:"report", associate_id:params[:associate_id])
       end
     elsif params[:associate_type] == "goal"
       if goal_stamp = GoalStamp.find_by(goal_id:params[:associate_id], user_id:current_user.id)
@@ -82,7 +82,7 @@ class StampsController < ApplicationController
         end
       else
         GoalStamp.create(goal_id:params[:associate_id] ,stamp_id:params[:stamp_id] ,user_id:current_user.id)
-        update_todo(type:"goal", associate_id:params[:associate_id])
+        update_todo(associate_type:"goal", associate_id:params[:associate_id])
       end
     end
     redirect_back(fallback_location: root_path)
