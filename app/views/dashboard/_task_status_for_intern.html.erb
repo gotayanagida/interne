@@ -14,11 +14,11 @@ $('#countdown').timeTo();
       <% future_schedule.tasks.each do |task| %>
         <% if task.users.include?(current_user) %>
           <%= link_to task do%>
-            <div class="item" style="border-left: 4px solid #<%=task.labels.last.color%>;">
+            <div class="item" style="border-left: 4px solid <%=task.labels.last.color%>;">
               <div class="title">
               	<%= task.title %>
             	  <% task.labels.each do |label| %>
-                  <span style="background-color:#<%=label.color%>;">
+                  <span style="background-color:<%=label.color%>;">
                     <%= label.name %>
                   </span>
                 <% end %>
