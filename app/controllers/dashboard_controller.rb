@@ -11,13 +11,13 @@ class DashboardController < ApplicationController
       @users = users.page(params[:page]).per(10)
 
       if current_user.employment_status == false
-        #社員用ダッシュボード
+        #社員用トップ
         @user = current_company.users.find(current_user.id)
         @active_attendances = Attendance.where(company_id: current_company, work_stopped_at: nil)
         range = Time.now.next_day.beginning_of_day...Float::INFINITY
         @schedules_for_staff = current_company.schedules.where(work_started_at: range).order(:work_started_at).limit(5)
         @searched_users = User.all.page(params[:page]).per(10).search(params[:search])
-        @todo_users = @user.todo_users.limit(5).reverse_order
+        @todo_users = @user.todo_users.reverse_order
       else
         @user = current_company.users.find(current_user.id)
         #4 buttons

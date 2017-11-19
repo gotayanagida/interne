@@ -27,9 +27,9 @@ notice = ->
   $('#notice-update-ajax').on 'click', (e) ->
     e.preventDefault()
     updateNotice()
+    deleteNoticeNum()
 
   updateNotice = ->
-    console.log ('clicked')
     noticeAjax = $.ajax({
       url: '/notices/update_notice'
       type: 'GET'
@@ -39,11 +39,9 @@ notice = ->
       }
     })
 
-    noticeAjax.done (data, stat, xhr) ->
-      console.log ('done')
-    noticeAjax.fail (xhr, stat, err) ->
-      console.log { fail: stat, error: err, xhr: xhr }
-      alert xhr.responseText
+  deleteNoticeNum = ->
+    $("#notice-num-for-ajax").remove()
+
 
 $(document).ready(notice)
 $(document).on('page:load', notice)

@@ -25,9 +25,9 @@ var toDoubleDigits = function(num) {
 shoya =[
 <% @schedules.each do |schedule| %>
     {
-    	title:'<%= schedule.user.name %>',
-    	start:'<%= schedule.work_started_at %>',
-    	end:'<%= schedule.work_ended_at %>'
+			title:'<%= schedule.user.name %>',
+    	start:'<%= schedule.work_started_at.time.strftime('%Y/%m/%d %H:%M:%S') %>',
+    	end:'<%= schedule.work_ended_at.time.strftime('%Y/%m/%d %H:%M:%S') %>'
     },
   <% end %>
 ];
@@ -42,7 +42,7 @@ $(document).ready(function() {
 		sex = (uniq_title[i].charCodeAt(0)+uniq_title[i].charCodeAt(uniq_title[i].length-1))/8;
 		var my_chance=new Chance(sex);
 		var mycolor = my_chance.color({format: 'hex'});
-		var $input = $('<input type="checkbox" />').attr({id: uniq_title[i],name:"check"}).attr("checked", true ).css("float", "left" );
+		var $input = $('<input type="checkbox" class="item" />').attr({id: uniq_title[i],name:"check"}).attr("checked", true ).css("float", "left" );
 		var $label = $('<label><font color='+mycolor+'>■</font>'+uniq_title[i]+'</label></br>');
 		$("#inputtest").append($input).append($label);
 	}
@@ -125,21 +125,22 @@ $(function() {
 
 </script>
   <h3>スケジュール</h3>
-	<% if current_user.employment_status == true %>
 		<div class="left floated column">
-			<%= link_to new_schedule_path, class: "ui labeled icon button" do%>
-			<i class="plus icon"></i>スケジュールを追加
+			<% if current_user.employment_status == true %>
+				<%= link_to new_schedule_path, class: "ui labeled icon button" do%>
+				<i class="plus icon"></i>スケジュールを追加
+				<% end %>
 			<% end %>
+  		<div class="ui dropdown">
+				<div class="ui button">インターンシップを選択</div>
+				<div class="menu">
+					<div id="inputtest"></div>
+				</div>
+			</div>
 		</div>
-	<% end %>
-  <div class="ui grid">
+	<div class="ui grid">
     <div class="row">
-      <div class="three wide column">
-        <div class="ui segment">
-          <div id="inputtest"></div>
-        </div>
-      </div>
-      <div class="thirteen wide column">
+      <div class="sixteen wide column">
         <div class="ui segment">
           <div id='calendar'></div>
         </div>

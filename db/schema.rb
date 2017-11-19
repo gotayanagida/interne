@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171112031605) do
+ActiveRecord::Schema.define(version: 20171119031822) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -163,6 +163,15 @@ ActiveRecord::Schema.define(version: 20171112031605) do
     t.index ["company_id"], name: "index_reports_on_company_id"
     t.index ["schedule_id"], name: "index_reports_on_schedule_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
+  create_table "schedule_todos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "schedule_id"
+    t.bigint "todo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["schedule_id"], name: "index_schedule_todos_on_schedule_id"
+    t.index ["todo_id"], name: "index_schedule_todos_on_todo_id"
   end
 
   create_table "schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -318,6 +327,8 @@ ActiveRecord::Schema.define(version: 20171112031605) do
   add_foreign_key "reports", "companies"
   add_foreign_key "reports", "schedules"
   add_foreign_key "reports", "users"
+  add_foreign_key "schedule_todos", "schedules"
+  add_foreign_key "schedule_todos", "todos"
   add_foreign_key "schedules", "companies"
   add_foreign_key "schedules", "users"
   add_foreign_key "task_labels", "labels"

@@ -42,9 +42,6 @@ body {
 .row.main-header .column{
 	padding-bottom: 0px;
 }
-.row.main-header{
-	padding-bottom: 0px !important;
-}
 .ui.main-header{
 	padding-bottom: 0px !important;
 }
@@ -102,6 +99,7 @@ body {
   margin: 15px auto 15px auto;
 }
 .ui.menu .teal.active.item {
+  padding-left: 9px;
   border-left: 4px solid #ffffff !important;
 }
 
@@ -132,28 +130,37 @@ body {
 
 /*header*/
 
-.ui.right.floated.image {
+#header {
+  right: 0px;
+  background-color: #ffffff;
+  height: 80px;
+  box-shadow: rgba(0, 127, 88, 0.2) 0px 0px 13px 0px;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  padding-left: 7rem;
+}
+
+.ui.middle.aligned.image, .ui.right.floated.image {
     box-shadow: 0px 0px 13px 0px rgba(0, 127, 88, 0.5);
 }
 
-#main_contents > .header {
-    background-color: #ffffff;
-    height: 80px;
-    box-shadow: rgba(0, 127, 88, 0.2) 0px 0px 13px 0px;
-    position: fixed;
-    z-index: 10;
-    width: 100%;
-    padding-left: 210px;
-}
-
-#main_contents > .header h3 {
+#header h3 {
     margin: 14px;
 }
 
-
-#main_contents > .header h3 span {
+#header h3 span {
     color: #333333;
     font-size: 10px;
+}
+
+#header .title {
+  padding: 0 1rem;
+}
+
+#header .interne-img{
+  height: 52px;
+  padding: 5px 1rem;
 }
 
 .notice-num {
@@ -176,6 +183,7 @@ body {
 
 .ui.segment{
   border: 0px;
+  border-radius: 0.15rem;
 }
 
 .ui.segment h3 {
@@ -186,15 +194,20 @@ body {
     color: inherit;
 }
 
+.ui.raised.segment {
+  height: 100%;
+}
+
 
 /*shadow*/
 .ui.raised.segment,.ui.cards > .card, {
-  box-shadow: 0px 0px 13px 0px rgba(0, 127, 88, 0.2);
+  //box-shadow: 0px 0px 13px 0px rgba(0, 127, 88, 0.2);
+  box-shadow: 0px 2px 7px 0px rgba(0, 127, 88, 0.2);
 }
 
 /*devise*/
 body .grid {
-  height: 100%;
+  // height: 100%;
 }
 
 #signin .image {
@@ -205,6 +218,44 @@ body .grid {
   max-width: 450px;
 }
 
+#signin > div {
+  top: 15rem;
+}
+
 .ui.teal.button {
   background: linear-gradient(-45deg,#00a9bc 20%,#00bc89 100%);
+}
+
+.ui.vertical.menu {
+    width: 7rem;
+}
+
+#sidebar a {
+  height: 6rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+#sidebar a i {
+  display: block;
+  font-size: 2.5rem;
+  margin: 3px auto;
+}
+
+#current_company img {
+  display: block;
+  box-shadow: 0 0 30px rgba(0,0,0,0.2);
+  margin: 0 auto;
+  width: 3rem;
+}
+
+#current_company b {
+  font-size: 0.8rem;
+  text-align: center;
+  display: block;
+  margin: 1rem 0 0 0;
+}
+
+#current_company {
+  margin: 0px 0px 17px 0px;
 }
