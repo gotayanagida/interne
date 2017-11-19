@@ -6,3 +6,80 @@
 .ui.piled.segment {
   margin: 0rem 0rem 1rem 0rem !important;
 }
+
+
+//#schedule_status_for_intern
+
+#schedule-status-for-intern{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 180px;
+}
+
+#schedule-status-for-intern::after{
+  height: 180px;
+  content: "";
+  position: absolute;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 40%, white 100%);
+  width: calc(100% - 38px);
+}
+
+#schedule-status-for-intern .future-schedules:first-child::before{
+  content: "";
+  height: 160px;
+  display: block;
+}
+
+#schedule-status-for-intern .future-schedules:last-child::after{
+  content: "";
+  height: 50px;
+  display: block;
+}
+
+#schedule-status-for-intern .future-schedules:first-child {
+  margin: 1.5rem 0;
+  font-size: 20px;
+  color: #000000;
+}
+
+#schedule-status-for-intern .future-schedules {
+  color: #333333;
+  margin-bottom: 0.2rem;
+}
+
+//#task-status-for-intern
+
+#task-status-for-intern{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 180px;
+}
+
+#task-status-for-intern .item:first-child {
+  border-top: 0.5px solid #eeeeee;
+}
+
+#task-status-for-intern .item {
+  font-size: 17px;
+  color: #000000;
+  border-bottom: 0.5px solid #eeeeee;
+  padding: 0.5rem;
+}
+
+#task-status-for-intern .description {
+  font-size: 10px;
+  color: #555555;
+  font-weight: normal;
+}
+
+#task-status-for-intern .title span {
+  float: right;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 10px;
+  padding: 0 0.3rem;
+}
+
+#task-status-for-intern .description span {
+  float: right;
+}

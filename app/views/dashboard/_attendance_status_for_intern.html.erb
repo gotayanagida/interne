@@ -51,11 +51,6 @@
         </div>
       </div>
     </div>
-    <div>
-      <h3>
-        次回の出勤予定：<%= @next_work_schedule %>
-      </h3>
-    </div>
     <% end %>
     <div class="four ui buttons">
       <%= link_to '出勤', start_work_path,class:"ui button" if attendance_status(user:@user) == "not_work"  || attendance_status(user:@user) == "never_work"%>

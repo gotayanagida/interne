@@ -7,34 +7,38 @@
 $('#countdown').timeTo();
 </script>-->
 
-<h3>次回タスク予定</h3>
-<div class="ui grid padded stackable middle aligned">
-  <div class="sixteen wide column center aligned">
-    <% if @user.attendances != [] %>
-    <% if @user.attendances.last.work_stopped_at.nil? %>
-    <% if @user.attendances.last.break_started_at.nil? == @user.attendances.last.break_stopped_at.nil? %>
-      <% unless @user.task_users == [] %>
-        <%= @user.task_users.last.task.title %>
-      <% else %>
-        "登録なし"
+<h3>今後のタスク</h3>
+<% if @future_schedules != [] %>
+  <div class="ui relaxed divided list" id="task-status-for-intern">
+    <% @future_schedules.each do |future_schedule| %>
+      <% future_schedule.tasks.each do |task| %>
+        <% if task.users.include?(current_user) %>
+          <%= link_to task do%>
+            <div class="item" style="border-left: 4px solid #<%=task.labels.last.color%>;">
+              <div class="title">
+              	<%= task.title %>
+            	  <% task.labels.each do |label| %>
+                  <span style="background-color:#<%=label.color%>;">
+                    <%= label.name %>
+                  </span>
+                <% end %>
+              </div>
+              <div class="description">
+                  <%=task.detail.slice(0, 30)%><%= '...' if task.detail.length > 30%>
+                <span>
+                  <%= future_schedule.work_started_at.strftime("%m月%d日") %>
+                </span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
-    <% else %>
-      <% unless @user.task_users == [] %>
-        <%= @user.task_users.last.task.title %>
-      <% else %>
-        "登録なし"
-      <% end %>
-    <% end %>
-    <% else %>
-    <% #退勤中の場合 %>
-    <% unless @user.task_users == [] %>
-    <%= @user.task_users.last.task.title %>
-    <% else %>
-      "登録なし"
-    <% end %>
-    <% end %>
-    <% else %>
-    <% #初回出社前の場合 %>
     <% end %>
   </div>
+<% else %>
+  <div class="ui grid padded stackable middle aligned" id="schedule-status-for-intern">
+    <div class="sixteen wide column center aligned">
+    <%= "タスクが登録されていません。" %>
+    </div>
 </div>
+<% end %>

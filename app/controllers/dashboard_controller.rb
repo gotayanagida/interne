@@ -33,30 +33,10 @@ class DashboardController < ApplicationController
           @attendance_time = now_time - work_started_time - @break_time
           @last_attendance_time = work_stopped_time - work_started_time - @break_time.to_i if attendance_status(user:@user) == "not_work"
         end
-        #その日の出勤シフトについて
-        today_work_schedule = current_company.schedules.where(user_id: current_user.id, work_started_at: Time.now.beginning_of_day...Time.now.end_of_day).first
-        if today_work_schedule != nil
-          #その日の出勤シフトがある場合
-          @today_work_schedule = ""
-          @today_work_schedule += today_work_schedule.work_started_at.strftime("%m月%d日 %-H時%M分")
-          @today_work_schedule += " ~ "
-          @today_work_schedule += today_work_schedule.work_ended_at.strftime("%-H時%M分")
-        else
-          #その日の出勤シフトがない場合
-          @today_work_schedule = "\"登録なし\""
-        end
 
-        #その日の翌日以降の出勤シフトについて
-        next_work_schedule = current_company.schedules.where(user_id: current_user.id, work_started_at: Time.now.to_time..Float::INFINITY).order(:work_started_at).first
-        if next_work_schedule != nil
-          #次回以降の出勤シフトがある場合
-          @next_work_schedule = next_work_schedule.work_started_at.strftime("%m月%d日 %-H時%M分")
-          @next_work_schedule += " ~ "
-          @next_work_schedule += next_work_schedule.work_ended_at.strftime("%-H時%M分")
-        else
-          #次回以降の出勤シフトがない場合
-          @next_work_schedule = "\"登録なし\""
-        end
+        from_now_on = Time.now.beginning_of_day...Float::INFINITY
+        @future_schedules = current_user.schedules.where(work_started_at:from_now_on, company_id:current_company.id)
+
         range = Time.now.next_day.beginning_of_day...Float::INFINITY
         @schedules_for_intern = current_company.schedules.where(work_started_at: range, user_id:current_user.id).order(:work_started_at).limit(5)
 
