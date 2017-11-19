@@ -19,34 +19,40 @@
 <% else %>
   <% if current_company != nil %>
     <div class="ui grid">
-      <div class="five wide column">
-        <div class="ui raised segment">
-          <%= render 'attendance_status_for_intern' %>
+      <div class="three column row">
+        <div class="column">
+          <div class="ui raised segment">
+            <%= render 'attendance_status_for_intern' %>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui raised segment">
+            <%= render 'schedule_status_for_intern' %>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui raised segment">
+            <%= render 'task_status_for_intern' %>
+          </div>
         </div>
       </div>
-      <div class="five wide column">
-        <div class="ui raised segment">
-          <%= render 'schedule_status_for_intern' %>
+      <div class="one column row">
+        <div class="column">
+          <div class="ui raised segment">
+            <%= render 'schedules' %>
+          </div>
         </div>
       </div>
-      <div class="five wide column">
-        <div class="ui raised segment">
-          <%= render 'task_status_for_intern' %>
+      <div class="two column row">
+        <div class="column">
+          <div class="ui raised segment">
+            <%= render 'tasks' %>
+          </div>
         </div>
-      </div>
-      <div class="sixteen wide column">
-        <div class="ui raised segment">
-          <%= render 'schedules' %>
-        </div>
-      </div>
-      <div class="eight wide column">
-        <div class="ui raised segment">
-          <%= render 'tasks' %>
-        </div>
-      </div>
-      <div class="eight wide column">
-        <div class="ui raised segment">
-          <%= render 'reports' %>
+        <div class="column">
+          <div class="ui raised segment">
+            <%= render 'reports' %>
+          </div>
         </div>
       </div>
     </div>
