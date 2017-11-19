@@ -1,23 +1,15 @@
 <script src="https://webkaru.net/jquery-plugin/sources/timeto/jquery.timeTo.js"></script>
 <link href="https://webkaru.net/jquery-plugin/sources/timeto/timeTo.css" type="text/css" rel="stylesheet"/>
 
-<h3>次回出勤予定</h3>
-<div class="ui grid padded stackable middle aligned">
+<h3>今後の出勤予定</h3>
+<div class="ui grid padded stackable middle aligned" id="schedule-status-for-intern">
   <div class="sixteen wide column center aligned">
-    <% if @user.attendances != [] %>
-    <% if @user.attendances.last.work_stopped_at.nil? %>
-    <% if @user.attendances.last.break_started_at.nil? == @user.attendances.last.break_stopped_at.nil? %>
-    <%= @today_work_schedule %>
+    <% if @future_schedules != [] %>
+      <% @future_schedules.each do |future_schedule| %>
+        <div class="future-schedules"><%= future_schedule.work_started_at.strftime('%m月%d日(月)%-H時%M分') %>~<%= future_schedule.work_ended_at.strftime('%-H時%M分') %></div>
+      <% end %>
     <% else %>
-      <%= @today_work_schedule %><br>
-    <% end %>
-    <% else %>
-    <% #退勤中の場合 %>
-      <%= @next_work_schedule %>
-    <% end %>
-    <% else %>
-    <% #初回出社前の場合 %>
-      <%= @next_work_schedule %>
+      <%= "シフトが登録されていません。" %>
     <% end %>
   </div>
 </div>
