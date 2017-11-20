@@ -23,38 +23,6 @@ $(document).ready(function(){
     <%= link_to root_path do %>
       <%= image_tag "logo-sq.png", class:"ui image", style:"padding: 19px 2rem;"%>
     <% end %>
-      <% if current_user.employment_status == true %>
-        <!-- <div id="current_company" class="ui vertical accordion item">
-          <div class="title">
-            <%= image_tag current_company.icon_photo_url, class:"ui circular middle aligned mini image"%>
-            <b class="aaaaa">
-              <%if current_company.name.length > 7%>
-                <%=current_company.name.slice(0, 7)%>...
-              <%else%>
-                <%=current_company.name%>
-              <%end%>
-            </b>
-          </div>
-          <div class="content">
-            <% current_user.company_users.each do |company_user| %>
-              <%= link_to set_current_company_path(company_id:company_user.company.id), class:"item",style:"color:rgba(255, 255, 255, 0.9) !important;" do%>
-                <%= company_user.company.name %><br>
-              <% end %>
-            <% end %>
-          </div>
-        </div> -->
-      <%else%>
-        <%= link_to root_path, class:"item", style:"margin: 7px 0px 17px 0px;" do%>
-          <%= image_tag current_company.icon_photo_url, class:"ui circular middle aligned mini image", style:"box-shadow: 0 0 30px rgba(0,0,0,0.2); margin: 0rem 0.5rem 0rem 0.5rem;"%>
-          <b class="aaaaa">
-            <%if current_company.name.length > 7%>
-              <%=current_company.name.slice(0, 7)%>...
-            <%else%>
-              <%=current_company.name%>
-            <%end%>
-          </b>
-          <%end%>
-      <% end %>
       <div class="sidebar-content">
         <% if current_page?(root_path)%>
           <%= link_to root_path,class:"active teal item pjax" do%>
