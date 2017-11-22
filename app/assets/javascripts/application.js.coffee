@@ -24,7 +24,7 @@
 
 notice = ->
 
-  $('#notice-update-ajax').on 'click', (e) ->
+  $('#notice-update-ajax').on 'mouseenter', (e) ->
     e.preventDefault()
     updateNotice()
     deleteNoticeNum()
