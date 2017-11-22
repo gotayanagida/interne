@@ -25,7 +25,7 @@
 		<!-- for pc　-->
 	  <div class="eight wide column">
 			<!-- <%= image_tag "interne.png", class:"interne-img"%> -->
-			<div class="ui dropdown">
+			<div class="ui dropdown companies">
 				<div class="title">
 					<h3>
 						<%if current_company.name.length > 10%>
@@ -47,7 +47,7 @@
 	  </div>
 
 	  <div class="right aligned eight wide column">
-			<div class="ui dropdown">
+			<div class="ui dropdown todos">
 				<h4><i class="checkmark icon"></i>やることリスト</h4>
 				<% if todo_users.length != 0 %>
 					<div class="notice-num"><%= todo_users.length%></div>
@@ -67,7 +67,7 @@
 				  <% end %>
 				</div>
 		  </div>
-			<div class="ui dropdown" id="notice-update-ajax">
+			<div class="ui dropdown notices" id="notice-update-ajax">
 				<h4><i class="alarm icon"></i>お知らせ</h4>
 				<% if notice_count != 0 %>
 				 	<div class="notice-num" id="notice-num-for-ajax"><%= notice_count %></div>
@@ -101,7 +101,7 @@
 				</div>
 		  </div>
 		  <% if user_signed_in? %>
-		  	<div class="ui dropdown">
+		  	<div class="ui dropdown user">
 					<h4>
 						<%= image_tag current_user.profile_photo_url, class:"ui circular image user-image"%>
 						<%= current_user.name %>
@@ -130,3 +130,13 @@
   </div>
 </div>
 </div>
+
+<script>
+$(function() {
+  $('.ui.dropdown').hover(function() {
+ 		$(this).dropdown('show');
+  }, function() {
+		$(this).dropdown('hide');
+  });
+});
+</script>
