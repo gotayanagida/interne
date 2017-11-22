@@ -163,9 +163,16 @@ body {
   padding: 0 1rem;
 }
 
-#header .interne-img{
-  height: 52px;
-  padding: 5px 1rem;
+#header .company-icon-img{
+  border-radius: 10rem;
+  height: 3rem;
+  box-shadow: 0px 0px 13px 0px rgba(0, 127, 88, 0.5);
+  margin: -1rem 1rem -1rem -1rem;
+}
+
+#header .company-name{
+  display: inline-block;
+  margin-top: 0.6rem;
 }
 
 .notice-num {
@@ -192,6 +199,40 @@ body {
 .main_contents {
   background-color: #fafcfc;
 }
+
+#header .ui.dropdown a {
+  width: 22rem;
+  height: 6.5rem;
+  border-bottom: 0.25px solid #eeeeee;
+}
+
+#header .ui.dropdown a img{
+  margin: 1rem 0.5rem 1rem 0rem;
+  height: 3rem;
+  max-height: none;
+}
+
+#header .ui.dropdown a .content {
+  margin: 0.5rem 0rem;
+  width: 16rem;
+}
+
+#header .ui.dropdown a .content .header {
+  white-space: normal;
+}
+
+#header .ui.dropdown a .content .description {
+  text-align: right;
+  color: #aaaaaa;
+  font-weight: lighter;
+  font-size: 0.8rem;
+}
+
+.ui.header .icon:only-child {
+  margin-right: -0.25rem;
+  font-size: 18px;
+}
+
 
 .ui.segment{
   border: 0px;

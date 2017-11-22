@@ -28,18 +28,16 @@
 			<div class="ui dropdown companies">
 				<div class="title">
 					<h3>
-						<%if current_company.name.length > 10%>
-							<%=current_company.name.slice(0, 10)%>...
-						<%else%>
-							<%=current_company.name%>
-						<%end%>
+						<%= image_tag current_company.icon_photo_url, class:"company-icon-img"%>
+						<%= current_company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%>
 						<i class="dropdown icon"></i>
 					</h3>
 				</div>
 				<div class="menu">
 					<% current_user.company_users.each do |company_user| %>
 						<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item future" do%>
-							<%= company_user.company.name %><br>
+							<%= image_tag company_user.company.icon_photo_url, class:"company-icon-img"%>
+							<div class="company-name"><h3><%= current_company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%></h3></div>
 						<% end %>
 					<% end %>
 				</div>
@@ -55,10 +53,11 @@
 				<div class="menu">
 					<% todo_users.each do |todo| %>
 				    <%= link_to todo_path(todo), class:"item future" do %>
-					    <i class="large info circle middle aligned icon"></i>
+							<%= image_tag "logo-sq3"%>
 					    <div class="content">
 					      <div class="header"><%= todo.body %></div>
 					      <div class="description">
+									<i class="clock icon"></i>
 						      <% todo_time = Time.now.to_time.to_i - todo.created_at.to_time.to_i %>
 						      <%= (Time.parse("1/1") + todo_time).strftime("%-H時間%-M分%-S秒前") %>
 					      </div>
@@ -76,10 +75,11 @@
 					<% recent_notice_users.each do |notice_user| %>
 						<% if notice_user.notice.read == false %>
 				    	<%= link_to notice_path(notice_user.notice), class:"item future", style: "background-color: #f0f0f0;" do %>
-							<i class="large info circle middle aligned icon"></i>
+							<%= image_tag "logo-sq3"%>
 					    <div class="content">
 					      <div class="header"><%= notice_user.notice.body %></div>
 					      <div class="description">
+									<i class="clock icon"></i>
 						      <% notice_time = Time.now.to_time.to_i - notice_user.notice.created_at.to_time.to_i %>
 						      <%= (Time.parse("1/1") + notice_time).strftime("%-H時間%-M分%-S秒前") %>
 					      </div>
@@ -87,10 +87,11 @@
 				    	<% end %>
 						<% else %>
 							<%= link_to notice_path(notice_user.notice), class:"item future" do %>
-							<i class="large info circle middle aligned icon"></i>
+							<%= image_tag "logo-sq3"%>
 					    <div class="content">
 					      <div class="header"><%= notice_user.notice.body %></div>
 					      <div class="description">
+									<i class="clock icon"></i>
 						      <% notice_time = Time.now.to_time.to_i - notice_user.notice.created_at.to_time.to_i %>
 						      <%= (Time.parse("1/1") + notice_time).strftime("%-H時間%-M分%-S秒前") %>
 					      </div>
@@ -132,11 +133,11 @@
 </div>
 
 <script>
-$(function() {
-  $('.ui.dropdown').hover(function() {
- 		$(this).dropdown('show');
-  }, function() {
-		$(this).dropdown('hide');
-  });
-});
+// $(function() {
+//   $('.ui.dropdown').hover(function() {
+//  		$(this).dropdown('show');
+//   }, function() {
+// 		$(this).dropdown('hide');
+//   });
+// });
 </script>
