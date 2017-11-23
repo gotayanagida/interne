@@ -28,7 +28,9 @@
 			<div class="ui dropdown companies">
 				<div class="title">
 					<h3>
-						<%= image_tag current_company.icon_photo_url, class:"company-icon-img"%>
+						<div class="circle-image-border" style="width: 50px; height: 50px;">
+							<span><%= image_tag current_company.icon_photo_url, class:"company-icon-img"%></span>
+						</div>
 						<%= current_company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%>
 						<i class="dropdown icon"></i>
 					</h3>
@@ -36,7 +38,9 @@
 				<div class="menu">
 					<% current_user.company_users.each do |company_user| %>
 						<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item future" do%>
-							<%= image_tag company_user.company.icon_photo_url, class:"company-icon-img"%>
+							<div class="circle-image-border" style="width: 40px; height: 40px;">
+								<span><%= image_tag company_user.company.icon_photo_url, class:"company-icon-img"%></span>
+							</div>
 							<div class="company-name"><%= company_user.company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%></div>
 						<% end %>
 					<% end %>
@@ -104,12 +108,16 @@
 		  <% if user_signed_in? %>
 		  	<div class="ui dropdown user">
 					<h4>
-						<%= image_tag current_user.profile_photo_url, class:"ui circular image user-image", style:"width: 30px !important; height:30px !important;" %>
+						<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem;">
+							<span><%= image_tag current_user.profile_photo_url %></span>
+						</div>
 						<%= current_user.name %>
 					</h4>
 					<div class="menu">
 						<%= link_to mypage_path, class:"item" do%>
-							<%= image_tag current_user.profile_photo_url, class:"ui circular image user-image", style:"width: 40px !important; height:40px !important;"%>
+						<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem;">
+							<span><%= image_tag current_user.profile_photo_url %></span>
+						</div>
 							<div class="content">
 					      <div class="header"><%= current_user.name %></div>
 					      <div class="description">プロフィール編集</div>
