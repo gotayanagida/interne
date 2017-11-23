@@ -19,6 +19,7 @@
 #= require rails-ujs
 # Loads all Semantic javascripts
 #= require semantic-ui
+#= require semantic
 #= require calendar
 #= require_tree .
 

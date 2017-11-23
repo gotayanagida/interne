@@ -42,9 +42,10 @@ $(document).ready(function() {
 		sex = (uniq_title[i].charCodeAt(0)+uniq_title[i].charCodeAt(uniq_title[i].length-1))/8;
 		var my_chance=new Chance(sex);
 		var mycolor = my_chance.color({format: 'hex'});
-		var $input = $('<input type="checkbox" class="item" />').attr({id: uniq_title[i],name:"check"}).attr("checked", true ).css("float", "left" );
-		var $label = $('<label><font color='+mycolor+'>■</font>'+uniq_title[i]+'</label></br>');
-		$("#inputtest").append($input).append($label);
+		var $selector = $('<div class="item add-intern" id="'+uniq_title[i]+'" data-value="'+uniq_title[i]+'"><div class="ui green empty circular label" style="'+mycolor+'"></div>'+uniq_title[i]+'</div>');
+		// var $input = $('<input type="checkbox" class="item" />').attr({id: uniq_title[i],name:"check"}).attr("checked", true ).css("float", "left" );
+		// var $label = $('<label><font color='+mycolor+'>■</font>'+uniq_title[i]+'</label></br>');
+		$("#intern-selector").append($selector);
 	}
 
 	//配列整形→色挿入
@@ -107,10 +108,11 @@ $(document).ready(function() {
 
 $(function() {
 // チェックボックスをチェックしたら発動
-  $('input[name="check"]').change(function() {
-		var new_event = []
+	$('.add-intern').on('click', function() {
+		var new_event = [];
+		$(this).addClass("selected-intern");
 		for(var i=0;i<uniq_title.length;i++){
-			if($('#'+uniq_title[i]).prop('checked')){
+			if($('#'+uniq_title[i]).hasClass('selected-intern')){
 				for(var j=0;j<shoya.length;j++){
 					if(uniq_title[i]===shoya[j].title){
 						new_event.push(shoya[j]);
@@ -118,7 +120,7 @@ $(function() {
 				}
 			}
 		}
-		$('#calendar').fullCalendar( 'removeEvents' )
+		$('#calendar').fullCalendar( 'removeEvents' );
 		$('#calendar').fullCalendar( 'renderEvents', new_event,'stick' );
   });
 });
@@ -131,11 +133,18 @@ $(function() {
 				<i class="plus icon"></i>スケジュールを追加
 				<% end %>
 			<% end %>
-  		<div class="ui dropdown">
-				<div class="ui button">インターンシップを選択</div>
-				<div class="menu">
-					<div id="inputtest"></div>
-				</div>
+			<div class="ui multiple dropdown">
+			  <input type="hidden" name="filters">
+			  <i class="filter icon"></i>
+			  <span class="text">インターン生を選択</span>
+			  <div class="menu">
+			    <div class="ui icon search input">
+			      <i class="search icon"></i>
+			      <input type="text" placeholder="インターン生を検索...">
+			    </div>
+			    <div class="scrolling menu" id="intern-selector">
+			    </div>
+			  </div>
 			</div>
 		</div>
 	<div class="ui grid">
