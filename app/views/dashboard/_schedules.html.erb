@@ -25,7 +25,10 @@ var toDoubleDigits = function(num) {
 shoya =[
 <% @schedules.each do |schedule| %>
     {
-			title:'<%= schedule.user.name %>',
+			title:'',
+			username:'<h3><%= schedule.user.name %></h3>',
+			schedule:'<h5><%= schedule.work_started_at.strftime("%-H:%M") %> ~ <%= schedule.work_ended_at.strftime("%-H:%M") %></h5>',
+    	tasks:'<% schedule.tasks.each do |task| %><h5><%= task.title %><% task.labels.each do |label| %><%= label.name %><% end %></h5><% end %>',
     	start:'<%= schedule.work_started_at.time.strftime('%Y/%m/%d %H:%M:%S') %>',
     	end:'<%= schedule.work_ended_at.time.strftime('%Y/%m/%d %H:%M:%S') %>'
     },
@@ -101,9 +104,12 @@ $(document).ready(function() {
 	    eventMouseout: function(calEvent, jsEvent) {
 	        $('#tooltip').remove();
 	    },
-		events:shoya,
+			eventRender: function(events, element) {
+			    $(element.context)  //imgプロパティが存在するイベントだけtitleを画像に差し替え
+					.html(events.username+events.schedule+events.tasks);
+    	},
+			events:shoya
 	});
-
 });
 
 $(function() {
