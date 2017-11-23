@@ -4,37 +4,45 @@
 		});
 </script>
 <h3>タスク</h3>
-<div class="left floated column">
-	<%= link_to new_task_path, class: "ui labeled icon button" do%>
-	<i class="plus icon"></i>タスクを追加
-	<% end %>
-	<%= link_to labels_path, class: "ui button" do%>
-	ラベル管理
-	<% end %>
-</div>
-<div class="ui relaxed divided list">
-<% @tasks.each do |task| %>
-  <div class="item">
-    <div class="right floated content">
-      <%= link_to edit_task_path(task), class:"ui button" do%>
-      割り当て
-      <%end%>
-    </div>
-    <i class="travel big icon"></i>
-    <div class="content">
-      <%= link_to task ,class: "header" do%>
-      	<%= task.title %>
-      <%end%>
-      <div class="description">
-      <%= task.detail %>
-      <% task.task_schedules.each do |task_schedule| %>
-        <%= task_schedule.schedule.work_started_at.strftime('%m/%d(%a)') %><br>
+<% if @schedules != [] %>
+  <div class="ui relaxed divided list task-status" id="tasks-for-all">
+    <% @schedules.each do |schedule| %>
+      <% schedule.tasks.each do |task| %>
+        <% if task.users.include?(current_user) %>
+          <%= link_to task do%>
+            <div class="item" style="border-left: 4px solid <%=task.labels.last.color%>;">
+	             <%= image_tag task.users.first.profile_photo_url, class:"ui circular image user-image", style:"width:30px; height:30px;"%>
+            	<div class="content">
+		            <div class="title">
+	              	<%= task.title %>
+									<% task.labels.each do |label| %>
+	                  <span class="labelname" style="background-color:<%=label.color%>;">
+	                    <%= label.name %>
+	                  </span>
+	                <% end %>
+									<% task.users.each do |user| %>
+										<span class="username">
+											<%= user.name %>,
+										</span>
+									<% end %>
+	              </div>
+	              <div class="description">
+	                  <%=task.detail.slice(0, 40)%><%= '...' if task.detail.length > 40%>
+	                <span>
+	                  <%= schedule.work_started_at.strftime("%m月%d日") %>
+	                </span>
+	              </div>
+	            </div>
+						</div>
+          <% end %>
+        <% end %>
       <% end %>
-			<% task.task_labels.each do |task_label| %>
-        <div style="background-color:<%= task_label.label.color %>;"><%= task_label.label.name%></div>
-      <% end %>
-      </div>
-    </div>
+    <% end %>
   </div>
-<% end %>
+<% else %>
+  <div class="ui grid padded stackable middle aligned" id="schedule-status-for-intern">
+    <div class="sixteen wide column center aligned">
+    <%= "タスクが登録されていません。" %>
+    </div>
 </div>
+<% end %>

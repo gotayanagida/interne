@@ -1,15 +1,9 @@
 <script src="https://webkaru.net/jquery-plugin/sources/timeto/jquery.timeTo.js"></script>
 <link href="https://webkaru.net/jquery-plugin/sources/timeto/timeTo.css" type="text/css" rel="stylesheet"/>
 
-<!--
-<div id="countdown" class="timeTo timeTo-white" style="font-size: 28px;"></div>
-<script>
-$('#countdown').timeTo();
-</script>-->
-
 <h3>今後のタスク</h3>
 <% if @future_schedules != [] %>
-  <div class="ui relaxed divided list" id="task-status-for-intern">
+  <div class="ui relaxed divided list task-status" id="tasks-for-intern">
     <% @future_schedules.each do |future_schedule| %>
       <% future_schedule.tasks.each do |task| %>
         <% if task.users.include?(current_user) %>
@@ -18,7 +12,7 @@ $('#countdown').timeTo();
               <div class="title">
               	<%= task.title %>
             	  <% task.labels.each do |label| %>
-                  <span style="background-color:<%=label.color%>;">
+                  <span class="labelname" style="background-color:<%=label.color%>;">
                     <%= label.name %>
                   </span>
                 <% end %>
