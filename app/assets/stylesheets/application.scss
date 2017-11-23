@@ -393,3 +393,15 @@ body .grid {
 #current_company {
   margin: 0px 0px 17px 0px;
 }
+
+// button
+
+.interne-icon-btn > i::before{
+  color: #00bc89;
+  font-size: 25px;
+}
+
+.interne-icon-btn {
+  background: transparent !important;
+  padding: 0.5rem !important;
+}

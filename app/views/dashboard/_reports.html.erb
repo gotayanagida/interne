@@ -3,14 +3,13 @@
 			$('.ui.dropdown').dropdown();
 		});
 </script>
-<h3>日報</h3>
-<% if current_user.employment_status == true %>
-	<div class="left floated column">
-		<%= link_to new_report_path, class: "ui labeled icon button" do%>
-		<i class="plus icon"></i>日報を追加
+<h3>日報
+	<% if current_user.employment_status == true %>
+		<%= link_to new_report_path, class: "ui right floated button interne-icon-btn" do%>
+			<i class="plus icon"></i>
 		<% end %>
-	</div>
-<% end %>
+	<% end %>
+</h3>
 <div class="ui relaxed divided list">
 <% @reports.each do |report| %>
   <div class="item">
