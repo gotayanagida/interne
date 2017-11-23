@@ -11,9 +11,13 @@ user = User.new(name:"佐藤翔野",password:"interne",university:"慶應義塾�
 user.save!
 user = User.new(name:"小島清信",password:"interne",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"kojima.kiyonobu@gmail.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf_jima.png",employment_status:1,home_photo_url:"home.png",confirmed_at:"2017-11-16 09:11:00")
 user.save!
-user = User.new(name:"小出粋玄",password:"interne",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"suigen.k@gmail.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf_suigen.png",employment_status:1,home_photo_url:"home.png",confirmed_at:"2017-11-16 09:11:00")
+# user = User.new(name:"小出粋玄",password:"interne",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"suigen.k@gmail.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf_suigen.png",employment_status:1,home_photo_url:"home.png",confirmed_at:"2017-11-16 09:11:00")
+# user.save!
+# user = User.new(name:"早川匠",password:"interne",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"hykwtakumin@gmail.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf_haya.png",employment_status:1,home_photo_url:"home.png",confirmed_at:"2017-11-16 09:11:00")
+# user.save!
+user = User.new(name:"小出粋玄",password:"interne",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"a@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf_suigen.png",employment_status:1,home_photo_url:"home.png",confirmed_at:"2017-11-16 09:11:00")
 user.save!
-user = User.new(name:"早川匠",password:"interne",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"hykwtakumin@gmail.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf_haya.png",employment_status:1,home_photo_url:"home.png",confirmed_at:"2017-11-16 09:11:00")
+user = User.new(name:"早川匠",password:"interne",university:"慶應義塾大学",department:"環境情報学部",grade:1,email:"b@a.com",gender:0,birthday:"1990/1/1",profile_photo_url:"pf_haya.png",employment_status:1,home_photo_url:"home.png",confirmed_at:"2017-11-16 09:11:00")
 user.save!
 user = User.new(name:"柳田豪太（社員）",password:"interne",department:"マーケティング本部",position:"部長",email:"gota.yanagida@digital-k.co.jp",gender:0,birthday:"1980/1/1",profile_photo_url:"pf_gota.png",employment_status:0,home_photo_url:"home.png",confirmed_at:"2017-11-16 09:11:00")
 user.save!
