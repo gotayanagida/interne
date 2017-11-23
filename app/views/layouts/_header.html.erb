@@ -37,7 +37,7 @@
 					<% current_user.company_users.each do |company_user| %>
 						<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item future" do%>
 							<%= image_tag company_user.company.icon_photo_url, class:"company-icon-img"%>
-							<div class="company-name"><h3><%= current_company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%></h3></div>
+							<div class="company-name"><h3><%= company_user.company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%></h3></div>
 						<% end %>
 					<% end %>
 				</div>
@@ -133,11 +133,11 @@
 </div>
 
 <script>
-// $(function() {
-//   $('.ui.dropdown').hover(function() {
-//  		$(this).dropdown('show');
-//   }, function() {
-// 		$(this).dropdown('hide');
-//   });
-// });
+$(function() {
+  $('.ui.dropdown').hover(function() {
+ 		$(this).dropdown('show');
+  }, function() {
+		$(this).dropdown('hide');
+  });
+});
 </script>

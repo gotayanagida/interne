@@ -57,6 +57,30 @@ $(document).ready(function(){
           タスク
           <%end%>
         <%end%>
+        <% if current_user.employment_status == false %>
+          <% if current_page?(controller: 'attendances')%>
+            <%= link_to attendances_path,class:"active teal item pjax" do%>
+            <i class="tasks icon"></i>
+            勤怠管理
+            <%end%>
+          <%else%>
+            <%= link_to attendances_path,class:"teal item pjax" do%>
+            <i class="tasks icon"></i>
+            勤怠管理
+            <%end%>
+          <%end%>
+          <% if current_page?(controller: 'companies')%>
+            <%= link_to companies_path,class:"active teal item pjax" do%>
+            <i class="tasks icon"></i>
+            会社情報
+            <%end%>
+          <%else%>
+            <%= link_to companies_path,class:"teal item pjax" do%>
+            <i class="tasks icon"></i>
+            会社情報
+            <%end%>
+          <%end%>
+        <%end%>
       </div>
     </div>
   </div>
