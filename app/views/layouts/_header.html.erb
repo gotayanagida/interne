@@ -22,13 +22,13 @@
 <div id="main_contents">
 <div class="header ui padded grid" id="header">
   <div class="row main-header screen-header">
-		<!-- for pc　-->
 	  <div class="eight wide column">
-			<!-- <%= image_tag "interne.png", class:"interne-img"%> -->
 			<div class="ui dropdown companies">
 				<div class="title">
 					<h3>
-						<%= image_tag current_company.icon_photo_url, class:"company-icon-img"%>
+						<div class="circle-image-border" style="width: 50px; height: 50px;">
+							<span><%= image_tag current_company.icon_photo_url, class:"company-icon-img"%></span>
+						</div>
 						<%= current_company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%>
 						<i class="dropdown icon"></i>
 					</h3>
@@ -36,7 +36,9 @@
 				<div class="menu">
 					<% current_user.company_users.each do |company_user| %>
 						<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item future" do%>
-							<%= image_tag company_user.company.icon_photo_url, class:"company-icon-img"%>
+							<div class="circle-image-border" style="width: 50px;height: 50px;left: 1rem;">
+								<span><%= image_tag company_user.company.icon_photo_url, class:"company-icon-img"%></span>
+							</div>
 							<div class="company-name"><%= company_user.company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%></div>
 						<% end %>
 					<% end %>
@@ -46,14 +48,21 @@
 
 	  <div class="right aligned eight wide column">
 			<div class="ui dropdown todos">
-				<h4><i class="checkmark icon"></i>やることリスト</h4>
+				<h4>
+					<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem;">
+						<span><%= image_tag current_user.profile_photo_url %></span>
+					</div>
+					やることリスト
+				</h4>
 				<% if todo_users.length != 0 %>
 					<div class="notice-num"><%= todo_users.length%></div>
 				<% end %>
 				<div class="menu">
 					<% todo_users.each do |todo| %>
 				    <%= link_to todo_path(todo), class:"item future" do %>
-							<%= image_tag "logo-sq3"%>
+						<div class="squere-image-border" style="width: 50px;height: 50px;left: 1rem;">
+							<span><%= image_tag "logo-sq3"%></span>
+						</div>
 					    <div class="content">
 					      <div class="header"><%= todo.body %></div>
 					      <div class="description">
@@ -67,7 +76,12 @@
 				</div>
 		  </div>
 			<div class="ui dropdown notices" id="notice-update-ajax">
-				<h4><i class="alarm icon"></i>お知らせ</h4>
+				<h4>
+					<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem;">
+						<span><%= image_tag current_user.profile_photo_url %></span>
+					</div>
+					お知らせ
+				</h4>
 				<% if notice_count != 0 %>
 				 	<div class="notice-num" id="notice-num-for-ajax"><%= notice_count %></div>
 				<% end %>
@@ -75,7 +89,9 @@
 					<% recent_notice_users.each do |notice_user| %>
 						<% if notice_user.notice.read == false %>
 				    	<%= link_to notice_path(notice_user.notice), class:"item future", style: "background-color: #f0f0f0;" do %>
-							<%= image_tag "logo-sq3"%>
+							<div class="squere-image-border" style="width: 50px;height: 50px;left: 1rem;">
+								<span><%= image_tag "logo-sq3"%></span>
+							</div>
 					    <div class="content">
 					      <div class="header"><%= notice_user.notice.body %></div>
 					      <div class="description">
@@ -87,7 +103,9 @@
 				    	<% end %>
 						<% else %>
 							<%= link_to notice_path(notice_user.notice), class:"item future" do %>
-							<%= image_tag "logo-sq3"%>
+							<div class="squere-image-border" style="width: 50px;height: 50px;left: 1rem;">
+								<span><%= image_tag "logo-sq3"%></span>
+							</div>
 					    <div class="content">
 					      <div class="header"><%= notice_user.notice.body %></div>
 					      <div class="description">
@@ -104,12 +122,16 @@
 		  <% if user_signed_in? %>
 		  	<div class="ui dropdown user">
 					<h4>
-						<%= image_tag current_user.profile_photo_url, class:"ui circular image user-image", style:"width: 30px !important; height:30px !important;" %>
+						<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem;">
+							<span><%= image_tag current_user.profile_photo_url %></span>
+						</div>
 						<%= current_user.name %>
 					</h4>
 					<div class="menu">
 						<%= link_to mypage_path, class:"item" do%>
-							<%= image_tag current_user.profile_photo_url, class:"ui circular image user-image", style:"width: 40px !important; height:40px !important;"%>
+						<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem;">
+							<span><%= image_tag current_user.profile_photo_url %></span>
+						</div>
 							<div class="content">
 					      <div class="header"><%= current_user.name %></div>
 					      <div class="description">プロフィール編集</div>

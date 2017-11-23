@@ -4,6 +4,12 @@
 		});
 </script>
 <h3>タスク</h3>
+<%= link_to new_task_path, class: "ui labeled icon button" do%>
+	<i class="plus icon"></i>タスクを追加
+<% end %>
+<%= link_to labels_path, class: "ui button" do%>
+	ラベル管理
+<% end %>
 <% if @schedules != [] %>
   <div class="ui relaxed divided list task-status" id="tasks-for-all">
     <% @schedules.each do |schedule| %>
