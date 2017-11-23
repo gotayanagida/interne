@@ -6,7 +6,6 @@
 
 
 <p id="notice"><%= notice %></p>
-
 <div class="ui grid">
   <div class="four column row">
     <div class="left floated column">
@@ -15,31 +14,31 @@
     	<% end %>
     </div>
     <div class="right floated column right aligned">
-		<div class="ui dropdown right aligned">
-		  <div class="text" style="color:#2185D0;text-decoration: underline;">日付別</div>
-		  <i class="dropdown icon blue" style="margin:0px;"></i>
-		  <div class="menu">
-		    <%= link_to("投稿日(昇順)", { sort:"created_at desc" }, class: "item") %>
-		    <%= link_to("投稿日(降順)", { sort:"created_at" }, class: "item") %>
-		    <%= link_to("出勤日(昇順)", { sort:"schedule_id desc" }, class: "item") %>
-		    <%= link_to("出勤日(降順)", { sort:"schedule_id" }, class: "item") %>
-		  </div>
-		</div>
-		/
-		<div class="ui dropdown right floated">
-		  <div class="text" style="color:#2185D0;text-decoration: underline;">人物別</div>
-		  <i class="dropdown icon blue" style="margin:0px;"></i>
-		  <div class="menu">
-		    <% current_company.users.each do |user| %>
-		     <%= link_to(user.name, { user_id: user.id }, class: "item") %>
-		    <% end %>
-		  </div>
-		</div>
-    </div>
-</div>
+			<div class="ui dropdown right aligned">
+			  <div class="text" style="color:#2185D0;text-decoration: underline;">日付別</div>
+			  <i class="dropdown icon blue" style="margin:0px;"></i>
+			  <div class="menu">
+			    <%= link_to("投稿日(昇順)", { sort:"created_at desc" }, class: "item") %>
+			    <%= link_to("投稿日(降順)", { sort:"created_at" }, class: "item") %>
+			    <%= link_to("出勤日(昇順)", { sort:"schedule_id desc" }, class: "item") %>
+			    <%= link_to("出勤日(降順)", { sort:"schedule_id" }, class: "item") %>
+			  </div>
+			</div>
+			/
+			<div class="ui dropdown right floated">
+			  <div class="text" style="color:#2185D0;text-decoration: underline;">人物別</div>
+			  <i class="dropdown icon blue" style="margin:0px;"></i>
+			  <div class="menu">
+			    <% current_company.users.each do |user| %>
+			     <%= link_to(user.name, { user_id: user.id }, class: "item") %>
+			    <% end %>
+			  </div>
+			</div>
+	  </div>
+	</div>
 </div>
 
-<div class="ui three cards stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
+<div class="ui four cards stackable" style="margin-left:-1em; margin-right:-1em; margin-top:0px; margin-bottom:0px;">
   <% @reports.each do |report| %>
   <div class="card">
     <div class="content" style="background-image: url('../assets/mima-opa.png');background-position: right bottom; background-repeat: no-repeat;">
@@ -53,18 +52,22 @@
       	</div>
       </div>
       <% end %>
-      <%= image_tag report.user.profile_photo_url, class: "left floated mini ui image"%>
-      <div class="header">
-        <%= report.user.name %>
-      </div>
       <div class="meta">
         <%= report.schedule.work_started_at.strftime('%m/%d') %>
       </div>
+      <div class="header">
+				<%= report.title %>
+      </div>
       <div class="description">
-        「<%= report.title %>」
         <div style="font-size:10px;"><%= report.body %></div>
       </div>
     </div>
+    <div class="extra content" style="padding: 1.5em 1em;">
+			<div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px;">
+				<span><%= image_tag report.user.profile_photo_url, class:"company-icon-img"%></span>
+			</div>
+			<div style="padding-left:3.5rem;"><%= report.user.name %></div>
+		</div>
     <div class="extra content">
 	    <div class="item">
 	      <% report.report_stamps.each_with_index do |report_stamp,i| %>
