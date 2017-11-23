@@ -37,7 +37,7 @@
 					<% current_user.company_users.each do |company_user| %>
 						<%= link_to set_current_company_path(company_id:company_user.company.id), class:"item future" do%>
 							<%= image_tag company_user.company.icon_photo_url, class:"company-icon-img"%>
-							<div class="company-name"><h3><%= company_user.company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%></h3></div>
+							<div class="company-name"><%= company_user.company.name.slice(0, 20) %><%= '...' if current_company.name.length > 20%></div>
 						<% end %>
 					<% end %>
 				</div>
@@ -104,16 +104,21 @@
 		  <% if user_signed_in? %>
 		  	<div class="ui dropdown user">
 					<h4>
-						<%= image_tag current_user.profile_photo_url, class:"ui circular image user-image"%>
+						<%= image_tag current_user.profile_photo_url, class:"ui circular image user-image", style:"width: 30px !important; height:30px !important;" %>
 						<%= current_user.name %>
 					</h4>
 					<div class="menu">
-            <%= link_to 'インテルネトップへ', root_path, class:"item"%>
-						<%= link_to 'マイページへ', mypage_path, class:"item"%>
-						<% if current_user.employment_status == false %>
-							<%= link_to '会社情報', company_path(current_company), class:"item"%>
-	          	<%= link_to '勤怠管理', attendances_path, class:"item"%>
+						<%= link_to mypage_path, class:"item" do%>
+							<%= image_tag current_user.profile_photo_url, class:"ui circular image user-image", style:"width: 40px !important; height:40px !important;"%>
+							<div class="content">
+					      <div class="header"><%= current_user.name %></div>
+					      <div class="description">プロフィール編集</div>
+					    </div>
 						<% end %>
+						<% if current_user.employment_status == true %>
+							<%= link_to 'マイページへ', mypage_path, class:"item"%>
+						<% end %>
+						<%= link_to 'アカウント設定', mypage_path, class:"item"%>
 						<%= link_to 'ログアウト', destroy_user_session_path, method: :delete,class:"item"%>
 					</div>
 			  </div>
