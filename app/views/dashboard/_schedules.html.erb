@@ -132,27 +132,26 @@ $(function() {
 });
 
 </script>
-  <h3>スケジュール</h3>
-		<div class="left floated column">
-			<% if current_user.employment_status == true %>
-				<%= link_to new_schedule_path, class: "ui labeled icon button" do%>
-				<i class="plus icon"></i>スケジュールを追加
-				<% end %>
+  <h3>スケジュール
+		<% if current_user.employment_status == true %>
+			<%= link_to new_schedule_path, class: "ui right floated button interne-icon-btn" do%>
+				<i class="plus icon"></i>
 			<% end %>
-			<div class="ui multiple dropdown">
-			  <input type="hidden" name="filters">
-			  <i class="filter icon"></i>
-			  <span class="text">インターン生を選択</span>
-			  <div class="menu">
-			    <div class="ui icon search input">
-			      <i class="search icon"></i>
-			      <input type="text" placeholder="インターン生を検索...">
-			    </div>
-			    <div class="scrolling menu" id="intern-selector">
-			    </div>
-			  </div>
-			</div>
+		<% end %>
+		<div class="ui multiple dropdown">
+		  <input type="hidden" name="filters">
+		  <i class="filter icon"></i>
+		  <span class="text">インターン生を選択</span>
+		  <div class="menu">
+		    <div class="ui icon search input">
+		      <i class="search icon"></i>
+		      <input type="text" placeholder="インターン生を検索...">
+		    </div>
+		    <div class="scrolling menu" id="intern-selector">
+		    </div>
+		  </div>
 		</div>
+	</h3>
 	<div class="ui grid">
     <div class="row">
       <div class="sixteen wide column">
