@@ -47,32 +47,41 @@
   margin-bottom: 0.2rem;
 }
 
-//#task-status-for-intern
+//.task-status
 
-#task-status-for-intern{
+.task-status{
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 180px;
 }
 
-#task-status-for-intern .item:first-child {
+.task-status .item:first-child {
   border-top: 0.5px solid #eeeeee;
 }
 
-#task-status-for-intern .item {
+.task-status .item {
   font-size: 17px;
   color: #000000;
   border-bottom: 0.5px solid #eeeeee;
   padding: 0.5rem;
 }
 
-#task-status-for-intern .description {
+.task-status .description {
   font-size: 10px;
   color: #555555;
   font-weight: normal;
 }
 
-#task-status-for-intern .title span {
+.task-status .users {
+  display: inline-block;
+  font-size: 10px;
+}
+
+.task-status .content {
+  display: inline-block;
+}
+
+
+.task-status .title span.labelname {
   float: right;
   border-radius: 5px;
   color: #fff;
@@ -80,6 +89,26 @@
   padding: 0 0.3rem;
 }
 
-#task-status-for-intern .description span {
+.task-status .title span.username {
   float: right;
+  border-radius: 5px;
+  color: #333;
+  font-size: 10px;
+  padding: 0 0.3rem;
+}
+
+.task-status .description span {
+  float: right;
+}
+
+#tasks-for-all.task-status {
+  height: 450px;
+}
+
+#tasks-for-intern.task-status {
+  height: 180px;
+}
+
+#tasks-for-all.task-status .content{
+  width: calc(100% - 50px);
 }
