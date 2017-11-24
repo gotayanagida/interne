@@ -359,7 +359,7 @@ body .grid {
 }
 
 .ui.vertical.menu {
-    width: 7rem;
+    width: 5rem;
 }
 
 #sidebar a {
@@ -395,13 +395,30 @@ body .grid {
 // button
 
 .interne-icon-btn > i::before{
-  color: #00bc89;
+  color: #00b2a3;
   font-size: 25px;
 }
 
 .interne-icon-btn {
   background: transparent !important;
   padding: 0.5rem !important;
+}
+
+.ui.button {
+  background-color: white;
+  color: #00b2a3;
+}
+
+.ui.button:hover {
+  background: linear-gradient(-45deg, rgba(0, 169, 188, .8), rgba(0, 188, 137, .8));
+  color: white;
+}
+
+.fc-state-default {
+  background: white !important;
+  color: #00b2a3 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /*report*/
