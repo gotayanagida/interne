@@ -26,9 +26,9 @@ shoya =[
 <% @schedules.each do |schedule| %>
     {
 			title:'',
-			username:'<h3><%= schedule.user.name %></h3>',
-			schedule:'<h5><%= schedule.work_started_at.strftime("%-H:%M") %> ~ <%= schedule.work_ended_at.strftime("%-H:%M") %></h5>',
-    	tasks:'<% schedule.tasks.each do |task| %><h5><%= task.title %><% task.labels.each do |label| %><%= label.name %><% end %></h5><% end %>',
+			username:'<div class="username"><%= schedule.user.name %></div>',
+			schedule:'<div class="schedule"><%= schedule.work_started_at.strftime("%-H:%M") %> ~ <%= schedule.work_ended_at.strftime("%-H:%M") %></div>',
+    	tasks:'<% schedule.tasks.each do |task| %><div class="task"><% task.labels.each do |label| %><div class="label" style="background-color:<%= label.color %>;"><%= label.name %></div><% end %><%= task.title %></div><% end %>',
     	start:'<%= schedule.work_started_at.time.strftime('%Y/%m/%d %H:%M:%S') %>',
     	end:'<%= schedule.work_ended_at.time.strftime('%Y/%m/%d %H:%M:%S') %>'
     },
@@ -46,8 +46,6 @@ $(document).ready(function() {
 		var my_chance=new Chance(sex);
 		var mycolor = my_chance.color({format: 'hex'});
 		var $selector = $('<div class="item add-intern" id="'+uniq_title[i]+'" data-value="'+uniq_title[i]+'"><div class="ui green empty circular label" style="'+mycolor+'"></div>'+uniq_title[i]+'</div>');
-		// var $input = $('<input type="checkbox" class="item" />').attr({id: uniq_title[i],name:"check"}).attr("checked", true ).css("float", "left" );
-		// var $label = $('<label><font color='+mycolor+'>■</font>'+uniq_title[i]+'</label></br>');
 		$("#intern-selector").append($selector);
 	}
 
@@ -106,7 +104,7 @@ $(document).ready(function() {
 	    },
 			eventRender: function(events, element) {
 			    $(element.context)  //imgプロパティが存在するイベントだけtitleを画像に差し替え
-					.html(events.username+events.schedule+events.tasks);
+					.html('<div class="schedule-events">'+events.username+events.schedule+events.tasks+'</div>');
     	},
 			events:shoya
 	});
