@@ -8,7 +8,7 @@
       <% future_schedule.tasks.each do |task| %>
         <% if task.users.include?(current_user) %>
           <%= link_to task do%>
-            <div class="item" style="border-left: 4px solid <%=task.labels.last.color%>;">
+            <div class="item" style="border-left: 4px solid <%= task.labels == [] ? '#ffffff' : task.labels.last.color%>;">
               <div class="title">
               	<%= task.title %>
             	  <% task.labels.each do |label| %>
@@ -22,6 +22,25 @@
                 <span>
                   <%= future_schedule.work_started_at.strftime("%m月%d日") %>
                 </span>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% @user_tasks_not_desided_day.each do |task| %>
+        <% if task.users.include?(current_user) %>
+          <%= link_to task do%>
+            <div class="item" style="border-left: 4px solid <%= task.labels == [] ? '#ffffff' : task.labels.last.color%>;">
+              <div class="title">
+              	<%= task.title %>
+            	  <% task.labels.each do |label| %>
+                  <span class="labelname" style="background-color:<%=label.color%>;">
+                    <%= label.name %>
+                  </span>
+                <% end %>
+              </div>
+              <div class="description">
+                  <%=task.detail.slice(0, 30)%><%= '...' if task.detail.length > 30%>
               </div>
             </div>
           <% end %>

@@ -15,7 +15,7 @@
       <% schedule.tasks.each do |task| %>
         <% if task.users.include?(current_user) %>
           <%= link_to task do%>
-            <div class="item" style="border-left: 4px solid <%=task.labels.last.color%>;">
+            <div class="item" style="border-left: 4px solid <%= task.labels == [] ? '#ffffff' : task.labels.last.color%>;">
 	             <%= image_tag task.users.first.profile_photo_url, class:"ui circular image user-image", style:"width:30px; height:30px;"%>
             	<div class="content">
 		            <div class="title">
@@ -36,6 +36,33 @@
 	                <span>
 	                  <%= schedule.work_started_at.strftime("%m月%d日") %>
 	                </span>
+	              </div>
+	            </div>
+						</div>
+          <% end %>
+        <% end %>
+      <% end %>
+			<% @tasks_not_desided_day.each do |task| %>
+        <% if task.users.include?(current_user) %>
+          <%= link_to task do%>
+            <div class="item" style="border-left: 4px solid <%= task.labels == [] ? '#ffffff' : task.labels.last.color%>;">
+	             <%= image_tag task.users.first.profile_photo_url, class:"ui circular image user-image", style:"width:30px; height:30px;"%>
+            	<div class="content">
+		            <div class="title">
+	              	<%= task.title %>
+									<% task.labels.each do |label| %>
+	                  <span class="labelname" style="background-color:<%=label.color%>;">
+	                    <%= label.name %>
+	                  </span>
+	                <% end %>
+									<% task.users.each do |user| %>
+										<span class="username">
+											<%= user.name %>,
+										</span>
+									<% end %>
+	              </div>
+	              <div class="description">
+	                  <%=task.detail.slice(0, 40)%><%= '...' if task.detail.length > 40%>
 	              </div>
 	            </div>
 						</div>
