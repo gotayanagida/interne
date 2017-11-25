@@ -56,6 +56,7 @@
 
 .task-status .item:first-child {
   border-top: 0.5px solid #eeeeee;
+
 }
 
 .task-status .item {
@@ -63,6 +64,7 @@
   color: #000000;
   border-bottom: 0.5px solid #eeeeee;
   padding: 0.5rem;
+  position: relative;
 }
 
 .task-status .description {
@@ -110,5 +112,6 @@
 }
 
 #tasks-for-all.task-status .content{
-  width: calc(100% - 50px);
+  width: calc(100% - 4rem);
+  margin-left: 4rem;
 }

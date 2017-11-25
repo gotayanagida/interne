@@ -275,6 +275,8 @@ ActiveRecord::Schema.define(version: 20171119031822) do
     t.string "profile_photo_url", default: "pf.jpg"
     t.string "home_photo_url", default: "home.jpg"
     t.boolean "employment_status"
+    t.string "color_1"
+    t.string "color_2"
     t.string "provider"
     t.string "uid"
     t.string "token"
