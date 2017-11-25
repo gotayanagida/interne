@@ -16,8 +16,9 @@
         <% if task.users.include?(current_user) %>
           <%= link_to task do%>
             <div class="item">
-		          <div class="left-gradient-border" style="background: linear-gradient(-45deg,<%=task.users.first.color_1%>,<%=task.users.first.color_2%>);"></div>
-						  <div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px;  background: linear-gradient(-45deg,<%=task.users.first.color_1%>,<%=task.users.first.color_2%>);">
+							<% color = user_color_list(user_id:task.users.first.id,company_id:current_company.id) %>
+              <div class="left-gradient-border" style="background: linear-gradient(-45deg,<%= color.grad_1 %>,<%= color.grad_2 %>);"></div>
+						  <div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px;  background: linear-gradient(-45deg,<%= color.grad_1 %>,<%= color.grad_2 %>);">
 								<span><%= image_tag task.users.first.profile_photo_url, class:"company-icon-img"%></span>
 							</div>
 	          	<div class="content">

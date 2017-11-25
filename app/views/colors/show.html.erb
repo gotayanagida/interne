@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Main:</strong>
+  <%= @color.main %>
+</p>
+
+<p>
+  <strong>Bg:</strong>
+  <%= @color.bg %>
+</p>
+
+<p>
+  <strong>Grad 1:</strong>
+  <%= @color.grad_1 %>
+</p>
+
+<p>
+  <strong>Grad 2:</strong>
+  <%= @color.grad_2 %>
+</p>
+
+<%= link_to 'Edit', edit_color_path(@color) %> |
+<%= link_to 'Back', colors_path %>

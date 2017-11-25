@@ -26,6 +26,16 @@ ActiveRecord::Schema.define(version: 20171119031822) do
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
+  create_table "colors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.string "main"
+    t.string "bg"
+    t.string "grad_1"
+    t.string "grad_2"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "hp_addr"
@@ -38,9 +48,11 @@ ActiveRecord::Schema.define(version: 20171119031822) do
   create_table "company_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
     t.bigint "company_id"
+    t.bigint "color_id"
     t.string "association_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["color_id"], name: "index_company_users_on_color_id"
     t.index ["company_id"], name: "index_company_users_on_company_id"
     t.index ["user_id"], name: "index_company_users_on_user_id"
   end
@@ -275,8 +287,6 @@ ActiveRecord::Schema.define(version: 20171119031822) do
     t.string "profile_photo_url", default: "pf.jpg"
     t.string "home_photo_url", default: "home.jpg"
     t.boolean "employment_status"
-    t.string "color_1"
-    t.string "color_2"
     t.string "provider"
     t.string "uid"
     t.string "token"
@@ -303,6 +313,7 @@ ActiveRecord::Schema.define(version: 20171119031822) do
 
   add_foreign_key "attendances", "companies"
   add_foreign_key "attendances", "users"
+  add_foreign_key "company_users", "colors"
   add_foreign_key "company_users", "companies"
   add_foreign_key "company_users", "users"
   add_foreign_key "goal_notices", "goals"

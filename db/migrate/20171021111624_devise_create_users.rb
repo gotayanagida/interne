@@ -11,8 +11,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :profile_photo_url, default: "pf.jpg"
       t.string :home_photo_url, default: "home.jpg"
       t.boolean :employment_status
-      t.string :color_1
-      t.string :color_2
       t.string :provider
       t.string :uid
       t.string :token

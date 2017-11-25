@@ -35,7 +35,8 @@
       </div>
     </div>
     <div class="extra content" style="padding: 1.5em 1em;">
-			<div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px;  background: linear-gradient(-45deg,<%=report.user.color_1%>,<%=report.user.color_2%>);">
+			<% color = user_color_list(user_id:report.user.id,company_id:current_company.id) %>
+			<div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px;  background: linear-gradient(-45deg,<%= color.grad_1 %>,<%= color.grad_2 %>);">
 				<span><%= image_tag report.user.profile_photo_url, class:"company-icon-img"%></span>
 			</div>
 			<div style="padding-left:3.5rem;"><%= report.user.name %></div>
