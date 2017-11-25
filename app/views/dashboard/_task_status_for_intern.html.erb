@@ -9,7 +9,8 @@
         <% if task.users.include?(current_user) %>
           <%= link_to task do%>
             <div class="item">
-              <div class="left-gradient-border" style="background: linear-gradient(-45deg,<%=task.users.first.color_1%>,<%=task.users.first.color_2%>);"></div>
+              <% color = user_color_list(user_id:task.users.first.id,company_id:current_company.id) %>
+              <div class="left-gradient-border" style="background: linear-gradient(-45deg,<%= color.grad_1 %>,<%= color.grad_2 %>);"></div>
               <div class="title">
               	<%= task.title %>
             	  <% task.labels.each do |label| %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :colors
   resources :labels
   # authenticated :user do
     root to: "dashboard#index"

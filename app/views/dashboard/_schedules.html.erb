@@ -24,13 +24,16 @@ var toDoubleDigits = function(num) {
 
 shoya =[
 <% @schedules.each do |schedule| %>
-    {
+	<% color = user_color_list(user_id:schedule.user.id,company_id:current_company.id) %>
+	  {
 			title:'',
-			username:'<div class="username"><%= schedule.user.name %></div>',
+			open_div:'<div class="schedule-events" style="background:<%=color.bg%>">',
+			border:'<div class="left-gradient-border" style="background: linear-gradient(-45deg,<%= color.grad_1 %>,<%= color.grad_2 %>);"></div>',
+    	username:'<div class="username" style="color:<%= color.main %>"><%= schedule.user.name %></div>',
 			schedule:'<div class="schedule"><%= schedule.work_started_at.strftime("%-H:%M") %> ~ <%= schedule.work_ended_at.strftime("%-H:%M") %></div>',
     	tasks:'<% schedule.tasks.each do |task| %><div class="task"><% task.labels.each do |label| %><div class="label" style="background-color:<%= label.color %>;"><%= label.name %></div><% end %><%= task.title %></div><% end %>',
-			border:'<div class="left-gradient-border" style="background: linear-gradient(-45deg,<%=schedule.user.color_1%>,<%=schedule.user.color_2%>);"></div>',
-    	start:'<%= schedule.work_started_at.time.strftime('%Y/%m/%d %H:%M:%S') %>',
+			close_div:'</div>',
+			start:'<%= schedule.work_started_at.time.strftime('%Y/%m/%d %H:%M:%S') %>',
     	end:'<%= schedule.work_ended_at.time.strftime('%Y/%m/%d %H:%M:%S') %>'
     },
   <% end %>
@@ -105,7 +108,7 @@ $(document).ready(function() {
 	    },
 			eventRender: function(events, element) {
 			    $(element.context)  //imgプロパティが存在するイベントだけtitleを画像に差し替え
-					.html('<div class="schedule-events">'+events.border+events.username+events.schedule+events.tasks+'</div>');
+					.html(events.open_div+events.border+events.username+events.schedule+events.tasks+events.close_div);
     	},
 			events:shoya
 	});

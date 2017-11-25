@@ -114,4 +114,7 @@ module ApplicationHelper
     todos = current_user.todos.where(done:false).reverse_order
   end
 
+  def user_color_list(user_id:,company_id:)
+    color = CompanyUser.find_by(user_id:user_id, company_id:company_id).color
+  end
 end

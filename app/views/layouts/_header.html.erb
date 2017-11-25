@@ -49,7 +49,7 @@
 	  <div class="right aligned eight wide column">
 			<div class="ui dropdown todos">
 				<h4>
-					<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem; margin-top: -25px; background: linear-gradient(-45deg,<%=current_user.color_1%>,<%=current_user.color_2%>);">
+					<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem; margin-top: -25px;">
 						<span><%= image_tag current_user.profile_photo_url %></span>
 					</div>
 					やることリスト
@@ -77,7 +77,7 @@
 		  </div>
 			<div class="ui dropdown notices" id="notice-update-ajax">
 				<h4>
-					<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem; margin-top: -25px; background: linear-gradient(-45deg,<%=current_user.color_1%>,<%=current_user.color_2%>);">
+					<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem; margin-top: -25px;">
 						<span><%= image_tag current_user.profile_photo_url %></span>
 					</div>
 					お知らせ
@@ -122,14 +122,15 @@
 		  <% if user_signed_in? %>
 		  	<div class="ui dropdown user">
 					<h4>
-						<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem; margin-top: -25px; background: linear-gradient(-45deg,<%=current_user.color_1%>,<%=current_user.color_2%>);">
+						<% color = user_color_list(user_id:current_user.id,company_id:current_company.id) %>
+						<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem; margin-top: -25px; background: linear-gradient(-45deg,<%= color.grad_1 %>,<%= color.grad_2 %>);">
 							<span><%= image_tag current_user.profile_photo_url %></span>
 						</div>
 						<%= current_user.name %>
 					</h4>
 					<div class="menu">
 						<%= link_to mypage_path, class:"item" do%>
-						<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem; margin-top: -25px; background: linear-gradient(-45deg,<%=current_user.color_1%>,<%=current_user.color_2%>);">
+						<div class="circle-image-border" style="width: 50px; height: 50px; left: 1rem; margin-top: -25px; background: linear-gradient(-45deg,<%= color.grad_1 %>,<%= color.grad_2 %>);">
 							<span><%= image_tag current_user.profile_photo_url %></span>
 						</div>
 							<div class="content">
