@@ -29,6 +29,7 @@ shoya =[
 			username:'<div class="username"><%= schedule.user.name %></div>',
 			schedule:'<div class="schedule"><%= schedule.work_started_at.strftime("%-H:%M") %> ~ <%= schedule.work_ended_at.strftime("%-H:%M") %></div>',
     	tasks:'<% schedule.tasks.each do |task| %><div class="task"><% task.labels.each do |label| %><div class="label" style="background-color:<%= label.color %>;"><%= label.name %></div><% end %><%= task.title %></div><% end %>',
+			border:'<div class="left-gradient-border" style="background: linear-gradient(-45deg,<%=schedule.user.color_1%>,<%=schedule.user.color_2%>);"></div>',
     	start:'<%= schedule.work_started_at.time.strftime('%Y/%m/%d %H:%M:%S') %>',
     	end:'<%= schedule.work_ended_at.time.strftime('%Y/%m/%d %H:%M:%S') %>'
     },
@@ -104,7 +105,7 @@ $(document).ready(function() {
 	    },
 			eventRender: function(events, element) {
 			    $(element.context)  //imgプロパティが存在するイベントだけtitleを画像に差し替え
-					.html('<div class="schedule-events">'+events.username+events.schedule+events.tasks+'</div>');
+					.html('<div class="schedule-events">'+events.border+events.username+events.schedule+events.tasks+'</div>');
     	},
 			events:shoya
 	});

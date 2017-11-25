@@ -8,7 +8,8 @@
       <% future_schedule.tasks.each do |task| %>
         <% if task.users.include?(current_user) %>
           <%= link_to task do%>
-            <div class="item" style="border-left: 4px solid <%= task.labels == [] ? '#ffffff' : task.labels.last.color%>;">
+            <div class="item">
+              <div class="left-gradient-border" style="background: linear-gradient(-45deg,<%=task.users.first.color_1%>,<%=task.users.first.color_2%>);"></div>
               <div class="title">
               	<%= task.title %>
             	  <% task.labels.each do |label| %>

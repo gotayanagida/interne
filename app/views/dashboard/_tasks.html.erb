@@ -15,8 +15,9 @@
       <% schedule.tasks.each do |task| %>
         <% if task.users.include?(current_user) %>
           <%= link_to task do%>
-            <div class="item" style="border-left: 4px solid <%= task.labels == [] ? '#ffffff' : task.labels.last.color%>;">
-	            <div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px;  background: linear-gradient(-45deg,<%=task.users.first.color_1%>,<%=task.users.first.color_2%>);">
+            <div class="item">
+		          <div class="left-gradient-border" style="background: linear-gradient(-45deg,<%=task.users.first.color_1%>,<%=task.users.first.color_2%>);"></div>
+						  <div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px;  background: linear-gradient(-45deg,<%=task.users.first.color_1%>,<%=task.users.first.color_2%>);">
 								<span><%= image_tag task.users.first.profile_photo_url, class:"company-icon-img"%></span>
 							</div>
 	          	<div class="content">
