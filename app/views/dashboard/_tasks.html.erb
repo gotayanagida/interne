@@ -15,7 +15,7 @@
     <% @schedules.each do |schedule| %>
       <% schedule.tasks.each do |task| %>
         <% if task.users.include?(current_user) %>
-        
+
           <div class="tasks<%= iter1 %>" style="cursor : pointer;">
             <div class="item">
 							<% color = user_color_list(user_id:task.users.first.id,company_id:current_company.id) %>
@@ -46,7 +46,7 @@
 	            </div>
 			</div>
           </div>
-          
+
           <!-- modal -->
             <div class="ui tiny modal taskons<%= iter1 %>">
 			  <i class="close icon"></i>
@@ -80,12 +80,12 @@
 			    </div>
 			  </div>
 		    </div>
-          
+
           <script type="text/javascript">
 			$(function(){
 				$('.tasks<%= iter1 %>').on('click',function(){
 				 $('.ui.modal.taskons<%= iter1 %>').modal('show');
-				});		
+				});
 			});
 		  </script>
 		  <% iter1 = iter1 + 1 %>
@@ -120,7 +120,7 @@
             </div>
 					</div>
         </div>
-        
+
         <!-- modal -->
             <div class="ui tiny modal taskons<%= iter1 %>">
 			  <i class="close icon"></i>
@@ -153,12 +153,12 @@
 			    </div>
 			  </div>
 		    </div>
-          
+
           <script type="text/javascript">
 			$(function(){
 				$('.tasks<%= iter1 %>').on('click',function(){
 				 $('.ui.modal.taskons<%= iter1 %>').modal('show');
-				});		
+				});
 			});
 		  </script>
 		  <% iter1 = iter1 + 1 %>

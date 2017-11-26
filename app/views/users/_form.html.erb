@@ -36,6 +36,16 @@
     <%= form.select :gender, [["男性", 0], ["女性", 1]], id: :user_gender%>
   </div>
 
+  <% user.companies.each do |company| %>
+    <div class="field">
+      <%= form.fields_for :company_users do |company_user| %>
+        <%= company_user.label 'テーマカラーを選択' %>
+        <%= company_user.collection_select :color_id, Color.all, :id, :name ,{ include_blank: true }%>
+      <% end %>
+    </div>
+  <% end %>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
