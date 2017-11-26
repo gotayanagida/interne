@@ -9,12 +9,14 @@
 		<i class="plus icon"></i>
 	<% end %>
 </h3>
+<% iter1 = 0 %>
 <% if @schedules != [] %>
   <div class="ui relaxed divided list task-status" id="tasks-for-all">
     <% @schedules.each do |schedule| %>
       <% schedule.tasks.each do |task| %>
         <% if task.users.include?(current_user) %>
-          <%= link_to task do%>
+        
+          <div class="tasks<%= iter1 %>" style="cursor : pointer;">
             <div class="item">
 							<% color = user_color_list(user_id:task.users.first.id,company_id:current_company.id) %>
               <div class="left-gradient-border" style="background: linear-gradient(-45deg,<%= color.grad_1 %>,<%= color.grad_2 %>);"></div>
@@ -22,18 +24,18 @@
 								<span><%= image_tag task.users.first.profile_photo_url, class:"company-icon-img"%></span>
 							</div>
 	          	<div class="content">
-		            <div class="title">
+		          <div class="title">
 	              	<%= task.title %>
 									<% task.labels.each do |label| %>
 	                  <span class="labelname" style="background-color:<%=label.color%>;">
 	                    <%= label.name %>
 	                  </span>
 	                <% end %>
-									<% task.users.each do |user| %>
-										<span class="username">
-											<%= user.name %>,
-										</span>
-									<% end %>
+					<% task.users.each do |user| %>
+						<span class="username">
+							<%= user.name %>,
+						</span>
+					<% end %>
 	              </div>
 	              <div class="description">
 	                  <%=task.detail.slice(0, 40)%><%= '...' if task.detail.length > 40%>
@@ -42,16 +44,60 @@
 	                </span>
 	              </div>
 	            </div>
-						</div>
-          <% end %>
+			</div>
+          </div>
+          
+          <!-- modal -->
+            <div class="ui tiny modal taskons<%= iter1 %>">
+			  <i class="close icon"></i>
+			  <div class="header">
+			  	<% task.task_users.each do |task_user| %>
+				      <%= image_tag task_user.user.profile_photo_url ,class:"ui avatar image",style:"height:25px;width:25px;"%>
+				      <%= task_user.user.name %>
+				<% end %>
+				<%= schedule.work_started_at %>
+			  </div>
+			  <div class="content">
+			    <div class="description">
+			      <div class="ui header"><%= task.title %></div>
+			      <%= task.detail %>
+			      <br><br>
+			      <% task.labels.each do |label| %>
+                  <span class="labelname" style="background-color:<%=label.color%>;">
+                    <%= label.name %>
+                  </span>
+                  <% end %><br><br>
+                  作成日時：<%= task.created_at.strftime("%m月%d日 %-H時%M分") %><br>
+                  最終更新日時：<%= task.updated_at.strftime("%m月%d日 %-H時%M分") %><br>
+			    </div>
+			  </div>
+			  <div class="actions">
+			    <%= link_to edit_task_path(task) ,class:"ui button" do%>
+			      編集
+			      <%end%>
+			    <div class="ui deny button">
+			      戻る
+			    </div>
+			  </div>
+		    </div>
+          
+          <script type="text/javascript">
+			$(function(){
+				$('.tasks<%= iter1 %>').on('click',function(){
+				 $('.ui.modal.taskons<%= iter1 %>').modal('show');
+				});		
+			});
+		  </script>
+		  <% iter1 = iter1 + 1 %>
+
         <% end %>
       <% end %>
-		<% end %>
+	<% end %>
 	  <% @tasks_not_desided_day.each do |task| %>
       <% if task.users.include?(current_user) %>
-        <%= link_to task do%>
+        <div class="tasks<%= iter1 %>" style="cursor : pointer;">
           <div class="item" style="border-left: 4px solid <%= task.labels == [] ? '#ffffff' : task.labels.last.color%>;">
-						<div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px;  background: linear-gradient(-45deg,<%=task.users.first.color_1%>,<%=task.users.first.color_2%>);">
+						<div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px;  ">
 							<span><%= image_tag task.users.first.profile_photo_url, class:"company-icon-img"%></span>
 						</div>
           	<div class="content">
@@ -73,7 +119,49 @@
               </div>
             </div>
 					</div>
-        <% end %>
+        </div>
+        
+        <!-- modal -->
+            <div class="ui tiny modal taskons<%= iter1 %>">
+			  <i class="close icon"></i>
+			  <div class="header">
+			  	<% task.task_users.each do |task_user| %>
+				      <%= image_tag task_user.user.profile_photo_url ,class:"ui avatar image",style:"height:25px;width:25px;"%>
+				      <%= task_user.user.name %>
+				<% end %>
+			  </div>
+			  <div class="content">
+			    <div class="description">
+			      <div class="ui header"><%= task.title %></div>
+			      <%= task.detail %>
+			      <br><br>
+			      <% task.labels.each do |label| %>
+                  <span class="labelname" style="background-color:<%=label.color%>;">
+                    <%= label.name %>
+                  </span>
+                  <% end %><br><br>
+                  作成日時：<%= task.created_at.strftime("%m月%d日 %-H時%M分") %><br>
+                  最終更新日時：<%= task.updated_at.strftime("%m月%d日 %-H時%M分") %><br>
+			    </div>
+			  </div>
+			  <div class="actions">
+			    <%= link_to edit_task_path(task) ,class:"ui button" do%>
+			      編集
+			      <%end%>
+			    <div class="ui deny button">
+			      戻る
+			    </div>
+			  </div>
+		    </div>
+          
+          <script type="text/javascript">
+			$(function(){
+				$('.tasks<%= iter1 %>').on('click',function(){
+				 $('.ui.modal.taskons<%= iter1 %>').modal('show');
+				});		
+			});
+		  </script>
+		  <% iter1 = iter1 + 1 %>
       <% end %>
     <% end %>
   </div>
