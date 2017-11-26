@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="extra content" style="padding: 1.5em 1em;">
-			<% color = user_color_list(user_id:task.users.first.id,company_id:current_company.id) %>
+			<% color = user_color_list(user_id:report.user.id,company_id:current_company.id) %>
 			<div class="circle-image-border" style="width: 40px; height: 40px; left: 1rem; margin-top: -20px; linear-gradient(-45deg,<%= color.grad_1 %>,<%= color.grad_2 %>); %>
 			;">
 				<span><%= image_tag report.user.profile_photo_url, class:"company-icon-img"%></span>
