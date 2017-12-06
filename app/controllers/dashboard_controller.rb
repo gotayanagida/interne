@@ -5,7 +5,6 @@ class DashboardController < ApplicationController
 
     if current_company != nil
       @schedules = current_company.schedules.all
-      # @tasks = current_company.tasks.all.limit(5).reverse_order
       @tasks_not_desided_day = []
       tasks = current_company.tasks
       tasks.each do |task|
