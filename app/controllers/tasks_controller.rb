@@ -40,13 +40,15 @@ class TasksController < ApplicationController
     end
 
     #お知らせ生成
-    if params[:user_id] != [] && params[:schedule_id] != []
-      name = current_user.name
-      title = @task.title
-      day = @task.task_schedules.first.schedule.work_started_at.strftime("%m月%d日") unless @task.task_schedules == []
-      users_id_arr = []
-      users_id_arr.append(@task.task_users.first.user.id)
-      generate_notice(users_id:users_id_arr, companies_id:companies_id_arr, body:"#{name}さんが#{day}のあなたの タスク「#{title}」を追加しました", associate_type:"task", associate_id: @task.id)
+    if @task.task_users != []
+      if params[:user_id] != [] && params[:schedule_id] != []
+        name = current_user.name
+        title = @task.title
+        day = @task.task_schedules.first.schedule.work_started_at.strftime("%m月%d日") unless @task.task_schedules == []
+        users_id_arr = []
+        users_id_arr.append(@task.task_users.first.user.id)
+        generate_notice(users_id:users_id_arr, companies_id:companies_id_arr, body:"#{name}さんが#{day}のあなたの タスク「#{title}」を追加しました", associate_type:"task", associate_id: @task.id)
+      end
     end
   end
 
